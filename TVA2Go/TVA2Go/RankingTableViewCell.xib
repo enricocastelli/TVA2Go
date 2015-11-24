@@ -50,6 +50,7 @@
                     <constraint firstItem="7eW-Gy-d7h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="vJu-fM-SRK"/>
                 </constraints>
             </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="cell"/>
             <connections>
                 <outlet property="descriptionLabel" destination="zXB-jz-kFs" id="Fyx-T8-cSH"/>
                 <outlet property="imageThumbnail" destination="6zE-zH-1hG" id="esO-V8-YWb"/>
