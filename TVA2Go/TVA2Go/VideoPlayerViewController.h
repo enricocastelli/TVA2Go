@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "YTPlayerView.h"
+
 @interface VideoPlayerViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
+
 
 @end
