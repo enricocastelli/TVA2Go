@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *laughButton;
 @property (weak, nonatomic) IBOutlet UIButton *smartButton;
 @property (weak, nonatomic) IBOutlet UIButton *randomButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *act;
 
 
 @end
@@ -33,15 +34,9 @@
     
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.toolbarHidden = NO;
-    
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
+    [self toolbarLogin];
+    self.act.hidden = YES;
 
-        UIBarButtonItem *login = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(login)];
-        UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithTitle:@"Most Pinned" style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
-
-    
-    self.toolbarItems = @[myPins, space, login, space, mostPinned];
 
     
 }
@@ -92,10 +87,36 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
     UIAlertAction *log = [UIAlertAction actionWithTitle:@"Log In" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        self.act.hidden = NO;
+        [self.act startAnimating];
+        [PFUser logInWithUsernameInBackground:login.textFields[0].text  password:login.textFields[1].text  block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+
+            UIAlertController *logsuccess = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Hi, %@", login.textFields[0].text ] message:@"You are logged in" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self toolbarLogout];
+                [self.act stopAnimating];
+                self.act.hidden = YES;
+            }];
+            
+            [logsuccess addAction:ok];
+            [self presentViewController:logsuccess animated:YES completion:nil];
+
+        }];
         
     }];
+    [login addAction:cancel];
+    [login addAction:log];
+    [self presentViewController:login animated:YES completion:nil];
     
-    
+}
+
+- (void) logout
+{
+    [PFUser logOutInBackground];
+
+    [self toolbarLogin];
+
 }
 
 - (void) mostPinned
@@ -112,9 +133,29 @@
     self.navigationController.toolbarHidden = YES;
 }
 
+- (void)toolbarLogout
+{
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
+    
+    UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithTitle:@"Most Pinned" style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
+    
+    
+    self.toolbarItems = @[myPins, space, logout, space, mostPinned];
+}
 
-
-
+- (void)toolbarLogin
+{
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
+    
+    UIBarButtonItem *login = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(login)];
+    UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithTitle:@"Most Pinned" style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
+    
+    
+    self.toolbarItems = @[myPins, space, login, space, mostPinned];
+}
 
 
 
