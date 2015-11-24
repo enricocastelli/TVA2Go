@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "YTPlayerView.h"
+
 @interface VideoPlayerViewController : UIViewController
 
 @end
