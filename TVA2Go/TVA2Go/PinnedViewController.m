@@ -13,6 +13,8 @@
 @interface PinnedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pinned;
+@property (strong,nonatomic) NSArray *array;
+
 
 @end
 
@@ -26,14 +28,14 @@
     self.pinned.frame = self.view.frame;
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView * _Nonnull)collectionView
-{
-    return 1;
-}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    PFUser*user = [PFUser currentUser];
+    
+    self.array = user[@"pinnedVideos"];
+    
+    return self.array.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -41,12 +43,18 @@
 {
     
     UICollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-
-    UIImage *logo = [UIImage imageNamed:@"logo"];
-    UIImageView *im = [[UIImageView alloc] initWithImage:logo];
+    PFQuery *query = [PFQuery queryWithClassName:@"Video"];
     
-    [cell.contentView addSubview:im];
-    
+    [query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        
+        CGRect rect = CGRectMake(0, 0, 70, 70);
+        PFImageView *image = [[PFImageView alloc] initWithFrame:rect];
+        
+        image.file = object[@"thumbnail"];
+        [image loadInBackground];
+        cell.backgroundColor = [UIColor lightGrayColor];
+        [cell.contentView addSubview:image];
+    }];
     
     return cell;
 }
