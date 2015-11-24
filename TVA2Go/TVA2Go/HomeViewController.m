@@ -11,6 +11,7 @@
 #import <ParseUI/ParseUI.h>
 #import "PinnedViewController.h"
 #import "MostPinnedTableViewController.h"
+#import "VideoPlayerViewController.h"
 
 
 @interface HomeViewController () <UINavigationControllerDelegate>
@@ -48,22 +49,28 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-
-    
 }
 
 
 - (IBAction)inspireMe:(id)sender {
+    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
+        [self.navigationController pushViewController:v animated:YES];
 }
 
 - (IBAction)makeMeLaugh:(id)sender {
+    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
+    [self.navigationController pushViewController:v animated:YES];
 }
 
 
 - (IBAction)makeMeSmarter:(id)sender {
+    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
+    [self.navigationController pushViewController:v animated:YES];
 }
 
 - (IBAction)random:(id)sender {
+    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
+    [self.navigationController pushViewController:v animated:YES];
 }
 
 - (void) myPins
@@ -74,6 +81,20 @@
 
 - (void) login
 {
+    UIAlertController *login = [UIAlertController alertControllerWithTitle:@"Log In" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [login addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Username";
+    }];
+    [login addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Password";
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *log = [UIAlertAction actionWithTitle:@"Log In" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
     
 }
 
@@ -89,7 +110,6 @@
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.toolbarHidden = YES;
-    
 }
 
 
