@@ -12,4 +12,6 @@
 
 @interface VideoPlayerViewController : UIViewController
 
+@property(nonatomic, strong) IBOutlet YTPlayerView *playerView;
+
 @end
