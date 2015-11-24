@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoPlayerViewController">
             <connections>
-                <outlet property="playerView" destination="Z5g-cx-r7T" id="Fhi-a4-ICO"/>
+                <outlet property="playerView" destination="Z5g-cx-r7T" id="QCd-8q-kZa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
