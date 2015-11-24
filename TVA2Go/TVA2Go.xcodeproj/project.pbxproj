@@ -18,6 +18,7 @@
 		F2803BD91C046BC400D3251C /* FullVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullVideoViewController.xib */; };
 		F2803BDD1C046C0100D3251C /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BDB1C046C0100D3251C /* RankingTableViewCell.m */; };
 		F2803BDE1C046C0100D3251C /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BDC1C046C0100D3251C /* RankingTableViewCell.xib */; };
+		F2803BE01C04722C00D3251C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F2803BDF1C04722C00D3251C /* Podfile */; };
 		FDB10ECE1C0461FE0000100B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ECD1C0461FE0000100B /* main.m */; };
 		FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ED01C0461FE0000100B /* AppDelegate.m */; };
 		FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED21C0461FE0000100B /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 		F2803BDA1C046C0100D3251C /* RankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingTableViewCell.h; sourceTree = "<group>"; };
 		F2803BDB1C046C0100D3251C /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
 		F2803BDC1C046C0100D3251C /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
+		F2803BDF1C04722C00D3251C /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		FDB10EC91C0461FE0000100B /* TVA2Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVA2Go.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB10ECD1C0461FE0000100B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FDB10ECF1C0461FE0000100B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		FDB10ECC1C0461FE0000100B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F2803BDF1C04722C00D3251C /* Podfile */,
 				FDB10ECD1C0461FE0000100B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -284,6 +287,7 @@
 			files = (
 				FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */,
 				F2803BCC1C046A5D00D3251C /* VideoPlayerViewController.xib in Resources */,
+				F2803BE01C04722C00D3251C /* Podfile in Resources */,
 				FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */,
 				F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */,
 				F2803BDE1C046C0100D3251C /* RankingTableViewCell.xib in Resources */,
