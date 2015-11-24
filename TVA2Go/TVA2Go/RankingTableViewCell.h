@@ -10,4 +10,10 @@
 
 @interface RankingTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageThumbnail;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+
 @end
