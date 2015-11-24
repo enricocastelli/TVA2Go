@@ -11,7 +11,8 @@
 #import <ParseUI/ParseUI.h>
 
 
-@interface HomeViewController ()
+@interface HomeViewController () <UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIButton *inspireButton;
 @property (weak, nonatomic) IBOutlet UIButton *laughButton;
 @property (weak, nonatomic) IBOutlet UIButton *smartButton;
@@ -22,8 +23,9 @@
 @implementation HomeViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-
+    self.navigationController.navigationBarHidden = YES;
 }
 
 
