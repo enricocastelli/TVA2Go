@@ -19,6 +19,8 @@
 		F2803BD91C046BC400D3251C /* FullVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullVideoViewController.xib */; };
 		F2803BDD1C046C0100D3251C /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BDB1C046C0100D3251C /* RankingTableViewCell.m */; };
 		F2803BDE1C046C0100D3251C /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BDC1C046C0100D3251C /* RankingTableViewCell.xib */; };
+		FD922E9F1C04AD1D00D690AA /* PinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */; };
+		FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */; };
 		FDB10ECE1C0461FE0000100B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ECD1C0461FE0000100B /* main.m */; };
 		FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ED01C0461FE0000100B /* AppDelegate.m */; };
 		FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED21C0461FE0000100B /* Assets.xcassets */; };
@@ -65,6 +67,9 @@
 		F2803BDB1C046C0100D3251C /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
 		F2803BDC1C046C0100D3251C /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		F9A22218E537DEC4FCB350BA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCollectionViewCell.h; sourceTree = "<group>"; };
+		FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCollectionViewCell.m; sourceTree = "<group>"; };
+		FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinCollectionViewCell.xib; sourceTree = "<group>"; };
 		FDB10EC91C0461FE0000100B /* TVA2Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVA2Go.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB10ECD1C0461FE0000100B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FDB10ECF1C0461FE0000100B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -159,6 +164,9 @@
 				F2803BCD1C046AE500D3251C /* PinnedViewController.h */,
 				F2803BCE1C046AE500D3251C /* PinnedViewController.m */,
 				F2803BCF1C046AE500D3251C /* PinnedViewController.xib */,
+				FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */,
+				FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */,
+				FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */,
 				F2803BD21C046B0900D3251C /* MostPinnedTableViewController.h */,
 				F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */,
 				F2803BD51C046BC400D3251C /* FullVideoViewController.h */,
@@ -309,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */,
 				FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */,
 				F2803BCC1C046A5D00D3251C /* VideoPlayerViewController.xib in Resources */,
 				FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */,
@@ -390,6 +399,7 @@
 			files = (
 				FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */,
 				F2803BCB1C046A5D00D3251C /* VideoPlayerViewController.m in Sources */,
+				FD922E9F1C04AD1D00D690AA /* PinCollectionViewCell.m in Sources */,
 				FDB10ECE1C0461FE0000100B /* main.m in Sources */,
 				F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */,
 				F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */,
