@@ -10,13 +10,16 @@
 
 @interface FullVideoViewController ()
 
+@property (nonatomic, strong) IBOutlet UILabel *label;
+
 @end
 
 @implementation FullVideoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.label.text = self.video[@"shortLink"];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface FullVideoViewController : UIViewController
+
+@property (nonatomic, strong) PFObject *video;
 
 @end
