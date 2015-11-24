@@ -34,11 +34,13 @@
     
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.toolbarHidden = NO;
-    [self toolbarLogin];
+    PFUser *user = [PFUser currentUser];
+    if (user){
+    [self toolbarLogout];
+    } else {
+        [self toolbarLogin];
+    }
     self.act.hidden = YES;
-
-
-    
 }
 
 - (void)viewDidLoad {
@@ -90,15 +92,13 @@
         self.act.hidden = NO;
         [self.act startAnimating];
         [PFUser logInWithUsernameInBackground:login.textFields[0].text  password:login.textFields[1].text  block:^(PFUser * _Nullable user, NSError * _Nullable error) {
-
+            [self.act stopAnimating];
+            self.act.hidden = YES;
             UIAlertController *logsuccess = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Hi, %@", login.textFields[0].text ] message:@"You are logged in" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self toolbarLogout];
-                [self.act stopAnimating];
-                self.act.hidden = YES;
-            }];
-            
+              }];
             [logsuccess addAction:ok];
             [self presentViewController:logsuccess animated:YES completion:nil];
 
@@ -114,9 +114,7 @@
 - (void) logout
 {
     [PFUser logOutInBackground];
-
     [self toolbarLogin];
-
 }
 
 - (void) mostPinned
@@ -137,7 +135,6 @@
 {
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
-    
     UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
     UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithTitle:@"Most Pinned" style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
     
@@ -149,7 +146,6 @@
 {
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
-    
     UIBarButtonItem *login = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(login)];
     UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithTitle:@"Most Pinned" style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
     
