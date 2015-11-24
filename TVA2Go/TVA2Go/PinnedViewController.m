@@ -7,8 +7,12 @@
 //
 
 #import "PinnedViewController.h"
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
-@interface PinnedViewController ()
+@interface PinnedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *pinned;
 
 @end
 
@@ -16,22 +20,40 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [self.pinned registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    
+    self.pinned.frame = self.view.frame;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView * _Nonnull)collectionView
+{
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 10;
 }
-*/
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UICollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+
+    UIImage *logo = [UIImage imageNamed:@"logo"];
+    UIImageView *im = [[UIImageView alloc] initWithImage:logo];
+    
+    [cell.contentView addSubview:im];
+    
+    
+    return cell;
+}
+
+
+
+
+
 
 @end
