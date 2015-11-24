@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FDB10ECE1C0461FE0000100B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ECD1C0461FE0000100B /* main.m */; };
+		FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ED01C0461FE0000100B /* AppDelegate.m */; };
+		FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED21C0461FE0000100B /* Assets.xcassets */; };
+		FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */; };
+		FDB10EE11C0461FE0000100B /* TVA2GoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EE01C0461FE0000100B /* TVA2GoTests.m */; };
+		FDB10EEC1C0461FE0000100B /* TVA2GoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FDB10EDD1C0461FE0000100B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDB10EC11C0461FE0000100B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDB10EC81C0461FE0000100B;
+			remoteInfo = TVA2Go;
+		};
+		FDB10EE81C0461FE0000100B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDB10EC11C0461FE0000100B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDB10EC81C0461FE0000100B;
+			remoteInfo = TVA2Go;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FDB10EC91C0461FE0000100B /* TVA2Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVA2Go.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDB10ECD1C0461FE0000100B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FDB10ECF1C0461FE0000100B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FDB10ED01C0461FE0000100B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FDB10ED21C0461FE0000100B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FDB10ED51C0461FE0000100B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FDB10ED71C0461FE0000100B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDB10EDC1C0461FE0000100B /* TVA2GoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVA2GoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDB10EE01C0461FE0000100B /* TVA2GoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVA2GoTests.m; sourceTree = "<group>"; };
+		FDB10EE21C0461FE0000100B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDB10EE71C0461FE0000100B /* TVA2GoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVA2GoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVA2GoUITests.m; sourceTree = "<group>"; };
+		FDB10EED1C0461FE0000100B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FDB10EC61C0461FE0000100B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB10ED91C0461FE0000100B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB10EE41C0461FE0000100B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FDB10EC01C0461FE0000100B = {
+			isa = PBXGroup;
+			children = (
+				FDB10ECB1C0461FE0000100B /* TVA2Go */,
+				FDB10EDF1C0461FE0000100B /* TVA2GoTests */,
+				FDB10EEA1C0461FE0000100B /* TVA2GoUITests */,
+				FDB10ECA1C0461FE0000100B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FDB10ECA1C0461FE0000100B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FDB10EC91C0461FE0000100B /* TVA2Go.app */,
+				FDB10EDC1C0461FE0000100B /* TVA2GoTests.xctest */,
+				FDB10EE71C0461FE0000100B /* TVA2GoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FDB10ECB1C0461FE0000100B /* TVA2Go */ = {
+			isa = PBXGroup;
+			children = (
+				FDB10ECF1C0461FE0000100B /* AppDelegate.h */,
+				FDB10ED01C0461FE0000100B /* AppDelegate.m */,
+				FDB10ED21C0461FE0000100B /* Assets.xcassets */,
+				FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */,
+				FDB10ED71C0461FE0000100B /* Info.plist */,
+				FDB10ECC1C0461FE0000100B /* Supporting Files */,
+			);
+			path = TVA2Go;
+			sourceTree = "<group>";
+		};
+		FDB10ECC1C0461FE0000100B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FDB10ECD1C0461FE0000100B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FDB10EDF1C0461FE0000100B /* TVA2GoTests */ = {
+			isa = PBXGroup;
+			children = (
+				FDB10EE01C0461FE0000100B /* TVA2GoTests.m */,
+				FDB10EE21C0461FE0000100B /* Info.plist */,
+			);
+			path = TVA2GoTests;
+			sourceTree = "<group>";
+		};
+		FDB10EEA1C0461FE0000100B /* TVA2GoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */,
+				FDB10EED1C0461FE0000100B /* Info.plist */,
+			);
+			path = TVA2GoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FDB10EC81C0461FE0000100B /* TVA2Go */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDB10EF01C0461FE0000100B /* Build configuration list for PBXNativeTarget "TVA2Go" */;
+			buildPhases = (
+				FDB10EC51C0461FE0000100B /* Sources */,
+				FDB10EC61C0461FE0000100B /* Frameworks */,
+				FDB10EC71C0461FE0000100B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TVA2Go;
+			productName = TVA2Go;
+			productReference = FDB10EC91C0461FE0000100B /* TVA2Go.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FDB10EDB1C0461FE0000100B /* TVA2GoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDB10EF31C0461FE0000100B /* Build configuration list for PBXNativeTarget "TVA2GoTests" */;
+			buildPhases = (
+				FDB10ED81C0461FE0000100B /* Sources */,
+				FDB10ED91C0461FE0000100B /* Frameworks */,
+				FDB10EDA1C0461FE0000100B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FDB10EDE1C0461FE0000100B /* PBXTargetDependency */,
+			);
+			name = TVA2GoTests;
+			productName = TVA2GoTests;
+			productReference = FDB10EDC1C0461FE0000100B /* TVA2GoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FDB10EE61C0461FE0000100B /* TVA2GoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FDB10EF61C0461FE0000100B /* Build configuration list for PBXNativeTarget "TVA2GoUITests" */;
+			buildPhases = (
+				FDB10EE31C0461FE0000100B /* Sources */,
+				FDB10EE41C0461FE0000100B /* Frameworks */,
+				FDB10EE51C0461FE0000100B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FDB10EE91C0461FE0000100B /* PBXTargetDependency */,
+			);
+			name = TVA2GoUITests;
+			productName = TVA2GoUITests;
+			productReference = FDB10EE71C0461FE0000100B /* TVA2GoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FDB10EC11C0461FE0000100B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = Eyolph;
+				TargetAttributes = {
+					FDB10EC81C0461FE0000100B = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					FDB10EDB1C0461FE0000100B = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 94C49VQS6W;
+						TestTargetID = FDB10EC81C0461FE0000100B;
+					};
+					FDB10EE61C0461FE0000100B = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 94C49VQS6W;
+						TestTargetID = FDB10EC81C0461FE0000100B;
+					};
+				};
+			};
+			buildConfigurationList = FDB10EC41C0461FE0000100B /* Build configuration list for PBXProject "TVA2Go" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FDB10EC01C0461FE0000100B;
+			productRefGroup = FDB10ECA1C0461FE0000100B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FDB10EC81C0461FE0000100B /* TVA2Go */,
+				FDB10EDB1C0461FE0000100B /* TVA2GoTests */,
+				FDB10EE61C0461FE0000100B /* TVA2GoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FDB10EC71C0461FE0000100B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */,
+				FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB10EDA1C0461FE0000100B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB10EE51C0461FE0000100B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FDB10EC51C0461FE0000100B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */,
+				FDB10ECE1C0461FE0000100B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB10ED81C0461FE0000100B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDB10EE11C0461FE0000100B /* TVA2GoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDB10EE31C0461FE0000100B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDB10EEC1C0461FE0000100B /* TVA2GoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FDB10EDE1C0461FE0000100B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDB10EC81C0461FE0000100B /* TVA2Go */;
+			targetProxy = FDB10EDD1C0461FE0000100B /* PBXContainerItemProxy */;
+		};
+		FDB10EE91C0461FE0000100B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FDB10EC81C0461FE0000100B /* TVA2Go */;
+			targetProxy = FDB10EE81C0461FE0000100B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FDB10ED51C0461FE0000100B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FDB10EEE1C0461FE0000100B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FDB10EEF1C0461FE0000100B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FDB10EF11C0461FE0000100B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Enrico Castelli (PKJ89Z9RSM)";
+				INFOPLIST_FILE = TVA2Go/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.tva2go;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FDB10EF21C0461FE0000100B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				INFOPLIST_FILE = TVA2Go/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.tva2go;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FDB10EF41C0461FE0000100B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TVA2GoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = eyolph.me.TVA2GoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TVA2Go.app/TVA2Go";
+			};
+			name = Debug;
+		};
+		FDB10EF51C0461FE0000100B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TVA2GoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = eyolph.me.TVA2GoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TVA2Go.app/TVA2Go";
+			};
+			name = Release;
+		};
+		FDB10EF71C0461FE0000100B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TVA2GoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = eyolph.me.TVA2GoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TVA2Go;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		FDB10EF81C0461FE0000100B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TVA2GoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = eyolph.me.TVA2GoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TVA2Go;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FDB10EC41C0461FE0000100B /* Build configuration list for PBXProject "TVA2Go" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDB10EEE1C0461FE0000100B /* Debug */,
+				FDB10EEF1C0461FE0000100B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FDB10EF01C0461FE0000100B /* Build configuration list for PBXNativeTarget "TVA2Go" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDB10EF11C0461FE0000100B /* Debug */,
+				FDB10EF21C0461FE0000100B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FDB10EF31C0461FE0000100B /* Build configuration list for PBXNativeTarget "TVA2GoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDB10EF41C0461FE0000100B /* Debug */,
+				FDB10EF51C0461FE0000100B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FDB10EF61C0461FE0000100B /* Build configuration list for PBXNativeTarget "TVA2GoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FDB10EF71C0461FE0000100B /* Debug */,
+				FDB10EF81C0461FE0000100B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FDB10EC11C0461FE0000100B /* Project object */;
+}
