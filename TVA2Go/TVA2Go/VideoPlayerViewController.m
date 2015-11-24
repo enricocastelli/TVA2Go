@@ -18,11 +18,12 @@
     [super viewDidLoad];
 
     [self.playerView loadWithVideoId:@"Of5xEVAoWLk"];
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.playerView playVideo];
 }
 
 @end

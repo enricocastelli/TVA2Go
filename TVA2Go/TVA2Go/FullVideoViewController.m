@@ -10,7 +10,7 @@
 
 @interface FullVideoViewController ()
 
-@property (nonatomic, strong) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 
 @end
 
@@ -18,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.label.text = self.video[@"shortLink"];
+    [self.playerView loadWithVideoId:self.video[@"videoID"]];
+
     
 }
 

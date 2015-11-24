@@ -51,8 +51,16 @@
 
 - (IBAction)inspireMe:(id)sender {
     VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
-        [self.navigationController pushViewController:v animated:YES];
-}
+    v.view.alpha = 0;
+    self.navigationController.navigationBar.alpha = 0;
+    [UIView animateWithDuration:0.75
+                     animations:^{
+                         [self.navigationController pushViewController:v animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                         v.view.alpha = 1.0;
+                         self.navigationController.navigationBar.alpha = 1.0;
+
+                     }];}
 
 - (IBAction)makeMeLaugh:(id)sender {
     VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
@@ -72,8 +80,17 @@
 
 - (void) myPins
 {
+    PFUser *user = [PFUser currentUser];
+    if (user){
     PinnedViewController *p = [[PinnedViewController alloc] init];
-    [self.navigationController pushViewController:p animated:YES];
+        [UIView animateWithDuration:0.75
+                         animations:^{
+                             [self.navigationController pushViewController:p animated:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+                         }];
+    } else {
+    [self notLogin];
+    }
 }
 
 - (void) login
@@ -154,8 +171,22 @@
 }
 
 
+- (void)notLogin
+{
+    UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in" message:@"Log in to pin videos" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *login = [UIAlertAction actionWithTitle:@"Log in" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self login];
+    }];
 
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 
+    [notLogin addAction:login];
+    [notLogin addAction:cancel];
+    [self presentViewController:notLogin animated:YES completion:nil];
+
+}
 
 
 @end

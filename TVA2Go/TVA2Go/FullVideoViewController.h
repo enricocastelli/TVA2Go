@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "YTPlayerView.h"
+
 
 @interface FullVideoViewController : UIViewController
 
