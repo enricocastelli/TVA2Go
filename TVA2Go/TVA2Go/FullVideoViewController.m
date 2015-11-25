@@ -10,13 +10,17 @@
 
 @interface FullVideoViewController ()
 
+@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
+
 @end
 
 @implementation FullVideoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.playerView loadWithVideoId:self.video[@"videoID"]];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
