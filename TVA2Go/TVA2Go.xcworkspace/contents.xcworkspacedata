@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:RankingTableViewCell.h">
+   </FileRef>
+   <FileRef
+      location = "group:RankingTableViewCell.m">
+   </FileRef>
+   <FileRef
+      location = "group:RankingTableViewCell.xib">
+   </FileRef>
+   <FileRef
       location = "group:TVA2Go.xcodeproj">
    </FileRef>
    <FileRef

@@ -17,8 +17,8 @@
 		F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */; };
 		F2803BD81C046BC400D3251C /* FullVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BD61C046BC400D3251C /* FullVideoViewController.m */; };
 		F2803BD91C046BC400D3251C /* FullVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullVideoViewController.xib */; };
-		F2803BDD1C046C0100D3251C /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BDB1C046C0100D3251C /* RankingTableViewCell.m */; };
-		F2803BDE1C046C0100D3251C /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BDC1C046C0100D3251C /* RankingTableViewCell.xib */; };
+		F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */; };
+		F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */; };
 		FD922E9F1C04AD1D00D690AA /* PinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */; };
 		FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */; };
 		FDB10ECE1C0461FE0000100B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ECD1C0461FE0000100B /* main.m */; };
@@ -63,9 +63,9 @@
 		F2803BD51C046BC400D3251C /* FullVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullVideoViewController.h; sourceTree = "<group>"; };
 		F2803BD61C046BC400D3251C /* FullVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullVideoViewController.m; sourceTree = "<group>"; };
 		F2803BD71C046BC400D3251C /* FullVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullVideoViewController.xib; sourceTree = "<group>"; };
-		F2803BDA1C046C0100D3251C /* RankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingTableViewCell.h; sourceTree = "<group>"; };
-		F2803BDB1C046C0100D3251C /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
-		F2803BDC1C046C0100D3251C /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
+		F2E77C361C05C4F6001EBD00 /* RankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingTableViewCell.h; sourceTree = "<group>"; };
+		F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
+		F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		F9A22218E537DEC4FCB350BA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCollectionViewCell.h; sourceTree = "<group>"; };
 		FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCollectionViewCell.m; sourceTree = "<group>"; };
@@ -169,12 +169,12 @@
 				FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */,
 				F2803BD21C046B0900D3251C /* MostPinnedTableViewController.h */,
 				F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */,
+				F2E77C361C05C4F6001EBD00 /* RankingTableViewCell.h */,
+				F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */,
+				F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */,
 				F2803BD51C046BC400D3251C /* FullVideoViewController.h */,
 				F2803BD61C046BC400D3251C /* FullVideoViewController.m */,
 				F2803BD71C046BC400D3251C /* FullVideoViewController.xib */,
-				F2803BDA1C046C0100D3251C /* RankingTableViewCell.h */,
-				F2803BDB1C046C0100D3251C /* RankingTableViewCell.m */,
-				F2803BDC1C046C0100D3251C /* RankingTableViewCell.xib */,
 				FDB10ED21C0461FE0000100B /* Assets.xcassets */,
 				FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */,
 				FDB10ED71C0461FE0000100B /* Info.plist */,
@@ -322,8 +322,8 @@
 				F2803BCC1C046A5D00D3251C /* VideoPlayerViewController.xib in Resources */,
 				FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */,
 				F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */,
-				F2803BDE1C046C0100D3251C /* RankingTableViewCell.xib in Resources */,
 				F2803BC71C04691F00D3251C /* HomeViewController.xib in Resources */,
+				F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */,
 				F2803BD91C046BC400D3251C /* FullVideoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,8 +403,8 @@
 				FDB10ECE1C0461FE0000100B /* main.m in Sources */,
 				F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */,
 				F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */,
+				F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */,
 				F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */,
-				F2803BDD1C046C0100D3251C /* RankingTableViewCell.m in Sources */,
 				F2803BD81C046BC400D3251C /* FullVideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
