@@ -14,18 +14,24 @@
 #import "VideoPlayerViewController.h"
 
 
-@interface HomeViewController () <UINavigationControllerDelegate>
+@interface HomeViewController () <UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *inspireButton;
 @property (weak, nonatomic) IBOutlet UIButton *laughButton;
 @property (weak, nonatomic) IBOutlet UIButton *smartButton;
 @property (weak, nonatomic) IBOutlet UIButton *randomButton;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *act;
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+
 @property (weak, nonatomic) IBOutlet UIButton *undoButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UILabel *successLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property (weak, nonatomic) IBOutlet UIButton *signupButton;
+@property (weak, nonatomic) IBOutlet UIButton *goButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 
 
@@ -41,13 +47,14 @@
     
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.toolbarHidden = NO;
+    self.undoButton.frame = CGRectMake(81, 190, 46, 46);
+
     PFUser *user = [PFUser currentUser];
     if (user){
     [self toolbarLogout];
     } else {
         [self toolbarLogin];
     }
-    self.act.hidden = YES;
 }
 
 - (void)viewDidLoad {
@@ -55,9 +62,16 @@
     [super viewDidLoad];
     self.loginButton.layer.cornerRadius = self.loginButton.bounds.size.width/2.0;
     self.undoButton.layer.cornerRadius = self.undoButton.bounds.size.width/2.0;
-    self.loginButton.titleLabel.alpha = 1;
+        self.signupButton.layer.cornerRadius = self.signupButton.bounds.size.width/2.0;
+            self.goButton.layer.cornerRadius = self.goButton.bounds.size.width/2.0;
+      self.cancelButton.layer.cornerRadius = self.cancelButton.bounds.size.width/2.0;
+    
+    self.usernameField.delegate = self;
+    self.passwordField.delegate = self;
+
 
 }
+
 
 
 - (IBAction)inspireMe:(id)sender {
@@ -107,6 +121,9 @@
 - (void) login
 {
     [self loginFade];
+    [UIView animateWithDuration:1.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.logo.frame = CGRectMake(81, 900, 158, 156);
+    } completion:nil];
 }
 
 - (void) logout
@@ -183,10 +200,11 @@
     self.loginButton.alpha = 1;
     self.loginButton.titleLabel.alpha = 1;
     self.loginButton.transform = CGAffineTransformMakeRotation(0);
-    self.loginButton.frame = CGRectMake(193, 330, 46, 46);
+//    self.loginButton.frame = CGRectMake(193, 252, 46, 46);
     self.undoButton.hidden = NO;
     self.undoButton.alpha = 1;
-
+    self.signupButton.hidden = NO;
+    self.signupButton.alpha = 1;
     [self textFieldsAnimations];
 
 }
@@ -194,32 +212,58 @@
 - (void)textFieldsAnimations
 {
     self.usernameField.alpha = 0;
-    self.usernameField.frame = CGRectMake(-10, self.usernameField.frame.origin.y, self.usernameField.frame.size.width, self.usernameField.frame.size.height);
+    self.usernameField.frame = CGRectMake(81, 800, 158, 30);
     [UIView animateWithDuration:0.7 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.usernameField.alpha = 1;
-        self.usernameField.frame = CGRectMake(81, 231, 158, 30);
+        self.usernameField.frame = CGRectMake(81, 100, 158, 30);
     } completion:nil];
     
     self.passwordField.alpha = 0;
-    self.passwordField.frame = CGRectMake(-20, self.passwordField.frame.origin.y, self.passwordField.frame.size.width, self.passwordField.frame.size.height);
+    self.passwordField.frame = CGRectMake(81, -100, self.passwordField.frame.size.width, self.passwordField.frame.size.height);
     [UIView animateWithDuration:0.7 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.passwordField.alpha = 1;
-        self.passwordField.frame = CGRectMake(81, 269, 158, 30);
+        self.passwordField.frame = CGRectMake(81, 140, 158, 30);
     } completion:nil];
-    
+
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.logo.hidden =YES;
+}
+
 
 - (IBAction)undo:(id)sender
 {
-    self.inspireButton.alpha = 1;
-    self.laughButton.alpha = 1;
-    self.smartButton.alpha = 1;
-    self.randomButton.alpha = 1;
-    self.navigationController.toolbarHidden = NO;
-    self.usernameField.hidden = YES;
-    self.passwordField.hidden = YES;
-    self.loginButton.hidden = YES;
-    self.undoButton.hidden = YES;
+    self.logo.frame = CGRectMake(81, 800, 158, 158);
+
+    self.logo.hidden = NO;
+    [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        self.logo.frame = CGRectMake(81, 44, 158, 158);
+        self.inspireButton.alpha = 1;
+        self.laughButton.alpha = 1;
+        self.smartButton.alpha = 1;
+        self.randomButton.alpha = 1;
+        self.navigationController.toolbarHidden = NO;
+        self.usernameField.hidden = YES;
+        self.passwordField.hidden = YES;
+        self.loginButton.hidden = YES;
+        self.undoButton.hidden = YES;
+        self.signupButton.hidden = YES;
+
+        
+    } completion:nil];
+
+
+    [self.passwordField resignFirstResponder];
+    [self.usernameField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    self.emailField.hidden = YES;
+    self.goButton.hidden = YES;
+    self.cancelButton.hidden = YES;
+
+    
 }
 
 - (IBAction)log:(id)sender
@@ -227,28 +271,46 @@
 {
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (!error){
+            self.successLabel.alpha = 0;
+            [self.passwordField resignFirstResponder];
+            [self.usernameField resignFirstResponder];
+            [self.emailField resignFirstResponder];
+
+
             [self toolbarLogout];
             self.loginButton.titleLabel.alpha = 0;
-            [UIView animateWithDuration:1.8 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self.loginButton.bounds = CGRectMake(0, 0, 1500, 1500);
-                //        self.loginButton.layer.cornerRadius = self.loginButton.bounds.size.width/2.0;
-                CGRect rect = CGRectMake(81, 231, 158, 30);
-                UILabel *label = [[UILabel alloc] initWithFrame:rect];
-                label.textColor = [UIColor whiteColor];
-                label.text = [NSString stringWithFormat:@"Hello, %@" , user.username];
-                
                 self.loginButton.transform = CGAffineTransformMakeRotation(1.5);
                 self.usernameField.hidden = YES;
                 self.passwordField.hidden = YES;
                 self.undoButton.hidden = YES;
+                self.signupButton.hidden = YES;
+
+//                 self.view.backgroundColor = self.loginButton.backgroundColor;
             } completion:^(BOOL finished) {
+                self.logo.hidden = NO;
+                self.logo.frame = CGRectMake(81, 44, 158, 158);
+
                 [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
+                    self.view.backgroundColor = self.loginButton.backgroundColor;
+                    self.successLabel.hidden = NO;
+
+                    self.successLabel.alpha = 1;
+
+                    self.successLabel.text = [NSString stringWithFormat:@"Hello, %@!" ,user.username];
                     self.loginButton.alpha = 0;
                     self.usernameField.alpha = 0;
                     self.passwordField.alpha = 0;
                     self.undoButton.alpha = 0;
+                    self.signupButton.alpha = 0;
+
                 } completion:^(BOOL finished) {
                     [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                        self.view.backgroundColor = [UIColor whiteColor];
+
+                        self.successLabel.alpha = 0;
                         self.inspireButton.alpha = 1;
                         self.laughButton.alpha = 1;
                         self.smartButton.alpha = 1;
@@ -257,6 +319,8 @@
                     } completion:nil];
                 }];
             }];
+            self.successLabel.hidden = YES;
+
 
             
         } else {
@@ -264,12 +328,96 @@
                 self.loginButton.frame = CGRectMake(self.loginButton.frame.origin.x + 1, self.loginButton.frame.origin.y + 1, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
             } completion:nil];
         }
-        
     }];
-    
-
 }
 
+- (IBAction)signup:(id)sender
+{
+    self.loginButton.hidden = YES;
+    self.signupButton.hidden = YES;
+    self.undoButton.hidden = YES;
+    
+    self.goButton.hidden = NO;
+    self.cancelButton.hidden = NO;
+
+
+    self.emailField.hidden = NO;
+    self.logo.hidden = YES;
+
+    [self.emailField becomeFirstResponder];
+}
+
+- (IBAction)sign:(id)sender
+{
+    PFUser*user = [PFUser user];
+    user.username = self.usernameField.text;
+    user.password = self.passwordField.text;
+    user.email = self.emailField.text;
+    
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self toolbarLogout];
+            self.successLabel.alpha = 0;
+            [self.passwordField resignFirstResponder];
+            [self.usernameField resignFirstResponder];
+            [self.emailField resignFirstResponder];
+            
+            
+            
+            
+            
+            self.goButton.titleLabel.alpha = 0;
+            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.goButton.bounds = CGRectMake(0, 0, 1500, 1500);
+                self.goButton.transform = CGAffineTransformMakeRotation(1.5);
+                self.usernameField.hidden = YES;
+                self.passwordField.hidden = YES;
+                self.undoButton.hidden = YES;
+                self.signupButton.hidden = YES;
+                self.emailField.hidden = YES;
+                self.cancelButton.hidden = YES;
+                self.goButton.hidden = YES;
+                
+                self.view.backgroundColor = self.loginButton.backgroundColor;
+            } completion:^(BOOL finished) {
+                self.logo.hidden = NO;
+                self.logo.frame = CGRectMake(81, 44, 158, 158);
+                
+                [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    
+                    self.successLabel.hidden = NO;
+                    
+                    self.successLabel.alpha = 1;
+                    
+                    self.successLabel.text = [NSString stringWithFormat:@"Welcome, %@!" ,user.username];
+                    self.usernameField.alpha = 0;
+                    self.passwordField.alpha = 0;
+                    self.undoButton.alpha = 0;
+                    self.signupButton.alpha = 0;
+                    
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                        self.view.backgroundColor = [UIColor whiteColor];
+                        
+                        self.successLabel.alpha = 0;
+                        self.inspireButton.alpha = 1;
+                        self.laughButton.alpha = 1;
+                        self.smartButton.alpha = 1;
+                        self.randomButton.alpha = 1;
+                        self.navigationController.toolbarHidden = NO;
+                    } completion:nil];
+                }];
+            }];
+            self.successLabel.hidden = YES;
+        } else
+        {
+            [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:130 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.goButton.frame = CGRectMake(self.goButton.frame.origin.x + 1, self.goButton.frame.origin.y + 1, self.goButton.frame.size.width, self.goButton.frame.size.height);
+            } completion:nil];
+        }
+    }];
+}
 
 
 @end
