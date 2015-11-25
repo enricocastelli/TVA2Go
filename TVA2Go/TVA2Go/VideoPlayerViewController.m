@@ -8,7 +8,19 @@
 
 #import "VideoPlayerViewController.h"
 
-@interface VideoPlayerViewController ()
+@interface VideoPlayerViewController () <UINavigationControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *watchFullVideoButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *postCommentButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *seeAllComments;
 
 @end
 
