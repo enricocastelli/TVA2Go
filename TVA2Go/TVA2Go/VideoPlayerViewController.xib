@@ -2,7 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoPlayerViewController">
@@ -18,15 +21,88 @@
             <subviews>
                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z5g-cx-r7T" customClass="YTPlayerView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daJ-HM-Jw8">
+                    <rect key="frame" x="8" y="230" width="46" height="47"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="tbd-ed-UE6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="29"/>
+                    <state key="normal" title="X">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJW-F6-KeQ">
+                    <rect key="frame" x="266" y="230" width="46" height="47"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                    <state key="normal" title="&lt;3">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-zZ-TeW">
+                    <rect key="frame" x="212" y="230" width="46" height="47"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="mig-A9-1MI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="6"/>
+                    <state key="normal" title="share icon">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-NS-pYT">
+                    <rect key="frame" x="160" y="301" width="50" height="48"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="PMA-6g-aF4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="5"/>
+                    <state key="normal" title="post comment">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hni-pM-wgH">
+                    <rect key="frame" x="45" y="430" width="213" height="30"/>
+                    <state key="normal" title="Read other people's comments"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6J1-a3-3x8">
+                    <rect key="frame" x="88" y="301" width="64" height="48"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="hlR-7c-59S"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="5"/>
+                    <state key="normal" title="watch full length video">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="270" id="3Ca-WA-NYd"/>
-                <constraint firstAttribute="trailing" secondItem="Z5g-cx-r7T" secondAttribute="trailing" id="eUB-py-aHq"/>
-                <constraint firstItem="Z5g-cx-r7T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hGp-v8-tOC"/>
-                <constraint firstItem="Z5g-cx-r7T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xbR-N3-awW"/>
+                <constraint firstItem="daJ-HM-Jw8" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="20" id="6o3-oW-hJ6"/>
+                <constraint firstItem="6J1-a3-3x8" firstAttribute="baseline" secondItem="EVe-NS-pYT" secondAttribute="firstBaseline" id="C8j-Pv-uQT"/>
+                <constraint firstItem="hAY-zZ-TeW" firstAttribute="top" secondItem="EJW-F6-KeQ" secondAttribute="top" id="DZB-Nw-fVs"/>
+                <constraint firstItem="Z5g-cx-r7T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KOJ-D2-laG"/>
+                <constraint firstItem="6J1-a3-3x8" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="91" id="Kkw-Lv-glb"/>
+                <constraint firstItem="6J1-a3-3x8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="88" id="ND3-34-SAc"/>
+                <constraint firstAttribute="trailing" secondItem="Hni-pM-wgH" secondAttribute="trailing" constant="62" id="O9k-5f-COX"/>
+                <constraint firstItem="Hni-pM-wgH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="45" id="T0X-E9-S1O"/>
+                <constraint firstItem="EJW-F6-KeQ" firstAttribute="leading" secondItem="hAY-zZ-TeW" secondAttribute="trailing" constant="8" symbolic="YES" id="Z9T-Cz-eP5"/>
+                <constraint firstItem="EVe-NS-pYT" firstAttribute="leading" secondItem="6J1-a3-3x8" secondAttribute="trailing" constant="8" symbolic="YES" id="ZkD-gc-lol"/>
+                <constraint firstItem="daJ-HM-Jw8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="eBU-8m-J1T"/>
+                <constraint firstItem="EJW-F6-KeQ" firstAttribute="bottom" secondItem="hAY-zZ-TeW" secondAttribute="bottom" id="fj7-Mi-iKO"/>
+                <constraint firstAttribute="bottom" secondItem="Hni-pM-wgH" secondAttribute="bottom" constant="20" id="inZ-WB-ekl"/>
+                <constraint firstItem="EJW-F6-KeQ" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="jXK-wP-3S8"/>
+                <constraint firstAttribute="trailing" secondItem="Z5g-cx-r7T" secondAttribute="trailing" id="k8f-Jw-bre"/>
+                <constraint firstItem="hAY-zZ-TeW" firstAttribute="trailing" secondItem="Hni-pM-wgH" secondAttribute="trailing" id="lLI-ZX-98b"/>
+                <constraint firstItem="EVe-NS-pYT" firstAttribute="baseline" secondItem="6J1-a3-3x8" secondAttribute="firstBaseline" id="on1-wt-CQI"/>
+                <constraint firstItem="Z5g-cx-r7T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pF0-vr-yh4"/>
+                <constraint firstItem="Hni-pM-wgH" firstAttribute="top" secondItem="6J1-a3-3x8" secondAttribute="bottom" constant="81" id="q2m-qj-Cdh"/>
+                <constraint firstItem="daJ-HM-Jw8" firstAttribute="baseline" secondItem="EJW-F6-KeQ" secondAttribute="baseline" id="xE8-jt-Cwu"/>
+                <constraint firstItem="6J1-a3-3x8" firstAttribute="top" secondItem="EVe-NS-pYT" secondAttribute="top" id="zsa-ro-OZj"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
