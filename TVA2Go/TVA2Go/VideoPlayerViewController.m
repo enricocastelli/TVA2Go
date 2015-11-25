@@ -28,7 +28,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
+    PFQuery *query = [PFQuery queryWithClassName:@"Video"];
+    
+    [query getObjectInBackgroundWithId:@"Edm0peyVsA"
+                                 block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                                     self.videoObject = object;
+                                     [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
+
+                                 }];
+    
+    
 
 }
 
@@ -38,7 +47,7 @@
 }
 
 - (IBAction)dislike:(id)sender {
-    //load next video
+    //load next video and put video at end of playlist queue if possible
 }
 
 - (IBAction)like:(id)sender {
@@ -55,14 +64,10 @@
     
     FullVideoViewController *f = [[FullVideoViewController alloc] init];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Video"];
+    f.video = self.videoObject;
     
-//    [self.query getObjectInBackgroundWithId:<#(nonnull NSString *)#> block:<#^(PFObject * _Nullable object, NSError * _Nullable error)block#>];
-//    
-//    f.video = object;
-//    
-//    [self.navigationController pushViewController:f animated:YES];
-    
+    [self.navigationController pushViewController:f animated:YES];
+  
 
 }
 
