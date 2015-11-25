@@ -10,14 +10,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoPlayerViewController">
             <connections>
-                <outlet property="dislikeButton" destination="daJ-HM-Jw8" id="xIS-7F-BfN"/>
-                <outlet property="likeButton" destination="EJW-F6-KeQ" id="5Fx-mG-Phi"/>
+                <outlet property="dislikeButton" destination="daJ-HM-Jw8" id="2Pg-YY-qfk"/>
+                <outlet property="likeButton" destination="EJW-F6-KeQ" id="pKb-OK-nWj"/>
                 <outlet property="playerView" destination="Z5g-cx-r7T" id="QCd-8q-kZa"/>
-                <outlet property="postCommentButton" destination="EVe-NS-pYT" id="hpi-HQ-GAt"/>
-                <outlet property="seeAllComments" destination="Hni-pM-wgH" id="aE2-4o-YAi"/>
-                <outlet property="shareButton" destination="hAY-zZ-TeW" id="RxG-x2-oC1"/>
+                <outlet property="postCommentButton" destination="EVe-NS-pYT" id="9e6-4q-gB8"/>
+                <outlet property="seeAllCommentsButton" destination="Hni-pM-wgH" id="KCI-1o-2Bx"/>
+                <outlet property="shareButton" destination="hAY-zZ-TeW" id="9jY-2R-mFv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="watchFullVideoButton" destination="6J1-a3-3x8" id="qRc-RY-b8d"/>
+                <outlet property="watchFullVideoButton" destination="6J1-a3-3x8" id="TLT-Jq-OTV"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -39,6 +39,9 @@
                     <state key="normal" title="X">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="dislike:" destination="-1" eventType="touchUpInside" id="gdw-FR-HNo"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJW-F6-KeQ">
                     <rect key="frame" x="266" y="230" width="46" height="47"/>
@@ -47,6 +50,9 @@
                     <state key="normal" title="&lt;3">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="like:" destination="-1" eventType="touchUpInside" id="AnY-LV-ABR"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-zZ-TeW">
                     <rect key="frame" x="212" y="230" width="46" height="47"/>
@@ -58,6 +64,9 @@
                     <state key="normal" title="share icon">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="share:" destination="-1" eventType="touchUpInside" id="F4P-LA-5jC"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-NS-pYT">
                     <rect key="frame" x="160" y="301" width="50" height="48"/>
@@ -69,10 +78,16 @@
                     <state key="normal" title="post comment">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="postComment:" destination="-1" eventType="touchUpInside" id="eEA-xB-C0R"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hni-pM-wgH">
                     <rect key="frame" x="49" y="430" width="205" height="30"/>
                     <state key="normal" title="See other people's comments"/>
+                    <connections>
+                        <action selector="seeAllComments:" destination="-1" eventType="touchUpInside" id="GpM-b9-VoL"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6J1-a3-3x8">
                     <rect key="frame" x="88" y="301" width="64" height="48"/>
@@ -84,6 +99,9 @@
                     <state key="normal" title="watch full length video">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="watchFullVideo:" destination="-1" eventType="touchUpInside" id="Nml-A3-teT"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
