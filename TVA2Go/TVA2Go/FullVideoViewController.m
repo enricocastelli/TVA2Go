@@ -8,7 +8,7 @@
 
 #import "FullVideoViewController.h"
 
-@interface FullVideoViewController ()
+@interface FullVideoViewController () <UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 

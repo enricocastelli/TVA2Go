@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E0AEEE29BB293318A1C3B6E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EC0172E151BE3A796B68D6 /* libPods.a */; };
+		F246ABD01C0700590022291E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F246ABCF1C0700590022291E /* Social.framework */; };
+		F246ABD21C0724F60022291E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F246ABD11C0724F60022291E /* Assets.xcassets */; };
 		F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BC41C04691F00D3251C /* HomeViewController.m */; };
 		F2803BC71C04691F00D3251C /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BC51C04691F00D3251C /* HomeViewController.xib */; };
 		F2803BCB1C046A5D00D3251C /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BC91C046A5D00D3251C /* VideoPlayerViewController.m */; };
@@ -23,7 +25,6 @@
 		FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */; };
 		FDB10ECE1C0461FE0000100B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ECD1C0461FE0000100B /* main.m */; };
 		FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ED01C0461FE0000100B /* AppDelegate.m */; };
-		FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED21C0461FE0000100B /* Assets.xcassets */; };
 		FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */; };
 		FDB10EE11C0461FE0000100B /* TVA2GoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EE01C0461FE0000100B /* TVA2GoTests.m */; };
 		FDB10EEC1C0461FE0000100B /* TVA2GoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */; };
@@ -49,6 +50,8 @@
 /* Begin PBXFileReference section */
 		56EC0172E151BE3A796B68D6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF69410DF27B694A2EBB859D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F246ABCF1C0700590022291E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		F246ABD11C0724F60022291E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2803BC31C04691F00D3251C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F2803BC41C04691F00D3251C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		F2803BC51C04691F00D3251C /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -74,7 +77,6 @@
 		FDB10ECD1C0461FE0000100B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FDB10ECF1C0461FE0000100B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FDB10ED01C0461FE0000100B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FDB10ED21C0461FE0000100B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FDB10ED51C0461FE0000100B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDB10ED71C0461FE0000100B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDB10EDC1C0461FE0000100B /* TVA2GoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVA2GoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F246ABD01C0700590022291E /* Social.framework in Frameworks */,
 				E0AEEE29BB293318A1C3B6E4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +117,7 @@
 		7DAF80AB8407AFE7C3BC689A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F246ABCF1C0700590022291E /* Social.framework */,
 				56EC0172E151BE3A796B68D6 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -175,8 +179,8 @@
 				F2803BD51C046BC400D3251C /* FullVideoViewController.h */,
 				F2803BD61C046BC400D3251C /* FullVideoViewController.m */,
 				F2803BD71C046BC400D3251C /* FullVideoViewController.xib */,
-				FDB10ED21C0461FE0000100B /* Assets.xcassets */,
 				FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */,
+				F246ABD11C0724F60022291E /* Assets.xcassets */,
 				FDB10ED71C0461FE0000100B /* Info.plist */,
 				FDB10ECC1C0461FE0000100B /* Supporting Files */,
 			);
@@ -318,12 +322,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */,
-				FDB10ED31C0461FE0000100B /* Assets.xcassets in Resources */,
 				F2803BCC1C046A5D00D3251C /* VideoPlayerViewController.xib in Resources */,
 				FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */,
 				F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */,
 				F2803BC71C04691F00D3251C /* HomeViewController.xib in Resources */,
 				F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */,
+				F246ABD21C0724F60022291E /* Assets.xcassets in Resources */,
 				F2803BD91C046BC400D3251C /* FullVideoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,7 +545,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = TVA2Go/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.tva2go;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,7 +560,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = TVA2Go/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.tva2go;
 				PRODUCT_NAME = "$(TARGET_NAME)";

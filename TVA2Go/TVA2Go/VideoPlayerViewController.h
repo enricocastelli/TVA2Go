@@ -10,6 +10,7 @@
 #import "YTPlayerView.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "Social/Social.h"
 
 @interface VideoPlayerViewController : UIViewController
 
@@ -17,8 +18,8 @@
 
 @property (strong, nonatomic) PFObject *videoObject;
 
+@property (weak, nonatomic) IBOutlet UIButton *FBPost;
 
-
-
+-(IBAction)FBPressed;
 
 @end
