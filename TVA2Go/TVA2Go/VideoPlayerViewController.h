@@ -18,10 +18,8 @@
 
 @property (strong, nonatomic) PFObject *videoObject;
 
-//@property (weak, nonatomic) IBOutlet UIButton *Tweet;
 @property (weak, nonatomic) IBOutlet UIButton *FBPost;
 
-//-(IBAction)TweetPressed;
 -(IBAction)FBPressed;
 
 @end

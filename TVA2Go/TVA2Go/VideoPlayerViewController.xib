@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoPlayerViewController">
             <connections>
-                <outlet property="FBPost" destination="hAY-zZ-TeW" id="Hcs-Ir-Q38"/>
+                <outlet property="FBPost" destination="hAY-zZ-TeW" id="ZM8-P2-v55"/>
                 <outlet property="dislikeButton" destination="daJ-HM-Jw8" id="2Pg-YY-qfk"/>
                 <outlet property="likeButton" destination="EJW-F6-KeQ" id="pKb-OK-nWj"/>
                 <outlet property="playerView" destination="Z5g-cx-r7T" id="QCd-8q-kZa"/>
@@ -33,7 +33,7 @@
                     <rect key="frame" x="8" y="230" width="46" height="47"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="46" id="tbd-ed-UE6"/>
+                        <constraint firstAttribute="width" constant="46" id="phf-iQ-KdD"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="29"/>
                     <state key="normal" title="X">
@@ -43,36 +43,25 @@
                         <action selector="dislike:" destination="-1" eventType="touchUpInside" id="gdw-FR-HNo"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJW-F6-KeQ">
-                    <rect key="frame" x="266" y="230" width="46" height="47"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                    <state key="normal" title="&lt;3">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="like:" destination="-1" eventType="touchUpInside" id="AnY-LV-ABR"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-zZ-TeW">
-                    <rect key="frame" x="212" y="230" width="46" height="47"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-zZ-TeW">
+                    <rect key="frame" x="196" y="230" width="46" height="47"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="46" id="mig-A9-1MI"/>
+                        <constraint firstAttribute="width" constant="46" id="RFD-hG-gan"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="6"/>
                     <state key="normal" title="share icon">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="FBPressed" destination="-1" eventType="touchUpInside" id="lEc-8M-9qY"/>
+                        <action selector="FBPressed" destination="-1" eventType="touchUpInside" id="b5M-ho-sJv"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-NS-pYT">
                     <rect key="frame" x="160" y="301" width="50" height="48"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="50" id="PMA-6g-aF4"/>
+                        <constraint firstAttribute="width" constant="50" id="uxn-NE-Uso"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="5"/>
                     <state key="normal" title="post comment">
@@ -82,7 +71,7 @@
                         <action selector="postComment:" destination="-1" eventType="touchUpInside" id="eEA-xB-C0R"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hni-pM-wgH">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hni-pM-wgH">
                     <rect key="frame" x="49" y="430" width="205" height="30"/>
                     <state key="normal" title="See other people's comments"/>
                     <connections>
@@ -93,7 +82,7 @@
                     <rect key="frame" x="88" y="301" width="64" height="48"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="hlR-7c-59S"/>
+                        <constraint firstAttribute="height" constant="48" id="DuL-1X-tqi"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="black" pointSize="5"/>
                     <state key="normal" title="watch full length video">
@@ -103,33 +92,48 @@
                         <action selector="watchFullVideo:" destination="-1" eventType="touchUpInside" id="Nml-A3-teT"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJW-F6-KeQ">
+                    <rect key="frame" x="245" y="230" width="62" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="62" id="IyB-GZ-js8"/>
+                    </constraints>
+                    <state key="normal" image="heart">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="like:" destination="-1" eventType="touchUpInside" id="AnY-LV-ABR"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="daJ-HM-Jw8" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="20" id="6o3-oW-hJ6"/>
-                <constraint firstItem="6J1-a3-3x8" firstAttribute="baseline" secondItem="EVe-NS-pYT" secondAttribute="firstBaseline" id="C8j-Pv-uQT"/>
-                <constraint firstItem="hAY-zZ-TeW" firstAttribute="top" secondItem="EJW-F6-KeQ" secondAttribute="top" id="DZB-Nw-fVs"/>
-                <constraint firstItem="Z5g-cx-r7T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KOJ-D2-laG"/>
-                <constraint firstItem="6J1-a3-3x8" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="91" id="Kkw-Lv-glb"/>
-                <constraint firstItem="6J1-a3-3x8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="88" id="ND3-34-SAc"/>
-                <constraint firstAttribute="trailing" secondItem="Hni-pM-wgH" secondAttribute="trailing" constant="62" id="O9k-5f-COX"/>
-                <constraint firstItem="Hni-pM-wgH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="45" id="T0X-E9-S1O"/>
-                <constraint firstItem="EJW-F6-KeQ" firstAttribute="leading" secondItem="hAY-zZ-TeW" secondAttribute="trailing" constant="8" symbolic="YES" id="Z9T-Cz-eP5"/>
-                <constraint firstItem="EVe-NS-pYT" firstAttribute="leading" secondItem="6J1-a3-3x8" secondAttribute="trailing" constant="8" symbolic="YES" id="ZkD-gc-lol"/>
-                <constraint firstItem="daJ-HM-Jw8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="eBU-8m-J1T"/>
-                <constraint firstItem="EJW-F6-KeQ" firstAttribute="bottom" secondItem="hAY-zZ-TeW" secondAttribute="bottom" id="fj7-Mi-iKO"/>
-                <constraint firstAttribute="bottom" secondItem="Hni-pM-wgH" secondAttribute="bottom" constant="20" id="inZ-WB-ekl"/>
-                <constraint firstItem="EJW-F6-KeQ" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="jXK-wP-3S8"/>
-                <constraint firstAttribute="trailing" secondItem="Z5g-cx-r7T" secondAttribute="trailing" id="k8f-Jw-bre"/>
-                <constraint firstItem="hAY-zZ-TeW" firstAttribute="trailing" secondItem="Hni-pM-wgH" secondAttribute="trailing" id="lLI-ZX-98b"/>
-                <constraint firstItem="EVe-NS-pYT" firstAttribute="baseline" secondItem="6J1-a3-3x8" secondAttribute="firstBaseline" id="on1-wt-CQI"/>
-                <constraint firstItem="Z5g-cx-r7T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pF0-vr-yh4"/>
-                <constraint firstItem="Hni-pM-wgH" firstAttribute="top" secondItem="6J1-a3-3x8" secondAttribute="bottom" constant="81" id="q2m-qj-Cdh"/>
-                <constraint firstItem="daJ-HM-Jw8" firstAttribute="baseline" secondItem="EJW-F6-KeQ" secondAttribute="baseline" id="xE8-jt-Cwu"/>
-                <constraint firstItem="6J1-a3-3x8" firstAttribute="top" secondItem="EVe-NS-pYT" secondAttribute="top" id="zsa-ro-OZj"/>
+                <constraint firstItem="daJ-HM-Jw8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="0c8-vy-QcG"/>
+                <constraint firstAttribute="trailing" secondItem="EJW-F6-KeQ" secondAttribute="trailing" constant="13" id="0cM-jh-Bjx"/>
+                <constraint firstItem="hAY-zZ-TeW" firstAttribute="top" secondItem="daJ-HM-Jw8" secondAttribute="top" id="5xk-rp-yqk"/>
+                <constraint firstAttribute="trailing" secondItem="Z5g-cx-r7T" secondAttribute="trailing" id="77P-Kg-W7f"/>
+                <constraint firstItem="EVe-NS-pYT" firstAttribute="baseline" secondItem="6J1-a3-3x8" secondAttribute="firstBaseline" id="8F7-PL-7Oq"/>
+                <constraint firstItem="EVe-NS-pYT" firstAttribute="top" secondItem="6J1-a3-3x8" secondAttribute="top" id="BA2-Rw-vpa"/>
+                <constraint firstItem="Z5g-cx-r7T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FqT-w5-vbU"/>
+                <constraint firstItem="daJ-HM-Jw8" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="20" id="HH8-Nt-CR5"/>
+                <constraint firstItem="Hni-pM-wgH" firstAttribute="top" secondItem="6J1-a3-3x8" secondAttribute="bottom" constant="81" id="Pej-b1-UKF"/>
+                <constraint firstItem="EJW-F6-KeQ" firstAttribute="leading" secondItem="hAY-zZ-TeW" secondAttribute="trailing" constant="3" id="RNk-2k-4Jn"/>
+                <constraint firstItem="6J1-a3-3x8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="88" id="WKd-7H-OPt"/>
+                <constraint firstAttribute="trailing" secondItem="Hni-pM-wgH" secondAttribute="trailing" constant="66" id="YS6-pr-SDg"/>
+                <constraint firstItem="Hni-pM-wgH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="49" id="eXB-E5-2y9"/>
+                <constraint firstItem="6J1-a3-3x8" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="91" id="jI0-im-vRW"/>
+                <constraint firstItem="Z5g-cx-r7T" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kNc-nh-Z1m"/>
+                <constraint firstAttribute="bottom" secondItem="Hni-pM-wgH" secondAttribute="bottom" constant="20" id="kpz-lI-OJ5"/>
+                <constraint firstItem="EVe-NS-pYT" firstAttribute="leading" secondItem="6J1-a3-3x8" secondAttribute="trailing" constant="8" symbolic="YES" id="lNA-9S-Wez"/>
+                <constraint firstItem="EJW-F6-KeQ" firstAttribute="bottom" secondItem="hAY-zZ-TeW" secondAttribute="bottom" id="nEf-dt-3lA"/>
+                <constraint firstItem="6J1-a3-3x8" firstAttribute="baseline" secondItem="EVe-NS-pYT" secondAttribute="firstBaseline" id="nWC-ki-Op4"/>
+                <constraint firstItem="EJW-F6-KeQ" firstAttribute="top" secondItem="hAY-zZ-TeW" secondAttribute="top" id="qUa-XM-uev"/>
+                <constraint firstItem="EVe-NS-pYT" firstAttribute="top" secondItem="hAY-zZ-TeW" secondAttribute="bottom" constant="24" id="x5R-Rm-VMl"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="81" y="134"/>
         </view>
     </objects>
+    <resources>
+        <image name="heart" width="70" height="53"/>
+    </resources>
 </document>
