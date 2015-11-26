@@ -23,5 +23,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *blur;
 
 @end

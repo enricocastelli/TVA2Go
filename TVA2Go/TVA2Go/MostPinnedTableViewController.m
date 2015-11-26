@@ -9,6 +9,7 @@
 #import "MostPinnedTableViewController.h"
 
 #import "RankingTableViewCell.h"
+#import "FullVideoViewController.h"
 
 @interface MostPinnedTableViewController () 
 
@@ -49,9 +50,25 @@
     cell.descriptionLabel.text = object[@"description"];
     cell.rankingLabel.text = [NSString stringWithFormat:@"%@", object[@"pinCount"]];
     
-    
+        cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FullVideoViewController *f = [[FullVideoViewController alloc] init];
+    f.video = self.objects[indexPath.row];
+    
+    [self.navigationController pushViewController:f animated:YES];
+}
+
+
+
 
 @end
+
+
+
+
+
+
