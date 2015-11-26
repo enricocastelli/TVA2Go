@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *pinned;
 @property (strong,nonatomic) NSArray *array;
 @property (strong, nonatomic) PFQuery* query;
-@property (nonatomic) BOOL deleting;
+@property (strong,nonatomic) NSString* deleting;
 @property (strong,nonatomic) NSMutableArray *cellArray;
 
 
@@ -29,7 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.deleting = @"NO";
+
     [self.pinned registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     self.navigationItem.rightBarButtonItem = edit;
@@ -61,13 +62,13 @@
     [query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         
         
-        CGRect rect = CGRectMake(0, 0, 70, 70);
+        CGRect rect = CGRectMake(0, 0, 85, 85);
         PFImageView *image = [[PFImageView alloc] initWithFrame:rect];
         
         image.file = object[@"thumbnail"];
         [image loadInBackground];
         [cell.contentView addSubview:image];
-        CGRect little = CGRectMake(25, 25, 20, 20);
+        CGRect little = CGRectMake(30, 30, 32, 32);
         UIImage *play = [UIImage imageNamed:@"playButton"];
         UIImageView *im = [[UIImageView alloc] initWithFrame:little];
         im.image = play;
@@ -93,21 +94,18 @@
     
     FullVideoViewController *f = [[FullVideoViewController alloc]init];
     [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        if (self.deleting == NO) {
+        if ([self.deleting  isEqualToString: @"NO"]) {
         f.video = object;
         
         [self.navigationController pushViewController:f animated:YES];
         } else {
-            NSLog(@"%i", indexPath.row);
             PFUser *user = [PFUser currentUser];
-            NSMutableArray *arr = [NSMutableArray arrayWithObject:user[@"pinnedVideos"]];
+            NSMutableArray *arr = [user[@"pinnedVideos"] mutableCopy];
             [arr removeObjectAtIndex:indexPath.row];
-            NSArray *arr2 = [NSArray arrayWithArray:arr];
             
-            [user setObject:arr2 forKey:@"pinnedVideos"];
+            [user setObject:[arr copy] forKey:@"pinnedVideos"];
             
-            NSAssert(arr2 != nil, @"array is not nil");
-            NSLog(@"%i", indexPath.row);
+            NSAssert(arr != nil, @"array is not nil");
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 [self.pinned reloadData];
             }];
@@ -119,18 +117,31 @@
 - (void)edit
 
 {
-    self.deleting = YES;
-    for (UICollectionViewCell *cell in self.cellArray){
-        [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:10 options: UIViewAnimationOptionAutoreverse |UIViewAnimationOptionRepeat
-                         animations:^{
-//            cell.bounds = CGRectMake(cell.bounds.origin.x, cell.bounds.origin.y, cell.bounds.size.width + 1, cell.bounds.size.height + 1);
-            cell.transform = CGAffineTransformMakeRotation(0.02);
-            cell.transform = CGAffineTransformMakeRotation(-0.03);
-//            cell.transform = CGAffineTransformMakeRotation(0.1);
-        } completion:nil];
+    if ([self.deleting  isEqualToString: @"NO"]) {
+        self.navigationItem.rightBarButtonItem.title = @"Done";
         
-    }
+        for (UICollectionViewCell *cell in self.cellArray){
+            [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:10 options: UIViewAnimationOptionAutoreverse |UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction
+                             animations:^{
+                                 cell.transform = CGAffineTransformMakeRotation(0.02);
+                                 cell.transform = CGAffineTransformMakeRotation(-0.03);
+                                 
+                             } completion:nil];
+        }
+        self.deleting = @"YES";
+        
 
+    } else {
+
+    self.navigationItem.rightBarButtonItem.title = @"Edit";
+    self.deleting = @"NO";
+        for (UICollectionViewCell *cell in self.cellArray)
+        {
+            cell.transform = CGAffineTransformMakeRotation(0.0);
+            [cell.layer removeAllAnimations];
+    }
+    
+    }
 }
 
 
