@@ -123,6 +123,9 @@
     [self loginFade];
     [UIView animateWithDuration:1.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.logo.frame = CGRectMake(81, 900, 158, 156);
+        self.loginButton.alpha = 1;
+        self.undoButton.alpha = 1;
+        self.signupButton.alpha = 1;
     } completion:nil];
 }
 
@@ -197,14 +200,11 @@
     self.usernameField.hidden = NO;
     self.passwordField.hidden = NO;
     self.loginButton.hidden = NO;
-    self.loginButton.alpha = 1;
     self.loginButton.titleLabel.alpha = 1;
     self.loginButton.transform = CGAffineTransformMakeRotation(0);
 //    self.loginButton.frame = CGRectMake(193, 252, 46, 46);
     self.undoButton.hidden = NO;
-    self.undoButton.alpha = 1;
     self.signupButton.hidden = NO;
-    self.signupButton.alpha = 1;
     [self textFieldsAnimations];
 
 }
@@ -269,17 +269,32 @@
 - (IBAction)log:(id)sender
 
 {
+    
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (!error){
+
+            self.loginButton.alpha = 0;
+
+            
+
             self.successLabel.alpha = 0;
             [self.passwordField resignFirstResponder];
             [self.usernameField resignFirstResponder];
             [self.emailField resignFirstResponder];
-
-
+            
+            UIColor *mine = self.loginButton.backgroundColor;
             [self toolbarLogout];
             self.loginButton.titleLabel.alpha = 0;
-            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+
+            [UIView animateWithDuration:1.8 delay:0 usingSpringWithDamping:1 initialSpringVelocity:200 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
+                self.loginButton.alpha = 1;
+
+                
+                self.loginButton.backgroundColor = mine;
+
+
                 self.loginButton.bounds = CGRectMake(0, 0, 1500, 1500);
                 self.loginButton.transform = CGAffineTransformMakeRotation(1.5);
                 self.usernameField.hidden = YES;
@@ -287,8 +302,12 @@
                 self.undoButton.hidden = YES;
                 self.signupButton.hidden = YES;
 
-//                 self.view.backgroundColor = self.loginButton.backgroundColor;
+//                self.view.backgroundColor = self.loginButton.backgroundColor;
+
+
             } completion:^(BOOL finished) {
+
+
                 self.logo.hidden = NO;
                 self.logo.frame = CGRectMake(81, 44, 158, 158);
 
@@ -320,6 +339,8 @@
                 }];
             }];
             self.successLabel.hidden = YES;
+            self.loginButton.frame = CGRectMake(193, 252, 46, 46);
+
 
 
             
