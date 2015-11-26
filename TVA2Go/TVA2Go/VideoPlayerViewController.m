@@ -48,6 +48,7 @@
 
 - (IBAction)dislike:(id)sender {
     //load next video and put video at end of playlist queue if possible
+    //make swipe left animation like Tinder
 }
 
 - (IBAction)like:(id)sender {

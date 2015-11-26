@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E0AEEE29BB293318A1C3B6E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EC0172E151BE3A796B68D6 /* libPods.a */; };
+		F246ABD01C0700590022291E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F246ABCF1C0700590022291E /* Social.framework */; };
 		F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BC41C04691F00D3251C /* HomeViewController.m */; };
 		F2803BC71C04691F00D3251C /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BC51C04691F00D3251C /* HomeViewController.xib */; };
 		F2803BCB1C046A5D00D3251C /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BC91C046A5D00D3251C /* VideoPlayerViewController.m */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		56EC0172E151BE3A796B68D6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF69410DF27B694A2EBB859D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F246ABCF1C0700590022291E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F2803BC31C04691F00D3251C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F2803BC41C04691F00D3251C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		F2803BC51C04691F00D3251C /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F246ABD01C0700590022291E /* Social.framework in Frameworks */,
 				E0AEEE29BB293318A1C3B6E4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +117,7 @@
 		7DAF80AB8407AFE7C3BC689A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F246ABCF1C0700590022291E /* Social.framework */,
 				56EC0172E151BE3A796B68D6 /* libPods.a */,
 			);
 			name = Frameworks;
