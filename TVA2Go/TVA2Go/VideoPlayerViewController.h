@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "YTPlayerView.h"
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface VideoPlayerViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 
-
+@property (strong, nonatomic) PFObject *videoObject;
 
 
 
