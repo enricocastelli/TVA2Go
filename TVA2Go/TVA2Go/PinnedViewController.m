@@ -64,9 +64,10 @@
         im.image = logo;
         [cell.contentView addSubview:im];
         
-        [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.3 initialSpringVelocity:10 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            CGRect back = CGRectMake(300, 20, 70, 70);
-            cell.bounds = back;
+        cell.contentView.alpha = 0;
+        [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            cell.bounds = CGRectMake(0, 800, 70, 70);
+            cell.contentView.alpha = 1;
         } completion:nil];
 
         

@@ -12,6 +12,6 @@
 
 #import <ParseUI/ParseUI.h>
 
-@interface MostPinnedTableViewController : PFQueryTableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MostPinnedTableViewController : PFQueryTableViewController
 
 @end

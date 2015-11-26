@@ -10,7 +10,7 @@
 
 #import "RankingTableViewCell.h"
 
-@interface MostPinnedTableViewController ()
+@interface MostPinnedTableViewController () 
 
 @end
 
@@ -29,26 +29,26 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    
+    self.tableView.separatorColor = [UIColor clearColor];
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 170;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(nullable PFObject *)object {
 
     RankingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
 
-    PFFile *thumbnail = [object objectForKey:@"thumbnail"];
+    cell.imageThumbnail.file = [object objectForKey:@"thumbnail"];
+    [cell.imageThumbnail loadInBackground];
+    cell.titleLabel.text = object[@"title"];
+    cell.descriptionLabel.text = object[@"description"];
+    cell.rankingLabel.text = [NSString stringWithFormat:@"%@", object[@"pinCount"]];
     
-    PFImageView *thumbnailImageView = (PFImageView*) [cell viewWithTag:100];
-    thumbnailImageView.file = thumbnail;
-    [thumbnailImageView loadInBackground];
-    
-    NSString *title = object[@"title"];
-    cell.titleLabel.text = title;
-    
-    NSString *description = object[@"description"];
-    cell.descriptionLabel.text = description;
     
     return cell;
 }
