@@ -14,7 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
-@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+//@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIButton *watchFullVideoButton;
 @property (weak, nonatomic) IBOutlet UIButton *postCommentButton;
 @property (weak, nonatomic) IBOutlet UIButton *seeAllCommentsButton;
@@ -57,9 +57,29 @@
     // & load next video
 }
 
-- (IBAction)share:(id)sender {
-    //share on FB or email
+//- (IBAction)share:(id)sender {
+//    //share on FB or email
+//}
+
+
+-(IBAction)FBPressed{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *fbPostSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [fbPostSheet setInitialText:@"This is a Facebook post!"];
+        [self presentViewController:fbPostSheet animated:YES completion:nil];
+    } else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Sorry"
+                                  message:@"You can't post right now, make sure your device has an internet connection and you have at least one facebook account setup"
+                                  delegate:self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
 }
+
 
 - (IBAction)watchFullVideo:(id)sender {
     

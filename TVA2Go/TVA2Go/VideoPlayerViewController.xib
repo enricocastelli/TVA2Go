@@ -10,12 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoPlayerViewController">
             <connections>
+                <outlet property="FBPost" destination="hAY-zZ-TeW" id="Hcs-Ir-Q38"/>
                 <outlet property="dislikeButton" destination="daJ-HM-Jw8" id="2Pg-YY-qfk"/>
                 <outlet property="likeButton" destination="EJW-F6-KeQ" id="pKb-OK-nWj"/>
                 <outlet property="playerView" destination="Z5g-cx-r7T" id="QCd-8q-kZa"/>
                 <outlet property="postCommentButton" destination="EVe-NS-pYT" id="9e6-4q-gB8"/>
                 <outlet property="seeAllCommentsButton" destination="Hni-pM-wgH" id="KCI-1o-2Bx"/>
-                <outlet property="shareButton" destination="hAY-zZ-TeW" id="9jY-2R-mFv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="watchFullVideoButton" destination="6J1-a3-3x8" id="TLT-Jq-OTV"/>
             </connections>
@@ -65,7 +65,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="share:" destination="-1" eventType="touchUpInside" id="F4P-LA-5jC"/>
+                        <action selector="FBPressed" destination="-1" eventType="touchUpInside" id="lEc-8M-9qY"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-NS-pYT">
@@ -129,6 +129,7 @@
                 <constraint firstItem="6J1-a3-3x8" firstAttribute="top" secondItem="EVe-NS-pYT" secondAttribute="top" id="zsa-ro-OZj"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="81" y="134"/>
         </view>
     </objects>
 </document>
