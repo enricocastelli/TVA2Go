@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
-//@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 @property (weak, nonatomic) IBOutlet UIButton *watchFullVideoButton;
 @property (weak, nonatomic) IBOutlet UIButton *postCommentButton;
 @property (weak, nonatomic) IBOutlet UIButton *seeAllCommentsButton;
@@ -57,11 +56,6 @@
     // & load next video
 }
 
-//- (IBAction)share:(id)sender {
-//    //share on FB or email
-//}
-
-
 -(IBAction)FBPressed{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
@@ -100,9 +94,6 @@
     [self.navigationController pushViewController:f animated:YES];
     [UIView commitAnimations];
     
-//    [self.navigationController pushViewController:f animated:YES];
-  
-
 }
 
 - (IBAction)postComment:(id)sender {
