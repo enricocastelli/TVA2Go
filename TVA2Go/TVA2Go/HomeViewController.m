@@ -108,10 +108,14 @@
     PFUser *user = [PFUser currentUser];
     if (user){
     PinnedViewController *p = [[PinnedViewController alloc] init];
+        p.view.alpha = 0;
+        self.navigationController.navigationBar.alpha = 0;
         [UIView animateWithDuration:0.75
                          animations:^{
                              [self.navigationController pushViewController:p animated:NO];
-                             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                             p.view.alpha = 1.0;
+                             self.navigationController.navigationBar.alpha = 1.0;
                          }];
     } else {
     [self notLogin];
@@ -139,7 +143,16 @@
 - (void) mostPinned
 {
     MostPinnedTableViewController *m = [[MostPinnedTableViewController alloc] init];
-        [self.navigationController pushViewController:m animated:YES];
+    m.view.alpha = 0;
+    self.navigationController.navigationBar.alpha = 0;
+    [UIView animateWithDuration:0.75
+                     animations:^{
+                         [self.navigationController pushViewController:m animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                         m.view.alpha = 1.0;
+                         self.navigationController.navigationBar.alpha = 1.0;
+                     }];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -357,13 +370,21 @@
     self.loginButton.hidden = YES;
     self.signupButton.hidden = YES;
     self.undoButton.hidden = YES;
-    
-    self.goButton.hidden = NO;
-    self.cancelButton.hidden = NO;
-
-
-    self.emailField.hidden = NO;
     self.logo.hidden = YES;
+    
+    self.goButton.alpha = 0;
+    self.cancelButton.alpha = 0;
+    self.emailField.alpha = 0;
+    [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.goButton.hidden = NO;
+        self.cancelButton.hidden = NO;
+        self.emailField.hidden = NO;
+        self.goButton.alpha = 1;
+        self.cancelButton.alpha = 1;
+        self.emailField.alpha = 1;
+    } completion:nil];
+
+
 
     [self.emailField becomeFirstResponder];
 }

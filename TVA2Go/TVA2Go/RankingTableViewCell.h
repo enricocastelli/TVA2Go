@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface RankingTableViewCell : UITableViewCell
 
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageThumbnail;
+@property (weak, nonatomic) IBOutlet PFImageView *imageThumbnail;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *rankingLabel;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
