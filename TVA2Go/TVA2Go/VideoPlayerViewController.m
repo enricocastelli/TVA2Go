@@ -88,7 +88,19 @@
     
     f.video = self.videoObject;
     
+    [UIView beginAnimations:@"View Flip" context:nil];
+    [UIView setAnimationDuration:0.80];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+    [UIView setAnimationTransition:
+     UIViewAnimationTransitionFlipFromLeft
+                           forView:self.navigationController.view cache:NO];
+    
+    
     [self.navigationController pushViewController:f animated:YES];
+    [UIView commitAnimations];
+    
+//    [self.navigationController pushViewController:f animated:YES];
   
 
 }
