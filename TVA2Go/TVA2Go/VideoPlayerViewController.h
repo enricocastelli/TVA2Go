@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *FBPost;
 
+@property (strong, nonatomic) NSString *videos;
+
 -(IBAction)FBPressed;
 
 @end
