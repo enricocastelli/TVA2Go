@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *watchFullVideoButton;
 @property (weak, nonatomic) IBOutlet UIButton *postCommentButton;
 @property (weak, nonatomic) IBOutlet UIButton *seeAllCommentsButton;
-
+@property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) PFQuery *query;
 
 @end
@@ -26,6 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.user = [PFUser currentUser];
 
     PFQuery *query = [PFQuery queryWithClassName:@"Video"];
     
@@ -33,6 +35,15 @@
                                  block:^(PFObject * _Nullable object, NSError * _Nullable error) {
                                      self.videoObject = object;
                                      [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
+                                     if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
+                                         self.likeButton.hidden = YES;
+                                         [self.view setNeedsDisplay];
+                                     } else {
+                                         self.likeButton.hidden = NO;
+                                         [self.view setNeedsDisplay];
+                                         
+                                         
+                                     }
                                  }];
     
 }
@@ -40,7 +51,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.playerView playVideo];
-}
+    
+
+    }
 
 - (IBAction)dislike:(id)sender {
     //load next video and put video at end of playlist queue if possible
@@ -48,6 +61,14 @@
 }
 
 - (IBAction)like:(id)sender {
+    
+    
+    
+    if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
+        
+        NSLog(@"Already Pinned");
+        
+    } else {
     
     NSNumber *numberCount = self.videoObject[@"pinCount"];
     
@@ -62,14 +83,13 @@
         [UIView animateWithDuration:2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.likeButton.alpha = 0;
         } completion:nil];
-        PFUser *user = [PFUser currentUser];
-        NSMutableArray *userMustableArray = [user[@"pinnedVideos"] mutableCopy];
+        NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
         [userMustableArray addObject:self.videoObject.objectId];
-        [user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
-        [user saveInBackground];
+        [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
+        [self.user saveInBackground];
         
     }];
-   
+    }
    
     
 }

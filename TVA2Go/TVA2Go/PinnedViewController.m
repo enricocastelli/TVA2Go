@@ -18,6 +18,9 @@
 @property (strong, nonatomic) PFQuery* query;
 @property (strong,nonatomic) NSString* deleting;
 @property (strong,nonatomic) NSMutableArray *cellArray;
+@property (strong, nonatomic) UIImageView *playImage;
+@property (strong, nonatomic) UIImageView *deleteImage;
+
 
 
 
@@ -38,9 +41,10 @@
     self.pinned.allowsSelection = YES;
     self.pinned.frame = self.view.frame;
     self.cellArray = [[NSMutableArray alloc] init];
+    self.navigationItem.title = @"Pinned Videos";
+
 
 }
-
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -61,22 +65,25 @@
     self.query = [PFQuery queryWithClassName:@"Video"];
     [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         
-        
         CGRect rect = CGRectMake(0, 0, 85, 85);
         PFImageView *image = [[PFImageView alloc] initWithFrame:rect];
         
         image.file = object[@"thumbnail"];
         [image loadInBackground];
         [cell.contentView addSubview:image];
-        CGRect little = CGRectMake(30, 30, 32, 32);
-        UIImage *play = [UIImage imageNamed:@"playButton"];
-        UIImageView *im = [[UIImageView alloc] initWithFrame:little];
-        im.image = play;
-        [cell.contentView addSubview:im];
         
+        UIImage *play = [UIImage imageNamed:@"playButton"];
+        CGRect little = CGRectMake(30, 30, 32, 32);
+        self.playImage = [[UIImageView alloc] initWithFrame:little];
+        self.playImage.image = play;
+        [cell.contentView addSubview:self.playImage];
+       
+        
+            
+
         cell.contentView.alpha = 0;
         [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            cell.bounds = CGRectMake(0, cell.frame.origin.y + 10, 70, 70);
+            cell.bounds = CGRectMake(0, cell.frame.origin.y + 10, 85, 85);
             cell.contentView.alpha = 1;
         } completion:nil];
 
@@ -126,6 +133,13 @@
                                  cell.transform = CGAffineTransformMakeRotation(0.06);
                                  cell.transform = CGAffineTransformMakeRotation(-0.06);
                              } completion:nil];
+            UIImage *play = [UIImage imageNamed:@"deleteIcon"];
+            CGRect little = CGRectMake(0, 0, 16, 16);
+            self.deleteImage = [[UIImageView alloc] initWithFrame:little];
+
+
+            self.deleteImage.image = play;
+            [cell.contentView addSubview:self.deleteImage];
         }
         self.deleting = @"YES";
         
@@ -136,6 +150,9 @@
     self.deleting = @"NO";
         for (UICollectionViewCell *cell in self.cellArray)
         {
+            [self.deleteImage removeFromSuperview];
+            self.deleteImage.hidden =YES;
+            [self.pinned setNeedsDisplay];
             cell.transform = CGAffineTransformMakeRotation(0.0);
             [cell.layer removeAllAnimations];
     }

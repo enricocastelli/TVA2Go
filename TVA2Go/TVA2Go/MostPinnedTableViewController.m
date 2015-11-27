@@ -31,6 +31,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorColor = [UIColor clearColor];
+    self.navigationItem.title = @"Most Pinned Videos";
 }
 
 #pragma mark - Table view data source
