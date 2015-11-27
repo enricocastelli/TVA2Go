@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PinCollectionViewCell : UICollectionViewCell
+@interface PinCollectionViewCell : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIImageView *logo;
 @end

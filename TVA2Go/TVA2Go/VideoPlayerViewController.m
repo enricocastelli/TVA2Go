@@ -57,8 +57,6 @@
     
     self.videoObject[@"pinCount"] = newPinCount;
     
-//    PFUser *user = [PFUser currentUser];
-//    [user[@"pinnedVideos"] addObject:self.videoObject[@"videoID"]
     
     [self.videoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         [UIView animateWithDuration:2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -66,10 +64,9 @@
         } completion:nil];
         PFUser *user = [PFUser currentUser];
         NSMutableArray *userMustableArray = [user[@"pinnedVideos"] mutableCopy];
-        [userMustableArray addObject:self.videoObject[@"videoID"]];
+        [userMustableArray addObject:self.videoObject.objectId];
         [user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [user saveInBackground];
-        
         
     }];
    

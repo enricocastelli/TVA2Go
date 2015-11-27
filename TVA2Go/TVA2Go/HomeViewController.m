@@ -78,7 +78,7 @@
     VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
     v.view.alpha = 0;
     self.navigationController.navigationBar.alpha = 0;
-    [UIView animateWithDuration:0.75
+    [UIView animateWithDuration:0.5
                      animations:^{
                          [self.navigationController pushViewController:v animated:NO];
                          [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
@@ -110,7 +110,7 @@
     PinnedViewController *p = [[PinnedViewController alloc] init];
         p.view.alpha = 0;
         self.navigationController.navigationBar.alpha = 0;
-        [UIView animateWithDuration:0.75
+        [UIView animateWithDuration:0.5
                          animations:^{
                              [self.navigationController pushViewController:p animated:NO];
                              [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
@@ -145,7 +145,7 @@
     MostPinnedTableViewController *m = [[MostPinnedTableViewController alloc] init];
     m.view.alpha = 0;
     self.navigationController.navigationBar.alpha = 0;
-    [UIView animateWithDuration:0.75
+    [UIView animateWithDuration:0.5
                      animations:^{
                          [self.navigationController pushViewController:m animated:NO];
                          [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
@@ -285,42 +285,36 @@
     
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (!error){
+            
 
             self.loginButton.alpha = 0;
-
-            
 
             self.successLabel.alpha = 0;
             [self.passwordField resignFirstResponder];
             [self.usernameField resignFirstResponder];
             [self.emailField resignFirstResponder];
-            
-            UIColor *mine = self.loginButton.backgroundColor;
             [self toolbarLogout];
             self.loginButton.titleLabel.alpha = 0;
-            
+            [UIView animateWithDuration:0.3 delay:1.8 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{                    self.view.backgroundColor = self.loginButton.backgroundColor;
 
-            [UIView animateWithDuration:1.8 delay:0 usingSpringWithDamping:1 initialSpringVelocity:200 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
+            } completion:nil];
+            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:90 options:UIViewAnimationOptionAutoreverse animations:^{
+
                 
                 self.loginButton.alpha = 1;
 
-                
-                self.loginButton.backgroundColor = mine;
 
+                self.loginButton.bounds = CGRectMake(0, 0, 700, 700);
 
-                self.loginButton.bounds = CGRectMake(0, 0, 1500, 1500);
                 self.loginButton.transform = CGAffineTransformMakeRotation(1.5);
                 self.usernameField.hidden = YES;
                 self.passwordField.hidden = YES;
                 self.undoButton.hidden = YES;
                 self.signupButton.hidden = YES;
 
-//                self.view.backgroundColor = self.loginButton.backgroundColor;
-
 
             } completion:^(BOOL finished) {
-
-
                 self.logo.hidden = NO;
                 self.logo.frame = CGRectMake(81, 44, 158, 158);
 
