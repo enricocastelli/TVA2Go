@@ -8,6 +8,8 @@
 
 #import "VideoPlayerViewController.h"
 #import "FullVideoViewController.h"
+#import "TAAYouTubeWrapper.h"
+#import "GTLYouTube.h"
 
 
 @interface VideoPlayerViewController () <UINavigationControllerDelegate>
@@ -41,10 +43,12 @@
                                      } else {
                                          self.likeButton.hidden = NO;
                                          [self.view setNeedsDisplay];
-                                         
-                                         
                                      }
                                  }];
+    
+    
+        + (void)videosForPlaylist:PLNiceHDyjJRsXJIGEs4HlW2ZG-sREFXbo forUser:TVAcademyNL onCompletion:(void (^)(BOOL succeeded, NSArray *videos, NSError *error))completionBlock;
+    
     
 }
 

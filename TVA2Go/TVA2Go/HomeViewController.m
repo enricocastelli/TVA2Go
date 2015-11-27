@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
+@property (strong, nonatomic) NSString *videos;
+
 
 
 
@@ -78,6 +80,7 @@
 
 - (IBAction)inspireMe:(id)sender {
     VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
+    self.videos = 
     v.view.alpha = 0;
     self.navigationController.navigationBar.alpha = 0;
     [UIView animateWithDuration:0.5
