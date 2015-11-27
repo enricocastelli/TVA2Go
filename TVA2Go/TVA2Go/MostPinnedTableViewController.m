@@ -50,8 +50,7 @@
     cell.titleLabel.text = object[@"title"];
     cell.descriptionLabel.text = object[@"description"];
     cell.rankingLabel.text = [NSString stringWithFormat:@"%@", object[@"pinCount"]];
-    
-        cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     return cell;
 }
 

@@ -12,11 +12,9 @@
 
 
 
-- (void)viewDidLoad
+- (void)awakeFromNib
 {
-    [UIView animateWithDuration:2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.logo.alpha = 1;
-    } completion:nil];
+    
 }
 
 @end

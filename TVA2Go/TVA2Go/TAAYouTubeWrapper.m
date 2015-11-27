@@ -5,7 +5,7 @@
 //  Created by Daniel Salber on 24/11/15.
 //  Copyright © 2015 The App Academy. All rights reserved.
 //
-//  Version: 1.0, 27-Nov-2015
+//  Version: 1.0.1, 27-Nov-2015
 //
 
 #import "TAAYouTubeWrapper.h"
@@ -164,6 +164,7 @@
     
     static NSString *playlistItemParts = @"id,snippet,contentDetails,status";
     GTLQueryYouTube *playlistItemsQuery = [GTLQueryYouTube queryForPlaylistItemsListWithPart:playlistItemParts];
+    playlistItemsQuery.maxResults = 50; // max, see https://developers.google.com/youtube/v3/docs/playlistItems/list
     playlistItemsQuery.playlistId = playlistIdentifier;
     
     [self.youTubeService executeQuery:playlistItemsQuery completionHandler:^(GTLServiceTicket *ticket, GTLYouTubePlaylistItemListResponse *object, NSError *error) {

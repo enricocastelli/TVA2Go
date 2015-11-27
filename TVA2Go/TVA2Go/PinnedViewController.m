@@ -20,6 +20,7 @@
 @property (strong,nonatomic) NSMutableArray *cellArray;
 @property (strong, nonatomic) UIImageView *playImage;
 @property (strong, nonatomic) UIImageView *deleteImage;
+@property (strong, nonatomic) NSString *firstTime;
 
 
 
@@ -32,6 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.deleting = @"NO";
 
     [self.pinned registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
@@ -46,13 +48,19 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.firstTime = @"YES";
+
+}
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     PFUser*user = [PFUser currentUser];
     [user fetchInBackground];
+
     self.array = user[@"pinnedVideos"];
-    
     return self.array.count;
 }
 
@@ -64,7 +72,22 @@
 
     self.query = [PFQuery queryWithClassName:@"Video"];
     [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-        
+        if ([self.firstTime isEqualToString: @"YES"]) {
+            cell.contentView.alpha = 0;
+            [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:3 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                cell.bounds = CGRectMake(0, cell.frame.origin.y + 13, 85, 85);
+                cell.contentView.alpha = 1;
+            } completion:nil];
+        } else {
+            cell.contentView.alpha = 0;
+
+            [UIView animateWithDuration:1.6 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                cell.contentView.alpha = 1;
+            } completion:nil];
+            
+            
+            
+        }
         CGRect rect = CGRectMake(0, 0, 85, 85);
         PFImageView *image = [[PFImageView alloc] initWithFrame:rect];
         
@@ -77,23 +100,14 @@
         self.playImage = [[UIImageView alloc] initWithFrame:little];
         self.playImage.image = play;
         [cell.contentView addSubview:self.playImage];
-       
-        
-            
 
-        cell.contentView.alpha = 0;
-        [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            cell.bounds = CGRectMake(0, cell.frame.origin.y + 10, 85, 85);
-            cell.contentView.alpha = 1;
-        } completion:nil];
-
-        
     }];
-    
-    [self.cellArray addObject:cell];
-    
+
+
     return cell;
 }
+
+
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -106,15 +120,28 @@
         
         [self.navigationController pushViewController:f animated:YES];
         } else {
+            UICollectionViewCell *cellToDelete = [self.pinned cellForItemAtIndexPath:indexPath];
+            
+            UIActivityIndicatorView *act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            act.frame = CGRectMake(30, 30, 32, 32);
+            [cellToDelete.contentView addSubview:act];
+            [act startAnimating];
             PFUser *user = [PFUser currentUser];
             NSMutableArray *arr = [user[@"pinnedVideos"] mutableCopy];
             [arr removeObjectAtIndex:indexPath.row];
             
             [user setObject:[arr copy] forKey:@"pinnedVideos"];
             
-            NSAssert(arr != nil, @"array is not nil");
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                [self.pinned reloadData];
+                if (succeeded){
+                    
+                    [UIView animateWithDuration:0.6 animations:^{
+                        cellToDelete.alpha = 0;
+                    }];
+                }
+                
+
+   
             }];
         }
     }];
@@ -126,21 +153,7 @@
 {
     if ([self.deleting  isEqualToString: @"NO"]) {
         self.navigationItem.rightBarButtonItem.title = @"Done";
-        
-        for (UICollectionViewCell *cell in self.cellArray){
-            [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.55 initialSpringVelocity:10 options: UIViewAnimationOptionAutoreverse |UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction
-                             animations:^{
-                                 cell.transform = CGAffineTransformMakeRotation(0.06);
-                                 cell.transform = CGAffineTransformMakeRotation(-0.06);
-                             } completion:nil];
-            UIImage *play = [UIImage imageNamed:@"deleteIcon"];
-            CGRect little = CGRectMake(0, 0, 16, 16);
-            self.deleteImage = [[UIImageView alloc] initWithFrame:little];
-
-
-            self.deleteImage.image = play;
-            [cell.contentView addSubview:self.deleteImage];
-        }
+        [self dancingCells];
         self.deleting = @"YES";
         
 
@@ -148,19 +161,45 @@
 
     self.navigationItem.rightBarButtonItem.title = @"Edit";
     self.deleting = @"NO";
-        for (UICollectionViewCell *cell in self.cellArray)
+        for (UICollectionViewCell *cell in self.pinned.visibleCells)
         {
+            cell.transform = CGAffineTransformMakeRotation(0);
+
+           
             [self.deleteImage removeFromSuperview];
             self.deleteImage.hidden =YES;
-            [self.pinned setNeedsDisplay];
-            cell.transform = CGAffineTransformMakeRotation(0.0);
             [cell.layer removeAllAnimations];
     }
-    
+
+        self.firstTime = @"NO";
+        self.pinned.alpha = 0.6;
+        [UIView animateWithDuration:0.8 animations:^{
+            [self.pinned reloadData];
+            self.pinned.alpha = 1;
+
+
+        }];
+        
+        
     }
 }
 
-
+- (void)dancingCells
+{
+    for (UICollectionViewCell *cell in self.pinned.visibleCells){
+        [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:10 options: UIViewAnimationOptionAutoreverse |UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction
+                         animations:^{
+                             cell.transform = CGAffineTransformMakeRotation(0.02);
+                             cell.transform = CGAffineTransformMakeRotation(-0.02);
+                         } completion:nil];
+        UIImage *play = [UIImage imageNamed:@"deleteIcon"];
+        CGRect little = CGRectMake(30, 30, 30, 30);
+        self.deleteImage = [[UIImageView alloc] initWithFrame:little];
+        
+        self.deleteImage.image = play;
+        [cell.contentView addSubview:self.deleteImage];
+    }
+}
 
 
 

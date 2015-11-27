@@ -295,7 +295,10 @@
             [self.emailField resignFirstResponder];
             [self toolbarLogout];
             self.loginButton.titleLabel.alpha = 0;
-            [UIView animateWithDuration:0.3 delay:1.8 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{                    self.view.backgroundColor = self.loginButton.backgroundColor;
+            
+            [UIView animateWithDuration:0.3 delay:1.8 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.view.backgroundColor = self.loginButton.backgroundColor;
+                
 
                 
             } completion:nil];
