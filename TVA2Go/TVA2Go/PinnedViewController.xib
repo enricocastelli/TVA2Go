@@ -16,9 +16,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zW2-Oq-Sho">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zW2-Oq-Sho">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="736"/>
                     <color key="backgroundColor" red="0.0078431372549019607" green="0.47843137254901963" blue="1" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="736" id="HIJ-qt-vE0"/>
+                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="10" id="arC-9Q-IMo">
                         <size key="itemSize" width="85" height="85"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -32,6 +35,11 @@
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="zW2-Oq-Sho" firstAttribute="leading" secondItem="B8y-Ij-McD" secondAttribute="leading" id="MlB-cm-bE6"/>
+                <constraint firstAttribute="trailing" secondItem="zW2-Oq-Sho" secondAttribute="trailing" id="ghU-u9-7oU"/>
+                <constraint firstItem="zW2-Oq-Sho" firstAttribute="top" secondItem="B8y-Ij-McD" secondAttribute="top" id="n6q-mI-uBH"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="440" y="303"/>
         </view>

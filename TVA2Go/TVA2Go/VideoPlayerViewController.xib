@@ -97,6 +97,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="62" id="IyB-GZ-js8"/>
                     </constraints>
+                    <color key="tintColor" red="0.070868405940000004" green="0.58574636049999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="heart">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
