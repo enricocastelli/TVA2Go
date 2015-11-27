@@ -18,6 +18,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString *urlString = self.video[@"longLink"];
+//    
+//    [self.playerView loadVideoByURL:urlString startSeconds: suggestedQuality:@"medium"];
     [self.playerView loadWithVideoId:self.video[@"videoID"]];
 
     
