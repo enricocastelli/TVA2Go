@@ -38,7 +38,9 @@
     self.pinned.allowsSelection = YES;
     self.pinned.frame = self.view.frame;
     self.cellArray = [[NSMutableArray alloc] init];
+
 }
+
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -55,11 +57,9 @@
 {
     
     UICollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    PFQuery *query = [PFQuery queryWithClassName:@"Video"];
-    
-    self.query = query;
-    
-    [query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+
+    self.query = [PFQuery queryWithClassName:@"Video"];
+    [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         
         
         CGRect rect = CGRectMake(0, 0, 85, 85);
@@ -121,11 +121,10 @@
         self.navigationItem.rightBarButtonItem.title = @"Done";
         
         for (UICollectionViewCell *cell in self.cellArray){
-            [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:10 options: UIViewAnimationOptionAutoreverse |UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction
+            [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.55 initialSpringVelocity:10 options: UIViewAnimationOptionAutoreverse |UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction
                              animations:^{
-                                 cell.transform = CGAffineTransformMakeRotation(0.02);
-                                 cell.transform = CGAffineTransformMakeRotation(-0.03);
-                                 
+                                 cell.transform = CGAffineTransformMakeRotation(0.06);
+                                 cell.transform = CGAffineTransformMakeRotation(-0.06);
                              } completion:nil];
         }
         self.deleting = @"YES";

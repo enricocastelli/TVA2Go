@@ -66,7 +66,7 @@
         } completion:nil];
         PFUser *user = [PFUser currentUser];
         NSMutableArray *userMustableArray = [user[@"pinnedVideos"] mutableCopy];
-        [userMustableArray addObject:self.videoObject[@"videoID"]];
+        [userMustableArray addObject:self.videoObject.objectId];
         [user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [user saveInBackground];
         
