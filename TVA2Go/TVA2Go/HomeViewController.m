@@ -78,6 +78,8 @@
     self.passwordField.delegate = self;
 
     
+    [self updateVideoChannel];
+    
 }
 
 
@@ -506,6 +508,36 @@
             [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:130 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self.goButton.frame = CGRectMake(self.goButton.frame.origin.x + 1, self.goButton.frame.origin.y + 1, self.goButton.frame.size.width, self.goButton.frame.size.height);
             } completion:nil];
+        }
+    }];
+}
+
+
+- (void)updateVideoChannel
+
+{
+    [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+        
+        for (GTLYouTubeVideo *video in videos) {
+            
+            
+            PFObject *current = [PFObject objectWithClassName:@"Video"];
+            
+            NSURL *url = [NSURL URLWithString:video.snippet.thumbnails.standard.url];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            
+            PFFile *ima = [PFFile fileWithData:data];
+            
+            current[@"thumbnail"] = ima;
+            
+            current[@"videoID"] = video.identifier;
+
+            if ([video.identifier isEqualToString:current[@"videoID"]]){
+
+            [current saveInBackground];
+            } else {
+                current = nil;
+            }
         }
     }];
 }

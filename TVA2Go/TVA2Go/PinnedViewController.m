@@ -35,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
     self.deleting = @"NO";
 
     [self.pinned registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
@@ -59,6 +60,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.firstTime = @"YES";
+    [self.pinned reloadData];
+
 
 }
 
@@ -79,8 +82,10 @@
     UICollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
 
     self.query = [PFQuery queryWithClassName:@"Video"];
+    [self.query whereKey:@"videoID" equalTo:self.array[indexPath.row]];
     
-    [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+    [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        
         if ([self.firstTime isEqualToString: @"YES"]) {
             cell.contentView.alpha = 0;
             [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:3 options:UIViewAnimationOptionAllowUserInteraction animations:^{
@@ -124,7 +129,10 @@
 {
     
     FullVideoViewController *f = [[FullVideoViewController alloc]init];
-    [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+    [self.query whereKey:@"videoID" equalTo:self.array[indexPath.row]];
+    
+    [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+
         if ([self.deleting  isEqualToString: @"NO"]) {
             
         f.video = object;

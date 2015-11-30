@@ -115,37 +115,7 @@
         
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
-        
-        PFObject *current = [PFObject objectWithClassName:@"Video"];
-        
-        //
-        //        int intCount = numberCount.intValue + 1;
-        //
-        //        NSNumber *newPinCount = [[NSNumber alloc]initWithInt:intCount];
-        //
-        //        self.videoObject[@"pinCount"] = newPinCount;
-        
-        current[@"videoID"] = self.currentVideo.identifier;
-        
-        NSNumber *numberCount = [[NSNumber alloc]initWithInt:1];
-        
-        current[@"pinCount"] = numberCount;
-        
-        NSURL *url = [NSURL URLWithString:self.currentVideo.snippet.thumbnails.standard.url];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        
-        PFFile *ima = [PFFile fileWithData:data];
-        
-        current[@"thumbnail"] = ima;
-        
-        
-        
-        [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            [UIView animateWithDuration:2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                self.likeButton.alpha = 0;
-            } completion:nil];
-        }];
-    }
+        }
     
 }
 
