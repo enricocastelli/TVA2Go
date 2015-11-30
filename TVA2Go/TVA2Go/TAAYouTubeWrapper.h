@@ -18,15 +18,15 @@
 @interface TAAYouTubeWrapper : NSObject
 
 // gets all the uploaded videos for the given user name as an array of GTLYouTubeVideo objects
-// we will use this for the pinned collection view!!!
+
 + (void)videosForUser:(NSString *)userName onCompletion:(void (^)(BOOL succeeded, NSArray *videos, NSError *error))completionBlock;
 
 // gets all the videos in the given playlist for the given user name as an array of GTLYouTubeVideo objects
-// we will use this for moods!!!
+
 + (void)videosForPlaylist:(NSString *)playlistName forUser:(NSString *)userName onCompletion:(void (^)(BOOL succeeded, NSArray *videos, NSError *error))completionBlock;
 
 // gets all the playlists for the given user name as an array of GTLYouTubePlaylist objects
-// we don't have to use this one...What do you think, Enrico?
+
 + (void)playlistsForUser:(NSString *)userName onCompletion:(void (^)(BOOL succeeded, NSArray *playlists, NSError *error))completionBlock;
 
 @end
