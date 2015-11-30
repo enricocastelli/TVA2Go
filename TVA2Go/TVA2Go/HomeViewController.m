@@ -127,8 +127,8 @@
                      }];}
 
 - (IBAction)random:(id)sender {
-    NSInteger objectsIndex = arc4random() % [self.objects count];
-    self.v.playlist = [self.objects objectAtIndex:objectsIndex];
+//    NSInteger objectsIndex = arc4random() % [self.objects count];
+    self.v.playlist = self.objects [arc4random() % self.objects.count];
     self.v.view.alpha = 0;
     self.navigationController.navigationBar.alpha = 0;
     [UIView animateWithDuration:0.5
