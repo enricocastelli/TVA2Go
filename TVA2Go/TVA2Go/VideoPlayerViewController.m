@@ -7,7 +7,9 @@
 //
 
 #import "VideoPlayerViewController.h"
+#import "TAAYouTubeWrapper.h"
 #import "FullVideoViewController.h"
+
 
 
 @interface VideoPlayerViewController () <UINavigationControllerDelegate>
@@ -31,40 +33,60 @@
     self.user = [PFUser currentUser];
     [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
     
-       self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
-
+    
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
+    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
+    title.tintColor = [UIColor whiteColor];
+    UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
+    
+    title.titleLabel.font = font;
+    
+    [title setTitle:[NSString stringWithFormat:@"%@" , ((GTLYouTubeVideo *)[self.videosInPlaylist firstObject]).snippet.title] forState:UIControlStateNormal];
+    self.navigationItem.titleView = title;
+
+    
+    [self.user fetchInBackground];
+    
     self.tableView.hidden = YES;
-    if (self.playlist) {
-        [self.playerView loadWithPlaylistId:self.playlist.identifier];
+    if (self.videosInPlaylist != nil) {
+        
+        
+        GTLYouTubeVideo *vid = [self.videosInPlaylist firstObject];
+        
+        [self.playerView loadWithVideoId:vid.identifier];
+        
         [self.playerView playVideo];
-        self.navigationItem.title = [NSString stringWithFormat:@"%@" , self.playlist.snippet.title];
+        
+        
         
     } else {
         
         
+        PFQuery *query = [PFQuery queryWithClassName:@"Video"];
         
-            PFQuery *query = [PFQuery queryWithClassName:@"Video"];
-        
-            [query getObjectInBackgroundWithId:@"0JPB3M5wXp"
-                                         block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                                             self.videoObject = object;
-                                             [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
-                                             if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
-                                                 self.likeButton.hidden = YES;
-                                                 [self.view setNeedsDisplay];
-                                             } else {
-                                                 self.likeButton.hidden = NO;
-                                                 [self.view setNeedsDisplay];
-                                             }
-                                         }];
+        [query getObjectInBackgroundWithId:@"0JPB3M5wXp"
+                                     block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                                         self.videoObject = object;
+                                         [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
+                                         if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
+                                             self.likeButton.hidden = YES;
+                                             [self.view setNeedsDisplay];
+                                         } else {
+                                             self.likeButton.hidden = NO;
+                                             [self.view setNeedsDisplay];
+                                         }
+                                     }];
     }
     
-
-    }
+    
+}
 
 - (IBAction)dislike:(id)sender {
     //load next video and put video at end of playlist queue if possible
@@ -74,34 +96,41 @@
 - (IBAction)like:(id)sender {
     
     
-    
     if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
         
         NSLog(@"Already Pinned");
         
     } else {
-    
-    NSNumber *numberCount = self.videoObject[@"pinCount"];
-    
-    int intCount = numberCount.intValue + 1;
-
-    NSNumber *newPinCount = [[NSNumber alloc]initWithInt:intCount];
-    
-    self.videoObject[@"pinCount"] = newPinCount;
-    
-    
-    [self.videoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        [UIView animateWithDuration:2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.likeButton.alpha = 0;
-        } completion:nil];
+        
+        NSNumber *numberCount = self.videoObject[@"pinCount"];
+        
+        int intCount = numberCount.intValue + 1;
+        
+        NSNumber *newPinCount = [[NSNumber alloc]initWithInt:intCount];
+        
+        self.videoObject[@"pinCount"] = newPinCount;
+        
         NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
-        [userMustableArray addObject:self.videoObject.objectId];
+        
+        
+        
+        
+        
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
         
-    }];
+        [self.videoObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            [UIView animateWithDuration:2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.likeButton.alpha = 0;
+            } completion:nil];
+            NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
+            [userMustableArray addObject:self.videoObject.objectId];
+            [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
+            [self.user saveInBackground];
+            
+        }];
     }
-   
+    
     
 }
 //
@@ -171,19 +200,16 @@
     if (self.tableView.hidden == YES) {
     self.tableView.hidden = NO;
     self.tableView.alpha = 0.95;
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:0.6 animations:^{
         self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
     }];
         [self.seeAllCommentsButton setTitle:@"Hide Comments" forState:UIControlStateNormal];
     } else {
         [UIView animateWithDuration:1 animations:^{
-            self.tableView.alpha = 0;
-
+            self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
         }];
         [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
         self.tableView.hidden = YES;
-
-
     }
 }
 
