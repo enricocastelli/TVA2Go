@@ -73,10 +73,16 @@
     
     self.usernameField.delegate = self;
     self.passwordField.delegate = self;
+    
+//    [TAAYouTubeWrapper videosForPlaylist:@"AWESOME TALKS" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+//        self.objects = videos;
+//    }];
+
     [TAAYouTubeWrapper playlistsForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
-        NSAssert1(succeeded, @"error: %@", error);
+        NSAssert1(succeeded, @"error:%@", error);
         self.objects = videos;
     }];
+   
 }
 
 
@@ -97,10 +103,6 @@
 
 - (IBAction)makeMeLaugh:(id)sender {
 
-    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
-    [self.navigationController pushViewController:v animated:YES];
-
-}
 
     self.v.playlist = self.objects[1];
     self.v.view.alpha = 0;
@@ -112,8 +114,11 @@
                          [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
                          self.v.view.alpha = 1.0;
                          self.navigationController.navigationBar.alpha = 1.0;
-                         
-                     }];}
+
+                     }];
+}
+
+
 
 - (IBAction)makeMeSmarter:(id)sender {
     self.v.playlist = self.objects[2];
