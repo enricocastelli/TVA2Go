@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "Social/Social.h"
+#import "TAAYouTubeWrapper.h"
+#import "GTLYouTube.h"
 
 @interface VideoPlayerViewController : UIViewController
 
@@ -20,7 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *FBPost;
 
-@property (strong, nonatomic) NSString *videos;
+@property (strong, nonatomic) GTLYouTubeVideo *playlist;
+
 
 -(IBAction)FBPressed;
 

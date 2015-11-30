@@ -8,8 +8,6 @@
 
 #import "VideoPlayerViewController.h"
 #import "FullVideoViewController.h"
-#import "TAAYouTubeWrapper.h"
-#import "GTLYouTube.h"
 
 
 @interface VideoPlayerViewController () <UINavigationControllerDelegate>
@@ -31,30 +29,36 @@
     
     self.user = [PFUser currentUser];
 
-    PFQuery *query = [PFQuery queryWithClassName:@"Video"];
-    
-    [query getObjectInBackgroundWithId:@"0JPB3M5wXp"
-                                 block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                                     self.videoObject = object;
-                                     [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
-                                     if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
-                                         self.likeButton.hidden = YES;
-                                         [self.view setNeedsDisplay];
-                                     } else {
-                                         self.likeButton.hidden = NO;
-                                         [self.view setNeedsDisplay];
-                                     }
-                                 }];
-    
-    
-        + (void)videosForPlaylist:PLNiceHDyjJRsXJIGEs4HlW2ZG-sREFXbo forUser:TVAcademyNL onCompletion:(void (^)(BOOL succeeded, NSArray *videos, NSError *error))completionBlock;
-    
-    
+
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.playerView playVideo];
+    if (self.playlist) {
+        [self.playerView loadWithPlaylistId:self.playlist.identifier];
+        [self.playerView playVideo];
+        self.navigationItem.title = [NSString stringWithFormat:@"%@" , self.playlist.snippet.title];
+        
+    } else {
+        
+        
+        
+            PFQuery *query = [PFQuery queryWithClassName:@"Video"];
+        
+            [query getObjectInBackgroundWithId:@"0JPB3M5wXp"
+                                         block:^(PFObject * _Nullable object, NSError * _Nullable error) {
+                                             self.videoObject = object;
+                                             [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
+                                             if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
+                                                 self.likeButton.hidden = YES;
+                                                 [self.view setNeedsDisplay];
+                                             } else {
+                                                 self.likeButton.hidden = NO;
+                                                 [self.view setNeedsDisplay];
+                                             }
+                                         }];
+    }
     
 
     }

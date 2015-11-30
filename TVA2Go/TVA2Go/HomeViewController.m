@@ -34,6 +34,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 @property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (nonatomic) VideoPlayerViewController *v;
+
+@property (strong, nonatomic) NSArray *objects;
 
 @property (strong, nonatomic) NSString *videos;
 
@@ -57,13 +60,15 @@
     if (user){
     [self toolbarLogout];
     } else {
-        [self toolbarLogin];
+    [self toolbarLogin];
     }
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    self.v = [[VideoPlayerViewController alloc] init];
+
     self.loginButton.layer.cornerRadius = self.loginButton.bounds.size.width/2.0;
     self.undoButton.layer.cornerRadius = self.undoButton.bounds.size.width/2.0;
         self.signupButton.layer.cornerRadius = self.signupButton.bounds.size.width/2.0;
@@ -72,43 +77,82 @@
     
     self.usernameField.delegate = self;
     self.passwordField.delegate = self;
-
-
+    [TAAYouTubeWrapper playlistsForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+        NSAssert1(succeeded, @"error: %@", error);
+        self.objects = videos;
+    }];
 }
 
 
-
 - (IBAction)inspireMe:(id)sender {
+<<<<<<< HEAD
     VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
     self.videos = 
     v.view.alpha = 0;
+=======
+    self.v.playlist = self.objects[0];
+    self.v.view.alpha = 0;
+
+>>>>>>> 0e41dafcf003bdd5b1c04eab2ab0523004281929
     self.navigationController.navigationBar.alpha = 0;
     [UIView animateWithDuration:0.5
                      animations:^{
-                         [self.navigationController pushViewController:v animated:NO];
+                         [self.navigationController pushViewController:self.v animated:NO];
                          [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                         v.view.alpha = 1.0;
+                         self.v.view.alpha = 1.0;
                          self.navigationController.navigationBar.alpha = 1.0;
 
                      }];}
 
 - (IBAction)makeMeLaugh:(id)sender {
+<<<<<<< HEAD
     VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
     [self.navigationController pushViewController:v animated:YES];
 
 }
 
+=======
+    self.v.playlist = self.objects[1];
+    self.v.view.alpha = 0;
+    
+    self.navigationController.navigationBar.alpha = 0;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.navigationController pushViewController:self.v animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                         self.v.view.alpha = 1.0;
+                         self.navigationController.navigationBar.alpha = 1.0;
+                         
+                     }];}
+>>>>>>> 0e41dafcf003bdd5b1c04eab2ab0523004281929
 
 - (IBAction)makeMeSmarter:(id)sender {
-    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
-    [self.navigationController pushViewController:v animated:YES];
-}
+    self.v.playlist = self.objects[2];
+    self.v.view.alpha = 0;
+    
+    self.navigationController.navigationBar.alpha = 0;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.navigationController pushViewController:self.v animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                         self.v.view.alpha = 1.0;
+                         self.navigationController.navigationBar.alpha = 1.0;
+                         
+                     }];}
 
 - (IBAction)random:(id)sender {
-    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
-    [self.navigationController pushViewController:v animated:YES];
-}
-
+ 
+    self.v.view.alpha = 0;
+    self.v.playlist = nil;
+    self.navigationController.navigationBar.alpha = 0;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.navigationController pushViewController:self.v animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                         self.v.view.alpha = 1.0;
+                         self.navigationController.navigationBar.alpha = 1.0;
+                         
+                     }];}
 - (void) myPins
 {
     PFUser *user = [PFUser currentUser];
