@@ -45,8 +45,18 @@
 
     RankingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
 
-    cell.imageThumbnail.file = [object objectForKey:@"thumbnail"];
-    [cell.imageThumbnail loadInBackground];
+
+    if ([object[@"thumbnail"] isKindOfClass:[PFFile class]]) {
+        cell.imageThumbnail.hidden = NO;
+    cell.imageThumbnail.file = object[@"thumbnail"];
+        [cell.imageThumbnail loadInBackground];
+
+    } else {
+        cell.imageThumbnail.image = nil;
+        cell.imageThumbnail.hidden = YES;
+
+    }
+    
     cell.titleLabel.text = object[@"title"];
     cell.descriptionLabel.text = object[@"description"];
     cell.rankingLabel.text = [NSString stringWithFormat:@"%@", object[@"pinCount"]];

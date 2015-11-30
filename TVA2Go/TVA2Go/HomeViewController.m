@@ -79,6 +79,8 @@
         NSAssert1(succeeded, @"error: %@", error);
         self.objects = videos;
     }];
+    
+    
 }
 
 
@@ -316,6 +318,10 @@
 - (IBAction)log:(id)sender
 
 {
+    [self.passwordField resignFirstResponder];
+    [self.usernameField resignFirstResponder];
+    [self.emailField resignFirstResponder];
+    [self toolbarLogout];
     
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (!error){
@@ -324,19 +330,11 @@
             self.loginButton.alpha = 0;
 
             self.successLabel.alpha = 0;
-            [self.passwordField resignFirstResponder];
-            [self.usernameField resignFirstResponder];
-            [self.emailField resignFirstResponder];
-            [self toolbarLogout];
+            
+            
             self.loginButton.titleLabel.alpha = 0;
             
-            [UIView animateWithDuration:0.3 delay:1.8 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                self.view.backgroundColor = self.loginButton.backgroundColor;
-                
-
-                
-            } completion:nil];
-            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:90 options:UIViewAnimationOptionAutoreverse animations:^{
+            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:90 options:UIViewAnimationOptionCurveEaseIn animations:^{
 
                 
                 self.loginButton.alpha = 1;
@@ -389,6 +387,7 @@
 
             
         } else {
+            [self.usernameField becomeFirstResponder];
             [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:130 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self.loginButton.frame = CGRectMake(self.loginButton.frame.origin.x + 1, self.loginButton.frame.origin.y + 1, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
             } completion:nil];

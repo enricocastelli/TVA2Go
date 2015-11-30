@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *seeAllCommentsButton;
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) PFQuery *query;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -28,13 +29,15 @@
     [super viewDidLoad];
     
     self.user = [PFUser currentUser];
-
-
+    [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
+    
+       self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.tableView.hidden = YES;
     if (self.playlist) {
         [self.playerView loadWithPlaylistId:self.playlist.identifier];
         [self.playerView playVideo];
@@ -164,6 +167,24 @@
 
 
 - (IBAction)seeAllComments:(id)sender {
+    
+    if (self.tableView.hidden == YES) {
+    self.tableView.hidden = NO;
+    self.tableView.alpha = 0.95;
+    [UIView animateWithDuration:1 animations:^{
+        self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    }];
+        [self.seeAllCommentsButton setTitle:@"Hide Comments" forState:UIControlStateNormal];
+    } else {
+        [UIView animateWithDuration:1 animations:^{
+            self.tableView.alpha = 0;
+
+        }];
+        [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
+        self.tableView.hidden = YES;
+
+
+    }
 }
 
 
