@@ -38,7 +38,6 @@
 
 @property (strong, nonatomic) NSArray *objects;
 
-@property (strong, nonatomic) NSString *videos;
 
 
 
@@ -143,16 +142,22 @@
 
 - (IBAction)random:(id)sender {
  
-    self.v.view.alpha = 0;
-    self.navigationController.navigationBar.alpha = 0;
-    [UIView animateWithDuration:0.5
-                     animations:^{
-                         [self.navigationController pushViewController:self.v animated:NO];
-                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                         self.v.view.alpha = 1.0;
-                         self.navigationController.navigationBar.alpha = 1.0;
-                         
-                     }];}
+    [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+        
+        self.v.videosInPlaylist = videos;
+        self.v.view.alpha = 0;
+        self.navigationController.navigationBar.alpha = 0;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.navigationController pushViewController:self.v animated:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                             self.v.view.alpha = 1.0;
+                             self.navigationController.navigationBar.alpha = 1.0;
+                             
+                         }];
+    }];
+    
+}
 - (void) myPins
 {
     PFUser *user = [PFUser currentUser];

@@ -10,6 +10,8 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "FullVideoViewController.h"
+#import "GTLYouTube.h"
+
 
 @interface PinnedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -17,7 +19,6 @@
 @property (strong,nonatomic) NSArray *array;
 @property (strong, nonatomic) PFQuery* query;
 @property (strong,nonatomic) NSString* deleting;
-@property (strong,nonatomic) NSMutableArray *cellArray;
 @property (strong, nonatomic) UIImageView *playImage;
 @property (strong, nonatomic) UIImageView *deleteImage;
 @property (strong, nonatomic) NSString *firstTime;
@@ -42,7 +43,6 @@
     self.pinned.delegate = self;
     self.pinned.allowsSelection = YES;
     self.pinned.frame = self.view.frame;
-    self.cellArray = [[NSMutableArray alloc] init];
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
     [title setTitle:@"Pinned Videos" forState:UIControlStateNormal];
@@ -79,6 +79,7 @@
     UICollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
 
     self.query = [PFQuery queryWithClassName:@"Video"];
+    
     [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if ([self.firstTime isEqualToString: @"YES"]) {
             cell.contentView.alpha = 0;
@@ -98,9 +99,10 @@
         }
         CGRect rect = CGRectMake(0, 0, 85, 85);
         PFImageView *image = [[PFImageView alloc] initWithFrame:rect];
-        
         image.file = object[@"thumbnail"];
         [image loadInBackground];
+    
+        
         [cell.contentView addSubview:image];
         
         UIImage *play = [UIImage imageNamed:@"playButton"];
@@ -124,6 +126,7 @@
     FullVideoViewController *f = [[FullVideoViewController alloc]init];
     [self.query getObjectInBackgroundWithId:self.array[indexPath.row] block:^(PFObject * _Nullable object, NSError * _Nullable error) {
         if ([self.deleting  isEqualToString: @"NO"]) {
+            
         f.video = object;
         
         [self.navigationController pushViewController:f animated:YES];
