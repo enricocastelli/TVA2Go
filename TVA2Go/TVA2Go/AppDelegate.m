@@ -28,6 +28,8 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:h];
     self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];
+ 
+ 
     [self.window makeKeyAndVisible];
     return YES;
 }
