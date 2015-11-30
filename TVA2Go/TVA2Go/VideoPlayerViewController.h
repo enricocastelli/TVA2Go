@@ -22,7 +22,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *FBPost;
 
-@property (strong, nonatomic) GTLYouTubeVideo *playlist;
+@property (strong, nonatomic) NSArray* videosInPlaylist;
 
 
 -(IBAction)FBPressed;

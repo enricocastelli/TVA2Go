@@ -31,7 +31,17 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorColor = [UIColor clearColor];
-    self.navigationItem.title = @"Most Pinned Videos";
+    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
+    title.tintColor = [UIColor whiteColor];
+    [title setTitle:@"Most Pinned Videos" forState:UIControlStateNormal];
+    UIFont * font = [UIFont fontWithName:@"Helvetica Neuw" size:20];
+    
+    title.titleLabel.font = font;
+
+
+    
+    self.navigationItem.titleView = title;
+    
 }
 
 #pragma mark - Table view data source

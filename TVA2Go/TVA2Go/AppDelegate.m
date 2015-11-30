@@ -26,6 +26,8 @@
     // Override point for customization after application launch.
     HomeViewController *h = [[HomeViewController alloc]init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:h];
+           nav.navigationBar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
+    nav.navigationBar.tintColor = [UIColor whiteColor];
     self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];
  

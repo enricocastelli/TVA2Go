@@ -77,75 +77,73 @@
     
     self.usernameField.delegate = self;
     self.passwordField.delegate = self;
-    [TAAYouTubeWrapper playlistsForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
-        NSAssert1(succeeded, @"error: %@", error);
-        self.objects = videos;
-    }];
-    
+
     
 }
 
 
 - (IBAction)inspireMe:(id)sender {
-<<<<<<< HEAD
-    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
-    self.videos = 
-    v.view.alpha = 0;
-=======
-    self.v.playlist = self.objects[0];
-    self.v.view.alpha = 0;
 
->>>>>>> 0e41dafcf003bdd5b1c04eab2ab0523004281929
-    self.navigationController.navigationBar.alpha = 0;
-    [UIView animateWithDuration:0.5
-                     animations:^{
-                         [self.navigationController pushViewController:self.v animated:NO];
-                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                         self.v.view.alpha = 1.0;
-                         self.navigationController.navigationBar.alpha = 1.0;
-
-                     }];}
-
-- (IBAction)makeMeLaugh:(id)sender {
-<<<<<<< HEAD
-    VideoPlayerViewController *v = [[VideoPlayerViewController alloc] init];
-    [self.navigationController pushViewController:v animated:YES];
+    [TAAYouTubeWrapper videosForPlaylist:@"MADE BY TVA" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+        
+        
+        self.v.videosInPlaylist = videos;
+        self.v.view.alpha = 0;
+        
+        self.navigationController.navigationBar.alpha = 0;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.navigationController pushViewController:self.v animated:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                             self.v.view.alpha = 1.0;
+                             self.navigationController.navigationBar.alpha = 1.0;
+                         }];
+    }
+    ];
 
 }
 
-=======
-    self.v.playlist = self.objects[1];
-    self.v.view.alpha = 0;
-    
-    self.navigationController.navigationBar.alpha = 0;
-    [UIView animateWithDuration:0.5
-                     animations:^{
-                         [self.navigationController pushViewController:self.v animated:NO];
-                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                         self.v.view.alpha = 1.0;
-                         self.navigationController.navigationBar.alpha = 1.0;
-                         
-                     }];}
->>>>>>> 0e41dafcf003bdd5b1c04eab2ab0523004281929
+- (IBAction)makeMeLaugh:(id)sender {
+
+
+    [TAAYouTubeWrapper videosForPlaylist:@"AWESOME AFTERTALKS" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+        self.v.videosInPlaylist = videos;
+        self.v.view.alpha = 0;
+        
+        self.navigationController.navigationBar.alpha = 0;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.navigationController pushViewController:self.v animated:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                             self.v.view.alpha = 1.0;
+                             self.navigationController.navigationBar.alpha = 1.0;
+                             
+                         }];
+    }];
+
+}
 
 - (IBAction)makeMeSmarter:(id)sender {
-    self.v.playlist = self.objects[2];
-    self.v.view.alpha = 0;
+    [TAAYouTubeWrapper videosForPlaylist:@"Algemeen" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+        self.v.videosInPlaylist = videos;
+        self.v.view.alpha = 0;
+        self.navigationController.navigationBar.alpha = 0;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.navigationController pushViewController:self.v animated:NO];
+                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                             self.v.view.alpha = 1.0;
+                             self.navigationController.navigationBar.alpha = 1.0;
+                             
+                         }];
+    }];
     
-    self.navigationController.navigationBar.alpha = 0;
-    [UIView animateWithDuration:0.5
-                     animations:^{
-                         [self.navigationController pushViewController:self.v animated:NO];
-                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                         self.v.view.alpha = 1.0;
-                         self.navigationController.navigationBar.alpha = 1.0;
-                         
-                     }];}
+
+}
 
 - (IBAction)random:(id)sender {
  
     self.v.view.alpha = 0;
-    self.v.playlist = nil;
     self.navigationController.navigationBar.alpha = 0;
     [UIView animateWithDuration:0.5
                      animations:^{

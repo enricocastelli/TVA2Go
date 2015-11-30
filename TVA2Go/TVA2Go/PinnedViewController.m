@@ -43,7 +43,15 @@
     self.pinned.allowsSelection = YES;
     self.pinned.frame = self.view.frame;
     self.cellArray = [[NSMutableArray alloc] init];
-    self.navigationItem.title = @"Pinned Videos";
+    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
+    title.tintColor = [UIColor whiteColor];
+    [title setTitle:@"Pinned Videos" forState:UIControlStateNormal];
+    UIFont * font = [UIFont fontWithName:@"Helvetica Neuw" size:20];
+    
+    title.titleLabel.font = font;
+
+    self.navigationItem.titleView = title;
+
 
 
 }
