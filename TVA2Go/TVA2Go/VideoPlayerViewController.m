@@ -108,11 +108,13 @@
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
         if (number != 0) {
             
-            NS
-            
-            self.videoObject[@"videoID"] = self.currentVideo.identifier;
-            
-            nil;
+            [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+              
+                int pinCount = [[object objectForKey:@"pinCount"] intValue];
+                pinCount = pinCount + 1;
+                object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+                [object saveInBackground];
+            }];
         } else {
             
             PFObject *current = [PFObject objectWithClassName:@"Video"];
@@ -125,6 +127,13 @@
             current[@"thumbnail"] = ima;
             
             current[@"videoID"] = self.currentVideo.identifier;
+            
+            current[@"pinCount"] = [NSNumber numberWithInt:0];
+            
+            int pinCount = [[current objectForKey:@"pinCount"] intValue];
+            pinCount = pinCount + 1;
+            current[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+            
             [current saveInBackground];
         }
     }];
