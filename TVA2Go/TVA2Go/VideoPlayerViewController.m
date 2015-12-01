@@ -46,11 +46,6 @@
     
     title.titleLabel.font = font;
     
-    [UIView animateWithDuration:0.5 animations:^{
-        self.likeButton.alpha = 1;
-    }];
-
-    
     [self.user fetchInBackground];
     
     self.tableView.hidden = YES;
@@ -65,14 +60,25 @@
         [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
         self.navigationItem.titleView = title;
         
-        
-        
     } else {
         
         nil;
     }
     
-    
+    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.likeButton.alpha = 0;
+        }];;
+        
+    } else {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.likeButton.alpha = 1;
+        }];
+        
+    }
+        
 }
 
 - (IBAction)dislike:(id)sender {
