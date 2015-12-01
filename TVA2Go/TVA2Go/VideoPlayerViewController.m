@@ -73,7 +73,7 @@
         
         
         PFQuery *query = [PFQuery queryWithClassName:@"Video"];
-        
+        self.query = query;
         [query getObjectInBackgroundWithId:@"0JPB3M5wXp"
                                      block:^(PFObject * _Nullable object, NSError * _Nullable error) {
                                          self.videoObject = object;
@@ -99,7 +99,7 @@
 - (IBAction)like:(id)sender {
     
     
-    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo]) {
+    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
         
         NSLog(@"Already Pinned");
         
@@ -117,6 +117,28 @@
         [self.user saveInBackground];
         }
     
+
+            
+            self.query = [PFQuery queryWithClassName:@"Video"];
+    [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
+    [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+        if (number != 0) {
+            nil;
+        } else {
+            
+            PFObject *current = [PFObject objectWithClassName:@"Video"];
+            
+            NSURL *url = [NSURL URLWithString:self.currentVideo.snippet.thumbnails.standard.url];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            
+            PFFile *ima = [PFFile fileWithData:data];
+            
+            current[@"thumbnail"] = ima;
+            
+            current[@"videoID"] = self.currentVideo.identifier;
+            [current saveInBackground];
+        }
+    }];
 }
 
 

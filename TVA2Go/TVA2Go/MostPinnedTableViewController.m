@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.separatorColor = [UIColor blackColor];
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
     [title setTitle:@"Most Pinned Videos" forState:UIControlStateNormal];

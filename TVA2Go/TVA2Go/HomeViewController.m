@@ -76,10 +76,6 @@
     
     self.usernameField.delegate = self;
     self.passwordField.delegate = self;
-
-    
-    [self updateVideoChannel];
-    
 }
 
 
@@ -446,6 +442,7 @@
     user.username = self.usernameField.text;
     user.password = self.passwordField.text;
     user.email = self.emailField.text;
+    user[@"pinnedVideos"] = @[];
     
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -513,34 +510,6 @@
 }
 
 
-- (void)updateVideoChannel
-
-{
-    [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
-        
-        for (GTLYouTubeVideo *video in videos) {
-            
-            
-            PFObject *current = [PFObject objectWithClassName:@"Video"];
-            
-            NSURL *url = [NSURL URLWithString:video.snippet.thumbnails.standard.url];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            
-            PFFile *ima = [PFFile fileWithData:data];
-            
-            current[@"thumbnail"] = ima;
-            
-            current[@"videoID"] = video.identifier;
-
-            if ([video.identifier isEqualToString:current[@"videoID"]]){
-
-            [current saveInBackground];
-            } else {
-                current = nil;
-            }
-        }
-    }];
-}
 
 
 @end

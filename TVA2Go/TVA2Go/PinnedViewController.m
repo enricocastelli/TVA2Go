@@ -60,6 +60,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.firstTime = @"YES";
+    PFUser*user = [PFUser currentUser];
+    [user fetchInBackground];
     [self.pinned reloadData];
 
 
@@ -153,14 +155,15 @@
             
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (succeeded){
-                    
                     [UIView animateWithDuration:0.6 animations:^{
                         cellToDelete.alpha = 0;
-                    }];
-                }
-                
+                        [self.pinned deleteItemsAtIndexPaths:@[indexPath]];
+                        
 
-   
+                        [self.pinned reloadData];
+                    }];
+                 [self dancingCells];   
+                }
             }];
         }
     }];
@@ -193,7 +196,6 @@
         self.firstTime = @"NO";
         self.pinned.alpha = 0.6;
         [UIView animateWithDuration:0.8 animations:^{
-            [self.pinned reloadData];
             self.pinned.alpha = 1;
 
 
