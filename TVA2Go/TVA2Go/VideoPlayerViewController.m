@@ -22,11 +22,14 @@
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) PFQuery *query;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic) GTLYouTubeVideo *currentVideo;
 
 @end
 
 @implementation VideoPlayerViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -150,6 +153,14 @@
 }
 
 
+- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
+    NSLog(@"swiped right");
+}
+
+- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender {
+    NSLog(@"swiped left");
+}
+
 -(IBAction)FBPressed{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
@@ -215,6 +226,5 @@
         self.tableView.hidden = YES;
     }
 }
-
 
 @end
