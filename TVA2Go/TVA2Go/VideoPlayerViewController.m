@@ -9,6 +9,7 @@
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
 #import "FullVideoViewController.h"
+#import "PinnedViewController.h"
 
 
 
@@ -22,8 +23,11 @@
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) PFQuery *query;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (strong, nonatomic) GTLYouTubeVideo *currentVideo;
+@property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pinCountLabel;
 
 @end
 
@@ -37,6 +41,22 @@
     self.playerView.delegate = self;
     self.user = [PFUser currentUser];
     [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
+    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
+    self.navigationItem.rightBarButtonItem = myPins;
+    
+    self.dislikeButton.layer.cornerRadius = self.dislikeButton.frame.size.width/2;
+    self.likeButton.layer.cornerRadius = self.likeButton.frame.size.width/2;
+    self.postCommentButton.layer.cornerRadius = self.postCommentButton.frame.size.width/2;
+    self.FBPost.layer.cornerRadius = self.FBPost.frame.size.width/2;
+
+    self.seeAllCommentsButton.layer.cornerRadius = self.seeAllCommentsButton.frame.size.width/8;
+    self.watchFullVideoButton.layer.cornerRadius = self.watchFullVideoButton.frame.size.width/8;
+
+
+
+    
+
+    
     
 }
 
@@ -62,6 +82,12 @@
         [self.playerView playVideo];
         [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
         self.navigationItem.titleView = title;
+        self.titleLabel.text = self.currentVideo.snippet.title;
+        NSDate *date = self.currentVideo.snippet.publishedAt.date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateStyle = NSDateFormatterMediumStyle;
+        NSString *string = [formatter stringFromDate:date];
+        self.postDateLabel.text = string;
         
     } else {
         
@@ -87,6 +113,22 @@
 - (IBAction)dislike:(id)sender {
     //load next video and put video at end of playlist queue if possible
     //make swipe left animation like Tinder
+    
+    self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+    
+    [self.playerView loadWithVideoId:self.currentVideo.identifier];
+    
+    [self.playerView playVideo];
+
+    self.titleLabel.text = self.currentVideo.snippet.title;
+    NSDate *date = self.currentVideo.snippet.publishedAt.date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    NSString *string = [formatter stringFromDate:date];
+    self.postDateLabel.text = string;
+
+    [self.view setNeedsDisplay];
+
 }
 
 - (IBAction)like:(id)sender {
@@ -283,6 +325,12 @@
         [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
         self.tableView.hidden = YES;
     }
+}
+
+- (void)myPins
+{
+    PinnedViewController *p = [[PinnedViewController alloc]init];
+   [self.navigationController pushViewController:p animated:YES];
 }
 
 @end
