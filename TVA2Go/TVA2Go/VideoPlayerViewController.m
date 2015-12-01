@@ -22,11 +22,14 @@
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) PFQuery *query;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic) GTLYouTubeVideo *currentVideo;
 
 @end
 
 @implementation VideoPlayerViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,10 +37,6 @@
     self.playerView.delegate = self;
     self.user = [PFUser currentUser];
     [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
-    
-    
-    
-    
     
 }
 
@@ -49,9 +48,6 @@
     UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
     
     title.titleLabel.font = font;
-    
-    
-
     
     [self.user fetchInBackground];
     
@@ -67,28 +63,25 @@
         [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
         self.navigationItem.titleView = title;
         
+    } else {
         
+        nil;
+    }
+    
+    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.likeButton.alpha = 0;
+        }];;
         
     } else {
         
+        [UIView animateWithDuration:0.5 animations:^{
+            self.likeButton.alpha = 1;
+        }];
         
-        PFQuery *query = [PFQuery queryWithClassName:@"Video"];
-        self.query = query;
-        [query getObjectInBackgroundWithId:@"0JPB3M5wXp"
-                                     block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                                         self.videoObject = object;
-                                         [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
-                                         if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
-                                             self.likeButton.hidden = YES;
-                                             [self.view setNeedsDisplay];
-                                         } else {
-                                             self.likeButton.hidden = NO;
-                                             [self.view setNeedsDisplay];
-                                         }
-                                     }];
     }
-    
-    
+        
 }
 
 - (IBAction)dislike:(id)sender {
@@ -107,22 +100,32 @@
         
         
         NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
-
+        
         NSString *stringIdentifier = self.currentVideo.identifier;
         
-      [userMustableArray addObject:stringIdentifier];
+        [userMustableArray addObject:stringIdentifier];
         
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
-        }
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.likeButton.alpha = 0;
+        }];
+        
+    }
     
-
-            
-            self.query = [PFQuery queryWithClassName:@"Video"];
+    self.query = [PFQuery queryWithClassName:@"Video"];
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
         if (number != 0) {
-            nil;
+            
+            [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+              
+                int pinCount = [[object objectForKey:@"pinCount"] intValue];
+                pinCount = pinCount + 1;
+                object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+                [object saveInBackground];
+            }];
         } else {
             
             PFObject *current = [PFObject objectWithClassName:@"Video"];
@@ -135,27 +138,96 @@
             current[@"thumbnail"] = ima;
             
             current[@"videoID"] = self.currentVideo.identifier;
+            
+            current[@"pinCount"] = [NSNumber numberWithInt:0];
+            
+            int pinCount = [[current objectForKey:@"pinCount"] intValue];
+            pinCount = pinCount + 1;
+            current[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+            
             [current saveInBackground];
         }
     }];
+    
+    
 }
 
+
+//- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
+//    NSLog(@"swiped right");
+//    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
+//        
+//        NSLog(@"Already Pinned");
+//        
+//    } else {
+//        
+//        
+//        NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
+//        
+//        NSString *stringIdentifier = self.currentVideo.identifier;
+//        
+//        [userMustableArray addObject:stringIdentifier];
+//        
+//        [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
+//        [self.user saveInBackground];
+//        
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.likeButton.alpha = 0;
+//        }];
+//        
+//    }
+//    
+//    self.query = [PFQuery queryWithClassName:@"Video"];
+//    [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
+//    [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+//        if (number != 0) {
+//            
+//            [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+//                
+//                int pinCount = [[object objectForKey:@"pinCount"] intValue];
+//                pinCount = pinCount + 1;
+//                object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+//                [object saveInBackground];
+//            }];
+//        } else {
+//            
+//            PFObject *current = [PFObject objectWithClassName:@"Video"];
+//            
+//            NSURL *url = [NSURL URLWithString:self.currentVideo.snippet.thumbnails.standard.url];
+//            NSData *data = [NSData dataWithContentsOfURL:url];
+//            
+//            PFFile *ima = [PFFile fileWithData:data];
+//            
+//            current[@"thumbnail"] = ima;
+//            
+//            current[@"videoID"] = self.currentVideo.identifier;
+//            
+//            current[@"pinCount"] = [NSNumber numberWithInt:0];
+//            
+//            int pinCount = [[current objectForKey:@"pinCount"] intValue];
+//            pinCount = pinCount + 1;
+//            current[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+//            
+//            [current saveInBackground];
+//        }
+//    }];
+//    
+//    
+//}
+//
+//- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender {
+//    NSLog(@"swiped left");
+//}
 
 -(IBAction)FBPressed{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
     {
         SLComposeViewController *fbPostSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         
-        NSURL *testURL = [NSURL URLWithString:@"https://www.youtube.com/watch?v=Of5xEVAoWLk"];
+        NSURL *currentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.currentVideo.identifier]];
         
-        [fbPostSheet addURL:testURL];
-        
-//       [fbPostSheet addURL:self.videoObject[@"shortLink"]];
-// ideal code i'd like to get working ^^ edit: but it ain't gonna work like that. Going to have to do something like NSURL *variable = [NSURL URLWithString:self.videoObject[@"shortLink"]]; or something and maybe probably within a block, i.e getObjectInBackgroundWithBlock perhaps.
-        
-        
-        //[fbPostSheet setInitialText:@"This is a Facebook post!"];
-        //FB actually doesn't allow pre-selected text anymore, so this doesn't work unless there's a bug, i.e. you are logged into FB in the general settings on your phone but you don't have the FB app installed on your device.
+        [fbPostSheet addURL:currentURL];
+  
         [self presentViewController:fbPostSheet animated:YES completion:nil];
     } else
     {
@@ -175,7 +247,7 @@
     
     FullVideoViewController *f = [[FullVideoViewController alloc] init];
     
-    f.video = self.videoObject;
+    f.video = self.currentVideo;
     
     [UIView beginAnimations:@"View Flip" context:nil];
     [UIView setAnimationDuration:0.80];
@@ -212,6 +284,5 @@
         self.tableView.hidden = YES;
     }
 }
-
 
 @end

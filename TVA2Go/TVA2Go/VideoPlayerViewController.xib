@@ -24,12 +24,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z5g-cx-r7T" customClass="YTPlayerView">
+                <view multipleTouchEnabled="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Z5g-cx-r7T" customClass="YTPlayerView">
                     <rect key="frame" x="0.0" y="64" width="320" height="240"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Z5g-cx-r7T" secondAttribute="height" multiplier="4:3" id="Fd6-tS-JcQ"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="rEW-AV-RM2" appends="YES" id="EGv-51-IYZ"/>
+                        <outletCollection property="gestureRecognizers" destination="hxJ-wG-QKX" appends="YES" id="zXp-Xh-XJ9"/>
+                    </connections>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hni-pM-wgH">
                     <rect key="frame" x="49" y="430" width="205" height="30"/>
@@ -110,7 +115,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVe-NS-pYT">
-                            <rect key="frame" x="206" y="0.0" width="45" height="45"/>
+                            <rect key="frame" x="207" y="0.0" width="45" height="45"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="EVe-NS-pYT" secondAttribute="height" multiplier="1:1" id="4MN-Uo-Atk"/>
@@ -193,6 +198,16 @@
             </variation>
             <point key="canvasLocation" x="108" y="135"/>
         </view>
+        <swipeGestureRecognizer direction="right" id="rEW-AV-RM2">
+            <connections>
+                <action selector="swipeRight:" destination="-1" id="Uiy-Vt-SL0"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <swipeGestureRecognizer direction="left" id="hxJ-wG-QKX">
+            <connections>
+                <action selector="swipeLeft:" destination="-1" id="yfO-QO-34f"/>
+            </connections>
+        </swipeGestureRecognizer>
     </objects>
     <resources>
         <image name="heart" width="70" height="53"/>

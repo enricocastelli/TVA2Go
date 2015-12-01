@@ -18,12 +18,13 @@
 
 @property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 
-@property (strong, nonatomic) PFObject *videoObject;
-
 @property (weak, nonatomic) IBOutlet UIButton *FBPost;
 
 @property (strong, nonatomic) NSArray* videosInPlaylist;
 
+//- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender;
+//
+//- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender;
 
 -(IBAction)FBPressed;
 
