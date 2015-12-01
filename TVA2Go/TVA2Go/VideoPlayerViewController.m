@@ -114,12 +114,18 @@
         
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
+        
     }
     
     self.query = [PFQuery queryWithClassName:@"Video"];
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
         if (number != 0) {
+            
+            NS
+            
+            self.videoObject[@"videoID"] = self.currentVideo.identifier;
+            
             nil;
         } else {
             
@@ -136,6 +142,8 @@
             [current saveInBackground];
         }
     }];
+    
+    
 }
 
 
@@ -167,7 +175,7 @@
     
     FullVideoViewController *f = [[FullVideoViewController alloc] init];
     
-    f.video = self.videoObject;
+    f.video = self.currentVideo;
     
     [UIView beginAnimations:@"View Flip" context:nil];
     [UIView setAnimationDuration:0.80];
