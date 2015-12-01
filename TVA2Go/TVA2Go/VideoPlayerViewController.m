@@ -107,18 +107,18 @@
         
         
         NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
-
+        
         NSString *stringIdentifier = self.currentVideo.identifier;
         
-      [userMustableArray addObject:stringIdentifier];
+        [userMustableArray addObject:stringIdentifier];
         
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
-        }
+    }
     
-
-            
-            self.query = [PFQuery queryWithClassName:@"Video"];
+    
+    
+    self.query = [PFQuery queryWithClassName:@"Video"];
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
         if (number != 0) {
