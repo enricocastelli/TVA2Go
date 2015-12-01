@@ -112,7 +112,6 @@
         
       [userMustableArray addObject:stringIdentifier];
         
-        
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
         }
