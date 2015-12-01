@@ -22,9 +22,9 @@
 
 @property (strong, nonatomic) NSArray* videosInPlaylist;
 
-- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender;
-
-- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender;
+//- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender;
+//
+//- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender;
 
 -(IBAction)FBPressed;
 

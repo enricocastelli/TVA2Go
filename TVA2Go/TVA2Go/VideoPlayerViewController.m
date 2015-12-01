@@ -153,13 +153,71 @@
 }
 
 
-- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
-    NSLog(@"swiped right");
-}
-
-- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender {
-    NSLog(@"swiped left");
-}
+//- (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
+//    NSLog(@"swiped right");
+//    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
+//        
+//        NSLog(@"Already Pinned");
+//        
+//    } else {
+//        
+//        
+//        NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
+//        
+//        NSString *stringIdentifier = self.currentVideo.identifier;
+//        
+//        [userMustableArray addObject:stringIdentifier];
+//        
+//        [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
+//        [self.user saveInBackground];
+//        
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.likeButton.alpha = 0;
+//        }];
+//        
+//    }
+//    
+//    self.query = [PFQuery queryWithClassName:@"Video"];
+//    [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
+//    [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+//        if (number != 0) {
+//            
+//            [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+//                
+//                int pinCount = [[object objectForKey:@"pinCount"] intValue];
+//                pinCount = pinCount + 1;
+//                object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+//                [object saveInBackground];
+//            }];
+//        } else {
+//            
+//            PFObject *current = [PFObject objectWithClassName:@"Video"];
+//            
+//            NSURL *url = [NSURL URLWithString:self.currentVideo.snippet.thumbnails.standard.url];
+//            NSData *data = [NSData dataWithContentsOfURL:url];
+//            
+//            PFFile *ima = [PFFile fileWithData:data];
+//            
+//            current[@"thumbnail"] = ima;
+//            
+//            current[@"videoID"] = self.currentVideo.identifier;
+//            
+//            current[@"pinCount"] = [NSNumber numberWithInt:0];
+//            
+//            int pinCount = [[current objectForKey:@"pinCount"] intValue];
+//            pinCount = pinCount + 1;
+//            current[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+//            
+//            [current saveInBackground];
+//        }
+//    }];
+//    
+//    
+//}
+//
+//- (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender {
+//    NSLog(@"swiped left");
+//}
 
 -(IBAction)FBPressed{
     if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
