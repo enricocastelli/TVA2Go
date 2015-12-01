@@ -116,8 +116,6 @@
         [self.user saveInBackground];
     }
     
-    
-    
     self.query = [PFQuery queryWithClassName:@"Video"];
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
@@ -146,9 +144,9 @@
     {
         SLComposeViewController *fbPostSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         
-        NSURL *testURL = [NSURL URLWithString:@"https://www.youtube.com/watch?v=Of5xEVAoWLk"];
+        NSURL *currentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.currentVideo.identifier]];
         
-        [fbPostSheet addURL:testURL];
+        [fbPostSheet addURL:currentURL];
         
 //       [fbPostSheet addURL:self.videoObject[@"shortLink"]];
 // ideal code i'd like to get working ^^ edit: but it ain't gonna work like that. Going to have to do something like NSURL *variable = [NSURL URLWithString:self.videoObject[@"shortLink"]]; or something and maybe probably within a block, i.e getObjectInBackgroundWithBlock perhaps.
