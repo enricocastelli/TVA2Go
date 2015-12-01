@@ -147,13 +147,7 @@
         NSURL *currentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.currentVideo.identifier]];
         
         [fbPostSheet addURL:currentURL];
-        
-//       [fbPostSheet addURL:self.videoObject[@"shortLink"]];
-// ideal code i'd like to get working ^^ edit: but it ain't gonna work like that. Going to have to do something like NSURL *variable = [NSURL URLWithString:self.videoObject[@"shortLink"]]; or something and maybe probably within a block, i.e getObjectInBackgroundWithBlock perhaps.
-        
-        
-        //[fbPostSheet setInitialText:@"This is a Facebook post!"];
-        //FB actually doesn't allow pre-selected text anymore, so this doesn't work unless there's a bug, i.e. you are logged into FB in the general settings on your phone but you don't have the FB app installed on your device.
+  
         [self presentViewController:fbPostSheet animated:YES completion:nil];
     } else
     {
