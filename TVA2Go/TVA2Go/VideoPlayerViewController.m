@@ -108,9 +108,9 @@
         
         NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
 
-        NSString *file = self.currentVideo.identifier;
+        NSString *stringIdentifier = self.currentVideo.identifier;
         
-      [userMustableArray addObject:file];
+      [userMustableArray addObject:stringIdentifier];
         
         
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
