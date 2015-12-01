@@ -35,10 +35,6 @@
     self.user = [PFUser currentUser];
     [self.seeAllCommentsButton setTitle:@"See Comments" forState:UIControlStateNormal];
     
-    
-    
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,7 +46,9 @@
     
     title.titleLabel.font = font;
     
-    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.likeButton.alpha = 1;
+    }];
 
     
     [self.user fetchInBackground];
@@ -100,6 +98,10 @@
         
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self.likeButton.alpha = 0;
+        }];
         
     }
     
