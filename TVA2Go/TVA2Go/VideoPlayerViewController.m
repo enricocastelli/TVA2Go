@@ -71,21 +71,7 @@
         
     } else {
         
-        
-        PFQuery *query = [PFQuery queryWithClassName:@"Video"];
-        self.query = query;
-        [query getObjectInBackgroundWithId:@"0JPB3M5wXp"
-                                     block:^(PFObject * _Nullable object, NSError * _Nullable error) {
-                                         self.videoObject = object;
-                                         [self.playerView loadWithVideoId:self.videoObject[@"videoID"]];
-                                         if ([self.user[@"pinnedVideos"] containsObject:self.videoObject.objectId]) {
-                                             self.likeButton.hidden = YES;
-                                             [self.view setNeedsDisplay];
-                                         } else {
-                                             self.likeButton.hidden = NO;
-                                             [self.view setNeedsDisplay];
-                                         }
-                                     }];
+        nil;
     }
     
     
