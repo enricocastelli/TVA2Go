@@ -3,20 +3,95 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="UfU-2f-yI3" customClass="PinCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
+            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
+                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTu-Qk-qYF" customClass="PFImageView">
+                        <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="126" id="grP-ln-JSg"/>
+                            <constraint firstAttribute="width" secondItem="BTu-Qk-qYF" secondAttribute="height" multiplier="1:1" id="mPv-FI-oye"/>
+                            <constraint firstAttribute="height" constant="126" id="tUp-ds-abh"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="grP-ln-JSg"/>
+                                <exclude reference="mPv-FI-oye"/>
+                                <exclude reference="tUp-ds-abh"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="playButton" translatesAutoresizingMaskIntoConstraints="NO" id="YeG-te-rRm">
+                        <rect key="frame" x="43" y="44" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="2gw-tm-9jZ"/>
+                            <constraint firstAttribute="height" constant="30" id="nKd-CR-L5R"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deleteIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zUH-or-bWg">
+                        <rect key="frame" x="2" y="2" width="23" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="23" id="2Ij-EH-jA4"/>
+                            <constraint firstAttribute="height" constant="23" id="nfH-wN-QEY"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <constraints>
+                <constraint firstItem="YeG-te-rRm" firstAttribute="top" secondItem="UfU-2f-yI3" secondAttribute="top" constant="30" id="1Nj-Io-uEU"/>
+                <constraint firstItem="BTu-Qk-qYF" firstAttribute="centerX" secondItem="UfU-2f-yI3" secondAttribute="centerX" id="3gx-Th-Zdn"/>
+                <constraint firstItem="zUH-or-bWg" firstAttribute="top" secondItem="UfU-2f-yI3" secondAttribute="top" constant="35" id="43n-8K-nKJ"/>
+                <constraint firstItem="BTu-Qk-qYF" firstAttribute="top" secondItem="UfU-2f-yI3" secondAttribute="top" id="8VA-bh-NFy"/>
+                <constraint firstItem="BTu-Qk-qYF" firstAttribute="top" secondItem="UfU-2f-yI3" secondAttribute="top" id="9YK-Ql-MCx"/>
+                <constraint firstItem="YeG-te-rRm" firstAttribute="centerX" secondItem="UfU-2f-yI3" secondAttribute="centerX" id="Jt4-3v-bmP"/>
+                <constraint firstItem="zUH-or-bWg" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" constant="35" id="Lze-Yt-qTB"/>
+                <constraint firstItem="zUH-or-bWg" firstAttribute="centerY" secondItem="UfU-2f-yI3" secondAttribute="centerY" id="QHI-Fu-6Ol"/>
+                <constraint firstItem="BTu-Qk-qYF" firstAttribute="centerY" secondItem="UfU-2f-yI3" secondAttribute="centerY" id="VpJ-eF-bvb"/>
+                <constraint firstItem="YeG-te-rRm" firstAttribute="centerY" secondItem="UfU-2f-yI3" secondAttribute="centerY" id="WsD-2u-dmq"/>
+                <constraint firstItem="BTu-Qk-qYF" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" id="Xbv-FD-H4l"/>
+                <constraint firstAttribute="bottom" secondItem="BTu-Qk-qYF" secondAttribute="bottom" id="hng-TM-0uh"/>
+                <constraint firstItem="zUH-or-bWg" firstAttribute="top" secondItem="UfU-2f-yI3" secondAttribute="top" constant="2" id="hzE-lO-1ZJ"/>
+                <constraint firstItem="zUH-or-bWg" firstAttribute="centerX" secondItem="UfU-2f-yI3" secondAttribute="centerX" id="jJm-P4-vxF"/>
+                <constraint firstItem="zUH-or-bWg" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" constant="2" id="m9E-ux-8fL"/>
+                <constraint firstItem="BTu-Qk-qYF" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" id="mvX-KK-eTc"/>
+                <constraint firstItem="YeG-te-rRm" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" constant="30" id="oYj-dk-8Go"/>
+                <constraint firstAttribute="trailing" secondItem="BTu-Qk-qYF" secondAttribute="trailing" id="ra7-wF-Cqi"/>
+            </constraints>
             <size key="customSize" width="138" height="126"/>
-            <point key="canvasLocation" x="292" y="271"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="9YK-Ql-MCx"/>
+                    <exclude reference="Xbv-FD-H4l"/>
+                    <exclude reference="hng-TM-0uh"/>
+                    <exclude reference="ra7-wF-Cqi"/>
+                    <exclude reference="1Nj-Io-uEU"/>
+                    <exclude reference="oYj-dk-8Go"/>
+                    <exclude reference="43n-8K-nKJ"/>
+                    <exclude reference="Lze-Yt-qTB"/>
+                    <exclude reference="QHI-Fu-6Ol"/>
+                    <exclude reference="jJm-P4-vxF"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="deleteImage" destination="zUH-or-bWg" id="a7c-7o-M6h"/>
+                <outlet property="playImage" destination="YeG-te-rRm" id="LbO-qJ-tK8"/>
+                <outlet property="thumbnail" destination="BTu-Qk-qYF" id="2C7-6a-sIH"/>
+            </connections>
+            <point key="canvasLocation" x="257" y="298"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="deleteIcon" width="49" height="53"/>
+        <image name="playButton" width="166" height="166"/>
+    </resources>
 </document>

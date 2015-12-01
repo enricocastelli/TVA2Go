@@ -11,21 +11,21 @@
 #import <ParseUI/ParseUI.h>
 #import "FullVideoViewController.h"
 #import "GTLYouTube.h"
+#import "PinCollectionViewCell.h"
 
 
 @interface PinnedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *pinned;
-@property (strong,nonatomic) NSArray *array;
+@property (strong,nonatomic) NSMutableArray *array;
+@property (strong,nonatomic) NSArray *videos;
+@property (strong,nonatomic) PFUser *user;
+
 @property (strong, nonatomic) PFQuery* query;
 @property (strong,nonatomic) NSString* deleting;
 @property (strong, nonatomic) UIImageView *playImage;
 @property (strong, nonatomic) UIImageView *deleteImage;
 @property (strong, nonatomic) NSString *firstTime;
-
-
-
-
 
 
 @end
@@ -35,10 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
     self.deleting = @"NO";
 
-    [self.pinned registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    [self.pinned registerNib:[UINib nibWithNibName:@"PinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     self.navigationItem.rightBarButtonItem = edit;
     self.pinned.delegate = self;
@@ -52,75 +51,85 @@
     title.titleLabel.font = font;
 
     self.navigationItem.titleView = title;
+    self.firstTime = @"YES";
 
+    self.view.backgroundColor = self.pinned.backgroundColor;
+    
+    self.user = [PFUser currentUser];
+    [self.user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        self.array = self.user[@"pinnedVideos"];
+        
+        self.query = [PFQuery queryWithClassName:@"Video"];
+        
+        [self.query whereKey:@"videoID" containedIn:self.array];
+        
+        [self.query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+           
+            self.videos = [objects sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                PFObject *object1 = obj1;
+                PFObject *object2 = obj2;
+                NSUInteger one =[self.array indexOfObject:object1[@"videoID"]];
+                NSUInteger two = [self.array indexOfObject:object2[@"videoID"]];
+                
+                if (one > two) {
+                    return NSOrderedDescending;
+                } else {
+                    return NSOrderedAscending;
+                }
 
+            }];
+            
+            
+            [self.pinned reloadData];
+            [self cellFading];
 
+            
+        }];
+
+    }];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    self.firstTime = @"YES";
-    PFUser*user = [PFUser currentUser];
-    [user fetchInBackground];
-    [self.pinned reloadData];
-
-
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    PFUser*user = [PFUser currentUser];
-    [user fetchInBackground];
-
-    self.array = user[@"pinnedVideos"];
     return self.array.count;
 }
+
+
+- (UICollectionViewCell *)createCell:(PinCollectionViewCell*)cell atIndex:(NSIndexPath *)indexPath
+{
+    
+    cell.thumbnail.file = self.videos[indexPath.row][@"thumbnail"];
+    [cell.thumbnail loadInBackground];
+    
+    return cell;
+}
+
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                            cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UICollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-
-    self.query = [PFQuery queryWithClassName:@"Video"];
-    [self.query whereKey:@"videoID" equalTo:self.array[indexPath.row]];
+    PinCollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+    if ([self.deleting  isEqualToString: @"YES"]) {
+        [self dancingCells];
+        cell.deleteImage.hidden = NO;
+        cell.playImage.hidden = YES;
         
-        if ([self.firstTime isEqualToString: @"YES"]) {
-            cell.contentView.alpha = 0;
-            [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:3 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                cell.bounds = CGRectMake(0, cell.frame.origin.y + 13, 85, 85);
-                cell.contentView.alpha = 1;
-            } completion:nil];
-        } else {
-            cell.contentView.alpha = 0;
-
-            [UIView animateWithDuration:1.6 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                cell.contentView.alpha = 1;
-            } completion:nil];
-            
-            
-            
-        }
-        CGRect rect = CGRectMake(0, 0, 85, 85);
-        PFImageView *image = [[PFImageView alloc] initWithFrame:rect];
-        image.file = object[@"thumbnail"];
-        [image loadInBackground];
+    } else {
+        [self stopDancing];
+        cell.deleteImage.hidden = YES;
+        cell.playImage.hidden = NO;
+    }
     
-        
-        [cell.contentView addSubview:image];
-        
-        UIImage *play = [UIImage imageNamed:@"playButton"];
-        CGRect little = CGRectMake(30, 30, 32, 32);
-        self.playImage = [[UIImageView alloc] initWithFrame:little];
-        self.playImage.image = play;
-        [cell.contentView addSubview:self.playImage];
-
-    }];
-
-
+    [self createCell:cell atIndex:indexPath];
+    
     return cell;
 }
 
@@ -131,43 +140,42 @@
 {
     
     FullVideoViewController *f = [[FullVideoViewController alloc]init];
-    [self.query whereKey:@"videoID" equalTo:self.array[indexPath.row]];
-    
-    [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+
 
         if ([self.deleting  isEqualToString: @"NO"]) {
             
-        f.video = object;
+        f.video = self.videos[indexPath.row];
         
         [self.navigationController pushViewController:f animated:YES];
         } else {
+            
             UICollectionViewCell *cellToDelete = [self.pinned cellForItemAtIndexPath:indexPath];
             
+
             UIActivityIndicatorView *act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             act.frame = CGRectMake(30, 30, 32, 32);
             [cellToDelete.contentView addSubview:act];
             [act startAnimating];
-            PFUser *user = [PFUser currentUser];
-            NSMutableArray *arr = [user[@"pinnedVideos"] mutableCopy];
-            [arr removeObjectAtIndex:indexPath.row];
             
-            [user setObject:[arr copy] forKey:@"pinnedVideos"];
+                
+           
             
-            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (succeeded){
-                    [UIView animateWithDuration:0.6 animations:^{
-                        cellToDelete.alpha = 0;
+                [self.array removeObjectAtIndex:indexPath.row];
+  
+                
+            self.user[@"pinnedVideos"] = [self.array copy];
+                [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (succeeded){
+                        [UIView animateWithDuration:0.6 animations:^{
+                            cellToDelete.alpha = 0;
+                        }];
                         [self.pinned deleteItemsAtIndexPaths:@[indexPath]];
-                        
-
                         [self.pinned reloadData];
-                    }];
-                 [self dancingCells];   
-                }
+                        [self dancingCells];
+                    }
+
             }];
         }
-    }];
-
 }
 
 - (void)edit
@@ -175,52 +183,57 @@
 {
     if ([self.deleting  isEqualToString: @"NO"]) {
         self.navigationItem.rightBarButtonItem.title = @"Done";
-        [self dancingCells];
         self.deleting = @"YES";
-        
+        [self dancingCells];
 
     } else {
 
     self.navigationItem.rightBarButtonItem.title = @"Edit";
     self.deleting = @"NO";
-        for (UICollectionViewCell *cell in self.pinned.visibleCells)
-        {
-            cell.transform = CGAffineTransformMakeRotation(0);
-
-           
-            [self.deleteImage removeFromSuperview];
-            self.deleteImage.hidden =YES;
-            [cell.layer removeAllAnimations];
-    }
-
+        
         self.firstTime = @"NO";
-        self.pinned.alpha = 0.6;
-        [UIView animateWithDuration:0.8 animations:^{
-            self.pinned.alpha = 1;
-
-
-        }];
-        
-        
+            [self stopDancing];
     }
 }
 
 - (void)dancingCells
 {
-    for (UICollectionViewCell *cell in self.pinned.visibleCells){
+    for (PinCollectionViewCell *cell in self.pinned.visibleCells){
         [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:10 options: UIViewAnimationOptionAutoreverse |UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction
                          animations:^{
                              cell.transform = CGAffineTransformMakeRotation(0.02);
                              cell.transform = CGAffineTransformMakeRotation(-0.02);
                          } completion:nil];
-        UIImage *play = [UIImage imageNamed:@"deleteIcon"];
-        CGRect little = CGRectMake(30, 30, 30, 30);
-        self.deleteImage = [[UIImageView alloc] initWithFrame:little];
-        
-        self.deleteImage.image = play;
-        [cell.contentView addSubview:self.deleteImage];
+        cell.deleteImage.hidden = NO;
+        cell.playImage.hidden = YES;
+
+    }
+    
+}
+
+- (void)stopDancing
+{
+    for (PinCollectionViewCell *cell in self.pinned.visibleCells)
+    {
+        cell.transform = CGAffineTransformMakeRotation(0);
+        [cell.layer removeAllAnimations];
+        cell.deleteImage.hidden = YES;
+        cell.playImage.hidden = NO;
+    }
+
+}
+
+- (void)cellFading
+{
+    for (PinCollectionViewCell *cell in self.pinned.visibleCells) {
+        [UIView animateWithDuration:1 delay:1.2 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            
+            cell.bounds = CGRectMake(0, cell.frame.origin.y + 30, 85, 85);
+            cell.contentView.alpha = 1;
+        } completion:nil];
     }
 }
+
 
 
 

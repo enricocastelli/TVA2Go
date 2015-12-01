@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface PinCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet PFImageView *thumbnail;
+@property (weak, nonatomic) IBOutlet UIImageView *playImage;
+@property (weak, nonatomic) IBOutlet UIImageView *deleteImage;
+
+
+
+
 
 @end
