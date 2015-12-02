@@ -127,29 +127,9 @@
 
 - (void)dislike
 {
-//    load next video and put video at end of playlist queue if possible
-//    make swipe left animation like Tinder
-    
+
     [self animateVideoDislike:self.playerView];
     
-//    self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
-//    
-//    NSDictionary *playerVars = @{
-//                                 @"playsinline" : @1,
-//                                 };
-//    
-//    [self.playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
-//    
-//    [self.playerView playVideo];
-
-//    self.titleLabel.text = self.currentVideo.snippet.title;
-//    NSDate *date = self.currentVideo.snippet.publishedAt.date;
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    formatter.dateStyle = NSDateFormatterMediumStyle;
-//    NSString *string = [formatter stringFromDate:date];
-//    self.postDateLabel.text = string;
-//
-//    [self.view setNeedsDisplay];
 }
 
 - (void)like
@@ -327,6 +307,21 @@
                          [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
                          [playerView playVideo];
                          
+                         UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
+                         title.tintColor = [UIColor whiteColor];
+                         UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
+                         
+                         title.titleLabel.font = font;
+                         [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
+                         self.navigationItem.titleView = title;
+                         self.titleLabel.text = self.currentVideo.snippet.title;
+                         
+                         NSDate *date = self.currentVideo.snippet.publishedAt.date;
+                         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                         formatter.dateStyle = NSDateFormatterMediumStyle;
+                         NSString *string = [formatter stringFromDate:date];
+                         self.postDateLabel.text = string;
+                         
                          [UIView animateWithDuration:3 animations:^{
                              
                              playerView.alpha = 1;
@@ -357,6 +352,21 @@
                          self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
                          [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
                          [playerView playVideo];
+                         
+                         UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
+                         title.tintColor = [UIColor whiteColor];
+                         UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
+                         
+                         title.titleLabel.font = font;
+                         [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
+                         self.navigationItem.titleView = title;
+                          self.titleLabel.text = self.currentVideo.snippet.title;
+                         
+                             NSDate *date = self.currentVideo.snippet.publishedAt.date;
+                             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                             formatter.dateStyle = NSDateFormatterMediumStyle;
+                             NSString *string = [formatter stringFromDate:date];
+                             self.postDateLabel.text = string;
                          
                          [UIView animateWithDuration:3 animations:^{
                              

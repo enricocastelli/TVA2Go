@@ -14,6 +14,4 @@
 
 @interface FullVideoViewController : UIViewController
 
-@property (nonatomic, strong) PFObject *video;
-
 @end
