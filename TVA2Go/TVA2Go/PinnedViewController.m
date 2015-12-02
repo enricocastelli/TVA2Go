@@ -144,7 +144,7 @@
 
         if ([self.deleting  isEqualToString: @"NO"]) {
             
-        f.video = self.videos[indexPath.row];
+        f.fullVideo = self.videos[indexPath.row];
         
         [self.navigationController pushViewController:f animated:YES];
         } else {

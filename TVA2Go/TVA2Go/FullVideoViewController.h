@@ -10,10 +10,10 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "YTPlayerView.h"
-
+#import "VideoPlayerViewController.h"
 
 @interface FullVideoViewController : UIViewController
 
-@property (nonatomic, strong) PFObject *video;
+@property (strong, nonatomic) GTLYouTubeVideo *fullVideo;
 
 @end
