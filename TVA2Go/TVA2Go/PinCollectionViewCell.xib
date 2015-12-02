@@ -9,13 +9,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="UfU-2f-yI3" customClass="PinCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+            <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTu-Qk-qYF" customClass="PFImageView">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BTu-Qk-qYF" customClass="PFImageView">
                         <rect key="frame" x="0.0" y="0.0" width="126" height="126"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="126" id="grP-ln-JSg"/>
@@ -30,8 +30,8 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="playButton" translatesAutoresizingMaskIntoConstraints="NO" id="YeG-te-rRm">
-                        <rect key="frame" x="43" y="44" width="40" height="40"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playButton" translatesAutoresizingMaskIntoConstraints="NO" id="YeG-te-rRm">
+                        <rect key="frame" x="86" y="86" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="2gw-tm-9jZ"/>
                             <constraint firstAttribute="height" constant="30" id="nKd-CR-L5R"/>
@@ -57,6 +57,7 @@
                 <constraint firstItem="zUH-or-bWg" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" constant="35" id="Lze-Yt-qTB"/>
                 <constraint firstItem="zUH-or-bWg" firstAttribute="centerY" secondItem="UfU-2f-yI3" secondAttribute="centerY" id="QHI-Fu-6Ol"/>
                 <constraint firstItem="BTu-Qk-qYF" firstAttribute="centerY" secondItem="UfU-2f-yI3" secondAttribute="centerY" id="VpJ-eF-bvb"/>
+                <constraint firstAttribute="trailing" secondItem="YeG-te-rRm" secondAttribute="trailing" constant="10" id="WPd-5E-EaH"/>
                 <constraint firstItem="YeG-te-rRm" firstAttribute="centerY" secondItem="UfU-2f-yI3" secondAttribute="centerY" id="WsD-2u-dmq"/>
                 <constraint firstItem="BTu-Qk-qYF" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" id="Xbv-FD-H4l"/>
                 <constraint firstAttribute="bottom" secondItem="BTu-Qk-qYF" secondAttribute="bottom" id="hng-TM-0uh"/>
@@ -65,21 +66,24 @@
                 <constraint firstItem="zUH-or-bWg" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" constant="2" id="m9E-ux-8fL"/>
                 <constraint firstItem="BTu-Qk-qYF" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" id="mvX-KK-eTc"/>
                 <constraint firstItem="YeG-te-rRm" firstAttribute="leading" secondItem="UfU-2f-yI3" secondAttribute="leading" constant="30" id="oYj-dk-8Go"/>
+                <constraint firstAttribute="bottom" secondItem="YeG-te-rRm" secondAttribute="bottom" constant="10" id="r1k-79-vCX"/>
                 <constraint firstAttribute="trailing" secondItem="BTu-Qk-qYF" secondAttribute="trailing" id="ra7-wF-Cqi"/>
             </constraints>
-            <size key="customSize" width="138" height="126"/>
+            <size key="customSize" width="174" height="162"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="9YK-Ql-MCx"/>
                     <exclude reference="Xbv-FD-H4l"/>
                     <exclude reference="hng-TM-0uh"/>
                     <exclude reference="ra7-wF-Cqi"/>
-                    <exclude reference="1Nj-Io-uEU"/>
-                    <exclude reference="oYj-dk-8Go"/>
                     <exclude reference="43n-8K-nKJ"/>
                     <exclude reference="Lze-Yt-qTB"/>
                     <exclude reference="QHI-Fu-6Ol"/>
                     <exclude reference="jJm-P4-vxF"/>
+                    <exclude reference="1Nj-Io-uEU"/>
+                    <exclude reference="Jt4-3v-bmP"/>
+                    <exclude reference="WsD-2u-dmq"/>
+                    <exclude reference="oYj-dk-8Go"/>
                 </mask>
             </variation>
             <connections>
@@ -87,7 +91,7 @@
                 <outlet property="playImage" destination="YeG-te-rRm" id="LbO-qJ-tK8"/>
                 <outlet property="thumbnail" destination="BTu-Qk-qYF" id="2C7-6a-sIH"/>
             </connections>
-            <point key="canvasLocation" x="257" y="298"/>
+            <point key="canvasLocation" x="275" y="316"/>
         </collectionViewCell>
     </objects>
     <resources>

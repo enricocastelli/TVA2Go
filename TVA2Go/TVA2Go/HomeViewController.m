@@ -105,6 +105,7 @@
 
     [TAAYouTubeWrapper videosForPlaylist:@"AWESOME AFTERTALKS" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         self.v.videosInPlaylist = videos;
+
         self.v.view.alpha = 0;
         
         self.navigationController.navigationBar.alpha = 0;
