@@ -28,6 +28,7 @@
 @property (strong, nonatomic) GTLYouTubeVideo *currentVideo;
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pinCountLabel;
+@property (weak, nonatomic) IBOutlet YTPlayerView *secondPlayerView;
 
 @end
 
@@ -39,6 +40,9 @@
     [super viewDidLoad];
     
     self.playerView.delegate = self;
+    self.secondPlayerView.delegate = self;
+
+    self.secondPlayerView.hidden = YES;
     self.user = [PFUser currentUser];
     [self.seeAllCommentsButton setTitle:@"  See Comments" forState:UIControlStateNormal];
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
@@ -149,6 +153,8 @@
 - (void)like
 {
     
+
+    [self animateVideoLike:self.playerView];
     
     if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
         
@@ -279,13 +285,13 @@
         self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
     }];
         [self.seeAllCommentsButton setTitle:@"  Hide Comments" forState:UIControlStateNormal];
-//        self.watchFullVideoButton.hidden = YES;
+        self.watchFullVideoButton.hidden = YES;
     } else {
         [UIView animateWithDuration:1 animations:^{
             self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
         }];
         [self.seeAllCommentsButton setTitle:@"  See Comments" forState:UIControlStateNormal];
-//        self.watchFullVideoButton.hidden = NO;
+        self.watchFullVideoButton.hidden = NO;
 
         self.tableView.hidden = YES;
     }
@@ -297,6 +303,33 @@
    [self.navigationController pushViewController:p animated:YES];
 }
 
+- (void)animateVideoLike:(YTPlayerView *)playerView
+{
+    
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         playerView.center = CGPointMake(playerView.center.x +800, playerView.center.y);
+                         playerView.transform = CGAffineTransformMakeRotation(1.5);
+                     }
+                     completion:^(BOOL finished) {
+
+                         [playerView.layer removeAllAnimations];
+                             NSDictionary *playerVars = @{
+                                                          @"playsinline" : @1,
+                                                          };
+                         
+                             self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+                             [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
+                             [playerView playVideo];
+
+                     }];
+    
+
+
+    
+}
 
 
 @end
