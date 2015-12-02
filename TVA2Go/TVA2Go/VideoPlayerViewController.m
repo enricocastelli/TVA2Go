@@ -305,7 +305,6 @@
 
 - (void)animateVideoLike:(YTPlayerView *)playerView
 {
-    
     [UIView animateWithDuration:1.0
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn
@@ -314,16 +313,23 @@
                          playerView.transform = CGAffineTransformMakeRotation(1.5);
                      }
                      completion:^(BOOL finished) {
-
-                         [playerView.layer removeAllAnimations];
-                             NSDictionary *playerVars = @{
-                                                          @"playsinline" : @1,
-                                                          };
                          
-                             self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
-                             [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
-                             [playerView playVideo];
-
+                         playerView.alpha = 0;
+                         [playerView.layer removeAllAnimations];
+                         playerView.transform = CGAffineTransformMakeRotation(0);
+                         
+                         NSDictionary *playerVars = @{
+                                                      @"playsinline" : @1,
+                                                      };
+                         
+                         self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+                         [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
+                         [playerView playVideo];
+                         
+                         [UIView animateWithDuration:3 animations:^{
+                             
+                             playerView.alpha = 1;
+                         }];
                      }];
     
 

@@ -28,6 +28,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="638"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GiF-lG-gO5" userLabel="black screen">
+                    <rect key="frame" x="0.0" y="64" width="320" height="180"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="GiF-lG-gO5" secondAttribute="height" multiplier="16:9" id="awf-jn-Woq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Mc-vtN">
                     <rect key="frame" x="10" y="348" width="300" height="45"/>
                     <subviews>
@@ -127,6 +137,13 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="egf-GJ-9AH">
+                    <rect key="frame" x="115" y="100" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="7rj-Cv-Pts"/>
+                        <constraint firstAttribute="width" constant="90" id="IIm-Iu-g6M"/>
+                    </constraints>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi1-T7-xlC">
                     <rect key="frame" x="180" y="279" width="132" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -259,12 +276,16 @@
                 <constraint firstItem="rWM-wQ-wVk" firstAttribute="leading" secondItem="6J1-a3-3x8" secondAttribute="trailing" constant="-30" id="7yT-ug-Kdx"/>
                 <constraint firstItem="j6y-Mc-vtN" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="76" id="88L-vu-5B1"/>
                 <constraint firstItem="QAA-8Z-0oM" firstAttribute="top" secondItem="QzO-nx-PQL" secondAttribute="bottom" constant="5" id="BZh-ji-9di"/>
+                <constraint firstItem="GiF-lG-gO5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="FAR-io-hnl"/>
                 <constraint firstItem="Xi1-T7-xlC" firstAttribute="top" secondItem="QzO-nx-PQL" secondAttribute="bottom" constant="5" id="GNp-Me-EUb"/>
+                <constraint firstAttribute="trailing" secondItem="GiF-lG-gO5" secondAttribute="trailing" id="H6W-bq-QsS"/>
                 <constraint firstItem="Z5g-cx-r7T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HDf-oF-ZzK"/>
                 <constraint firstItem="wUf-kd-YWw" firstAttribute="leading" secondItem="Hni-pM-wgH" secondAttribute="trailing" constant="-30" id="ICm-pp-ukJ"/>
+                <constraint firstItem="GiF-lG-gO5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ift-oE-FMn"/>
                 <constraint firstItem="v62-X1-XHP" firstAttribute="top" secondItem="QzO-nx-PQL" secondAttribute="bottom" constant="5" id="JFt-Vb-uhj"/>
                 <constraint firstAttribute="bottom" secondItem="wUf-kd-YWw" secondAttribute="bottom" constant="32" id="JiN-oC-1U9"/>
                 <constraint firstItem="QAA-8Z-0oM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MVd-EP-EgM"/>
+                <constraint firstItem="GiF-lG-gO5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Njc-5B-qgZ"/>
                 <constraint firstItem="Hni-pM-wgH" firstAttribute="top" secondItem="6J1-a3-3x8" secondAttribute="bottom" constant="40" id="Oa9-EY-QK6"/>
                 <constraint firstItem="QzO-nx-PQL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="P0G-uw-7SP"/>
                 <constraint firstItem="j6y-Mc-vtN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="4" id="QZY-ad-wmO"/>
@@ -282,6 +303,7 @@
                 <constraint firstItem="QzO-nx-PQL" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="bottom" constant="10" id="iuQ-ix-7lt"/>
                 <constraint firstAttribute="bottom" secondItem="rWM-wQ-wVk" secondAttribute="bottom" constant="108" id="jfo-4a-BPA"/>
                 <constraint firstAttribute="bottom" secondItem="wUf-kd-YWw" secondAttribute="bottom" constant="35" id="kdD-0r-7ck"/>
+                <constraint firstItem="egf-GJ-9AH" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lpl-Uf-t47"/>
                 <constraint firstItem="Z5g-cx-r7T" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="lzD-Zg-usB"/>
                 <constraint firstAttribute="trailing" secondItem="QzO-nx-PQL" secondAttribute="trailing" constant="8" id="mLm-Sn-96h"/>
                 <constraint firstItem="j6y-Mc-vtN" firstAttribute="top" secondItem="lOQ-Db-G1J" secondAttribute="bottom" constant="40" id="mn0-3t-dz2"/>
@@ -289,16 +311,19 @@
                 <constraint firstAttribute="bottom" secondItem="6J1-a3-3x8" secondAttribute="bottom" constant="80" id="qSs-eS-66Y"/>
                 <constraint firstItem="lOQ-Db-G1J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="rKl-Xe-Z2c"/>
                 <constraint firstItem="Hni-pM-wgH" firstAttribute="height" secondItem="6J1-a3-3x8" secondAttribute="height" id="rop-8u-vFO"/>
+                <constraint firstItem="GiF-lG-gO5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="t9C-bB-llR"/>
                 <constraint firstAttribute="bottom" secondItem="rWM-wQ-wVk" secondAttribute="bottom" constant="91" id="uaA-fb-vra"/>
                 <constraint firstItem="j6y-Mc-vtN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vTy-b1-5XL"/>
                 <constraint firstAttribute="trailing" secondItem="Xi1-T7-xlC" secondAttribute="trailing" constant="8" id="vh8-9S-rJq"/>
                 <constraint firstAttribute="bottom" secondItem="QAA-8Z-0oM" secondAttribute="bottom" constant="40" id="w3b-gc-rvu"/>
                 <constraint firstItem="Z5g-cx-r7T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wCO-4r-ALr"/>
+                <constraint firstItem="egf-GJ-9AH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="zoU-Ck-ztH"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="Njc-5B-qgZ"/>
                     <exclude reference="HDf-oF-ZzK"/>
                     <exclude reference="4kd-Ur-Vw0"/>
                     <exclude reference="MVd-EP-EgM"/>
@@ -327,5 +352,6 @@
     <resources>
         <image name="Comment icon" width="31" height="27"/>
         <image name="Link" width="33" height="27"/>
+        <image name="logo" width="203" height="204"/>
     </resources>
 </document>
