@@ -237,7 +237,7 @@
     
     FullVideoViewController *f = [[FullVideoViewController alloc] init];
     
-//    f.video = self.currentVideo;
+    f.fullVideo = self.currentVideo;
     
     [UIView beginAnimations:@"View Flip" context:nil];
     [UIView setAnimationDuration:0.80];
