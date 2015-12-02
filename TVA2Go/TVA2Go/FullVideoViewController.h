@@ -12,8 +12,11 @@
 #import "YTPlayerView.h"
 #import "VideoPlayerViewController.h"
 
+
 @interface FullVideoViewController : UIViewController
 
 @property (strong, nonatomic) GTLYouTubeVideo *fullVideo;
+
+@property (strong, nonatomic) PFObject *parseVideoObject;
 
 @end

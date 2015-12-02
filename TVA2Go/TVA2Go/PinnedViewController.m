@@ -140,11 +140,14 @@
 {
     
     FullVideoViewController *f = [[FullVideoViewController alloc]init];
-
-
-        if ([self.deleting  isEqualToString: @"NO"]) {
-            
-        f.fullVideo = self.videos[indexPath.row];
+    
+ 
+    
+    if ([self.deleting  isEqualToString: @"NO"]) {
+        
+        PFObject *selected = self.videos[indexPath.row];
+        
+        f.parseVideoObject = selected;
         
         [self.navigationController pushViewController:f animated:YES];
         } else {
@@ -157,12 +160,8 @@
             [cellToDelete.contentView addSubview:act];
             [act startAnimating];
             
-                
-           
-            
                 [self.array removeObjectAtIndex:indexPath.row];
   
-                
             self.user[@"pinnedVideos"] = [self.array copy];
                 [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                     if (succeeded){
