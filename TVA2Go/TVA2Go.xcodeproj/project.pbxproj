@@ -28,6 +28,7 @@
 		FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */; };
 		FDB10EE11C0461FE0000100B /* TVA2GoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EE01C0461FE0000100B /* TVA2GoTests.m */; };
 		FDB10EEC1C0461FE0000100B /* TVA2GoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */; };
+		FDB5FDF51C0F329D00B6EC6D /* LoadingEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB5FDF41C0F329D00B6EC6D /* LoadingEffect.m */; };
 		FDDB18EC1C0846E4005E11E0 /* TAAYouTubeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,9 @@
 		FDB10EE71C0461FE0000100B /* TVA2GoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVA2GoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVA2GoUITests.m; sourceTree = "<group>"; };
 		FDB10EED1C0461FE0000100B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDB5FDF01C0F303D00B6EC6D /* TVA2Go-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TVA2Go-Bridging-Header.h"; sourceTree = "<group>"; };
+		FDB5FDF31C0F329D00B6EC6D /* LoadingEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingEffect.h; sourceTree = "<group>"; };
+		FDB5FDF41C0F329D00B6EC6D /* LoadingEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingEffect.m; sourceTree = "<group>"; };
 		FDDB18EA1C0846E4005E11E0 /* TAAYouTubeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAYouTubeWrapper.h; sourceTree = "<group>"; };
 		FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAYouTubeWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +171,8 @@
 				F2803BC31C04691F00D3251C /* HomeViewController.h */,
 				F2803BC41C04691F00D3251C /* HomeViewController.m */,
 				F2803BC51C04691F00D3251C /* HomeViewController.xib */,
+				FDB5FDF31C0F329D00B6EC6D /* LoadingEffect.h */,
+				FDB5FDF41C0F329D00B6EC6D /* LoadingEffect.m */,
 				F2803BC81C046A5D00D3251C /* VideoPlayerViewController.h */,
 				F2803BC91C046A5D00D3251C /* VideoPlayerViewController.m */,
 				F2803BCA1C046A5D00D3251C /* VideoPlayerViewController.xib */,
@@ -188,6 +194,7 @@
 				F246ABD11C0724F60022291E /* Assets.xcassets */,
 				FDB10ED71C0461FE0000100B /* Info.plist */,
 				FDB10ECC1C0461FE0000100B /* Supporting Files */,
+				FDB5FDF01C0F303D00B6EC6D /* TVA2Go-Bridging-Header.h */,
 			);
 			path = TVA2Go;
 			sourceTree = "<group>";
@@ -413,6 +420,7 @@
 				FDDB18EC1C0846E4005E11E0 /* TAAYouTubeWrapper.m in Sources */,
 				F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */,
 				F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */,
+				FDB5FDF51C0F329D00B6EC6D /* LoadingEffect.m in Sources */,
 				F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */,
 				F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */,
 				F2803BD81C046BC400D3251C /* FullVideoViewController.m in Sources */,
@@ -549,6 +557,7 @@
 			baseConfigurationReference = EF69410DF27B694A2EBB859D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = TVA2Go/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -556,6 +565,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.tva2go;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6ed0457f-d519-4a5f-9588-e2910a2fb70b";
+				SWIFT_OBJC_BRIDGING_HEADER = "TVA2Go/TVA2Go-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -564,6 +575,7 @@
 			baseConfigurationReference = F9A22218E537DEC4FCB350BA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = TVA2Go/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
@@ -571,6 +583,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.tva2go;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6ed0457f-d519-4a5f-9588-e2910a2fb70b";
+				SWIFT_OBJC_BRIDGING_HEADER = "TVA2Go/TVA2Go-Bridging-Header.h";
 			};
 			name = Release;
 		};
