@@ -14,6 +14,7 @@
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
 #import "GTLYouTube.h"
+#import "LoadingEffect.h"
 
 
 @interface HomeViewController () <UINavigationControllerDelegate, UITextFieldDelegate>
@@ -53,6 +54,9 @@
     
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.toolbarHidden = NO;
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
+    self.navigationController.toolbar.tintColor = [UIColor whiteColor];
+
     self.undoButton.frame = CGRectMake(81, 190, 46, 46);
 
     PFUser *user = [PFUser currentUser];
@@ -80,6 +84,10 @@
 
 
 - (IBAction)inspireMe:(id)sender {
+    
+    
+    [self makeRotate:self.logo.layer];
+
 
     [TAAYouTubeWrapper videosForPlaylist:@"MADE BY TVA" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         
@@ -102,6 +110,7 @@
 
 - (IBAction)makeMeLaugh:(id)sender {
 
+    [self makeRotate:self.logo.layer];
 
     [TAAYouTubeWrapper videosForPlaylist:@"AWESOME AFTERTALKS" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         self.v.videosInPlaylist = videos;
@@ -122,6 +131,8 @@
 }
 
 - (IBAction)makeMeSmarter:(id)sender {
+    [self makeRotate:self.logo.layer];
+
     [TAAYouTubeWrapper videosForPlaylist:@"Algemeen" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         self.v.videosInPlaylist = videos;
         self.v.view.alpha = 0;
@@ -139,22 +150,26 @@
 
 }
 
-- (IBAction)random:(id)sender {
+- (IBAction)random:(id)sender
+{
+    [self makeRotate:self.logo.layer];
  
     [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         
         self.v.videosInPlaylist = videos;
         self.v.view.alpha = 0;
         self.navigationController.navigationBar.alpha = 0;
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             [self.navigationController pushViewController:self.v animated:NO];
-                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                             self.v.view.alpha = 1.0;
-                             self.navigationController.navigationBar.alpha = 1.0;
-                             
-                         }];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.view.alpha = 0;
+            [self.navigationController pushViewController:self.v animated:NO];
+            [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+            self.v.view.alpha = 1.0;
+            self.navigationController.navigationBar.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            self.view.alpha = 1;
+        }];
     }];
+    
     
 }
 - (void) myPins
@@ -344,17 +359,10 @@
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (!error){
             
-
-            self.loginButton.alpha = 0;
-
-            self.successLabel.alpha = 0;
-            
-            
             self.loginButton.titleLabel.alpha = 0;
-            
-            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:90 options:UIViewAnimationOptionCurveEaseIn animations:^{
 
-                
+            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+
                 self.loginButton.alpha = 1;
 
 
@@ -370,6 +378,8 @@
             } completion:^(BOOL finished) {
                 self.logo.hidden = NO;
                 self.logo.frame = CGRectMake(81, 44, 158, 158);
+
+                self.view.backgroundColor = self.loginButton.backgroundColor;
 
                 [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 
@@ -395,14 +405,11 @@
                         self.smartButton.alpha = 1;
                         self.randomButton.alpha = 1;
                         self.navigationController.toolbarHidden = NO;
+                        self.loginButton.bounds = CGRectMake(0, 0, 46, 46);
+
                     } completion:nil];
                 }];
             }];
-            self.successLabel.hidden = YES;
-            self.loginButton.frame = CGRectMake(193, 252, 46, 46);
-
-
-
             
         } else {
             [self.usernameField becomeFirstResponder];
@@ -445,21 +452,18 @@
     user.email = self.emailField.text;
     user[@"pinnedVideos"] = @[];
     
+    [self.passwordField resignFirstResponder];
+    [self.usernameField resignFirstResponder];
+    [self.emailField resignFirstResponder];
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            [self toolbarLogout];
-            self.successLabel.alpha = 0;
-            [self.passwordField resignFirstResponder];
-            [self.usernameField resignFirstResponder];
-            [self.emailField resignFirstResponder];
-            
-            
-            
-            
-            
-            self.goButton.titleLabel.alpha = 0;
+          
             [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                self.goButton.bounds = CGRectMake(0, 0, 1500, 1500);
+
+                self.successLabel.hidden = YES;
+                self.goButton.titleLabel.hidden = YES;
                 self.goButton.bounds = CGRectMake(0, 0, 1500, 1500);
                 self.goButton.transform = CGAffineTransformMakeRotation(1.5);
                 self.usernameField.hidden = YES;
@@ -472,6 +476,8 @@
                 
                 self.view.backgroundColor = self.loginButton.backgroundColor;
             } completion:^(BOOL finished) {
+                [self toolbarLogout];
+
                 self.logo.hidden = NO;
                 self.logo.frame = CGRectMake(81, 44, 158, 158);
                 
@@ -500,9 +506,10 @@
                     } completion:nil];
                 }];
             }];
-            self.successLabel.hidden = YES;
         } else
         {
+            [self.emailField becomeFirstResponder];
+
             [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:130 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self.goButton.frame = CGRectMake(self.goButton.frame.origin.x + 1, self.goButton.frame.origin.y + 1, self.goButton.frame.size.width, self.goButton.frame.size.height);
             } completion:nil];
@@ -511,12 +518,33 @@
 }
 
 
+- (void)drawRect:(CGRect)rect
+{
+    UIBezierPath *path = [[UIBezierPath alloc] init];
+    
+    CGPoint center =  CGPointMake(100, 100);
+    
+    [path addArcWithCenter:center radius:2 startAngle:0 endAngle:M_PI *2 clockwise:YES];
+    
+    [path stroke];
+    
+    
+}
+
+
+- (void)makeRotate:(CALayer*)layer
+{
+        CABasicAnimation *halfTurn;
+        halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        halfTurn.fromValue = [NSNumber numberWithFloat:0];
+        halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
+        halfTurn.duration = 0.5;
+        halfTurn.repeatCount = 100;
+        [layer addAnimation:halfTurn forKey:@"180"];
+}
+
 
 
 @end
-
-
-
-
 
 
