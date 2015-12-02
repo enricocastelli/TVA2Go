@@ -130,29 +130,30 @@
 //    load next video and put video at end of playlist queue if possible
 //    make swipe left animation like Tinder
     
-    self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+    [self animateVideoDislike:self.playerView];
     
-    NSDictionary *playerVars = @{
-                                 @"playsinline" : @1,
-                                 };
-    
-    [self.playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
-    
-    [self.playerView playVideo];
+//    self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+//    
+//    NSDictionary *playerVars = @{
+//                                 @"playsinline" : @1,
+//                                 };
+//    
+//    [self.playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
+//    
+//    [self.playerView playVideo];
 
-    self.titleLabel.text = self.currentVideo.snippet.title;
-    NSDate *date = self.currentVideo.snippet.publishedAt.date;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.dateStyle = NSDateFormatterMediumStyle;
-    NSString *string = [formatter stringFromDate:date];
-    self.postDateLabel.text = string;
-
-    [self.view setNeedsDisplay];
+//    self.titleLabel.text = self.currentVideo.snippet.title;
+//    NSDate *date = self.currentVideo.snippet.publishedAt.date;
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    formatter.dateStyle = NSDateFormatterMediumStyle;
+//    NSString *string = [formatter stringFromDate:date];
+//    self.postDateLabel.text = string;
+//
+//    [self.view setNeedsDisplay];
 }
 
 - (void)like
 {
-    
 
     [self animateVideoLike:self.playerView];
     
@@ -332,10 +333,42 @@
                          }];
                      }];
     
+}
 
-
+- (void)animateVideoDislike:(YTPlayerView *)playerView
+{
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         playerView.center = CGPointMake(playerView.center.x -800, playerView.center.y);
+                         playerView.transform = CGAffineTransformMakeRotation(1.5);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         playerView.alpha = 0;
+                         [playerView.layer removeAllAnimations];
+                         playerView.transform = CGAffineTransformMakeRotation(0);
+                         
+                         NSDictionary *playerVars = @{
+                                                      @"playsinline" : @1,
+                                                      };
+                         
+                         self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+                         [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
+                         [playerView playVideo];
+                         
+                         [UIView animateWithDuration:3 animations:^{
+                             
+                             playerView.alpha = 1;
+                         }];
+                     }];
+    
+    
+    
     
 }
+
 
 
 @end
