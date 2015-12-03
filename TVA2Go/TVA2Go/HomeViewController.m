@@ -38,6 +38,13 @@
 @property (nonatomic) VideoPlayerViewController *v;
 @property (strong, nonatomic) NSArray *objects;
 
+@property (nonatomic) CGFloat number;
+@property (nonatomic) CGFloat red;
+@property (nonatomic) CGFloat green;
+@property (nonatomic) CGFloat blue;
+@property (nonatomic, strong) UIView * loadingView;
+
+
 @end
 
 @implementation HomeViewController
@@ -51,9 +58,6 @@
     self.navigationController.toolbarHidden = NO;
     self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
     self.navigationController.toolbar.tintColor = [UIColor whiteColor];
-
-    self.undoButton.frame = CGRectMake(81, 190, 46, 46);
-
     PFUser *user = [PFUser currentUser];
     if (user){
     [self toolbarLogout];
@@ -65,6 +69,12 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    self.number = 80;
+    self.red = 0.18823;
+    self.green = 0.7215;
+    self.blue = 0.94117;
+    
     self.v = [[VideoPlayerViewController alloc] init];
 
     self.loginButton.layer.cornerRadius = self.loginButton.bounds.size.width/2.0;
@@ -82,22 +92,12 @@
     
     
     [self makeRotate:self.logo.layer];
+    [self timerForAnimation];
+
 
 
     [TAAYouTubeWrapper videosForPlaylist:@"MADE BY TVA" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
-        
-        
-        self.v.videosInPlaylist = videos;
-        self.v.view.alpha = 0;
-        
-        self.navigationController.navigationBar.alpha = 0;
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             [self.navigationController pushViewController:self.v animated:NO];
-                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                             self.v.view.alpha = 1.0;
-                             self.navigationController.navigationBar.alpha = 1.0;
-                         }];
+        [self pushToVideoPlayer:videos];
     }
     ];
 
@@ -106,40 +106,26 @@
 - (IBAction)makeMeLaugh:(id)sender {
 
     [self makeRotate:self.logo.layer];
+    [self timerForAnimation];
+
 
     [TAAYouTubeWrapper videosForPlaylist:@"AWESOME AFTERTALKS" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
-        self.v.videosInPlaylist = videos;
 
-        self.v.view.alpha = 0;
         
-        self.navigationController.navigationBar.alpha = 0;
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             [self.navigationController pushViewController:self.v animated:NO];
-                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                             self.v.view.alpha = 1.0;
-                             self.navigationController.navigationBar.alpha = 1.0;
-                             
-                         }];
+        [self pushToVideoPlayer:videos];
+
     }];
 
 }
 
 - (IBAction)makeMeSmarter:(id)sender {
     [self makeRotate:self.logo.layer];
+    [self timerForAnimation];
+
 
     [TAAYouTubeWrapper videosForPlaylist:@"Algemeen" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
-        self.v.videosInPlaylist = videos;
-        self.v.view.alpha = 0;
-        self.navigationController.navigationBar.alpha = 0;
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             [self.navigationController pushViewController:self.v animated:NO];
-                             [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                             self.v.view.alpha = 1.0;
-                             self.navigationController.navigationBar.alpha = 1.0;
-                             
-                         }];
+        [self pushToVideoPlayer:videos];
+
     }];
     
 
@@ -148,21 +134,12 @@
 - (IBAction)random:(id)sender
 {
     [self makeRotate:self.logo.layer];
+    [self timerForAnimation];
+
  
     [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
-        
-        self.v.videosInPlaylist = videos;
-        self.v.view.alpha = 0;
-        self.navigationController.navigationBar.alpha = 0;
-        [UIView animateWithDuration:0.5 animations:^{
-            self.view.alpha = 0;
-            [self.navigationController pushViewController:self.v animated:NO];
-            [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-            self.v.view.alpha = 1.0;
-            self.navigationController.navigationBar.alpha = 1.0;
-        } completion:^(BOOL finished) {
-            self.view.alpha = 1;
-        }];
+        [self pushToVideoPlayer:videos];
+
     }];
     
     
@@ -190,10 +167,10 @@
 {
     [self loginFade];
     [UIView animateWithDuration:1.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.logo.frame = CGRectMake(81, 900, 158, 156);
         self.loginButton.alpha = 1;
         self.undoButton.alpha = 1;
         self.signupButton.alpha = 1;
+        self.logo.frame = CGRectMake(self.logo.frame.origin.x, self.logo.frame.origin.y + 900, self.logo.frame.size.width, self.logo.frame.size.height);
     } completion:nil];
 }
 
@@ -201,7 +178,6 @@
 {
     [PFUser logOutInBackground];
     [self toolbarLogin];
-//    self.loginButton.alpha = 1;
 }
 
 - (void) mostPinned
@@ -225,6 +201,24 @@
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.toolbarHidden = YES;
+    [self.loadingView removeFromSuperview];
+
+    
+}
+
+- (void)pushToVideoPlayer:(NSArray*)videos
+{
+    self.v.videosInPlaylist = videos;
+    self.v.view.alpha = 0;
+    
+    self.navigationController.navigationBar.alpha = 0;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.navigationController pushViewController:self.v animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                         self.v.view.alpha = 1.0;
+                         self.navigationController.navigationBar.alpha = 1.0;
+                     }];
 }
 
 - (void)toolbarLogout
@@ -236,6 +230,8 @@
     UIImage *search = [UIImage imageNamed:@"Search"];
 
     UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithImage:search style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
+    [mostPinned setWidth:10];
+
     
     
     self.toolbarItems = @[myPins, space, logout, space, mostPinned];
@@ -272,6 +268,8 @@
 
 - (void)loginFade
 {
+    [self.loadingView removeFromSuperview];
+    self.loadingView = nil;
     self.inspireButton.alpha = 0;
     self.laughButton.alpha = 0;
     self.smartButton.alpha = 0;
@@ -282,27 +280,27 @@
     self.loginButton.hidden = NO;
     self.loginButton.titleLabel.alpha = 1;
     self.loginButton.transform = CGAffineTransformMakeRotation(0);
-//    self.loginButton.frame = CGRectMake(193, 252, 46, 46);
     self.undoButton.hidden = NO;
     self.signupButton.hidden = NO;
+    
     [self textFieldsAnimations];
 
 }
 
 - (void)textFieldsAnimations
 {
+    self.usernameField.center = CGPointMake(self.usernameField.center.x, self.usernameField.center.y + 100);
     self.usernameField.alpha = 0;
-    self.usernameField.frame = CGRectMake(81, 800, 158, 30);
-    [UIView animateWithDuration:0.7 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:1 delay:0.0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn  animations:^{
         self.usernameField.alpha = 1;
-        self.usernameField.frame = CGRectMake(81, 100, 158, 30);
+        self.usernameField.center = CGPointMake(self.usernameField.center.x, self.usernameField.center.y- 100);
     } completion:nil];
     
+    self.passwordField.center = CGPointMake(self.passwordField.center.x, self.passwordField.center.y - 100);
     self.passwordField.alpha = 0;
-    self.passwordField.frame = CGRectMake(81, -100, self.passwordField.frame.size.width, self.passwordField.frame.size.height);
-    [UIView animateWithDuration:0.7 delay:0.0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:1 delay:0.0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.passwordField.alpha = 1;
-        self.passwordField.frame = CGRectMake(81, 140, 158, 30);
+        self.passwordField.center = CGPointMake(self.passwordField.center.x, self.passwordField.center.y + 100);
     } completion:nil];
 
 }
@@ -315,12 +313,9 @@
 
 - (IBAction)undo:(id)sender
 {
-    self.logo.frame = CGRectMake(81, 800, 158, 158);
-
     self.logo.hidden = NO;
     [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         
-        self.logo.frame = CGRectMake(81, 44, 158, 158);
         self.inspireButton.alpha = 1;
         self.laughButton.alpha = 1;
         self.smartButton.alpha = 1;
@@ -331,6 +326,7 @@
         self.loginButton.hidden = YES;
         self.undoButton.hidden = YES;
         self.signupButton.hidden = YES;
+        self.logo.frame = CGRectMake(self.logo.frame.origin.x, self.logo.frame.origin.y -900, self.logo.frame.size.width, self.logo.frame.size.height);
 
         
     } completion:nil];
@@ -375,7 +371,6 @@
 
             } completion:^(BOOL finished) {
                 self.logo.hidden = NO;
-                self.logo.frame = CGRectMake(81, 44, 158, 158);
 
                 self.view.backgroundColor = self.loginButton.backgroundColor;
 
@@ -477,7 +472,6 @@
                 [self toolbarLogout];
 
                 self.logo.hidden = NO;
-                self.logo.frame = CGRectMake(81, 44, 158, 158);
                 
                 [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                     
@@ -509,7 +503,7 @@
             [self.emailField becomeFirstResponder];
 
             [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:130 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                self.goButton.frame = CGRectMake(self.goButton.frame.origin.x + 1, self.goButton.frame.origin.y + 1, self.goButton.frame.size.width, self.goButton.frame.size.height);
+                self.goButton.frame = CGRectMake(self.goButton.frame.origin.x, self.goButton.frame.origin.y + 1, self.goButton.frame.size.width, self.goButton.frame.size.height);
             } completion:nil];
         }
     }];
@@ -527,7 +521,52 @@
         [layer addAnimation:halfTurn forKey:@"180"];
 }
 
+- (void)timerForAnimation{
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.4
+                                                      target:self
+                                                    selector:@selector(loadingAnimation:)
+                                                    userInfo:nil
+                                                     repeats:YES];
+    [timer fire];
+}
 
+- (void)loadingAnimation:(NSTimer*)timer
+
+{
+    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 280, 400, 400)];
+    [self.view addSubview:self.loadingView];
+    UIButton*l = [[UIButton alloc] initWithFrame:CGRectMake(self.number, 0, 20, 20)];
+    l.backgroundColor = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:1];
+    self.red -= 0.01;
+    self.green -= 0.01;
+    self.blue += 0.01;
+    
+    if (self.blue > 9.8) {
+        self.red = 0.18823;
+        self.green = 0.7215;
+        self.blue = 0.94117;
+    }
+
+    l.layer.cornerRadius = l.frame.size.width/2;
+    l.alpha = 0;
+    [self.loadingView addSubview:l];
+    [self makeRotate:l.layer];
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAutoreverse animations:^{
+        l.alpha = 1;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            l.alpha = 0;
+            [l removeFromSuperview];
+        }];
+    }];
+
+    self.number += 60;
+    
+    if (self.number > 200){
+        self.number = 80;
+    }
+}
 
 @end
 

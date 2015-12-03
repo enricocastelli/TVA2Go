@@ -11,7 +11,6 @@
 @interface LoadingEffect : UIView
 
 
-- (void)animateCircle;
 
 @end
 
