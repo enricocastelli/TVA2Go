@@ -45,6 +45,7 @@
     self.secondPlayerView.hidden = YES;
     self.user = [PFUser currentUser];
     [self.seeAllCommentsButton setTitle:@"  See Comments" forState:UIControlStateNormal];
+    
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
     self.navigationItem.rightBarButtonItem = myPins;
     
@@ -153,10 +154,27 @@
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackground];
         
-        [UIView animateWithDuration:0.5 animations:^{
-            self.likeButton.alpha = 0;
+        CABasicAnimation *halfTurn;
+        halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        halfTurn.fromValue = [NSNumber numberWithFloat:0];
+        halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
+        halfTurn.duration = 0.2;
+        halfTurn.repeatCount = 100;
+        [self.likeButton.layer addAnimation:halfTurn forKey:@"180"];
+
+        [UIView animateWithDuration:1 animations:^{
+            self.likeButton.titleLabel.alpha = 0;
+
+            self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width +50, self.likeButton.bounds.size.width +50);
+            self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.7 animations:^{
+                self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
+                self.likeButton.alpha = 0;
+                self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width -50, self.likeButton.bounds.size.width -50);
+            }];
+
         }];
-        
     }
     
     self.query = [PFQuery queryWithClassName:@"Video"];
@@ -287,8 +305,20 @@
 
 - (void)myPins
 {
+    
+    if ([PFUser currentUser]){
     PinnedViewController *p = [[PinnedViewController alloc]init];
    [self.navigationController pushViewController:p animated:YES];
+    } else {
+        UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in" message:@"Log in to pin videos" preferredStyle:UIAlertControllerStyleAlert];
+       
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [notLogin addAction:cancel];
+        [self presentViewController:notLogin animated:YES completion:nil];
+    }
 }
 
 - (void)animateVideoLike:(YTPlayerView *)playerView
@@ -380,9 +410,6 @@
                              playerView.alpha = 1;
                          }];
                      }];
-    
-    
-    
     
 }
 
