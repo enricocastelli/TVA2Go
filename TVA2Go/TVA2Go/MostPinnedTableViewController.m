@@ -77,12 +77,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FullVideoViewController *f = [[FullVideoViewController alloc] init];
-    f.fullVideo = self.objects[indexPath.row];
+    f.parseVideoObject = self.objects[indexPath.row];
     
     [self.navigationController pushViewController:f animated:YES];
 }
-
-
 
 
 @end

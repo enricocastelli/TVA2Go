@@ -36,12 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (nonatomic) VideoPlayerViewController *v;
-
 @property (strong, nonatomic) NSArray *objects;
-
-
-
-
 
 @end
 
@@ -235,9 +230,12 @@
 - (void)toolbarLogout
 {
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
+    UIImage *pins = [UIImage imageNamed:@"Pin small light"];
+    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithImage:pins style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
     UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
-    UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithTitle:@"Most Pinned" style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
+    UIImage *search = [UIImage imageNamed:@"Search"];
+
+    UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithImage:search style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
     
     
     self.toolbarItems = @[myPins, space, logout, space, mostPinned];
@@ -515,20 +513,6 @@
             } completion:nil];
         }
     }];
-}
-
-
-- (void)drawRect:(CGRect)rect
-{
-    UIBezierPath *path = [[UIBezierPath alloc] init];
-    
-    CGPoint center =  CGPointMake(100, 100);
-    
-    [path addArcWithCenter:center radius:2 startAngle:0 endAngle:M_PI *2 clockwise:YES];
-    
-    [path stroke];
-    
-    
 }
 
 
