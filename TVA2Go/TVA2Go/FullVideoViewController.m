@@ -9,7 +9,7 @@
 #import "FullVideoViewController.h"
 #import "PinnedViewController.h"
 
-@interface FullVideoViewController () <UINavigationControllerDelegate>
+@interface FullVideoViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 
@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.playerView.delegate = self;
     
     if (self.fullVideo != nil) {
     

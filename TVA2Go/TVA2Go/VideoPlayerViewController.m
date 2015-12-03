@@ -238,18 +238,25 @@
     FullVideoViewController *f = [[FullVideoViewController alloc] init];
     
     f.fullVideo = self.currentVideo;
+    f.view.alpha = 0;
+
+    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionTransitionCurlDown animations:^{
+        f.view.alpha = 1;
+    } completion:nil];
     
-    [UIView beginAnimations:@"View Flip" context:nil];
-    [UIView setAnimationDuration:0.80];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:.8 initialSpringVelocity:.5 options:UIViewAnimationOptionCurveLinear animations:UIViewAnimationOptionTransitionCrossDissolve completion:nil];
     
-    [UIView setAnimationTransition:
-     UIViewAnimationTransitionFlipFromLeft
-                           forView:self.navigationController.view cache:NO];
+//    [UIView beginAnimations:@"View Flip" context:nil];
+//    [UIView setAnimationDuration:0.80];
+//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//    
+//    [UIView setAnimationTransition:
+//     UIViewAnimationTransitionFlipFromLeft
+//                           forView:self.navigationController.view cache:NO];
     
     
     [self.navigationController pushViewController:f animated:YES];
-    [UIView commitAnimations];
+//    [UIView commitAnimations];
     
 }
 
