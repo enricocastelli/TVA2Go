@@ -12,6 +12,9 @@
 @interface FullVideoViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
 
@@ -25,12 +28,17 @@
     if (self.fullVideo != nil) {
     
      [self.playerView loadWithVideoId:self.fullVideo.identifier];
+        self.titleLabel.text = self.fullVideo.snippet.title;
+        NSDate *date = self.fullVideo.snippet.publishedAt.date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateStyle = NSDateFormatterMediumStyle;
+        NSString *string = [formatter stringFromDate:date];
+        self.dateLabel.text = string;
     
     } else {
         
         [self.playerView loadWithVideoId:self.parseVideoObject[@"videoID"]];
     }
-    
 }
 
 - (void)playerViewDidBecomeReady:(YTPlayerView *)playerView
@@ -47,7 +55,6 @@
 - (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
 {
     if (state == kYTPlayerStatePlaying) {
-        
     }
 }
 
