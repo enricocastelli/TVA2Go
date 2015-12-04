@@ -56,18 +56,22 @@ static CGFloat timeInterval = 0.4;
 - (void)viewWillAppear:(BOOL)animated
 {
     self.original = self.view.frame;
+    
     if ([PFUser currentUser]) {
+        
+        [self.successLabel.layer removeAllAnimations];
         self.successLabel.hidden = NO;
+        self.successLabel.alpha = 1;
         self.successLabel.textColor = [UIColor blackColor];
         self.successLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
     } else {
         self.successLabel.hidden = NO;
         self.successLabel.alpha = 0;
-
     }
     [super viewWillAppear:animated];
+    [self allButtonsEnabled];
     
-    [self.timer fire];
+//    [self.timer fire];
     self.number = 80;
     
     self.originalLogo = self.logo.frame;
@@ -100,7 +104,8 @@ static CGFloat timeInterval = 0.4;
     
 }
 
-     - (UIButton*)roundedButtons:(UIButton*)button byNumber:(NSInteger)divider
+- (UIButton*)roundedButtons:(UIButton*)button byNumber:(NSInteger)divider
+
 {
     button.layer.cornerRadius = button.bounds.size.width/divider;
     
@@ -112,7 +117,9 @@ static CGFloat timeInterval = 0.4;
     
     
     [self makeRotate:self.logo.layer];
-    [self timerForAnimation];
+    self.inspireButton.enabled = NO;
+    [self loadingText];
+
 
 
 
@@ -126,8 +133,8 @@ static CGFloat timeInterval = 0.4;
 - (IBAction)makeMeLaugh:(id)sender {
 
     [self makeRotate:self.logo.layer];
-    [self timerForAnimation];
-
+    self.laughButton.enabled = NO;
+    [self loadingText];
 
     [TAAYouTubeWrapper videosForPlaylist:@"AWESOME AFTERTALKS" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
 
@@ -140,7 +147,8 @@ static CGFloat timeInterval = 0.4;
 
 - (IBAction)makeMeSmarter:(id)sender {
     [self makeRotate:self.logo.layer];
-    [self timerForAnimation];
+    self.smartButton.enabled = NO;
+    [self loadingText];
 
 
     [TAAYouTubeWrapper videosForPlaylist:@"Algemeen" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
@@ -154,9 +162,9 @@ static CGFloat timeInterval = 0.4;
 - (IBAction)random:(id)sender
 {
     [self makeRotate:self.logo.layer];
-    [self timerForAnimation];
+    self.randomButton.enabled = NO;
+    [self loadingText];
 
- 
     [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         [self pushToVideoPlayer:videos];
 
@@ -181,6 +189,14 @@ static CGFloat timeInterval = 0.4;
     } else {
     [self notLogin];
     }
+}
+
+- (void)allButtonsEnabled
+{
+    self.inspireButton.enabled = YES;
+    self.laughButton.enabled = YES;
+    self.smartButton.enabled = YES;
+    self.randomButton.enabled = YES;
 }
 
 - (void) login
@@ -241,6 +257,16 @@ static CGFloat timeInterval = 0.4;
     [self.loadingView removeFromSuperview];
     self.loadingView = nil;
     [self.timer invalidate];
+}
+
+- (void)loadingText
+{
+    self.successLabel.text = @"Loading...";
+
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
+        self.successLabel.alpha = 0;
+
+    } completion:nil];
 }
 
 - (void)pushToVideoPlayer:(NSArray*)videos
@@ -576,9 +602,11 @@ static CGFloat timeInterval = 0.4;
         [layer addAnimation:halfTurn forKey:@"180"];
 }
 
-- (void)timerForAnimation{
+- (void)timerForAnimation:(UIButton *)button
+{
+    button.enabled = NO;
     
-    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 280, 400, 400)];
+    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, 400, 400)];
     [self.view addSubview:self.loadingView];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
@@ -589,31 +617,31 @@ static CGFloat timeInterval = 0.4;
     [self.timer fire];
 }
 
-- (void)loadingAnimation:(NSTimer*)timer
-
-{
-    UIButton*l = [[UIButton alloc] initWithFrame:CGRectMake(0 +self.number, 0, 20, 20)];
-    l.backgroundColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
-
-    l.layer.cornerRadius = l.frame.size.width/2;
-    l.alpha = 0;
-    [self.loadingView addSubview:l];
-    [self makeRotate:l.layer];
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAutoreverse animations:^{
-        l.alpha = 1;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            l.alpha = 0;
-            [l removeFromSuperview];
-        }];
-    }];
-
-    self.number += 60;
-    
-    if (self.number > 200){
-        self.number = 80;
-    }
-}
+//- (void)loadingAnimation:(NSTimer*)timer
+//
+//{
+//    UIButton*l = [[UIButton alloc] initWithFrame:CGRectMake(self.number, 0, 20, 20)];
+//    l.backgroundColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
+//
+//    l.layer.cornerRadius = l.frame.size.width/2;
+//    l.alpha = 0;
+//    [self.loadingView addSubview:l];
+//    [self makeRotate:l.layer];
+//    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAutoreverse animations:^{
+//        l.alpha = 1;
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.2 animations:^{
+//            l.alpha = 0;
+//            [l removeFromSuperview];
+//        }];
+//    }];
+//
+//    self.number += 60;
+//    
+//    if (self.number > 200){
+//        self.number = 80;
+//    }
+//}
 
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

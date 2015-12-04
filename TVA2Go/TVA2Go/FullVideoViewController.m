@@ -33,10 +33,26 @@
     
 }
 
--(void)playerViewDidBecomeReady:(YTPlayerView *)playerView
+- (void)playerViewDidBecomeReady:(YTPlayerView *)playerView
 {
     [playerView playVideo];
 }
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.playerView stopVideo];
+}
+
+- (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
+{
+    if (state == kYTPlayerStatePlaying) {
+        
+    }
+}
+
+
+
 
 
 @end
