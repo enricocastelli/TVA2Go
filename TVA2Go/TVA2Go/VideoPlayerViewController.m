@@ -284,24 +284,26 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post a comment!"
                                                                    message:@""
                                                             preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action) {}];
+
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"Write your comment here :) Or click the camera button to post a photo or video response!";
         
     
     }];
     
- 
-    
     UIAlertAction *takeAPhotoOrVideo = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
         self.imagePicker = [[UIImagePickerController alloc] init];
         NSArray *availableTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         self.imagePicker.mediaTypes = availableTypes;
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
         self.imagePicker.delegate = self;
+        
+//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//            self.image
+//        }
+        
         [self presentViewController:self.imagePicker animated:YES completion: NULL];
     }];
 
@@ -316,7 +318,23 @@
 
 
 - (IBAction)seeAllComments:(id)sender {
-
+    if (self.tableView.hidden == YES) {
+        self.tableView.hidden = NO;
+        self.tableView.alpha = 0.95;
+        [UIView animateWithDuration:0.6 animations:^{
+            self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
+        }];
+        [self.seeAllCommentsButton setTitle:@"  Hide Comments" forState:UIControlStateNormal];
+        self.watchFullVideoButton.hidden = YES;
+    } else {
+        [UIView animateWithDuration:1 animations:^{
+            self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
+        }];
+        [self.seeAllCommentsButton setTitle:@"  See Comments" forState:UIControlStateNormal];
+        self.watchFullVideoButton.hidden = NO;
+        
+        self.tableView.hidden = YES;
+    }
 }
 
 - (void)myPins
