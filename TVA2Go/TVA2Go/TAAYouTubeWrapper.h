@@ -7,7 +7,7 @@
 //
 //
 //  How to use:
-//  - add Google-API-Client to your Podfile
+//  - add Google-API-Client/YouTube to your Podfile
 //  - copy TAAYouTubeWrapper.h/m into your project (not into the Pods)
 //
 

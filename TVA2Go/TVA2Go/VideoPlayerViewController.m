@@ -294,15 +294,20 @@
     UIAlertAction *takeAPhotoOrVideo = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         
         self.imagePicker = [[UIImagePickerController alloc] init];
-        NSArray *availableTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-        self.imagePicker.mediaTypes = availableTypes;
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+        
+        self.imagePicker.allowsEditing = YES;
+        
         self.imagePicker.delegate = self;
         
-//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//            self.image
-//        }
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            NSArray *availableTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+            self.imagePicker.mediaTypes = availableTypes;
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+            self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
+        } else {
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
         
         [self presentViewController:self.imagePicker animated:YES completion: NULL];
     }];
@@ -313,6 +318,22 @@
     alert.view.tintColor = [UIColor whiteColor];
     
       [self presentViewController:alert animated:YES completion:nil];
+
+    
+// didFinishPickingMediaWithInfo example when writing code to save media to Parse and then pass to table view.
+//    - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//    {
+//        
+//        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+//        
+//        AddLekkerViewController *addLekkerViewController = [[AddLekkerViewController alloc]init];
+//        
+//        addLekkerViewController.photo = image;
+//        
+//        [self dismissViewControllerAnimated:YES completion:NULL];
+//        
+//        [self.navigationController pushViewController:addLekkerViewController animated:YES];
+//    }
     
 }
 
