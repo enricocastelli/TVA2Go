@@ -65,11 +65,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
-    title.tintColor = [UIColor whiteColor];
-    UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
-    
-    title.titleLabel.font = font;
     
     [self.user fetchInBackground];
     
@@ -84,40 +79,40 @@
         
         [self.playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
         [self.playerView playVideo];
-        [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
-        self.navigationItem.titleView = title;
+        self.navigationItem.title = @"TVA2Go";
         self.titleLabel.text = self.currentVideo.snippet.title;
         NSDate *date = self.currentVideo.snippet.publishedAt.date;
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         formatter.dateStyle = NSDateFormatterMediumStyle;
         NSString *string = [formatter stringFromDate:date];
         self.postDateLabel.text = string;
+        [self likeButtonEnabled];
         
     } else {
         
         nil;
     }
-    
-    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
         
-        [UIView animateWithDuration:0.5 animations:^{
-            self.likeButton.alpha = 0;
-        }];;
+}
+
+- (void)likeButtonEnabled
+{
+    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
+        self.likeButton.alpha = 0.3;
+        self.likeButton.enabled = NO;
         
     } else {
         
-        [UIView animateWithDuration:0.5 animations:^{
-            self.likeButton.alpha = 1;
-        }];
-        
+        self.likeButton.alpha = 1;
+        self.likeButton.enabled = YES;
     }
-        
 }
 
 
 -(void)playerViewDidBecomeReady:(YTPlayerView *)playerView
 {
     [playerView playVideo];
+    [self.likeButton.layer removeAllAnimations];
 }
 
 
@@ -171,8 +166,9 @@
             self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.7 animations:^{
+                self.likeButton.titleLabel.alpha = 1;
+
                 self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
-                self.likeButton.alpha = 0;
                 self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width -50, self.likeButton.bounds.size.width -50);
             }];
 
@@ -219,12 +215,10 @@
 
 
 - (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
-    NSLog(@"swiped right");
     [self like];
 }
 
 - (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender {
-    NSLog(@"swiped left");
     [self dislike];
 }
 
@@ -414,6 +408,8 @@
                          NSString *string = [formatter stringFromDate:date];
                          self.postDateLabel.text = string;
                          
+                         [self likeButtonEnabled];
+                         
                          [UIView animateWithDuration:3 animations:^{
                              
                              playerView.alpha = 1;
@@ -459,6 +455,10 @@
                              formatter.dateStyle = NSDateFormatterMediumStyle;
                              NSString *string = [formatter stringFromDate:date];
                              self.postDateLabel.text = string;
+                         
+                         [self likeButtonEnabled];
+
+                         
                          
                          [UIView animateWithDuration:3 animations:^{
                              

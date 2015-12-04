@@ -1,0 +1,2 @@
+/Users/lauracastelli/Documents/AppAcademy/TVA2Go/TVA2Go/Pods/Parse/Parse/Resources/en.lproj
+/Users/lauracastelli/Documents/AppAcademy/TVA2Go/TVA2Go/Pods/ParseUI/ParseUI/Resources/Localization/en.lproj
