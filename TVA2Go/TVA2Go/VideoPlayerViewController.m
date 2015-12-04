@@ -12,7 +12,6 @@
 #import "PinnedViewController.h"
 
 
-
 @interface VideoPlayerViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
@@ -275,17 +274,20 @@
 }
 
 - (IBAction)postComment:(id)sender {
+    
+    if ([PFUser currentUser]){
+        
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post a comment!"
                                                                    message:@""
                                                             preferredStyle:UIAlertControllerStyleAlert];
-
+    
+    
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"Write your comment here :) Or click the camera button to post a photo or video response!";
-        
-    
     }];
     
-    UIAlertAction *takeAPhotoOrVideo = [UIAlertAction actionWithTitle:@"" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    
+    UIAlertAction *takeAPhotoOrVideo = [UIAlertAction actionWithTitle:@"Add photo or video!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         self.imagePicker = [[UIImagePickerController alloc] init];
         
@@ -305,13 +307,36 @@
         
         [self presentViewController:self.imagePicker animated:YES completion: NULL];
     }];
-
+    
+    
     [takeAPhotoOrVideo setValue:[[UIImage imageNamed:@"cameraButton.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@"image"];
     
     [alert addAction:takeAPhotoOrVideo];
-    alert.view.tintColor = [UIColor whiteColor];
     
-      [self presentViewController:alert animated:YES completion:nil];
+    UIAlertAction *post = [UIAlertAction actionWithTitle:@"Post!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"post!");
+    }];
+    
+    [alert addAction:post];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"X" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        
+        UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in!" message:@"Log in to comment :)" preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"X" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [notLogin addAction:cancel];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+  
+//        [self presentViewController:notLogin animated:YES completion:nil];
+
+    }
 
     
 // didFinishPickingMediaWithInfo example when writing code to save media to Parse and then pass to table view.
