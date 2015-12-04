@@ -126,7 +126,7 @@
                     </variation>
                 </stackView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-NU-c0A" userLabel="Text field Stack View">
-                    <rect key="frame" x="23" y="200" width="276" height="30"/>
+                    <rect key="frame" x="23" y="200" width="275" height="30"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZgO-lC-YNo">
                             <rect key="frame" x="0.0" y="0.0" width="88" height="30"/>

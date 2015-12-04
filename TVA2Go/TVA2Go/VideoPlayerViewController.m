@@ -285,6 +285,14 @@
     
 }
 
+- (void)alertControllerBackgroundTapped
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
+
+
 - (IBAction)postComment:(id)sender {
     
     if ([PFUser currentUser]){
@@ -331,22 +339,30 @@
     
     [alert addAction:post];
     
-    [alert addAction:[UIAlertAction actionWithTitle:@"X" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }]];
+//    [alert addAction:[UIAlertAction actionWithTitle:@"X" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//        [alert dismissViewControllerAnimated:YES completion:nil];
+//    }]];
     
-    [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:^{
+            alert.view.superview.userInteractionEnabled = YES;
+            [alert.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertControllerBackgroundTapped)]];
+        }];
         
+//        [self presentViewController: alertController
+//                           animated: YES
+//                         completion:^{
+//                             alertController.view.superview.userInteractionEnabled = YES;
+//                             [alertController.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(alertControllerBackgroundTapped)]];
+//                         }];
+//        
     } else {
         
         UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in!" message:@"Log in to comment :)" preferredStyle:UIAlertControllerStyleAlert];
-
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"X" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [notLogin addAction:cancel];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }];
   
-//        [self presentViewController:notLogin animated:YES completion:nil];
+        [self presentViewController:notLogin animated:YES completion:^{
+            notLogin.view.superview.userInteractionEnabled = YES;
+            [notLogin.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertControllerBackgroundTapped)]];
+        }];
 
     }
 
