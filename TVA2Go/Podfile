@@ -4,4 +4,4 @@ pod 'ParseUI'
 
 pod "youtube-ios-player-helper", "~> 0.1.4"
 
-pod 'Google-API-Client'
+pod 'Google-API-Client/YouTube'
