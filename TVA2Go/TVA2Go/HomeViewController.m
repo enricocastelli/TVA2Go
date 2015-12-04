@@ -43,13 +43,10 @@ static CGFloat timeInterval = 0.4;
 @property (strong, nonatomic) NSArray *objects;
 
 @property (nonatomic) CGFloat number;
-@property (nonatomic) CGFloat red;
-@property (nonatomic) CGFloat green;
-@property (nonatomic) CGFloat blue;
 @property (nonatomic, strong) UIView * loadingView;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic) CGRect originalLogo;
-
+@property (nonatomic) CGRect original;
 
 @end
 
@@ -58,13 +55,14 @@ static CGFloat timeInterval = 0.4;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
+    self.original = self.view.frame;
     if ([PFUser currentUser]) {
         self.successLabel.hidden = NO;
         self.successLabel.textColor = [UIColor blackColor];
         self.successLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
     } else {
-        self.successLabel.hidden = YES;
+        self.successLabel.hidden = NO;
+        self.successLabel.alpha = 0;
 
     }
     [super viewWillAppear:animated];
@@ -85,9 +83,6 @@ static CGFloat timeInterval = 0.4;
     
     [super viewDidLoad];
     
-    self.red = 0.18823;
-    self.green = 0.7215;
-    self.blue = 0.94117;
     
     self.v = [[VideoPlayerViewController alloc] init];
     
@@ -99,7 +94,6 @@ static CGFloat timeInterval = 0.4;
     [self roundedButtons:self.randomButton byNumber:9];
 
     self.usernameField.delegate = self;
-    self.passwordField.delegate = self;
     
     [self.userButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     
@@ -191,12 +185,13 @@ static CGFloat timeInterval = 0.4;
 
 - (void) login
 {
+    [self.userButton setSelected:YES];
     if ([PFUser currentUser]) {
         [self.loginButton setTitle:@" Logout " forState:UIControlStateNormal];
         [self logoutFade];
         
     } else {
-    [self loginOrSignup];
+    [self userUtilities];
     
     [self.userButton removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
      [self.userButton addTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
@@ -207,7 +202,7 @@ static CGFloat timeInterval = 0.4;
 - (void) logout
 {
     [PFUser logOutInBackground];
-    self.successLabel.hidden = YES;
+    self.successLabel.alpha = 0;
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.logo.frame = CGRectMake(self.logo.frame.origin.x, self.logo.frame.origin.y + 900, self.logo.frame.size.width, self.logo.frame.size.height);
         self.inspireButton.alpha = 0;
@@ -297,7 +292,7 @@ static CGFloat timeInterval = 0.4;
 
 }
 
-- (void)loginFade
+- (void)userUtilities
 {
     [self.loginButton.layer removeAllAnimations];
 
@@ -311,12 +306,11 @@ static CGFloat timeInterval = 0.4;
     self.smartButton.alpha = 0;
     self.randomButton.alpha = 0;
     self.navigationController.toolbarHidden = YES;
-    self.textFieldView.hidden = NO;
-    self.emailField.hidden = YES;
     self.loginView.hidden = NO;
     self.signupButton.hidden = NO;
     [self.loginButton removeTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    [self.loginButton addTarget:self action:@selector(log)forControlEvents:UIControlEventTouchUpInside];
+    [self.loginButton addTarget:self action:@selector(loginFade)forControlEvents:UIControlEventTouchUpInside];
+    [self.signupButton removeTarget:self action:@selector(sign) forControlEvents:UIControlEventTouchUpInside];
     [self.signupButton addTarget:self action:@selector(signup) forControlEvents:UIControlEventTouchUpInside];
     [self.loginButton setTitle:@" Log in " forState:UIControlStateNormal];
 
@@ -325,18 +319,21 @@ static CGFloat timeInterval = 0.4;
 - (void)logoutFade
 {
     self.loginButton.alpha = 0;
-
     self.loginView.hidden = NO;
     [UIView animateWithDuration:0.4 animations:^{
         self.loginButton.alpha = 1;
          self.logo.alpha = 0.3;
+        self.inspireButton.alpha = 0.1;
+        self.laughButton.alpha = 0.1;
+        self.smartButton.alpha = 0.1;
+        self.randomButton.alpha = 0.1;
+        
     }];
     self.signupButton.hidden = YES;
 
     [self.loginButton removeTarget:self action:@selector(log) forControlEvents:UIControlEventTouchUpInside];
     [self.loginButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.userButton addTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
-    
 }
 
 - (void)textFieldsAnimations
@@ -391,33 +388,38 @@ static CGFloat timeInterval = 0.4;
     [self.usernameField resignFirstResponder];
     [self.emailField resignFirstResponder];
     self.emailField.hidden = YES;
-
-    
 }
 
-- (void)loginOrSignup
+- (void)loginFade
 {
-    
+    self.textFieldView.hidden = NO;
+    self.emailField.hidden = YES;
+    [self.textFieldView updateConstraints];
+    self.signupButton.hidden = YES;
+    self.textFieldView.hidden = NO;
+    [self textFieldsAnimations];
+    [self.usernameField becomeFirstResponder];
+    [self.loginButton removeTarget:self action:@selector(loginFade) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginButton addTarget:self action:@selector(log)forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)log
 
 {
-    [self.passwordField resignFirstResponder];
-    [self.usernameField resignFirstResponder];
-    [self.emailField resignFirstResponder];
-    
     [PFUser logInWithUsernameInBackground:self.usernameField.text password:self.passwordField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
         if (!error){
-            
+
             self.loginButton.titleLabel.alpha = 0;
 
-            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:1.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
 
+                [self.passwordField resignFirstResponder];
+                [self.usernameField resignFirstResponder];
+                [self.emailField resignFirstResponder];
                 self.loginButton.alpha = 1;
 
 
-                self.loginButton.bounds = CGRectMake(0, 0, 900, 900);
+                self.loginButton.bounds = CGRectMake(0, 0, 1000, 1000);
                 
 
                 [self makeRotate:self.loginButton.layer];
@@ -464,23 +466,28 @@ static CGFloat timeInterval = 0.4;
             }];
             
         } else {
-            [self.usernameField becomeFirstResponder];
-            [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:130 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                self.loginButton.frame = CGRectMake(self.loginButton.frame.origin.x + 1, self.loginButton.frame.origin.y + 1, self.loginButton.frame.size.width, self.loginButton.frame.size.height);
-                
-            } completion:nil];
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Ops" message:@"something went wrong! Try Again!" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self loginFade];
+                }];
+            }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 }
 
 - (void)signup
 {
+    self.loginView.hidden = NO;
     self.textFieldView.hidden = NO;
     self.loginButton.hidden = YES;
     self.signupButton.hidden = NO;
     [self.signupButton removeTarget:self action:@selector(signup) forControlEvents:UIControlEventTouchUpInside];
     [self.signupButton addTarget:self action:@selector(sign) forControlEvents:UIControlEventTouchUpInside];
     self.logo.hidden = YES;
+    [self.usernameField becomeFirstResponder];
     
     self.emailField.alpha = 0;
     [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -488,7 +495,7 @@ static CGFloat timeInterval = 0.4;
         self.emailField.alpha = 1;
     } completion:nil];
 
-    [self.emailField becomeFirstResponder];
+    
 }
 
 - (void)sign
@@ -502,21 +509,23 @@ static CGFloat timeInterval = 0.4;
     [self.passwordField resignFirstResponder];
     [self.usernameField resignFirstResponder];
     [self.emailField resignFirstResponder];
-    
-    self.textFieldView.hidden = YES;
-    self.emailField.hidden = YES;
-    self.signupButton.hidden = YES;
 
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
           
-            [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            self.signupButton.hidden = YES;
+            self.userButton.hidden = YES;
+            self.textFieldView.hidden = YES;
+
+            [UIView animateWithDuration:1.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
                 
                 self.view.backgroundColor = self.loginButton.backgroundColor;
                 self.successLabel.hidden = NO;
                 
                 self.successLabel.alpha = 1;
+                self.successLabel.textColor = [UIColor whiteColor];
                 
                 self.successLabel.text = [NSString stringWithFormat:@"Welcome, %@!" ,user.username];
                 self.logo.hidden = NO;
@@ -532,18 +541,25 @@ static CGFloat timeInterval = 0.4;
                     self.userButton.hidden = NO;
                     self.loginButton.titleLabel.alpha = 1;
                     self.loginButton.hidden = NO;
+                    self.signupButton.hidden = NO;
                     [self.signupButton removeTarget:self action:@selector(sign) forControlEvents:UIControlEventTouchUpInside];
-                    
+                    self.successLabel.textColor = [UIColor blackColor];
+
+                    self.successLabel.text = [NSString stringWithFormat:@"%@" ,user.username];
+
                 } completion:nil];
             }];
              
-            } else {
-
-            [UIView animateWithDuration:0.8 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:130 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            } completion:^(BOOL finished) {
-                self.signupButton.center = CGPointMake(self.signupButton.center.x +1, self.signupButton.center.y + 1);
-                [self signup];
+        } else {
+            
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Ops" message:@"something went wrong! Try Again!" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [self signup];
+                }];
             }];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 }
@@ -576,8 +592,8 @@ static CGFloat timeInterval = 0.4;
 - (void)loadingAnimation:(NSTimer*)timer
 
 {
-    UIButton*l = [[UIButton alloc] initWithFrame:CGRectMake(self.number, 0, 20, 20)];
-    l.backgroundColor = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:1];
+    UIButton*l = [[UIButton alloc] initWithFrame:CGRectMake(0 +self.number, 0, 20, 20)];
+    l.backgroundColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
 
     l.layer.cornerRadius = l.frame.size.width/2;
     l.alpha = 0;
@@ -598,6 +614,42 @@ static CGFloat timeInterval = 0.4;
         self.number = 80;
     }
 }
+
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    [self.view endEditing:YES];
+    return YES;
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.frame = CGRectMake(0,-110,320,460);
+    }];
+
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [self.view setFrame:self.original];
+}
+
+
+
+
+
+
+
 
 @end
 

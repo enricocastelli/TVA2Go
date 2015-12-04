@@ -38,7 +38,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Mc-vtN">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Mc-vtN">
                     <rect key="frame" x="10" y="348" width="300" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daJ-HM-Jw8">
@@ -156,7 +156,7 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOQ-Db-G1J">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOQ-Db-G1J">
                     <rect key="frame" x="8" y="307" width="304" height="1"/>
                     <color key="backgroundColor" red="0.82565582119165826" green="0.80405275306017687" blue="0.86332070707070707" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -350,8 +350,8 @@
         </swipeGestureRecognizer>
     </objects>
     <resources>
-        <image name="Comment icon" width="31" height="27"/>
-        <image name="Link" width="33" height="27"/>
+        <image name="Comment icon" width="15" height="13"/>
+        <image name="Link" width="16" height="13"/>
         <image name="logo" width="203" height="204"/>
     </resources>
 </document>
