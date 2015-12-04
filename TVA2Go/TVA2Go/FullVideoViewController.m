@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
 
 @end
 
@@ -34,10 +35,12 @@
         formatter.dateStyle = NSDateFormatterMediumStyle;
         NSString *string = [formatter stringFromDate:date];
         self.dateLabel.text = string;
+        self.textView.text = self.fullVideo.snippet.descriptionProperty;
     
     } else {
         
         [self.playerView loadWithVideoId:self.parseVideoObject[@"videoID"]];
+          self.titleLabel.text = self.parseVideoObject[@"title"];
     }
 }
 
