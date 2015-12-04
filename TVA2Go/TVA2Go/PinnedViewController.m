@@ -36,6 +36,7 @@
     [super viewDidLoad];
 
     self.deleting = @"NO";
+    
 
     [self.pinned registerNib:[UINib nibWithNibName:@"PinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
@@ -91,6 +92,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.pinned.allowsMultipleSelection = NO;
 }
 
 
@@ -114,7 +116,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                            cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     PinCollectionViewCell *cell = [self.pinned dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     if ([self.deleting  isEqualToString: @"YES"]) {
@@ -152,6 +153,7 @@
         [self.navigationController pushViewController:f animated:YES];
         } else {
             
+            self.pinned.allowsSelection = NO;
             UICollectionViewCell *cellToDelete = [self.pinned cellForItemAtIndexPath:indexPath];
             
 
@@ -171,6 +173,7 @@
                         [self.pinned deleteItemsAtIndexPaths:@[indexPath]];
                         [self.pinned reloadData];
                         [self dancingCells];
+                        self.pinned.allowsSelection = YES;
                     }
 
             }];
