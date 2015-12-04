@@ -228,15 +228,26 @@
                 </button>
                 <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5g-cx-r7T" customClass="YTPlayerView">
                     <rect key="frame" x="0.0" y="64" width="320" height="180"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swipeStuff" translatesAutoresizingMaskIntoConstraints="NO" id="Bbp-h3-j4t">
+                            <rect key="frame" x="-25" y="15" width="361" height="188"/>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Z5g-cx-r7T" secondAttribute="height" multiplier="4:3" id="Fd6-tS-JcQ"/>
+                        <constraint firstItem="Bbp-h3-j4t" firstAttribute="leading" secondItem="Z5g-cx-r7T" secondAttribute="leading" constant="-25" id="JU7-zn-mvq"/>
+                        <constraint firstItem="Bbp-h3-j4t" firstAttribute="centerX" secondItem="Z5g-cx-r7T" secondAttribute="centerX" id="QXI-MJ-eKY"/>
+                        <constraint firstItem="Bbp-h3-j4t" firstAttribute="centerY" secondItem="Z5g-cx-r7T" secondAttribute="centerY" id="lOm-bt-cDg"/>
                         <constraint firstAttribute="width" secondItem="Z5g-cx-r7T" secondAttribute="height" multiplier="16:9" id="mUx-1R-Ml5"/>
+                        <constraint firstItem="Bbp-h3-j4t" firstAttribute="top" secondItem="Z5g-cx-r7T" secondAttribute="top" constant="15" id="nct-VI-gMa"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="Fd6-tS-JcQ"/>
+                            <exclude reference="QXI-MJ-eKY"/>
+                            <exclude reference="lOm-bt-cDg"/>
                         </mask>
                     </variation>
                     <connections>
@@ -353,5 +364,6 @@
         <image name="Comment icon" width="15" height="13"/>
         <image name="Link" width="16" height="13"/>
         <image name="logo" width="203" height="204"/>
+        <image name="swipeStuff" width="361" height="188"/>
     </resources>
 </document>

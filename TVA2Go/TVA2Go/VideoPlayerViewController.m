@@ -64,6 +64,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
+    title.tintColor = [UIColor whiteColor];
+    UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
+    
+    title.titleLabel.font = font;
     
     [self.user fetchInBackground];
     
@@ -78,7 +83,8 @@
         
         [self.playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
         [self.playerView playVideo];
-        self.navigationItem.title = @"TVA2Go";
+        [title setTitle:@"TVA2Go" forState:UIControlStateNormal];
+        self.navigationItem.titleView = title;
         self.titleLabel.text = self.currentVideo.snippet.title;
         NSDate *date = self.currentVideo.snippet.publishedAt.date;
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -148,30 +154,36 @@
         [userMustableArray addObject:stringIdentifier];
         
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
-        [self.user saveInBackground];
-        
-        CABasicAnimation *halfTurn;
-        halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-        halfTurn.fromValue = [NSNumber numberWithFloat:0];
-        halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
-        halfTurn.duration = 0.2;
-        halfTurn.repeatCount = 100;
-        [self.likeButton.layer addAnimation:halfTurn forKey:@"180"];
-
-        [UIView animateWithDuration:1 animations:^{
-            self.likeButton.titleLabel.alpha = 0;
-
-            self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width +50, self.likeButton.bounds.size.width +50);
-            self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.7 animations:^{
-                self.likeButton.titleLabel.alpha = 1;
-
-                self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
-                self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width -50, self.likeButton.bounds.size.width -50);
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                
+            
+            CABasicAnimation *halfTurn;
+            halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+            halfTurn.fromValue = [NSNumber numberWithFloat:0];
+            halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
+            halfTurn.duration = 0.2;
+            halfTurn.repeatCount = 100;
+            [self.likeButton.layer addAnimation:halfTurn forKey:@"180"];
+            
+            [UIView animateWithDuration:1 animations:^{
+                self.likeButton.titleLabel.alpha = 0;
+                
+                self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width +50, self.likeButton.bounds.size.width +50);
+                self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.7 animations:^{
+                    self.likeButton.titleLabel.alpha = 1;
+                    
+                    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
+                    self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width -50, self.likeButton.bounds.size.width -50);
+                }];
+                
             }];
-
+            }
         }];
+        
+      
     }
     
     self.query = [PFQuery queryWithClassName:@"Video"];
