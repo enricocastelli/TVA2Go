@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.playerView.delegate = self;
     
     if (self.fullVideo != nil) {
