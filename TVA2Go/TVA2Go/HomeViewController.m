@@ -71,15 +71,19 @@ static CGFloat timeInterval = 0.4;
     [super viewWillAppear:animated];
     [self allButtonsEnabled];
     
-//    [self.timer fire];
     self.number = 80;
     
     self.originalLogo = self.logo.frame;
     self.navigationController.navigationBarHidden = YES;
-    self.navigationController.toolbarHidden = NO;
+    self.navigationController.toolbarHidden = YES;
     self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
     self.navigationController.toolbar.tintColor = [UIColor whiteColor];
     [self settingToolbar];
+    
+    [self loadingAnimation:self.inspireButton.layer withDelay:1];
+    [self loadingAnimation:self.laughButton.layer withDelay:1.4];
+    [self loadingAnimation:self.smartButton.layer withDelay:1.8];
+    [self loadingAnimation:self.randomButton.layer withDelay:2.2];
 }
 
 - (void)viewDidLoad
@@ -100,8 +104,6 @@ static CGFloat timeInterval = 0.4;
     self.usernameField.delegate = self;
     
     [self.userButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    
-    
 }
 
 - (UIButton*)roundedButtons:(UIButton*)button byNumber:(NSInteger)divider
@@ -210,6 +212,8 @@ static CGFloat timeInterval = 0.4;
     if ([PFUser currentUser]) {
         [self.loginButton setTitle:@" Logout " forState:UIControlStateNormal];
         [self logoutFade];
+        self.navigationController.toolbarHidden = NO;
+
         
     } else {
     [self userUtilities];
@@ -217,6 +221,8 @@ static CGFloat timeInterval = 0.4;
     [self.userButton removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
      [self.userButton addTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
     self.userButton.selected = YES;
+        self.navigationController.toolbarHidden = NO;
+
     }
 }
 
@@ -230,12 +236,11 @@ static CGFloat timeInterval = 0.4;
         self.laughButton.alpha = 0;
         self.smartButton.alpha = 0;
         self.randomButton.alpha = 0;
-        self.navigationController.toolbarHidden = YES;
-        
         
     } completion:^(BOOL finished) {
     }];
     [self undo];
+
 }
 
 - (void) mostPinned
@@ -393,6 +398,8 @@ static CGFloat timeInterval = 0.4;
 
 - (void)undo
 {
+    self.navigationController.toolbarHidden = YES;
+
     self.logo.hidden = NO;
     self.logo.alpha = 1;
 
@@ -402,7 +409,6 @@ static CGFloat timeInterval = 0.4;
         self.laughButton.alpha = 1;
         self.smartButton.alpha = 1;
         self.randomButton.alpha = 1;
-        self.navigationController.toolbarHidden = NO;
         self.textFieldView.hidden = YES;
         self.loginView.hidden = YES;
         self.loginButton.hidden = NO;
@@ -432,6 +438,8 @@ static CGFloat timeInterval = 0.4;
     [self.usernameField becomeFirstResponder];
     [self.loginButton removeTarget:self action:@selector(loginFade) forControlEvents:UIControlEventTouchUpInside];
     [self.loginButton addTarget:self action:@selector(log)forControlEvents:UIControlEventTouchUpInside];
+    self.navigationController.toolbarHidden = YES;
+
 }
 
 - (void)log
@@ -511,6 +519,7 @@ static CGFloat timeInterval = 0.4;
 
 - (void)signup
 {
+    self.navigationController.toolbarHidden = YES;
     self.loginView.hidden = NO;
     self.textFieldView.hidden = NO;
     self.loginButton.hidden = YES;
@@ -607,46 +616,14 @@ static CGFloat timeInterval = 0.4;
         [layer addAnimation:halfTurn forKey:@"180"];
 }
 
-- (void)timerForAnimation:(UIButton *)button
-{
-    button.enabled = NO;
-    
-    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, 400, 400)];
-    [self.view addSubview:self.loadingView];
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
-                                                      target:self
-                                                    selector:@selector(loadingAnimation:)
-                                                    userInfo:nil
-                                                     repeats:YES];
-    [self.timer fire];
-}
 
-//- (void)loadingAnimation:(NSTimer*)timer
-//
-//{
-//    UIButton*l = [[UIButton alloc] initWithFrame:CGRectMake(self.number, 0, 20, 20)];
-//    l.backgroundColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
-//
-//    l.layer.cornerRadius = l.frame.size.width/2;
-//    l.alpha = 0;
-//    [self.loadingView addSubview:l];
-//    [self makeRotate:l.layer];
-//    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionAutoreverse animations:^{
-//        l.alpha = 1;
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.2 animations:^{
-//            l.alpha = 0;
-//            [l removeFromSuperview];
-//        }];
-//    }];
-//
-//    self.number += 60;
-//    
-//    if (self.number > 200){
-//        self.number = 80;
-//    }
-//}
+- (void)loadingAnimation: (CALayer*)layer withDelay:(CGFloat)delay
+
+{
+   [UIView animateWithDuration:1 delay:delay usingSpringWithDamping:1 initialSpringVelocity:0 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction animations:^{
+       layer.bounds = CGRectMake(0, 0, layer.bounds.size.width + 2, layer.bounds.size.height +2);
+   } completion:nil];
+}
 
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
