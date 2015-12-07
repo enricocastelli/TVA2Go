@@ -27,7 +27,9 @@
 @property (strong, nonatomic) GTLYouTubeVideo *currentVideo;
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pinCountLabel;
-@property (weak, nonatomic) IBOutlet YTPlayerView *secondPlayerView;
+@property (strong, nonatomic) IBOutlet UIImageView *instructions;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
 
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 
@@ -41,10 +43,8 @@
     [super viewDidLoad];
     
     self.playerView.delegate = self;
-    self.secondPlayerView.delegate = self;
 
-    self.secondPlayerView.hidden = YES;
-    [self.seeAllCommentsButton setTitle:@"  See Comments" forState:UIControlStateNormal];
+    [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
     self.navigationItem.rightBarButtonItem = myPins;
@@ -64,6 +64,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.user = [PFUser currentUser];
+    
+    self.instructions.hidden = NO;
+
 
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
@@ -133,6 +136,12 @@
     [self.playerView stopVideo];
 }
 
+- (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
+{
+    if (state == kYTPlayerStatePlaying) {
+        self.instructions.hidden = YES;
+    }
+}
 
 
 - (void)dislike
@@ -163,15 +172,6 @@
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
-                
-            
-            CABasicAnimation *halfTurn;
-            halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-            halfTurn.fromValue = [NSNumber numberWithFloat:0];
-            halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
-            halfTurn.duration = 0.2;
-            halfTurn.repeatCount = 100;
-            [self.likeButton.layer addAnimation:halfTurn forKey:@"180"];
             
             [UIView animateWithDuration:1 animations:^{
                 self.likeButton.titleLabel.alpha = 0;
@@ -400,20 +400,26 @@
 - (IBAction)seeAllComments:(id)sender {
     if (self.tableView.hidden == YES) {
         self.tableView.hidden = NO;
+        self.toolbar.hidden = NO;
+
         self.tableView.alpha = 0.95;
         [UIView animateWithDuration:0.6 animations:^{
             self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
+            self.toolbar.frame = CGRectMake(0, -900, self.toolbar.frame.size.width, self.toolbar.frame.size.height);
         }];
         [self.seeAllCommentsButton setTitle:@"  Hide Comments" forState:UIControlStateNormal];
         self.watchFullVideoButton.hidden = YES;
     } else {
         [UIView animateWithDuration:1 animations:^{
             self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
+                self.toolbar.frame = CGRectMake(0, -900, self.toolbar.frame.size.width, self.toolbar.frame.size.height);
         }];
-        [self.seeAllCommentsButton setTitle:@"  See Comments" forState:UIControlStateNormal];
+        [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
         self.watchFullVideoButton.hidden = NO;
         
         self.tableView.hidden = YES;
+        self.toolbar.hidden = YES;
+
     }
 }
 
