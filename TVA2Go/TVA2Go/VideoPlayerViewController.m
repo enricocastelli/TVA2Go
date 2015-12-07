@@ -303,6 +303,8 @@
 - (IBAction)postComment:(id)sender {
     
     if ([PFUser currentUser]){
+    
+        PFObject *comment = [PFObject objectWithClassName:@"Comments"];
         
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post a comment!"
                                                                    message:@""
@@ -311,6 +313,9 @@
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"Write your comment here :) Or click the camera button to post a photo or video response!";
+        [comment setObject:textField.text forKey:@"stringComment"];
+        
+ 
     }];
     
     
