@@ -264,7 +264,6 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="addStringComment:" destination="-1" eventType="editingDidEnd" id="unB-KN-tKi"/>
-                                    <action selector="enterStringComment:" destination="-1" eventType="editingDidEnd" id="50w-BE-b8A"/>
                                 </connections>
                             </textField>
                         </barButtonItem>

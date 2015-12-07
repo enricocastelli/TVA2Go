@@ -104,8 +104,23 @@
         
         nil;
     }
+       
         
 }
+
+//- (void)toolbarButtonsEnabled
+//{
+//    if ([PFUser currentUser]) {
+//        self.cameraButton.enabled = YES;
+//        self.textFieldComment.enabled = YES;
+//        self.postCommentButton.enabled = YES;
+//    } else {
+//        self.toolbar.alpha = 0.5;
+////        self.cameraButton.enabled = NO;
+////        self.textFieldComment.enabled = NO;
+////        self.postCommentButton.enabled = NO;
+//    }
+//}
 
 - (void)likeButtonEnabled
 {
@@ -248,7 +263,7 @@
     {
         SLComposeViewController *fbPostSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         
-        NSURL *currentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", self.currentVideo.identifier]];
+        NSURL *currentURL = self.playerView.videoUrl;
         
         [fbPostSheet addURL:currentURL];
   
@@ -297,6 +312,7 @@
 
 - (IBAction)seeAllComments:(id)sender {
     if (self.tableView.hidden == YES) {
+//        [self toolbarButtonsEnabled];
         self.tableView.hidden = NO;
         self.toolbar.hidden = NO;
 
@@ -328,7 +344,7 @@
     PinnedViewController *p = [[PinnedViewController alloc]init];
    [self.navigationController pushViewController:p animated:YES];
     } else {
-        UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in" message:@"Log in to pin videos" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in!" message:@"Log in to pin videos" preferredStyle:UIAlertControllerStyleAlert];
        
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -442,17 +458,53 @@
 
 
 - (IBAction)addPhotoOrVideoComment:(id)sender {
+    self.imagePicker = [[UIImagePickerController alloc] init];
+    self.imagePicker.allowsEditing = YES;
+    self.imagePicker.delegate = self;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        NSArray *availableTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        self.imagePicker.mediaTypes = availableTypes;
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
+        self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeMedium;
+    } else {
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    [self presentViewController:self.imagePicker animated:YES completion:NULL];
 }
 
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    if (self.imagePicker.cameraCaptureMode == UIImagePickerControllerCameraCaptureModePhoto) {
+        UIImage *image = UIImagePickerControllerEditedImage;
+    } else {}
+    
+}
 
 - (IBAction)postComment:(id)sender {
-    PFObject *comment = [PFObject objectWithClassName:@"Comments"];
-    [comment setObject:self.textFieldComment.text forKey:@"stringComment"];
-//    [comment setObject:<#(nonnull id)#> forKey:<#(nonnull NSString *)#>];
     
-    [comment saveInBackground];
+    if ([PFUser currentUser]) {
+        PFObject *comment = [PFObject objectWithClassName:@"Comments"];
+        [comment setObject:self.textFieldComment.text forKey:@"stringComment"];
+        [comment setObject:self.user.objectId forKey:@"userObjectId"];
+        [comment saveInBackground];
+    } else {
+    
+        nil;
+        
+//
+//    [comment setObject:<#(nonnull id)#> forKey:<#(nonnull NSString *)#>];
+
 }
 
-
+}
+//- (void)alertControllerBackgroundTapped
+//
+//{
+//    [self dismissViewControllerAnimated: YES
+//                             completion: nil];
+//}
 
 @end
