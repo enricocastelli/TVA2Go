@@ -41,7 +41,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Mc-vtN">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Mc-vtN">
                     <rect key="frame" x="10" y="348" width="300" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daJ-HM-Jw8">
@@ -54,7 +54,7 @@
                                 <constraint firstAttribute="width" secondItem="daJ-HM-Jw8" secondAttribute="height" multiplier="1:1" id="rLI-lV-M6M"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <state key="normal" title="X">
+                            <state key="normal" image="playOverlay">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
@@ -74,7 +74,7 @@
                                 <constraint firstAttribute="width" constant="45" id="vl1-aw-zXU"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <state key="normal" title="F">
+                            <state key="normal" image="Share">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
@@ -97,7 +97,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <color key="tintColor" red="0.070868405940000004" green="0.58574636049999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="L">
+                            <state key="normal" image="Pin">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -134,7 +134,7 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOQ-Db-G1J">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOQ-Db-G1J">
                     <rect key="frame" x="8" y="307" width="304" height="1"/>
                     <color key="backgroundColor" red="0.82565582119165826" green="0.80405275306017687" blue="0.86332070707070707" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -161,7 +161,7 @@
                         <constraint firstAttribute="width" constant="45" id="zVD-CF-ViK"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                    <state key="normal" title="  Watch Full">
+                    <state key="normal" title="  Find Out More">
                         <color key="titleColor" red="0.95709604305648999" green="0.99398279671717171" blue="0.95150575236124613" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <variation key="default">
@@ -373,7 +373,10 @@
     <resources>
         <image name="Comment icon" width="15" height="13"/>
         <image name="Link" width="16" height="13"/>
+        <image name="Pin" width="21" height="26"/>
+        <image name="Share" width="20" height="22"/>
         <image name="logo" width="203" height="204"/>
+        <image name="playOverlay" width="201" height="199"/>
         <image name="swipeStuff" width="361" height="188"/>
     </resources>
 </document>

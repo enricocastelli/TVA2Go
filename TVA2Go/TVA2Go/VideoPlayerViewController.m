@@ -69,7 +69,8 @@
     self.user = [PFUser currentUser];
     
     self.instructions.hidden = NO;
-
+    
+    [self.playerView removeWebView];
 
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
@@ -127,10 +128,26 @@
 }
 
 
+- (UIColor *)playerViewPreferredWebViewBackgroundColor:(YTPlayerView *)playerView;
+{
+    return [UIColor blackColor];
+}
+
+
 -(void)playerViewDidBecomeReady:(YTPlayerView *)playerView
 {
     [playerView playVideo];
     [self.likeButton.layer removeAllAnimations];
+    if (self.playerView.currentTime == 10) {
+        
+        NSDictionary *playerVars = @{
+                                     @"playsinline" : @1,
+                                     };
+        
+        self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+        [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
+        [playerView playVideo];
+    }
 }
 
 
@@ -156,8 +173,53 @@
 
 - (void)like
 {
-
     [self animateVideoLike:self.playerView];
+
+    self.query = [PFQuery queryWithClassName:@"Video"];
+    [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
+    [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
+       
+        if (number) {
+            
+            [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+              
+                int pinCount = [[object objectForKey:@"pinCount"] intValue];
+                pinCount = pinCount + 1;
+                object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
+                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    [self likeAlready];
+
+                }];
+            }];
+        } else {
+            
+            PFObject *current = [PFObject objectWithClassName:@"Video"];
+            
+            NSURL *url = [NSURL URLWithString:self.currentVideo.snippet.thumbnails.standard.url];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            
+            PFFile *ima = [PFFile fileWithData:data];
+            
+            current[@"thumbnail"] = ima;
+
+            
+            current[@"description"] = self.currentVideo.snippet.descriptionProperty;
+            current[@"title"] = self.currentVideo.snippet.title;
+            current[@"videoID"] = self.currentVideo.identifier;
+            
+            current[@"pinCount"] = [NSNumber numberWithInt:1];
+            
+            [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                [self likeAlready];
+            }];
+            
+        }
+    }];
+    
+    
+}
+
+- (void)likeAlready {
     
     if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
         
@@ -175,65 +237,27 @@
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
-            
-            [UIView animateWithDuration:1 animations:^{
-                self.likeButton.titleLabel.alpha = 0;
                 
-                self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width +50, self.likeButton.bounds.size.width +50);
-                self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.7 animations:^{
-                    self.likeButton.titleLabel.alpha = 1;
+                [UIView animateWithDuration:1 animations:^{
+                    self.likeButton.titleLabel.alpha = 0;
                     
-                    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
-                    self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width -50, self.likeButton.bounds.size.width -50);
+                    self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width +5, self.likeButton.bounds.size.width +5);
+                    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.7 animations:^{
+                        self.likeButton.titleLabel.alpha = 1;
+                        
+                        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
+                        self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width -5, self.likeButton.bounds.size.width -5);
+                    }];
+                    
                 }];
-                
-            }];
             }
         }];
         
-      
+        
     }
-    
-    self.query = [PFQuery queryWithClassName:@"Video"];
-    [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
-    [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
-        if (number != 0) {
-            
-            [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-              
-                int pinCount = [[object objectForKey:@"pinCount"] intValue];
-                pinCount = pinCount + 1;
-                object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
-                [object saveInBackground];
-            }];
-        } else {
-            
-            PFObject *current = [PFObject objectWithClassName:@"Video"];
-            
-            NSURL *url = [NSURL URLWithString:self.currentVideo.snippet.thumbnails.standard.url];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            
-            PFFile *ima = [PFFile fileWithData:data];
-            
-            current[@"thumbnail"] = ima;
-            
-            current[@"videoID"] = self.currentVideo.identifier;
-            
-            current[@"pinCount"] = [NSNumber numberWithInt:0];
-            
-            int pinCount = [[current objectForKey:@"pinCount"] intValue];
-            pinCount = pinCount + 1;
-            current[@"pinCount"] = [NSNumber numberWithInt:pinCount];
-            
-            [current saveInBackground];
-        }
-    }];
-    
-    
 }
-
 
 - (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
     [self like];
@@ -379,7 +403,7 @@
                          
                          [self likeButtonEnabled];
                          
-                         [UIView animateWithDuration:3 animations:^{
+                         [UIView animateWithDuration:3.5 animations:^{
                              
                              playerView.alpha = 1;
                          }];

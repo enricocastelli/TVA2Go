@@ -28,7 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorColor = [UIColor blackColor];
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -38,8 +37,6 @@
     
     title.titleLabel.font = font;
 
-
-    
     self.navigationItem.titleView = title;
     
 }
@@ -64,11 +61,10 @@
     } else {
         cell.imageThumbnail.image = nil;
         cell.imageThumbnail.hidden = YES;
-
     }
     
     cell.titleLabel.text = object[@"title"];
-    cell.descriptionLabel.text = object[@"description"];
+    cell.descriptionLabel.text = nil;
     cell.rankingLabel.text = [NSString stringWithFormat:@"%@", object[@"pinCount"]];
     cell.selectionStyle = UITableViewCellSeparatorStyleNone;
     return cell;
