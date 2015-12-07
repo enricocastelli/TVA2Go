@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoPlayerViewController">
             <connections>
                 <outlet property="FBPost" destination="hAY-zZ-TeW" id="ZM8-P2-v55"/>
+                <outlet property="cameraButton" destination="Ely-qI-CX9" id="vqJ-WC-cMU"/>
                 <outlet property="dislikeButton" destination="daJ-HM-Jw8" id="2Pg-YY-qfk"/>
                 <outlet property="instructions" destination="Bbp-h3-j4t" id="Oed-V8-l1c"/>
                 <outlet property="likeButton" destination="EJW-F6-KeQ" id="pKb-OK-nWj"/>
@@ -18,6 +19,7 @@
                 <outlet property="postDateLabel" destination="Xi1-T7-xlC" id="ted-ev-lrX"/>
                 <outlet property="seeAllCommentsButton" destination="Hni-pM-wgH" id="KCI-1o-2Bx"/>
                 <outlet property="tableView" destination="QAA-8Z-0oM" id="8lk-Ud-kH7"/>
+                <outlet property="textFieldComment" destination="6y1-jd-8BH" id="d36-lz-mSe"/>
                 <outlet property="titleLabel" destination="QzO-nx-PQL" id="j7Z-D3-dOq"/>
                 <outlet property="toolbar" destination="0fp-RU-0Nj" id="nqy-UQ-i2d"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -39,7 +41,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Mc-vtN">
+                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="j6y-Mc-vtN">
                     <rect key="frame" x="10" y="348" width="300" height="45"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daJ-HM-Jw8">
@@ -132,7 +134,7 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOQ-Db-G1J">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOQ-Db-G1J">
                     <rect key="frame" x="8" y="307" width="304" height="1"/>
                     <color key="backgroundColor" red="0.82565582119165826" green="0.80405275306017687" blue="0.86332070707070707" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -248,7 +250,11 @@
                 <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fp-RU-0Nj">
                     <rect key="frame" x="0.0" y="274" width="320" height="44"/>
                     <items>
-                        <barButtonItem systemItem="camera" id="Ely-qI-CX9"/>
+                        <barButtonItem systemItem="camera" id="Ely-qI-CX9">
+                            <connections>
+                                <action selector="addPhotoOrVideoComment:" destination="-1" id="C4v-LS-7Ps"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="ECr-x6-jLw"/>
                         <barButtonItem style="plain" id="RFA-cu-2EX">
                             <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="6y1-jd-8BH">
@@ -256,10 +262,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="addStringComment:" destination="-1" eventType="editingDidEnd" id="unB-KN-tKi"/>
+                                    <action selector="enterStringComment:" destination="-1" eventType="editingDidEnd" id="50w-BE-b8A"/>
+                                </connections>
                             </textField>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="XEG-ZV-Ffa"/>
-                        <barButtonItem title="Post!" id="fMF-UB-4TN"/>
+                        <barButtonItem title="Post!" id="fMF-UB-4TN">
+                            <connections>
+                                <action selector="postComment:" destination="-1" id="V3b-jk-SXR"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
             </subviews>
