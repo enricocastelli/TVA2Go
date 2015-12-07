@@ -44,7 +44,6 @@
     self.secondPlayerView.delegate = self;
 
     self.secondPlayerView.hidden = YES;
-    self.user = [PFUser currentUser];
     [self.seeAllCommentsButton setTitle:@"  See Comments" forState:UIControlStateNormal];
     
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
@@ -64,6 +63,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.user = [PFUser currentUser];
+
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
     UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
@@ -102,6 +103,7 @@
 
 - (void)likeButtonEnabled
 {
+    if ([PFUser currentUser]) {
     if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
         self.likeButton.alpha = 0.3;
         self.likeButton.enabled = NO;
@@ -110,6 +112,11 @@
         
         self.likeButton.alpha = 1;
         self.likeButton.enabled = YES;
+    }
+    } else {
+        self.likeButton.alpha = 0.3;
+        self.likeButton.enabled = NO;
+
     }
 }
 

@@ -117,7 +117,7 @@ static CGFloat timeInterval = 0.4;
     
     
     [self makeRotate:self.logo.layer];
-    self.inspireButton.enabled = NO;
+    [self allButtonsDisabled];
     [self loadingText];
 
     [TAAYouTubeWrapper videosForPlaylist:@"MADE BY TVA" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
@@ -194,6 +194,14 @@ static CGFloat timeInterval = 0.4;
     self.laughButton.enabled = YES;
     self.smartButton.enabled = YES;
     self.randomButton.enabled = YES;
+}
+
+- (void)allButtonsDisabled
+{
+    self.inspireButton.enabled = NO;
+    self.laughButton.enabled = NO;
+    self.smartButton.enabled = NO;
+    self.randomButton.enabled = NO;
 }
 
 - (void) login
