@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *watchFullVideoButton;
-@property (weak, nonatomic) IBOutlet UIButton *postCommentButton;
 @property (weak, nonatomic) IBOutlet UIButton *seeAllCommentsButton;
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) PFQuery *query;
@@ -30,6 +29,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView *instructions;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *postCommentButton;
+
+@property (weak, nonatomic) IBOutlet UITextField *textFieldComment;
 
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 
@@ -51,7 +55,6 @@
     
     self.dislikeButton.layer.cornerRadius = self.dislikeButton.frame.size.width/2;
     self.likeButton.layer.cornerRadius = self.likeButton.frame.size.width/2;
-    self.postCommentButton.layer.cornerRadius = self.postCommentButton.frame.size.width/2;
     self.FBPost.layer.cornerRadius = self.FBPost.frame.size.width/2;
 
     self.seeAllCommentsButton.layer.cornerRadius = self.seeAllCommentsButton.frame.size.width/10;
@@ -292,111 +295,6 @@
     
 }
 
-- (void)alertControllerBackgroundTapped
-{
-    [self dismissViewControllerAnimated: YES
-                             completion: nil];
-}
-
-
-
-- (IBAction)postComment:(id)sender {
-    
-    if ([PFUser currentUser]){
-    
-        PFObject *comment = [PFObject objectWithClassName:@"Comments"];
-        
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Post a comment!"
-                                                                   message:@""
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    
-    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"Write your comment here :) Or click the camera button to post a photo or video response!";
-        [comment setObject:textField.text forKey:@"stringComment"];
-        
- 
-    }];
-    
-    
-    UIAlertAction *takeAPhotoOrVideo = [UIAlertAction actionWithTitle:@"Add photo or video!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        self.imagePicker = [[UIImagePickerController alloc] init];
-        
-        self.imagePicker.allowsEditing = YES;
-        
-        self.imagePicker.delegate = self;
-        
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            NSArray *availableTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-            self.imagePicker.mediaTypes = availableTypes;
-            self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
-            self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
-        } else {
-            self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        
-        [self presentViewController:self.imagePicker animated:YES completion: NULL];
-    }];
-    
-    
-    [takeAPhotoOrVideo setValue:[[UIImage imageNamed:@"cameraButton.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forKey:@"image"];
-    
-    [alert addAction:takeAPhotoOrVideo];
-    
-    UIAlertAction *post = [UIAlertAction actionWithTitle:@"Post!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"post!");
-    }];
-    
-    [alert addAction:post];
-    
-//    [alert addAction:[UIAlertAction actionWithTitle:@"X" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//        [alert dismissViewControllerAnimated:YES completion:nil];
-//    }]];
-    
-        [self presentViewController:alert animated:YES completion:^{
-            alert.view.superview.userInteractionEnabled = YES;
-            [alert.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertControllerBackgroundTapped)]];
-        }];
-        
-//        [self presentViewController: alertController
-//                           animated: YES
-//                         completion:^{
-//                             alertController.view.superview.userInteractionEnabled = YES;
-//                             [alertController.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(alertControllerBackgroundTapped)]];
-//                         }];
-//        
-    } else {
-        
-        UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in!" message:@"Log in to comment :)" preferredStyle:UIAlertControllerStyleAlert];
-  
-        [self presentViewController:notLogin animated:YES completion:^{
-            notLogin.view.superview.userInteractionEnabled = YES;
-            [notLogin.view.superview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(alertControllerBackgroundTapped)]];
-        }];
-
-    }
-
-    
-// didFinishPickingMediaWithInfo example when writing code to save media to Parse and then pass to table view.
-//    - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//    {
-//        
-//        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-//        
-//        AddLekkerViewController *addLekkerViewController = [[AddLekkerViewController alloc]init];
-//        
-//        addLekkerViewController.photo = image;
-//        
-//        [self dismissViewControllerAnimated:YES completion:NULL];
-//        
-//        [self.navigationController pushViewController:addLekkerViewController animated:YES];
-//    }
-    
-}
-
-
 - (IBAction)seeAllComments:(id)sender {
     if (self.tableView.hidden == YES) {
         self.tableView.hidden = NO;
@@ -537,6 +435,22 @@
                          }];
                      }];
     
+}
+
+- (IBAction)addStringComment:(id)sender {
+}
+
+
+- (IBAction)addPhotoOrVideoComment:(id)sender {
+}
+
+
+- (IBAction)postComment:(id)sender {
+    PFObject *comment = [PFObject objectWithClassName:@"Comments"];
+    [comment setObject:self.textFieldComment.text forKey:@"stringComment"];
+//    [comment setObject:<#(nonnull id)#> forKey:<#(nonnull NSString *)#>];
+    
+    [comment saveInBackground];
 }
 
 
