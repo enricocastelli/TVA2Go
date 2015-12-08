@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.playerView.delegate = self;
     
     if (self.fullVideo != nil) {
@@ -55,11 +56,6 @@
     [self.playerView stopVideo];
 }
 
-- (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
-{
-    if (state == kYTPlayerStatePlaying) {
-    }
-}
 
 
 

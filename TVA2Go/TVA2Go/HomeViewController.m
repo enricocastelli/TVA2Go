@@ -14,10 +14,8 @@
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
 #import "GTLYouTube.h"
-#import "LoadingEffect.h"
 
 
-static CGFloat timeInterval = 0.4;
 
 @interface HomeViewController () <UINavigationControllerDelegate, UITextFieldDelegate>
 
@@ -40,11 +38,6 @@ static CGFloat timeInterval = 0.4;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 @property (nonatomic) VideoPlayerViewController *v;
-@property (strong, nonatomic) NSArray *objects;
-
-@property (nonatomic) CGFloat number;
-@property (nonatomic, strong) UIView * loadingView;
-@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic) CGRect originalLogo;
 @property (nonatomic) CGRect original;
 
@@ -57,29 +50,15 @@ static CGFloat timeInterval = 0.4;
 {
     self.original = self.view.frame;
     
-    if ([PFUser currentUser]) {
-        
-        [self.successLabel.layer removeAllAnimations];
-        self.successLabel.hidden = NO;
-        self.successLabel.alpha = 1;
-        self.successLabel.textColor = [UIColor blackColor];
-        self.successLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
-    } else {
-        self.successLabel.hidden = NO;
-        self.successLabel.alpha = 0;
-    }
     [super viewWillAppear:animated];
     [self allButtonsEnabled];
-    
-    self.number = 80;
     
     self.originalLogo = self.logo.frame;
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.toolbarHidden = YES;
-    self.navigationController.toolbar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
-    self.navigationController.toolbar.tintColor = [UIColor whiteColor];
+
+    [self settingLabel];
     [self settingToolbar];
-    
     [self loadingAnimation:self.inspireButton.layer withDelay:1];
     [self loadingAnimation:self.laughButton.layer withDelay:1.4];
     [self loadingAnimation:self.smartButton.layer withDelay:1.8];
@@ -190,6 +169,21 @@ static CGFloat timeInterval = 0.4;
     }
 }
 
+- (void)settingLabel
+{
+    if ([PFUser currentUser]) {
+        
+        [self.successLabel.layer removeAllAnimations];
+        self.successLabel.hidden = NO;
+        self.successLabel.alpha = 1;
+        self.successLabel.textColor = [UIColor blackColor];
+        self.successLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
+    } else {
+        self.successLabel.hidden = NO;
+        self.successLabel.alpha = 0;
+    }
+}
+
 - (void)allButtonsEnabled
 {
     self.inspireButton.enabled = YES;
@@ -264,9 +258,6 @@ static CGFloat timeInterval = 0.4;
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.toolbarHidden = YES;
-    [self.loadingView removeFromSuperview];
-    self.loadingView = nil;
-    [self.timer invalidate];
 }
 
 - (void)loadingText
