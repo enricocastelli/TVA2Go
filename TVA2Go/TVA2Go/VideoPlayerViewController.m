@@ -12,7 +12,7 @@
 #import "PinnedViewController.h"
 
 
-@interface VideoPlayerViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate, UIImagePickerControllerDelegate>
+@interface VideoPlayerViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
@@ -37,6 +37,12 @@
 
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 
+@property (strong, nonatomic) PFFile *imageFile;
+
+@property (strong, nonatomic) PFFile *videoFile;
+
+@property (strong, nonatomic) NSArray *arrayOfCommentObjects;
+
 @end
 
 @implementation VideoPlayerViewController
@@ -47,6 +53,10 @@
     [super viewDidLoad];
     
     self.playerView.delegate = self;
+    
+    [self.tableView setDelegate:self];
+    
+    [self.tableView setDataSource:self];
 
     [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     
@@ -61,6 +71,8 @@
     self.watchFullVideoButton.layer.cornerRadius = self.watchFullVideoButton.frame.size.width/10;
     [self.dislikeButton addTarget:self action:@selector(dislike) forControlEvents:UIControlEventTouchUpInside];
     [self.likeButton addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
 }
 
@@ -334,12 +346,35 @@
     
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayOfCommentObjects.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    
+    PFObject *commentObject = self.arrayOfCommentObjects[indexPath.row];
+    
+    cell.textLabel.text = commentObject[@"stringComment"];
+    cell.detailTextLabel.text = commentObject[@"username"];
+    PFFile *file = commentObject[@"imageComment"];
+    [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:data];
+        cell.imageView.image = image;
+        cell.textLabel.text = commentObject[@"stringComment"];
+        cell.detailTextLabel.text = commentObject[@"username"];
+
+    }];
+    
+    return cell;
+}
+
 - (IBAction)seeAllComments:(id)sender {
     if (self.tableView.hidden == YES) {
 //        [self toolbarButtonsEnabled];
         self.tableView.hidden = NO;
         self.toolbar.hidden = NO;
-
         self.tableView.alpha = 0.95;
         [UIView animateWithDuration:0.6 animations:^{
             self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
@@ -347,6 +382,17 @@
         }];
         [self.seeAllCommentsButton setTitle:@"  Hide Comments" forState:UIControlStateNormal];
         self.watchFullVideoButton.hidden = YES;
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
+        
+        [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+            self.arrayOfCommentObjects = objects;
+            [self.tableView reloadData];
+        }];
+        
+        
     } else {
         [UIView animateWithDuration:1 animations:^{
             self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
@@ -501,27 +547,59 @@
 
 - (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    if (self.imagePicker.cameraCaptureMode == UIImagePickerControllerCameraCaptureModePhoto) {
-        UIImage *image = UIImagePickerControllerEditedImage;
-    } else {}
+    NSString *infoImage = info[UIImagePickerControllerMediaType];
+    if ([infoImage isEqualToString:@"public.image"]) {
+        UIImage *image = info[UIImagePickerControllerEditedImage];
+        NSData *data = UIImageJPEGRepresentation(image, 0.5);
+        PFFile *file = [PFFile fileWithData:data];
+        self.imageFile = file;
+        
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    } else {
+    
+        NSURL *commentVideoUrl = info[UIImagePickerControllerMediaURL];
+        NSData *data = [NSData dataWithContentsOfURL:commentVideoUrl];
+        PFFile *file = [PFFile fileWithData:data];
+        self.videoFile = file;
+        [[NSFileManager defaultManager] removeItemAtPath:[commentVideoUrl path] error:nil];
+        
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    }
     
 }
 
 - (IBAction)postComment:(id)sender {
     
     if ([PFUser currentUser]) {
-        PFObject *comment = [PFObject objectWithClassName:@"Comments"];
-        [comment setObject:self.textFieldComment.text forKey:@"stringComment"];
-        [comment setObject:self.user.objectId forKey:@"userObjectId"];
-        [comment saveInBackground];
-    } else {
-    
-        nil;
         
-//
-//    [comment setObject:<#(nonnull id)#> forKey:<#(nonnull NSString *)#>];
-
-}
+        PFObject *comment = [PFObject objectWithClassName:@"Comments"];
+        if (self.textFieldComment.text != nil) {
+            [comment setObject:self.textFieldComment.text forKey:@"stringComment"];
+        } else {
+            nil;
+        }
+        
+        if (self.imageFile != nil) {
+            [comment setObject:self.imageFile forKey:@"imageComment"];
+        } else {
+            nil;
+        }
+        
+        if (self.videoFile != nil) {
+            [comment setObject:self.videoFile forKey:@"videoComment"];
+        } else {
+            nil;
+        }
+        
+        [comment setObject:self.user.username forKey:@"username"];
+        
+        [comment saveInBackground];
+        
+    } else {
+        nil;
+    }
 
 }
 //- (void)alertControllerBackgroundTapped
