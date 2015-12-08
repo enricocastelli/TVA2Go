@@ -12,6 +12,7 @@
 #import "FullVideoViewController.h"
 #import "GTLYouTube.h"
 #import "PinCollectionViewCell.h"
+#import "TVA2Go-Swift.h"
 
 
 @interface PinnedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -36,26 +37,49 @@
     [super viewDidLoad];
 
     self.deleting = @"NO";
-    
 
+    [self setCollectionView];
+    [self setNav];
+    [self setObjects];
+    self.firstTime = @"YES";
+
+    self.view.backgroundColor = self.pinned.backgroundColor;
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.pinned.allowsMultipleSelection = NO;
+}
+
+- (void)setCollectionView
+{
+    
     [self.pinned registerNib:[UINib nibWithNibName:@"PinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
-    self.navigationItem.rightBarButtonItem = edit;
+    
     self.pinned.delegate = self;
     self.pinned.allowsSelection = YES;
     self.pinned.frame = self.view.frame;
+}
+
+- (void)setNav
+{
+    UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItem = edit;
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
     [title setTitle:@"Pinned Videos" forState:UIControlStateNormal];
     UIFont * font = [UIFont fontWithName:@"Helvetica Neuw" size:20];
     
     title.titleLabel.font = font;
-
-    self.navigationItem.titleView = title;
-    self.firstTime = @"YES";
-
-    self.view.backgroundColor = self.pinned.backgroundColor;
     
+    self.navigationItem.titleView = title;
+
+}
+
+- (void)setObjects
+{
     self.user = [PFUser currentUser];
     [self.user fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         self.array = self.user[@"pinnedVideos"];
@@ -65,7 +89,7 @@
         [self.query whereKey:@"videoID" containedIn:self.array];
         
         [self.query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-           
+            
             self.videos = [objects sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
                 PFObject *object1 = obj1;
                 PFObject *object2 = obj2;
@@ -77,24 +101,19 @@
                 } else {
                     return NSOrderedAscending;
                 }
-
+                
             }];
             
             
             [self.pinned reloadData];
             [self cellFading];
-
+            
             
         }];
-
+        
     }];
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    self.pinned.allowsMultipleSelection = NO;
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -140,7 +159,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    FullVideoViewController *f = [[FullVideoViewController alloc]init];
+     FullVideoSwift*f = [[FullVideoSwift alloc]init];
     
  
     

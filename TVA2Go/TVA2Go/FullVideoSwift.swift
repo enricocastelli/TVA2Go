@@ -28,8 +28,13 @@ override func viewDidLoad() {
         textView.text = fullVideo!.snippet.descriptionProperty
     } else {
         let videoID = parseVideoObject!["videoID"] as! String
-        playerView!.loadWithVideoId(videoID)
-        titleLabel!.text = parseVideoObject!["title"] as? String
+        playerView.loadWithVideoId(videoID)
+        titleLabel.text = parseVideoObject!["title"] as? String
+        let date = parseVideoObject!["youtubeDate"] as? NSDate
+        let formatter = NSDateFormatter.init()
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateLabel.text = formatter.stringFromDate(date!)
+        textView.text = parseVideoObject!["description"] as? String
     }
 }
 

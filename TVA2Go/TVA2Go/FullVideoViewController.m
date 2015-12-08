@@ -8,55 +8,58 @@
 
 #import "FullVideoViewController.h"
 #import "PinnedViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
+#import "TAAYouTubeWrapper.h"
+#import "RankingTableViewCell.h"
 
-@interface FullVideoViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate>
+@interface FullVideoViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet YTPlayerView *playerView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-
+@property (strong, nonatomic) NSArray *videos;
 
 @end
 
 @implementation FullVideoViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    self.playerView.delegate = self;
-    
-    if (self.fullVideo != nil) {
-    
-     [self.playerView loadWithVideoId:self.fullVideo.identifier];
-        self.titleLabel.text = self.fullVideo.snippet.title;
-        NSDate *date = self.fullVideo.snippet.publishedAt.date;
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        formatter.dateStyle = NSDateFormatterMediumStyle;
-        NSString *string = [formatter stringFromDate:date];
-        self.dateLabel.text = string;
-        self.textView.text = self.fullVideo.snippet.descriptionProperty;
-    
-    } else {
-        
-        [self.playerView loadWithVideoId:self.parseVideoObject[@"videoID"]];
-          self.titleLabel.text = self.parseVideoObject[@"title"];
-    }
+    [self.tableView registerNib:[UINib nibWithNibName: @"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
+        self.videos = videos;
+        [self.tableView reloadData];
+    }];
 }
 
-- (void)playerViewDidBecomeReady:(YTPlayerView *)playerView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [playerView playVideo];
+    return self.videos.count;
 }
 
 
-- (void)viewWillDisappear:(BOOL)animated
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.playerView stopVideo];
+    
+    RankingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    GTLYouTubeVideo *video = self.videos[indexPath.row];
+
+    cell.titleLabel.text = video.snippet.title;
+    
+    NSURL *url = [NSURL URLWithString:video.snippet.thumbnails.standard.url];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage*im = [UIImage imageWithData:data];
+    cell.imageThumbnail.image = im;
+    [cell.imageThumbnail loadInBackground];
+    
+    
+    
+    
+    return cell;
+    
 }
-
-
 
 
 

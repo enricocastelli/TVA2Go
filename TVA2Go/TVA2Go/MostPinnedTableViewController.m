@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [self.tableView setBackgroundColor:[UIColor blackColor]];
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorColor = [UIColor blackColor];
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -39,6 +40,8 @@
     title.titleLabel.font = font;
 
     self.navigationItem.titleView = title;
+    UIBarButtonItem *all = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
+    self.navigationItem.rightBarButtonItem = all;
     
 }
 
@@ -67,17 +70,26 @@
     cell.titleLabel.text = object[@"title"];
     cell.descriptionLabel.text = nil;
     cell.rankingLabel.text = [NSString stringWithFormat:@"%@", object[@"pinCount"]];
-    cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+    cell.selectionStyle = UITableViewCellSeparatorStyleSingleLine;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FullVideoSwift *f = [[FullVideoSwift alloc] init];
+    FullVideoSwift *f = [[FullVideoSwift alloc] initWithNibName:@"FullVideoViewController" bundle:nil];
     f.parseVideoObject = self.objects[indexPath.row];
     
     [self.navigationController pushViewController:f animated:YES];
+    
 }
+
+
+- (void)allVideos
+{
+    FullVideoViewController *full = [[FullVideoViewController alloc] init];
+    [self.navigationController pushViewController:full animated:YES];
+}
+
 
 
 @end

@@ -173,12 +173,16 @@
 {
     if ([PFUser currentUser]) {
         
+        [self.navigationController setToolbarHidden:NO];
         [self.successLabel.layer removeAllAnimations];
         self.successLabel.hidden = NO;
         self.successLabel.alpha = 1;
         self.successLabel.textColor = [UIColor blackColor];
         self.successLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
     } else {
+        
+        [self.navigationController setToolbarHidden:YES];
+
         self.successLabel.hidden = NO;
         self.successLabel.alpha = 0;
     }
@@ -206,7 +210,6 @@
     if ([PFUser currentUser]) {
         [self.loginButton setTitle:@" Logout " forState:UIControlStateNormal];
         [self logoutFade];
-        self.navigationController.toolbarHidden = NO;
 
         
     } else {
@@ -215,7 +218,6 @@
     [self.userButton removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
      [self.userButton addTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
     self.userButton.selected = YES;
-        self.navigationController.toolbarHidden = NO;
 
     }
 }
@@ -230,7 +232,7 @@
         self.laughButton.alpha = 0;
         self.smartButton.alpha = 0;
         self.randomButton.alpha = 0;
-        
+        [self.navigationController setToolbarHidden:YES];
     } completion:^(BOOL finished) {
     }];
     [self undo];
@@ -389,8 +391,6 @@
 
 - (void)undo
 {
-    self.navigationController.toolbarHidden = YES;
-
     self.logo.hidden = NO;
     self.logo.alpha = 1;
 
@@ -491,6 +491,7 @@
                         [self.loginButton.layer removeAllAnimations];
                         self.successLabel.textColor = [UIColor blackColor];
                         self.successLabel.text = [NSString stringWithFormat:@"%@" ,user.username];
+                        [self.navigationController setToolbarHidden:NO];
                     } completion:nil];
                 }];
             }];
@@ -577,6 +578,8 @@
                     self.successLabel.textColor = [UIColor blackColor];
 
                     self.successLabel.text = [NSString stringWithFormat:@"%@" ,user.username];
+                    [self.navigationController setToolbarHidden:NO];
+
 
                 } completion:nil];
             }];

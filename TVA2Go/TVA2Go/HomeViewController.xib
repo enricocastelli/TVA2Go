@@ -33,16 +33,21 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0zL-P0-pcq" userLabel="body Stack View">
                     <rect key="frame" x="0.0" y="30" width="321" height="694"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-nc-4fT">
-                            <rect key="frame" x="80" y="0.0" width="161" height="161"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-nc-4fT">
+                            <rect key="frame" x="101" y="0.0" width="120" height="120"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="0iL-nc-4fT" secondAttribute="height" multiplier="1:1" id="32k-Yd-arR"/>
-                                <constraint firstAttribute="height" constant="161" id="Sw7-zB-eZB"/>
-                                <constraint firstAttribute="width" constant="161" id="qne-W5-8sG"/>
+                                <constraint firstAttribute="height" constant="1" id="Sw7-zB-eZB"/>
+                                <constraint firstAttribute="width" constant="120" id="qne-W5-8sG"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Sw7-zB-eZB"/>
+                                </mask>
+                            </variation>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGl-lP-too">
-                            <rect key="frame" x="129" y="213" width="63" height="52"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGl-lP-too">
+                            <rect key="frame" x="129" y="179" width="63" height="52"/>
                             <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="32"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -50,8 +55,8 @@
                                 <rect key="frame" x="76" y="176" width="323" height="0.0"/>
                             </variation>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HaN-ym-UxV">
-                            <rect key="frame" x="93" y="317" width="136" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HaN-ym-UxV">
+                            <rect key="frame" x="93" y="289" width="136" height="30"/>
                             <color key="backgroundColor" red="0.14901960784313725" green="0.5725490196078431" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Inspire me">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,8 +65,8 @@
                                 <action selector="inspireMe:" destination="-1" eventType="touchUpInside" id="nfq-Cf-ZMH"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfv-7R-U2r">
-                            <rect key="frame" x="93" y="399" width="136" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfv-7R-U2r">
+                            <rect key="frame" x="93" y="378" width="136" height="30"/>
                             <color key="backgroundColor" red="0.17204204754527172" green="0.6744834107292248" blue="0.8935448232323232" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Make me laugh">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,8 +75,8 @@
                                 <action selector="makeMeLaugh:" destination="-1" eventType="touchUpInside" id="9h4-nq-ZPh"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-Hk-7I1">
-                            <rect key="frame" x="93" y="480" width="136" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-Hk-7I1">
+                            <rect key="frame" x="93" y="467" width="136" height="30"/>
                             <color key="backgroundColor" red="0.19253879947837882" green="0.75484004069246113" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="  Make me smarter  ">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -80,8 +85,8 @@
                                 <action selector="makeMeSmarter:" destination="-1" eventType="touchUpInside" id="rkm-1y-E6q"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-J7-g0f">
-                            <rect key="frame" x="93" y="562" width="136" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-J7-g0f">
+                            <rect key="frame" x="93" y="555" width="136" height="30"/>
                             <color key="backgroundColor" red="0.20238594621770789" green="0.7718502576090025" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Random!">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,7 +131,7 @@
                     </variation>
                 </stackView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-NU-c0A" userLabel="Text field Stack View">
-                    <rect key="frame" x="23" y="200" width="275" height="30"/>
+                    <rect key="frame" x="23" y="200" width="276" height="30"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZgO-lC-YNo">
                             <rect key="frame" x="0.0" y="0.0" width="88" height="30"/>

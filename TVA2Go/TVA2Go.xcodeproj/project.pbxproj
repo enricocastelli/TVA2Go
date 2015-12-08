@@ -22,6 +22,8 @@
 		F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */; };
 		F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */; };
 		FD7E2AA91C15D3F3000A1A96 /* FullVideoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */; };
+		FD7E2AAC1C16CD4A000A1A96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */; };
+		FD7E2AAD1C16CD4A000A1A96 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */; };
 		FD922E9F1C04AD1D00D690AA /* PinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */; };
 		FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */; };
 		FDB10ECE1C0461FE0000100B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ECD1C0461FE0000100B /* main.m */; };
@@ -73,6 +75,8 @@
 		F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		F9A22218E537DEC4FCB350BA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullVideoSwift.swift; sourceTree = "<group>"; };
+		FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCollectionViewCell.h; sourceTree = "<group>"; };
 		FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCollectionViewCell.m; sourceTree = "<group>"; };
 		FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD7E2AAC1C16CD4A000A1A96 /* AVFoundation.framework in Frameworks */,
+				FD7E2AAD1C16CD4A000A1A96 /* AVKit.framework in Frameworks */,
 				F246ABD01C0700590022291E /* Social.framework in Frameworks */,
 				E0AEEE29BB293318A1C3B6E4 /* libPods.a in Frameworks */,
 			);
@@ -123,6 +129,8 @@
 		7DAF80AB8407AFE7C3BC689A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */,
+				FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */,
 				F246ABCF1C0700590022291E /* Social.framework */,
 				56EC0172E151BE3A796B68D6 /* libPods.a */,
 			);

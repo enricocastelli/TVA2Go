@@ -13,10 +13,7 @@
 #import "VideoPlayerViewController.h"
 
 
-@interface FullVideoViewController : UIViewController
+@interface FullVideoViewController : UITableViewController
 
-@property (strong, nonatomic) GTLYouTubeVideo *fullVideo;
-
-@property (strong, nonatomic) PFObject *parseVideoObject;
 
 @end

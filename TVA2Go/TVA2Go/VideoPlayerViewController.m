@@ -10,6 +10,7 @@
 #import "TAAYouTubeWrapper.h"
 #import "FullVideoViewController.h"
 #import "PinnedViewController.h"
+#import "TVA2Go-Swift.h"
 
 
 @interface VideoPlayerViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -181,6 +182,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.playerView stopVideo];
+    self.tableView.hidden = YES;
+    self.toolbar.hidden = YES;
 }
 
 - (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
@@ -195,8 +198,7 @@
 {
 
     [self animateVideoDislike:self.playerView];
-    
-}
+    }
 
 - (void)like
 {
@@ -233,7 +235,7 @@
             current[@"description"] = self.currentVideo.snippet.descriptionProperty;
             current[@"title"] = self.currentVideo.snippet.title;
             current[@"videoID"] = self.currentVideo.identifier;
-            
+            current[@"youtubeDate"] = self.currentVideo.snippet.publishedAt.date;
             current[@"pinCount"] = [NSNumber numberWithInt:1];
             
             [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -321,7 +323,7 @@
 
 - (IBAction)watchFullVideo:(id)sender {
     
-    FullVideoViewController *f = [[FullVideoViewController alloc] init];
+    FullVideoSwift *f = [[FullVideoSwift alloc] initWithNibName:@"FullVideoViewController" bundle:nil];
     
     f.fullVideo = self.currentVideo;
     f.view.alpha = 0;
@@ -448,13 +450,6 @@
                          [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
                          [playerView playVideo];
                          
-                         UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
-                         title.tintColor = [UIColor whiteColor];
-                         UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
-                         
-                         title.titleLabel.font = font;
-                         [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
-                         self.navigationItem.titleView = title;
                          self.titleLabel.text = self.currentVideo.snippet.title;
                          
                          NSDate *date = self.currentVideo.snippet.publishedAt.date;
@@ -496,14 +491,9 @@
                          [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
                          [playerView playVideo];
                          
-                         UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
-                         title.tintColor = [UIColor whiteColor];
-                         UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
                          
-                         title.titleLabel.font = font;
-                         [title setTitle:[NSString stringWithFormat:@"%@" , self.currentVideo.snippet.title] forState:UIControlStateNormal];
-                         self.navigationItem.titleView = title;
-                          self.titleLabel.text = self.currentVideo.snippet.title;
+                         
+                            self.titleLabel.text = self.currentVideo.snippet.title;
                          
                              NSDate *date = self.currentVideo.snippet.publishedAt.date;
                              NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
