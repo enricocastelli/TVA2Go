@@ -10,6 +10,7 @@
 
 #import "RankingTableViewCell.h"
 #import "FullVideoViewController.h"
+#import "TVA2Go-Swift.h"
 
 @interface MostPinnedTableViewController () 
 
@@ -72,7 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FullVideoViewController *f = [[FullVideoViewController alloc] init];
+    FullVideoSwift *f = [[FullVideoSwift alloc] init];
     f.parseVideoObject = self.objects[indexPath.row];
     
     [self.navigationController pushViewController:f animated:YES];

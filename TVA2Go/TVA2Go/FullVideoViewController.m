@@ -56,11 +56,6 @@
     [self.playerView stopVideo];
 }
 
-- (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
-{
-    if (state == kYTPlayerStatePlaying) {
-    }
-}
 
 
 

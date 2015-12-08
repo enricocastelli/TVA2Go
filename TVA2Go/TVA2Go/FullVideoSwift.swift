@@ -7,28 +7,59 @@
 //
 
 import Foundation
+@objc class FullVideoSwift : UIViewController, YTPlayerViewDelegate {
+    
+    var fullVideo : GTLYouTubeVideo?
+    var parseVideoObject : PFObject?
+    @IBOutlet var playerView : YTPlayerView!
+    @IBOutlet var titleLabel : UILabel!
+    @IBOutlet var dateLabel : UILabel!
+    @IBOutlet var textView : UITextView!
 
-var fullVideo = GTLYouTubeVideo()
-var parseVideoObject = PFObject()
-var playerView = YTPlayerView()
-var titleLabel = UILabel()
-var dateLabel = UILabel()
-var textView = UITextView()
+override func viewDidLoad() {
+    playerView?.delegate = self
+    if (fullVideo != nil) {
+        playerView.loadWithVideoId(fullVideo!.identifier)
+        titleLabel.text = fullVideo!.snippet.title
+        let date = fullVideo!.snippet.publishedAt.date
+        let formatter = NSDateFormatter.init()
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateLabel.text = formatter.stringFromDate(date)
+        textView.text = fullVideo!.snippet.descriptionProperty
+    } else {
+        let videoID = parseVideoObject!["videoID"] as! String
+        playerView!.loadWithVideoId(videoID)
+        titleLabel!.text = parseVideoObject!["title"] as? String
+    }
+}
 
-//func viewDidLoad() {
-//    playerView.delegate = self
-//    if fullVideo {
-//        playerView.loadWithVideoId(fullVideo.identifier)
-//        titleLabel.text = fullVideo.snippet.title
-//        var date = NSDate()
-//        date = fullVideo.snippet.publishedAt.date
-//        let formatter = NSDateFormatter.init()
-//        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
-//        dateLabel.text = formatter.stringFromDate(date)
-//        textView.text = fullVideo.snippet.descriptionProperty
-//    } else {
-//    
-//        playerView.loadWithVideoId(parseVideoObject["videoID"])
-//        titleLabel.text = parseVideoObject["title"]
-//    }
-//}
+    
+    func playerViewDidBecomeReady(playerView: YTPlayerView!) {
+        playerView!.playVideo()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        playerView!.stopVideo()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}

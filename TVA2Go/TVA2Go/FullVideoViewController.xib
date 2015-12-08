@@ -6,7 +6,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullVideoViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullVideoSwift" customModule="TVA2Go" customModuleProvider="target">
             <connections>
                 <outlet property="dateLabel" destination="LAA-Zv-oQG" id="Fth-RX-1mG"/>
                 <outlet property="playerView" destination="Gz7-13-NJF" id="SaJ-z5-u99"/>
