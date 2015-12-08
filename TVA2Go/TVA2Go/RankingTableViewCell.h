@@ -19,10 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *rankingLabel;
-
-
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-
-@property (weak, nonatomic) IBOutlet UIView *blur;
+@property (weak, nonatomic) IBOutlet UIImageView *pinImage;
 
 @end

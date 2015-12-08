@@ -35,10 +35,10 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pin" translatesAutoresizingMaskIntoConstraints="NO" id="8Bf-BQ-GaE">
-                        <rect key="frame" x="250" y="146" width="18" height="18"/>
+                        <rect key="frame" x="254" y="144" width="14" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="18" id="BwP-hZ-cfO"/>
-                            <constraint firstAttribute="height" constant="18" id="QNf-Sn-WA6"/>
+                            <constraint firstAttribute="width" constant="14" id="BwP-hZ-cfO"/>
+                            <constraint firstAttribute="height" constant="20" id="QNf-Sn-WA6"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHJ-Dd-hUA">
@@ -71,6 +71,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageThumbnail" destination="Uvm-tY-3hT" id="xSx-3d-dR8"/>
+                <outlet property="pinImage" destination="8Bf-BQ-GaE" id="kZ3-sx-Sp0"/>
                 <outlet property="rankingLabel" destination="NDc-1l-Cbf" id="rrC-Xn-F4l"/>
                 <outlet property="titleLabel" destination="aHJ-Dd-hUA" id="7tU-R4-GNb"/>
             </connections>

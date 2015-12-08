@@ -75,10 +75,10 @@
     
     [self roundedButtons:self.loginButton byNumber:4];
     [self roundedButtons:self.signupButton byNumber:4];
-    [self roundedButtons:self.inspireButton byNumber:9];
-    [self roundedButtons:self.smartButton byNumber:9];
-    [self roundedButtons:self.laughButton byNumber:9];
-    [self roundedButtons:self.randomButton byNumber:9];
+    [self roundedButtons:self.inspireButton byNumber:10];
+    [self roundedButtons:self.smartButton byNumber:10];
+    [self roundedButtons:self.laughButton byNumber:10];
+    [self roundedButtons:self.randomButton byNumber:10];
 
     self.usernameField.delegate = self;
     
@@ -206,6 +206,7 @@
 
 - (void) login
 {
+    [self allButtonsDisabled];
     [self.userButton setSelected:YES];
     if ([PFUser currentUser]) {
         [self.loginButton setTitle:@" Logout " forState:UIControlStateNormal];
@@ -616,7 +617,9 @@
 {
    [UIView animateWithDuration:1 delay:delay usingSpringWithDamping:1 initialSpringVelocity:0 options: UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat |UIViewAnimationOptionAllowUserInteraction animations:^{
        layer.bounds = CGRectMake(0, 0, layer.bounds.size.width + 2, layer.bounds.size.height +2);
-   } completion:nil];
+   } completion:^(BOOL finished) {
+        layer.bounds = CGRectMake(0, 0, layer.bounds.size.width - 2, layer.bounds.size.height - 2);
+   }];
 }
 
 
@@ -645,7 +648,9 @@
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
-    [self.view setFrame:self.original];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.frame = self.original;
+    }];
 }
 
 

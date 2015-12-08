@@ -18,6 +18,9 @@ import Foundation
 
 override func viewDidLoad() {
     playerView?.delegate = self
+    let home = UIImage.init(named:"Home")
+    let homeButton = UIBarButtonItem.init(image: home, style: UIBarButtonItemStyle.Plain, target: self, action:"home")
+    self.navigationItem.rightBarButtonItem = homeButton
     if (fullVideo != nil) {
         playerView.loadWithVideoId(fullVideo!.identifier)
         titleLabel.text = fullVideo!.snippet.title
@@ -49,7 +52,9 @@ override func viewDidLoad() {
     
     
     
-    
+    func home() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
     
     

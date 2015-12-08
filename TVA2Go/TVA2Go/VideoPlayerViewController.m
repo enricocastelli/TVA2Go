@@ -8,7 +8,6 @@
 
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
-#import "FullVideoViewController.h"
 #import "PinnedViewController.h"
 #import "TVA2Go-Swift.h"
 
@@ -323,7 +322,7 @@
 
 - (IBAction)watchFullVideo:(id)sender {
     
-    FullVideoSwift *f = [[FullVideoSwift alloc] initWithNibName:@"FullVideoViewController" bundle:nil];
+    FullVideoSwift *f = [[FullVideoSwift alloc] initWithNibName:@"FullSwiftViewController" bundle:nil];
     
     f.fullVideo = self.currentVideo;
     f.view.alpha = 0;
@@ -344,7 +343,6 @@
     
     
     [self.navigationController pushViewController:f animated:YES];
-//    [UIView commitAnimations];
     
 }
 

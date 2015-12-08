@@ -9,7 +9,6 @@
 #import "PinnedViewController.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
-#import "FullVideoViewController.h"
 #import "GTLYouTube.h"
 #import "PinCollectionViewCell.h"
 #import "TVA2Go-Swift.h"

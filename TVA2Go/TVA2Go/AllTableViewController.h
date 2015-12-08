@@ -13,7 +13,7 @@
 #import "VideoPlayerViewController.h"
 
 
-@interface FullVideoViewController : UITableViewController
+@interface AllTableViewController : UITableViewController
 
 
 @end

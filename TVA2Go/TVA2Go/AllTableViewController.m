@@ -6,30 +6,33 @@
 //  Copyright © 2015 Eyolph. All rights reserved.
 //
 
-#import "FullVideoViewController.h"
+#import "AllTableViewController.h"
 #import "PinnedViewController.h"
-#import <AVFoundation/AVFoundation.h>
-#import <AVKit/AVKit.h>
 #import "TAAYouTubeWrapper.h"
 #import "RankingTableViewCell.h"
+#import "TVA2Go-Swift.h"
 
-@interface FullVideoViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface AllTableViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *videos;
 
 @end
 
-@implementation FullVideoViewController
+@implementation AllTableViewController
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.hidden = YES;
     [self.tableView registerNib:[UINib nibWithNibName: @"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    UIImage *home = [UIImage imageNamed:@"Home"];
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];
+    self.navigationItem.rightBarButtonItem = homeButton;
     [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         self.videos = videos;
         [self.tableView reloadData];
+        self.tableView.hidden = NO;
     }];
 }
 
@@ -53,15 +56,31 @@
     UIImage*im = [UIImage imageWithData:data];
     cell.imageThumbnail.image = im;
     [cell.imageThumbnail loadInBackground];
-    
-    
-    
+    cell.pinImage.alpha = 0;
+    cell.rankingLabel.alpha = 0;
     
     return cell;
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FullVideoSwift *f = [[FullVideoSwift alloc] initWithNibName:@"FullSwiftViewController" bundle:nil];
+    f.fullVideo = self.videos[indexPath.row];
+    
+    [self.navigationController pushViewController:f animated:YES];
+    
+}
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 170;
+}
+
+- (void)home
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end

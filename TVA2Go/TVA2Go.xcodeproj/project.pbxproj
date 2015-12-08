@@ -17,8 +17,8 @@
 		F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BCE1C046AE500D3251C /* PinnedViewController.m */; };
 		F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BCF1C046AE500D3251C /* PinnedViewController.xib */; };
 		F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */; };
-		F2803BD81C046BC400D3251C /* FullVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BD61C046BC400D3251C /* FullVideoViewController.m */; };
-		F2803BD91C046BC400D3251C /* FullVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullVideoViewController.xib */; };
+		F2803BD81C046BC400D3251C /* AllTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BD61C046BC400D3251C /* AllTableViewController.m */; };
+		F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */; };
 		F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */; };
 		F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */; };
 		FD7E2AA91C15D3F3000A1A96 /* FullVideoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */; };
@@ -67,9 +67,9 @@
 		F2803BCF1C046AE500D3251C /* PinnedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinnedViewController.xib; sourceTree = "<group>"; };
 		F2803BD21C046B0900D3251C /* MostPinnedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostPinnedTableViewController.h; sourceTree = "<group>"; };
 		F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostPinnedTableViewController.m; sourceTree = "<group>"; };
-		F2803BD51C046BC400D3251C /* FullVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullVideoViewController.h; sourceTree = "<group>"; };
-		F2803BD61C046BC400D3251C /* FullVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullVideoViewController.m; sourceTree = "<group>"; };
-		F2803BD71C046BC400D3251C /* FullVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullVideoViewController.xib; sourceTree = "<group>"; };
+		F2803BD51C046BC400D3251C /* AllTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTableViewController.h; sourceTree = "<group>"; };
+		F2803BD61C046BC400D3251C /* AllTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTableViewController.m; sourceTree = "<group>"; };
+		F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullSwiftViewController.xib; sourceTree = "<group>"; };
 		F2E77C361C05C4F6001EBD00 /* RankingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankingTableViewCell.h; sourceTree = "<group>"; };
 		F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
 		F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
@@ -192,10 +192,10 @@
 				F2E77C361C05C4F6001EBD00 /* RankingTableViewCell.h */,
 				F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */,
 				F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */,
-				F2803BD51C046BC400D3251C /* FullVideoViewController.h */,
-				F2803BD61C046BC400D3251C /* FullVideoViewController.m */,
+				F2803BD51C046BC400D3251C /* AllTableViewController.h */,
+				F2803BD61C046BC400D3251C /* AllTableViewController.m */,
 				FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */,
-				F2803BD71C046BC400D3251C /* FullVideoViewController.xib */,
+				F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */,
 				FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */,
 				F246ABD11C0724F60022291E /* Assets.xcassets */,
 				FDB10ED71C0461FE0000100B /* Info.plist */,
@@ -346,7 +346,7 @@
 				F2803BC71C04691F00D3251C /* HomeViewController.xib in Resources */,
 				F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */,
 				F246ABD21C0724F60022291E /* Assets.xcassets in Resources */,
-				F2803BD91C046BC400D3251C /* FullVideoViewController.xib in Resources */,
+				F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +429,7 @@
 				F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */,
 				F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */,
 				F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */,
-				F2803BD81C046BC400D3251C /* FullVideoViewController.m in Sources */,
+				F2803BD81C046BC400D3251C /* AllTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

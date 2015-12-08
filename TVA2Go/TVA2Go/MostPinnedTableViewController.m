@@ -9,7 +9,7 @@
 #import "MostPinnedTableViewController.h"
 
 #import "RankingTableViewCell.h"
-#import "FullVideoViewController.h"
+#import "AllTableViewController.h"
 #import "TVA2Go-Swift.h"
 
 @interface MostPinnedTableViewController () 
@@ -32,18 +32,24 @@
 //    [self.tableView setBackgroundColor:[UIColor blackColor]];
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorColor = [UIColor blackColor];
+    [self setNavigationBar];
+    
+}
+
+- (void)setNavigationBar
+{
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
     [title setTitle:@"Most Pinned Videos" forState:UIControlStateNormal];
     UIFont * font = [UIFont fontWithName:@"Helvetica Neuw" size:20];
     
     title.titleLabel.font = font;
-
-    self.navigationItem.titleView = title;
-    UIBarButtonItem *all = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
-    self.navigationItem.rightBarButtonItem = all;
     
+    self.navigationItem.titleView = title;
+    UIBarButtonItem *all = [[UIBarButtonItem alloc] initWithTitle:@"All Videos" style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
+    self.navigationItem.rightBarButtonItem = all;
 }
+
 
 #pragma mark - Table view data source
 
@@ -68,7 +74,6 @@
     }
     
     cell.titleLabel.text = object[@"title"];
-    cell.descriptionLabel.text = nil;
     cell.rankingLabel.text = [NSString stringWithFormat:@"%@", object[@"pinCount"]];
     cell.selectionStyle = UITableViewCellSeparatorStyleSingleLine;
     return cell;
@@ -76,7 +81,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FullVideoSwift *f = [[FullVideoSwift alloc] initWithNibName:@"FullVideoViewController" bundle:nil];
+    FullVideoSwift *f = [[FullVideoSwift alloc] initWithNibName:@"FullSwiftViewController" bundle:nil];
     f.parseVideoObject = self.objects[indexPath.row];
     
     [self.navigationController pushViewController:f animated:YES];
@@ -86,7 +91,7 @@
 
 - (void)allVideos
 {
-    FullVideoViewController *full = [[FullVideoViewController alloc] init];
+    AllTableViewController *full = [[AllTableViewController alloc] init];
     [self.navigationController pushViewController:full animated:YES];
 }
 
