@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullVideoSwift" customModule="TVA2Go" customModuleProvider="target">
             <connections>
                 <outlet property="dateLabel" destination="LAA-Zv-oQG" id="Fth-RX-1mG"/>
+                <outlet property="pin" destination="PQZ-Oe-879" id="JID-4N-fRc"/>
                 <outlet property="playerView" destination="Gz7-13-NJF" id="7TA-VE-RiM"/>
                 <outlet property="textView" destination="ATV-d8-Ams" id="tG0-Qi-143"/>
                 <outlet property="titleLabel" destination="BzU-Dz-ach" id="wyn-St-leh"/>
@@ -27,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6g-ch-BaQ">
-                    <rect key="frame" x="8" y="314" width="304" height="2"/>
+                    <rect key="frame" x="50" y="314" width="262" height="2"/>
                     <color key="backgroundColor" red="0.82565582120000003" green="0.80405275310000002" blue="0.86332070709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="GPq-oy-IGE"/>
@@ -62,10 +63,23 @@
                         <constraint firstAttribute="width" secondItem="Gz7-13-NJF" secondAttribute="height" multiplier="16:9" id="7w0-5T-xOJ"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQZ-Oe-879">
+                    <rect key="frame" x="8" y="288" width="40" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.70330489309999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="vD0-YK-teY"/>
+                        <constraint firstAttribute="width" constant="40" id="x3t-Sv-6do"/>
+                    </constraints>
+                    <state key="normal" image="Pin small light"/>
+                    <connections>
+                        <action selector="pinVideo:" destination="-1" eventType="touchUpInside" id="get-se-jAR"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Gz7-13-NJF" secondAttribute="trailing" id="4e4-6i-8bT"/>
+                <constraint firstItem="PQZ-Oe-879" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="6B8-gB-miz"/>
                 <constraint firstItem="LAA-Zv-oQG" firstAttribute="top" secondItem="BzU-Dz-ach" secondAttribute="bottom" constant="8" id="E85-9b-KDe"/>
                 <constraint firstItem="d6g-ch-BaQ" firstAttribute="top" secondItem="LAA-Zv-oQG" secondAttribute="bottom" constant="14" id="EbY-4E-bbq"/>
                 <constraint firstItem="d6g-ch-BaQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="JEI-V5-L26"/>
@@ -74,11 +88,14 @@
                 <constraint firstAttribute="trailing" secondItem="BzU-Dz-ach" secondAttribute="trailing" constant="8" id="PTh-ND-A0V"/>
                 <constraint firstItem="ATV-d8-Ams" firstAttribute="top" secondItem="d6g-ch-BaQ" secondAttribute="bottom" constant="8" id="QKa-dW-izY"/>
                 <constraint firstItem="BzU-Dz-ach" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="RPi-YA-vHx"/>
+                <constraint firstItem="d6g-ch-BaQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="TVT-RG-qQ0"/>
                 <constraint firstAttribute="bottom" secondItem="ATV-d8-Ams" secondAttribute="bottom" id="Vq6-cx-wSe"/>
+                <constraint firstItem="d6g-ch-BaQ" firstAttribute="leading" secondItem="PQZ-Oe-879" secondAttribute="trailing" constant="2" id="XwS-DU-G8B"/>
                 <constraint firstAttribute="trailing" secondItem="d6g-ch-BaQ" secondAttribute="trailing" constant="8" id="YGF-de-6lq"/>
                 <constraint firstAttribute="trailing" secondItem="ATV-d8-Ams" secondAttribute="trailing" constant="8" id="ZVg-Kj-fZS"/>
                 <constraint firstAttribute="bottom" secondItem="Gz7-13-NJF" secondAttribute="bottom" constant="350" id="ePD-gw-61x"/>
                 <constraint firstItem="BzU-Dz-ach" firstAttribute="top" secondItem="Gz7-13-NJF" secondAttribute="bottom" constant="8" id="eyN-Vm-url"/>
+                <constraint firstItem="d6g-ch-BaQ" firstAttribute="top" secondItem="PQZ-Oe-879" secondAttribute="bottom" constant="-14" id="fJ7-vo-MOy"/>
                 <constraint firstItem="Gz7-13-NJF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fkU-yz-gkC"/>
                 <constraint firstItem="ATV-d8-Ams" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="kda-lw-KJ0"/>
                 <constraint firstItem="Gz7-13-NJF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="mli-6h-Pyj"/>
@@ -88,9 +105,15 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="ePD-gw-61x"/>
+                    <exclude reference="JEI-V5-L26"/>
+                    <exclude reference="TVT-RG-qQ0"/>
+                    <exclude reference="syC-Aj-yWI"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="227" y="262"/>
         </view>
     </objects>
+    <resources>
+        <image name="Pin small light" width="10" height="12"/>
+    </resources>
 </document>

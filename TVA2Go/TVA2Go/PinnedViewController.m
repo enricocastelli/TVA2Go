@@ -12,6 +12,9 @@
 #import "GTLYouTube.h"
 #import "PinCollectionViewCell.h"
 #import "TVA2Go-Swift.h"
+#import "AllTableViewController.h"
+#import "MostPinnedTableViewController.h"
+#import "HomeViewController.h"
 
 
 @interface PinnedViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -44,11 +47,27 @@
     self.firstTime = @"YES";
 
     self.view.backgroundColor = self.pinned.backgroundColor;
-    
-     UIView * header = [[[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil]firstObject];
-//    [header setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    [self createHeader];
+}
+
+- (void)createHeader
+{
+    UIView * header = [[[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil]firstObject];
     
     [self.headerView addSubview:header];
+    
+    UIButton*all = [header viewWithTag:1];
+    [all addTarget:self action:@selector(pushAll) forControlEvents:UIControlEventTouchUpInside];
+    UILabel * allLabel = [header viewWithTag:4];
+    allLabel.hidden = YES;
+    
+    UILabel * mineLabel = [header viewWithTag:5];
+    mineLabel.hidden = NO;
+    UIButton*most = [header viewWithTag:3];
+    [most addTarget:self action:@selector(pushMost) forControlEvents:UIControlEventTouchUpInside];
+    UILabel * mostlabel = [header viewWithTag:6];
+    mostlabel.hidden = YES;
+ 
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -79,6 +98,9 @@
     title.titleLabel.font = font;
     
     self.navigationItem.titleView = title;
+    UIImage *home = [UIImage imageNamed:@"Home"];
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];
+    self.navigationItem.leftBarButtonItem = homeButton;
 
 }
 
@@ -260,6 +282,25 @@
 }
 
 
+- (void)home
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
+- (void)pushAll
+{
+    AllTableViewController *all = [[AllTableViewController alloc] init];
+    HomeViewController *h = [[HomeViewController alloc] init];
+    [self.navigationController setViewControllers: @[h,all]];
+    [self.navigationController popToViewController:all animated:YES];
+}
+
+- (void)pushMost
+{
+     MostPinnedTableViewController *most = [[MostPinnedTableViewController alloc] init];
+    HomeViewController *h = [[HomeViewController alloc] init];
+    [self.navigationController setViewControllers: @[h,most]];
+    [self.navigationController popToViewController:most animated:YES];
+}
 
 @end

@@ -11,12 +11,24 @@
 #import "RankingTableViewCell.h"
 #import "AllTableViewController.h"
 #import "TVA2Go-Swift.h"
+#import "PinnedViewController.h"
+#import "HomeViewController.h"
 
-@interface MostPinnedTableViewController () 
+@interface MostPinnedTableViewController ()
 
 @end
 
 @implementation MostPinnedTableViewController
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:UITableViewStyleGrouped];
+    
+    if (self) {
+        
+    }
+    return self;
+}
 
 - (PFQuery *)queryForTable {
     
@@ -31,8 +43,30 @@
     [super viewDidLoad];
 //    [self.tableView setBackgroundColor:[UIColor blackColor]];
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    self.tableView.separatorColor = [UIColor blackColor];
-    [self setNavigationBar];
+    self.tableView.separatorColor = [UIColor clearColor];    [self setNavigationBar];
+    [self createHeader];
+}
+
+- (void)createHeader
+{
+    UIView * header = [[[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil]firstObject];
+    
+    header.frame = CGRectMake(0, 0, self.view.frame.size.width, 25);
+    self.tableView.tableHeaderView = header;
+    self.tableView.tableHeaderView.userInteractionEnabled = YES;
+    
+    
+    UIButton*all = [header viewWithTag:1];
+    [all addTarget:self action:@selector(allVideos) forControlEvents:UIControlEventTouchUpInside];
+    UILabel * allLabel = [header viewWithTag:4];
+    allLabel.hidden = YES;
+    
+    UIButton*mine = [header viewWithTag:2];
+      [mine addTarget:self action:@selector(pushMine) forControlEvents:UIControlEventTouchUpInside];
+    UILabel * mineLabel = [header viewWithTag:5];
+    mineLabel.hidden = YES;
+      UILabel * mostlabel = [header viewWithTag:6];
+    mostlabel.hidden = NO;
     
 }
 
@@ -40,14 +74,16 @@
 {
     UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
     title.tintColor = [UIColor whiteColor];
-    [title setTitle:@"Most Pinned Videos" forState:UIControlStateNormal];
-    UIFont * font = [UIFont fontWithName:@"Helvetica Neuw" size:20];
+    [title setTitle:@"Most Pinned" forState:UIControlStateNormal];
+    UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
     
     title.titleLabel.font = font;
     
     self.navigationItem.titleView = title;
-    UIBarButtonItem *all = [[UIBarButtonItem alloc] initWithTitle:@"All Videos" style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
-    self.navigationItem.rightBarButtonItem = all;
+    
+    UIImage *home = [UIImage imageNamed:@"Home"];
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];
+    self.navigationItem.leftBarButtonItem = homeButton;
 }
 
 
@@ -57,6 +93,23 @@
 {
     return 170;
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView * _Nonnull)tableView
+heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(nullable PFObject *)object {
 
@@ -88,13 +141,28 @@
     
 }
 
+- (void)home
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 - (void)allVideos
 {
     AllTableViewController *full = [[AllTableViewController alloc] init];
-    [self.navigationController pushViewController:full animated:YES];
+    HomeViewController *h = [[HomeViewController alloc] init];
+    [self.navigationController setViewControllers: @[h,full]];
+    [self.navigationController popToViewController:full animated:YES];
 }
 
+
+- (void)pushMine
+{
+    PinnedViewController *pin = [[PinnedViewController alloc] init];
+    HomeViewController *h = [[HomeViewController alloc] init];
+    [self.navigationController setViewControllers: @[h,pin]];
+    [self.navigationController popToViewController:pin animated:YES];
+}
 
 
 @end

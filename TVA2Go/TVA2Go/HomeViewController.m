@@ -14,6 +14,7 @@
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
 #import "GTLYouTube.h"
+#import "AllTableViewController.h"
 
 
 
@@ -252,7 +253,20 @@
                          m.view.alpha = 1.0;
                          self.navigationController.navigationBar.alpha = 1.0;
                      }];
-    
+}
+
+- (void)allVideos
+{
+AllTableViewController *all = [[AllTableViewController alloc] init];
+all.view.alpha = 0;
+self.navigationController.navigationBar.alpha = 0;
+[UIView animateWithDuration:0.5
+                 animations:^{
+                     [self.navigationController pushViewController:all animated:NO];
+                     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
+                     all.view.alpha = 1.0;
+                     self.navigationController.navigationBar.alpha = 1.0;
+                 }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -294,12 +308,13 @@
     UIImage *pins = [UIImage imageNamed:@"Pin"];
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithImage:pins style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
     UIImage *search = [UIImage imageNamed:@"Search"];
-    UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithImage:search style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
+    UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithImage:search style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
     [mostPinned setWidth:10];
-
+    UIImage *play = [UIImage imageNamed:@"Settings"];
+    UIBarButtonItem *all = [[UIBarButtonItem alloc] initWithImage:play style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
+       
     
-    
-    self.toolbarItems = @[myPins, space, mostPinned];
+    self.toolbarItems = @[all, space, myPins, space, mostPinned];
 }
 
 
