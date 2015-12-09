@@ -112,7 +112,7 @@
 - (IBAction)makeMeLaugh:(id)sender {
 
     [self makeRotate:self.logo.layer];
-    self.laughButton.enabled = NO;
+    [self allButtonsDisabled];
     [self loadingText];
 
     [TAAYouTubeWrapper videosForPlaylist:@"AWESOME AFTERTALKS" forUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
@@ -126,7 +126,7 @@
 
 - (IBAction)makeMeSmarter:(id)sender {
     [self makeRotate:self.logo.layer];
-    self.smartButton.enabled = NO;
+    [self allButtonsDisabled];
     [self loadingText];
 
 
@@ -141,7 +141,7 @@
 - (IBAction)random:(id)sender
 {
     [self makeRotate:self.logo.layer];
-    self.randomButton.enabled = NO;
+    [self allButtonsDisabled];
     [self loadingText];
 
     [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
@@ -195,6 +195,7 @@
     self.laughButton.enabled = YES;
     self.smartButton.enabled = YES;
     self.randomButton.enabled = YES;
+    self.navigationController.toolbar.userInteractionEnabled = YES;
 }
 
 - (void)allButtonsDisabled
@@ -203,6 +204,7 @@
     self.laughButton.enabled = NO;
     self.smartButton.enabled = NO;
     self.randomButton.enabled = NO;
+        self.navigationController.toolbar.userInteractionEnabled = NO;
 }
 
 - (void) login
@@ -310,7 +312,7 @@ self.navigationController.navigationBar.alpha = 0;
     UIImage *search = [UIImage imageNamed:@"Search"];
     UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithImage:search style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
     [mostPinned setWidth:10];
-    UIImage *play = [UIImage imageNamed:@"Settings"];
+    UIImage *play = [UIImage imageNamed:@"star"];
     UIBarButtonItem *all = [[UIBarButtonItem alloc] initWithImage:play style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
        
     

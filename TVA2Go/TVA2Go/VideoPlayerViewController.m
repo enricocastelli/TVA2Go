@@ -42,6 +42,7 @@
 @property (strong, nonatomic) PFFile *videoFile;
 
 @property (strong, nonatomic) NSArray *arrayOfCommentObjects;
+@property (nonatomic) CGRect tableViewOriginal;
 
 @end
 
@@ -51,26 +52,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.tableViewOriginal = self.tableView.frame;
     
     self.playerView.delegate = self;
     
     [self.tableView setDelegate:self];
     
     [self.tableView setDataSource:self];
-
-    [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
     self.navigationItem.rightBarButtonItem = myPins;
     
-    self.dislikeButton.layer.cornerRadius = self.dislikeButton.frame.size.width/2;
-    self.likeButton.layer.cornerRadius = self.likeButton.frame.size.width/2;
-    self.FBPost.layer.cornerRadius = self.FBPost.frame.size.width/2;
-
-    self.seeAllCommentsButton.layer.cornerRadius = self.seeAllCommentsButton.frame.size.width/10;
-    self.watchFullVideoButton.layer.cornerRadius = self.watchFullVideoButton.frame.size.width/10;
-    [self.dislikeButton addTarget:self action:@selector(dislike) forControlEvents:UIControlEventTouchUpInside];
-    [self.likeButton addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
+    [self setButtons];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
@@ -78,6 +72,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     self.user = [PFUser currentUser];
     
     self.instructions.hidden = NO;
@@ -89,37 +84,28 @@
     UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
     
     title.titleLabel.font = font;
+    [title setTitle:@"TVA2Go" forState:UIControlStateNormal];
+    self.navigationItem.titleView = title;
     
     [self.user fetchInBackground];
     
     self.tableView.hidden = YES;
-    if (self.videosInPlaylist != nil) {
-        
-        
-        self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
-        NSDictionary *playerVars = @{
-                                     @"playsinline" : @1,
-                                     };
-        
-        [self.playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
-        [self.playerView playVideo];
-        [title setTitle:@"TVA2Go" forState:UIControlStateNormal];
-        self.navigationItem.titleView = title;
-        self.titleLabel.text = self.currentVideo.snippet.title;
-        NSDate *date = self.currentVideo.snippet.publishedAt.date;
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        formatter.dateStyle = NSDateFormatterMediumStyle;
-        NSString *string = [formatter stringFromDate:date];
-        self.postDateLabel.text = string;
-        [self likeButtonEnabled];
-        
-    } else {
-        
-        nil;
-    }
-       
-        
+
+    [self ifVideo];
+    
 }
+
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.tableView.frame = self.tableViewOriginal;
+    
+    [self.playerView stopVideo];
+    self.tableView.hidden = YES;
+    self.toolbar.hidden = YES;
+}
+
 
 //- (void)toolbarButtonsEnabled
 //{
@@ -135,22 +121,64 @@
 //    }
 //}
 
+- (void)ifVideo{
+    if (self.videosInPlaylist != nil) {
+        
+        
+        self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
+        NSDictionary *playerVars = @{
+                                     @"playsinline" : @1,
+                                     };
+        
+        [self.playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
+        [self.playerView playVideo];
+
+        self.titleLabel.text = self.currentVideo.snippet.title;
+        NSDate *date = self.currentVideo.snippet.publishedAt.date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateStyle = NSDateFormatterMediumStyle;
+        NSString *string = [formatter stringFromDate:date];
+        self.postDateLabel.text = string;
+        [self likeButtonEnabled];
+        
+    } else {
+        
+        nil;
+    }
+}
+
+- (void)setButtons
+{
+    self.dislikeButton.layer.cornerRadius = self.dislikeButton.frame.size.width/2;
+    self.likeButton.layer.cornerRadius = self.likeButton.frame.size.width/2;
+    self.FBPost.layer.cornerRadius = self.FBPost.frame.size.width/2;
+    
+    self.seeAllCommentsButton.layer.cornerRadius = self.seeAllCommentsButton.frame.size.width/10;
+    self.watchFullVideoButton.layer.cornerRadius = self.watchFullVideoButton.frame.size.width/10;
+    [self.dislikeButton addTarget:self action:@selector(dislike) forControlEvents:UIControlEventTouchUpInside];
+    [self.likeButton addTarget:self action:@selector(likeAlready) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
 - (void)likeButtonEnabled
 {
     if ([PFUser currentUser]) {
-    if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
-        self.likeButton.alpha = 0.3;
-        self.likeButton.enabled = NO;
         
-    } else {
-        
-        self.likeButton.alpha = 1;
-        self.likeButton.enabled = YES;
-    }
+        if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
+            self.likeButton.alpha = 0.3;
+            self.likeButton.enabled = NO;
+            
+            
+        } else {
+            
+            self.likeButton.alpha = 1;
+            self.likeButton.enabled = YES;
+        }
     } else {
         self.likeButton.alpha = 0.3;
-        self.likeButton.enabled = NO;
 
+        self.likeButton.enabled = NO;
+        
     }
 }
 
@@ -165,25 +193,9 @@
 {
     [playerView playVideo];
     [self.likeButton.layer removeAllAnimations];
-    if (self.playerView.currentTime == 10) {
-        
-        NSDictionary *playerVars = @{
-                                     @"playsinline" : @1,
-                                     };
-        
-        self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
-        [playerView loadWithVideoId:self.currentVideo.identifier playerVars:playerVars];
-        [playerView playVideo];
-    }
 }
 
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.playerView stopVideo];
-    self.tableView.hidden = YES;
-    self.toolbar.hidden = YES;
-}
 
 - (void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state
 {
@@ -201,7 +213,6 @@
 
 - (void)like
 {
-    [self animateVideoLike:self.playerView];
 
     self.query = [PFQuery queryWithClassName:@"Video"];
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
@@ -215,8 +226,6 @@
                 pinCount = pinCount + 1;
                 object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
                 [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    [self likeAlready];
-
                 }];
             }];
         } else {
@@ -238,7 +247,6 @@
             current[@"pinCount"] = [NSNumber numberWithInt:1];
             
             [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                [self likeAlready];
             }];
             
         }
@@ -249,13 +257,15 @@
 
 - (void)likeAlready {
     
+    [self animateVideoLike:self.playerView];
+
     if ([self.user[@"pinnedVideos"] containsObject:self.currentVideo.identifier]) {
         
         NSLog(@"Already Pinned");
         
     } else {
         
-        
+        [self like];
         NSMutableArray *userMustableArray = [self.user[@"pinnedVideos"] mutableCopy];
         
         NSString *stringIdentifier = self.currentVideo.identifier;
@@ -265,21 +275,10 @@
         [self.user setObject:[userMustableArray copy] forKey:@"pinnedVideos"];
         [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
+                self.likeButton.alpha = 0.3;
+
+                self.likeButton.enabled = NO;
                 
-                [UIView animateWithDuration:1 animations:^{
-                    self.likeButton.titleLabel.alpha = 0;
-                    
-                    self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width +5, self.likeButton.bounds.size.width +5);
-                    self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStyleDone;
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.7 animations:^{
-                        self.likeButton.titleLabel.alpha = 1;
-                        
-                        self.navigationItem.rightBarButtonItem.style = UIBarButtonItemStylePlain;
-                        self.likeButton.bounds = CGRectMake(0, 0, self.likeButton.bounds.size.width -5, self.likeButton.bounds.size.width -5);
-                    }];
-                    
-                }];
             }
         }];
         
@@ -288,7 +287,7 @@
 }
 
 - (IBAction)swipeRight:(UISwipeGestureRecognizer *)sender {
-    [self like];
+    [self likeAlready];
 }
 
 - (IBAction)swipeLeft:(UISwipeGestureRecognizer *)sender {
@@ -330,17 +329,6 @@
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionTransitionCurlDown animations:^{
         f.view.alpha = 1;
     } completion:nil];
-    
-//    [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:.8 initialSpringVelocity:.5 options:UIViewAnimationOptionCurveLinear animations:UIViewAnimationOptionTransitionCrossDissolve completion:nil];
-    
-//    [UIView beginAnimations:@"View Flip" context:nil];
-//    [UIView setAnimationDuration:0.80];
-//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//    
-//    [UIView setAnimationTransition:
-//     UIViewAnimationTransitionFlipFromLeft
-//                           forView:self.navigationController.view cache:NO];
-    
     
     [self.navigationController pushViewController:f animated:YES];
     
@@ -398,6 +386,7 @@
             self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
                 self.toolbar.frame = CGRectMake(0, -900, self.toolbar.frame.size.width, self.toolbar.frame.size.height);
         }];
+        
         [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
         self.watchFullVideoButton.hidden = NO;
         
@@ -413,6 +402,8 @@
     if ([PFUser currentUser]){
     PinnedViewController *p = [[PinnedViewController alloc]init];
    [self.navigationController pushViewController:p animated:YES];
+        
+        
     } else {
         UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in!" message:@"Log in to pin videos" preferredStyle:UIAlertControllerStyleAlert];
        

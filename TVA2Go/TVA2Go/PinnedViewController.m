@@ -42,12 +42,19 @@
     self.deleting = @"NO";
 
     [self setCollectionView];
-    [self setNav];
+    
     [self setObjects];
     self.firstTime = @"YES";
+    [self setNav];
+
 
     self.view.backgroundColor = self.pinned.backgroundColor;
     [self createHeader];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)createHeader
@@ -96,11 +103,12 @@
     UIFont * font = [UIFont fontWithName:@"Helvetica Neuw" size:20];
     
     title.titleLabel.font = font;
-    
     self.navigationItem.titleView = title;
+    
     UIImage *home = [UIImage imageNamed:@"Home"];
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];
     self.navigationItem.leftBarButtonItem = homeButton;
+    self.navigationItem.hidesBackButton = YES;
 
 }
 
