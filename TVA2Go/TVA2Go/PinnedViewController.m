@@ -26,6 +26,7 @@
 @property (strong, nonatomic) UIImageView *playImage;
 @property (strong, nonatomic) UIImageView *deleteImage;
 @property (strong, nonatomic) NSString *firstTime;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 
 @end
@@ -44,11 +45,15 @@
 
     self.view.backgroundColor = self.pinned.backgroundColor;
     
+     UIView * header = [[[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil]firstObject];
+//    [header setFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
     
+    [self.headerView addSubview:header];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     self.pinned.allowsMultipleSelection = NO;
 }
 
@@ -124,6 +129,8 @@
 {
     
     cell.thumbnail.file = self.videos[indexPath.row][@"thumbnail"];
+    cell.thumbnail.layer.cornerRadius = 10;
+    cell.thumbnail.clipsToBounds = YES;
     [cell.thumbnail loadInBackground];
     
     return cell;
@@ -158,9 +165,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-     FullVideoSwift*f = [[FullVideoSwift alloc]init];
-    
- 
+     FullVideoSwift*f = [[FullVideoSwift alloc]initWithNibName:@"FullSwiftViewController" bundle:nil]; 
     
     if ([self.deleting  isEqualToString: @"NO"]) {
         

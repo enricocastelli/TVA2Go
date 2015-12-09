@@ -392,6 +392,7 @@
 
 - (void)undo
 {
+    [self allButtonsEnabled];
     self.logo.hidden = NO;
     self.logo.alpha = 1;
 

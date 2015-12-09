@@ -26,6 +26,7 @@
 		FD7E2AAD1C16CD4A000A1A96 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */; };
 		FD922E9F1C04AD1D00D690AA /* PinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */; };
 		FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */; };
+		FDAD93F01C172DFE00B5FE7D /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDAD93EF1C172DFE00B5FE7D /* HeaderView.xib */; };
 		FDB10ECE1C0461FE0000100B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ECD1C0461FE0000100B /* main.m */; };
 		FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10ED01C0461FE0000100B /* AppDelegate.m */; };
 		FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */; };
@@ -80,6 +81,8 @@
 		FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCollectionViewCell.h; sourceTree = "<group>"; };
 		FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCollectionViewCell.m; sourceTree = "<group>"; };
 		FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinCollectionViewCell.xib; sourceTree = "<group>"; };
+		FDAD93EE1C172CDB00B5FE7D /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		FDAD93EF1C172DFE00B5FE7D /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		FDB10EC91C0461FE0000100B /* TVA2Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVA2Go.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB10ECD1C0461FE0000100B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FDB10ECF1C0461FE0000100B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 				F2803BC31C04691F00D3251C /* HomeViewController.h */,
 				F2803BC41C04691F00D3251C /* HomeViewController.m */,
 				F2803BC51C04691F00D3251C /* HomeViewController.xib */,
+				FDAD93EF1C172DFE00B5FE7D /* HeaderView.xib */,
 				F2803BC81C046A5D00D3251C /* VideoPlayerViewController.h */,
 				F2803BC91C046A5D00D3251C /* VideoPlayerViewController.m */,
 				F2803BCA1C046A5D00D3251C /* VideoPlayerViewController.xib */,
@@ -208,6 +212,7 @@
 		FDB10ECC1C0461FE0000100B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FDAD93EE1C172CDB00B5FE7D /* OpenSans-Regular.ttf */,
 				FDB10ECD1C0461FE0000100B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -345,6 +350,7 @@
 				F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */,
 				F2803BC71C04691F00D3251C /* HomeViewController.xib in Resources */,
 				F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */,
+				FDAD93F01C172DFE00B5FE7D /* HeaderView.xib in Resources */,
 				F246ABD21C0724F60022291E /* Assets.xcassets in Resources */,
 				F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */,
 			);
