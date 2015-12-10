@@ -12,7 +12,7 @@
 #import "TVA2Go-Swift.h"
 
 
-@interface VideoPlayerViewController () <YTPlayerViewDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface VideoPlayerViewController () <YTPlayerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
@@ -54,20 +54,11 @@
     [super viewDidLoad];
 
     self.tableViewOriginal = self.tableView.frame;
-    
-    self.playerView.delegate = self;
-    
-    [self.tableView setDelegate:self];
-    
-    [self.tableView setDataSource:self];
-    
-    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
-    self.navigationItem.rightBarButtonItem = myPins;
-    
+
+    [self settingDelegate];
     [self setButtons];
-    
+
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -76,49 +67,48 @@
     [super viewWillAppear:animated];
     [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     self.user = [PFUser currentUser];
-    
+    [self.textFieldComment resignFirstResponder];
+
     self.instructions.hidden = NO;
-    
-    [self.playerView removeWebView];
+    [self setNav];
 
-    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
-    title.tintColor = [UIColor whiteColor];
-    UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
-    
-    title.titleLabel.font = font;
-    [title setTitle:@"TVA2Go" forState:UIControlStateNormal];
-    self.navigationItem.titleView = title;
-   
-    
-    
-    
-    ////////////////////////
-    
-    
-
-//    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    
-    
-    //////////////////
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     
     [self.user fetchInBackground];
-    
     self.tableView.hidden = YES;
-
     [self ifVideo];
     
 }
 
+- (void)settingDelegate
+{
+    self.textFieldComment.delegate = self;
+    self.playerView.delegate = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
 
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self.textFieldComment resignFirstResponder];
+
     self.tableView.frame = self.tableViewOriginal;
-    
     [self.playerView stopVideo];
     self.tableView.hidden = YES;
     self.toolbar.hidden = YES;
+}
+
+
+- (void)setNav
+{
+    UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
+    self.navigationItem.rightBarButtonItem = myPins;
+    
+    self.navigationItem.title = @"TVA2Go";
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 
@@ -155,11 +145,24 @@
         NSString *string = [formatter stringFromDate:date];
         self.postDateLabel.text = string;
         [self likeButtonEnabled];
+        [self callQuery];
+
         
     } else {
         
         nil;
     }
+}
+
+- (void)callQuery
+{
+    self.query = [PFQuery queryWithClassName:@"Video"];
+    [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
+    [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        NSString *pinString = [NSString stringWithFormat:@"Pinned %@ times", object[@"pinCount"]];
+        self.pinCountLabel.text = pinString;
+    }];
+    
 }
 
 - (void)setButtons
@@ -229,7 +232,7 @@
 - (void)like
 {
 
-    self.query = [PFQuery queryWithClassName:@"Video"];
+ 
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
        
@@ -463,6 +466,7 @@
                          self.postDateLabel.text = string;
                          
                          [self likeButtonEnabled];
+                         [self callQuery];
                          
                          [UIView animateWithDuration:3.5 animations:^{
                              
@@ -506,6 +510,8 @@
                              self.postDateLabel.text = string;
                          
                          [self likeButtonEnabled];
+
+                         [self callQuery];
 
                          
                          

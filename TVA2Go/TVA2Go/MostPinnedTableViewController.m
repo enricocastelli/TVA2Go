@@ -43,8 +43,15 @@
     [super viewDidLoad];
 //    [self.tableView setBackgroundColor:[UIColor blackColor]];
     [self.tableView registerNib:[UINib nibWithNibName:@"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    self.tableView.separatorColor = [UIColor clearColor];    [self setNavigationBar];
+    self.tableView.separatorColor = [UIColor clearColor];
     [self createHeader];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setNavigationBar];
+
 }
 
 - (void)createHeader
@@ -72,14 +79,9 @@
 
 - (void)setNavigationBar
 {
-    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
-    title.tintColor = [UIColor whiteColor];
-    [title setTitle:@"Most Pinned" forState:UIControlStateNormal];
-    UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
+    self.navigationItem.title = @"Most Pinned";
     
-    title.titleLabel.font = font;
-    
-    self.navigationItem.titleView = title;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     UIImage *home = [UIImage imageNamed:@"Home"];
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];

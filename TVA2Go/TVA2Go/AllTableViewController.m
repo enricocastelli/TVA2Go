@@ -45,13 +45,19 @@
     
     [self.tableView registerNib:[UINib nibWithNibName: @"RankingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"empty"];
-    [self setNav];
+   
     [TAAYouTubeWrapper videosForUser:@"TVAcademyNL" onCompletion:^(BOOL succeeded, NSArray *videos, NSError *error) {
         self.videos = [videos mutableCopy];
         [self.tableView reloadData];
         [self createHeader];
         self.tableView.hidden = NO;
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [self setNav];
 }
 
 - (void)createHeader
@@ -82,10 +88,8 @@
 {
    
     self.navigationItem.title = @"All Videos";
-    UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
     
-//    self.navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName*[UIColor whiteColor]];
-    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     UIImage *home = [UIImage imageNamed:@"Home"];
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];
     self.navigationItem.leftBarButtonItem = homeButton;

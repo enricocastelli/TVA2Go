@@ -40,12 +40,9 @@
     [super viewDidLoad];
 
     self.deleting = @"NO";
-
     [self setCollectionView];
-    
     [self setObjects];
     self.firstTime = @"YES";
-    [self setNav];
 
 
     self.view.backgroundColor = self.pinned.backgroundColor;
@@ -55,6 +52,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setNav];
+
 }
 
 - (void)createHeader
@@ -97,13 +96,9 @@
 {
     UIBarButtonItem *edit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     self.navigationItem.rightBarButtonItem = edit;
-    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
-    title.tintColor = [UIColor whiteColor];
-    [title setTitle:@"Pinned Videos" forState:UIControlStateNormal];
-    UIFont * font = [UIFont fontWithName:@"Helvetica Neuw" size:20];
     
-    title.titleLabel.font = font;
-    self.navigationItem.titleView = title;
+    self.navigationItem.title = @"My Pins";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     UIImage *home = [UIImage imageNamed:@"Home"];
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];

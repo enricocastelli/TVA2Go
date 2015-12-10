@@ -666,9 +666,7 @@ self.navigationController.navigationBar.alpha = 0;
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.view.frame = self.original;
-    }];
+    self.view.frame = self.original;
 }
 
 
