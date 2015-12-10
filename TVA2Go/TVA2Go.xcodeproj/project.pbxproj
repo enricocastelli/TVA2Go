@@ -21,6 +21,8 @@
 		F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */; };
 		F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */; };
 		F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */; };
+		FD66BB041C1991DB00D2F837 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD66BB021C1991DB00D2F837 /* InfoViewController.swift */; };
+		FD66BB051C1991DB00D2F837 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD66BB031C1991DB00D2F837 /* InfoViewController.xib */; };
 		FD7E2AA91C15D3F3000A1A96 /* FullVideoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */; };
 		FD7E2AAC1C16CD4A000A1A96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */; };
 		FD7E2AAD1C16CD4A000A1A96 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */; };
@@ -75,6 +77,9 @@
 		F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RankingTableViewCell.m; sourceTree = "<group>"; };
 		F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		F9A22218E537DEC4FCB350BA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FD66BB021C1991DB00D2F837 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		FD66BB031C1991DB00D2F837 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		FD66BB061C199EF100D2F837 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullVideoSwift.swift; sourceTree = "<group>"; };
 		FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
@@ -182,6 +187,8 @@
 				F2803BC41C04691F00D3251C /* HomeViewController.m */,
 				F2803BC51C04691F00D3251C /* HomeViewController.xib */,
 				FDAD93EF1C172DFE00B5FE7D /* HeaderView.xib */,
+				FD66BB021C1991DB00D2F837 /* InfoViewController.swift */,
+				FD66BB031C1991DB00D2F837 /* InfoViewController.xib */,
 				F2803BC81C046A5D00D3251C /* VideoPlayerViewController.h */,
 				F2803BC91C046A5D00D3251C /* VideoPlayerViewController.m */,
 				F2803BCA1C046A5D00D3251C /* VideoPlayerViewController.xib */,
@@ -352,6 +359,7 @@
 				F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */,
 				FDAD93F01C172DFE00B5FE7D /* HeaderView.xib in Resources */,
 				F246ABD21C0724F60022291E /* Assets.xcassets in Resources */,
+				FD66BB051C1991DB00D2F837 /* InfoViewController.xib in Resources */,
 				F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +443,7 @@
 				F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */,
 				F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */,
 				F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */,
+				FD66BB041C1991DB00D2F837 /* InfoViewController.swift in Sources */,
 				F2803BD81C046BC400D3251C /* AllTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +484,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FDB10ED51C0461FE0000100B /* Base */,
+				FD66BB061C199EF100D2F837 /* nl */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

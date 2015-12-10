@@ -15,6 +15,8 @@
 #import "TAAYouTubeWrapper.h"
 #import "GTLYouTube.h"
 #import "AllTableViewController.h"
+#import "TVA2Go-Swift.h"
+
 
 
 
@@ -38,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *successLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
-@property (nonatomic) VideoPlayerViewController *v;
+@property (nonatomic) VideoPlayerViewController *videoPlayerController;
 @property (nonatomic) CGRect originalLogo;
 @property (nonatomic) CGRect original;
 
@@ -72,7 +74,7 @@
     [super viewDidLoad];
     
     
-    self.v = [[VideoPlayerViewController alloc] init];
+    self.videoPlayerController = [[VideoPlayerViewController alloc] init];
     
     [self roundedButtons:self.loginButton byNumber:4];
     [self roundedButtons:self.signupButton byNumber:4];
@@ -291,15 +293,15 @@ self.navigationController.navigationBar.alpha = 0;
 
 - (void)pushToVideoPlayer:(NSArray*)videos
 {
-    self.v.videosInPlaylist = videos;
-    self.v.view.alpha = 0;
+    self.videoPlayerController.videosInPlaylist = videos;
+    self.videoPlayerController.view.alpha = 0;
     
     self.navigationController.navigationBar.alpha = 0;
     [UIView animateWithDuration:0.5
                      animations:^{
-                         [self.navigationController pushViewController:self.v animated:NO];
+                         [self.navigationController pushViewController:self.videoPlayerController animated:NO];
                          [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.navigationController.view cache:NO];
-                         self.v.view.alpha = 1.0;
+                         self.videoPlayerController.view.alpha = 1.0;
                          self.navigationController.navigationBar.alpha = 1.0;
                      }];
 }
@@ -312,11 +314,11 @@ self.navigationController.navigationBar.alpha = 0;
     UIImage *search = [UIImage imageNamed:@"Search"];
     UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithImage:search style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
     [mostPinned setWidth:10];
-    UIImage *play = [UIImage imageNamed:@"star"];
-    UIBarButtonItem *all = [[UIBarButtonItem alloc] initWithImage:play style:UIBarButtonItemStylePlain target:self action:@selector(mostPinned)];
+    UIImage *info = [UIImage imageNamed:@"Settings"];
+    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:info style:UIBarButtonItemStylePlain target:self action:@selector(infoPush)];
        
     
-    self.toolbarItems = @[all, space, myPins, space, mostPinned];
+    self.toolbarItems = @[infoButton, space, myPins, space, mostPinned];
 }
 
 
@@ -670,6 +672,11 @@ self.navigationController.navigationBar.alpha = 0;
 }
 
 
+- (void)infoPush
+    {
+    InfoViewController *info = [[InfoViewController alloc] init];
+    [self.navigationController pushViewController:info animated:YES];
+}
 
 
 

@@ -28,8 +28,8 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:h];
            nav.navigationBar.barTintColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
     nav.navigationBar.tintColor = [UIColor whiteColor];
-    nav.toolbar.barTintColor = [UIColor whiteColor];
-    self.window.rootViewController = nav;
+    [nav.toolbar setBackgroundImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    [nav.toolbar setShadowImage:[[UIImage alloc] init] forToolbarPosition:UIToolbarPositionAny];    self.window.rootViewController = nav;
     self.window.backgroundColor = [UIColor whiteColor];
  
  

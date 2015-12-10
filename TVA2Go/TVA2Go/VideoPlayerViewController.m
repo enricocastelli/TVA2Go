@@ -12,7 +12,7 @@
 #import "TVA2Go-Swift.h"
 
 
-@interface VideoPlayerViewController () <YTPlayerViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface VideoPlayerViewController () <YTPlayerViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
@@ -29,17 +29,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *instructions;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *postCommentButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *textFieldComment;
-
-@property (strong, nonatomic) UIImagePickerController *imagePicker;
-
-@property (strong, nonatomic) PFFile *imageFile;
-
-@property (strong, nonatomic) PFFile *videoFile;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
 @property (strong, nonatomic) NSArray *arrayOfCommentObjects;
 @property (nonatomic) CGRect tableViewOriginal;
@@ -55,20 +48,20 @@
 
     self.tableViewOriginal = self.tableView.frame;
 
-    [self settingDelegate];
     [self setButtons];
+    [self settingDelegate];
+
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
     [super viewWillAppear:animated];
+
     [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     self.user = [PFUser currentUser];
-    [self.textFieldComment resignFirstResponder];
-
+    self.watchFullVideoButton.hidden = NO;
     self.instructions.hidden = NO;
     [self setNav];
 
@@ -76,6 +69,8 @@
     
     [self.user fetchInBackground];
     self.tableView.hidden = YES;
+    self.toolbar.hidden = YES;
+    [self.view becomeFirstResponder];
     [self ifVideo];
     
 }
@@ -93,11 +88,8 @@
 {
     [super viewWillDisappear:animated];
     [self.textFieldComment resignFirstResponder];
-
     self.tableView.frame = self.tableViewOriginal;
     [self.playerView stopVideo];
-    self.tableView.hidden = YES;
-    self.toolbar.hidden = YES;
 }
 
 
@@ -112,19 +104,19 @@
 }
 
 
-//- (void)toolbarButtonsEnabled
-//{
-//    if ([PFUser currentUser]) {
-//        self.cameraButton.enabled = YES;
-//        self.textFieldComment.enabled = YES;
-//        self.postCommentButton.enabled = YES;
-//    } else {
-//        self.toolbar.alpha = 0.5;
-////        self.cameraButton.enabled = NO;
-////        self.textFieldComment.enabled = NO;
-////        self.postCommentButton.enabled = NO;
-//    }
-//}
+- (void)toolbarButtonsEnabled
+{
+    if ([PFUser currentUser]) {
+        self.textFieldComment.enabled = YES;
+        self.postCommentButton.enabled = YES;
+        self.cancelButton.enabled = YES;
+
+    } else {
+        self.textFieldComment.enabled = NO;
+        self.postCommentButton.enabled = NO;
+        self.cancelButton.enabled = NO;
+    }
+}
 
 - (void)ifVideo{
     if (self.videosInPlaylist != nil) {
@@ -378,7 +370,7 @@
 
 - (IBAction)seeAllComments:(id)sender {
     if (self.tableView.hidden == YES) {
-//        [self toolbarButtonsEnabled];
+        [self toolbarButtonsEnabled];
         self.tableView.hidden = NO;
         self.toolbar.hidden = NO;
         self.tableView.alpha = 0.95;
@@ -523,52 +515,6 @@
     
 }
 
-- (IBAction)addStringComment:(id)sender {
-}
-
-
-- (IBAction)addPhotoOrVideoComment:(id)sender {
-    self.imagePicker = [[UIImagePickerController alloc] init];
-    self.imagePicker.allowsEditing = YES;
-    self.imagePicker.delegate = self;
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        NSArray *availableTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-        self.imagePicker.mediaTypes = availableTypes;
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
-        self.imagePicker.videoQuality = UIImagePickerControllerQualityTypeMedium;
-    } else {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    
-    [self presentViewController:self.imagePicker animated:YES completion:NULL];
-}
-
-- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
-{
-    NSString *infoImage = info[UIImagePickerControllerMediaType];
-    if ([infoImage isEqualToString:@"public.image"]) {
-        UIImage *image = info[UIImagePickerControllerEditedImage];
-        NSData *data = UIImageJPEGRepresentation(image, 0.5);
-        PFFile *file = [PFFile fileWithData:data];
-        self.imageFile = file;
-        
-        [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    } else {
-    
-        NSURL *commentVideoUrl = info[UIImagePickerControllerMediaURL];
-        NSData *data = [NSData dataWithContentsOfURL:commentVideoUrl];
-        PFFile *file = [PFFile fileWithData:data];
-        self.videoFile = file;
-        [[NSFileManager defaultManager] removeItemAtPath:[commentVideoUrl path] error:nil];
-        
-        [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    }
-    
-}
 
 - (IBAction)postComment:(id)sender {
     
@@ -577,18 +523,6 @@
         PFObject *comment = [PFObject objectWithClassName:@"Comments"];
         if (self.textFieldComment.text != nil) {
             [comment setObject:self.textFieldComment.text forKey:@"stringComment"];
-        } else {
-            nil;
-        }
-        
-        if (self.imageFile != nil) {
-            [comment setObject:self.imageFile forKey:@"imageComment"];
-        } else {
-            nil;
-        }
-        
-        if (self.videoFile != nil) {
-            [comment setObject:self.videoFile forKey:@"videoComment"];
         } else {
             nil;
         }
@@ -602,11 +536,22 @@
     }
 
 }
-//- (void)alertControllerBackgroundTapped
-//
-//{
-//    [self dismissViewControllerAnimated: YES
-//                             completion: nil];
-//}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
+- (void)alertControllerBackgroundTapped
+
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
+- (IBAction)cancel:(id)sender {
+    [self.textFieldComment resignFirstResponder];
+    self.textFieldComment.text = @"";
+}
 
 @end

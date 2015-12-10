@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoViewController" customModule="TVA2Go" customModuleProvider="target">
+            <connections>
+                <outlet property="facebookButton" destination="jNw-ZA-Z4o" id="cON-QZ-gLq"/>
+                <outlet property="instagramButton" destination="EzB-9P-EL8" id="93e-Th-seV"/>
+                <outlet property="languagePicker" destination="35t-dW-2Nx" id="rSM-VQ-6h8"/>
+                <outlet property="twitterButton" destination="aGl-lz-yNy" id="uqI-rd-qOe"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="websiteButton" destination="2jJ-R4-eft" id="5hb-7Y-cMM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HHi-rp-jfU">
+                    <rect key="frame" x="55" y="96" width="210" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNw-ZA-Z4o">
+                            <rect key="frame" x="0.0" y="0.0" width="21" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="RoV-5o-6x2"/>
+                            </constraints>
+                            <state key="normal" image="fb"/>
+                            <connections>
+                                <action selector="facebook:" destination="-1" eventType="touchUpInside" id="khP-mI-P0o"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzB-9P-EL8">
+                            <rect key="frame" x="61" y="0.0" width="21" height="50"/>
+                            <state key="normal" image="instagram"/>
+                            <connections>
+                                <action selector="instagram:" destination="-1" eventType="touchUpInside" id="9pY-Bq-9br"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGl-lz-yNy">
+                            <rect key="frame" x="122" y="0.0" width="23" height="50"/>
+                            <state key="normal" image="twitter"/>
+                            <connections>
+                                <action selector="twitter:" destination="-1" eventType="touchUpInside" id="oEA-y4-zrM"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jJ-R4-eft">
+                            <rect key="frame" x="185" y="0.0" width="25" height="50"/>
+                            <state key="normal" image="tvalogo"/>
+                            <connections>
+                                <action selector="website:" destination="-1" eventType="touchUpInside" id="AiV-Nn-8AJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Ar8-l7-NtO"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Ar8-l7-NtO"/>
+                        </mask>
+                    </variation>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This App was made in collaboration with the AppAcademy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrB-3m-OCo">
+                    <rect key="frame" x="33" y="461" width="255" height="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35t-dW-2Nx">
+                    <rect key="frame" x="0.0" y="186" width="320" height="216"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="NoS-ye-epl"/>
+                        <outlet property="delegate" destination="-1" id="yr2-8c-fdm"/>
+                    </connections>
+                </pickerView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="HHi-rp-jfU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AGW-g3-hih"/>
+                <constraint firstItem="HHi-rp-jfU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="96" id="JxT-57-cAz"/>
+                <constraint firstAttribute="bottom" secondItem="KrB-3m-OCo" secondAttribute="bottom" constant="8" id="Ohn-NQ-UJt"/>
+                <constraint firstItem="35t-dW-2Nx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nm7-df-Sj1"/>
+                <constraint firstItem="35t-dW-2Nx" firstAttribute="top" secondItem="HHi-rp-jfU" secondAttribute="bottom" constant="40" id="vd0-FH-OLC"/>
+                <constraint firstItem="KrB-3m-OCo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xuB-fu-4Yp"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="176" y="223"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="fb" width="21" height="21"/>
+        <image name="instagram" width="21" height="21"/>
+        <image name="tvalogo" width="25" height="25"/>
+        <image name="twitter" width="23" height="19"/>
+    </resources>
+</document>
