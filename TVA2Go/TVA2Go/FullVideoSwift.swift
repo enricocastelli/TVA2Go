@@ -21,6 +21,8 @@ import Foundation
 override func viewDidLoad() {
     playerView?.delegate = self
      self.user = PFUser.currentUser()
+    self.pin.alpha = 1
+
     self.navigationItem.title = "TVA2Go"
     self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         pin.layer.cornerRadius = pin.frame.size.width/2
@@ -48,7 +50,6 @@ override func viewDidLoad() {
         self.userParse()
     }
 }
-
     
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         playerView!.playVideo()
@@ -76,7 +77,9 @@ override func viewDidLoad() {
             userArray.addObject(parseVideoObject!["videoID"])
             user?.setObject(userArray.copy(), forKey: "pinnedVideos")
             user?.saveInBackgroundWithBlock({ (success, error) -> Void in
-                self.pin.enabled = false;
+                self.pin.enabled = false
+                self.pin.alpha = 0.4
+
             })
             
         }
@@ -89,7 +92,9 @@ override func viewDidLoad() {
                 userArray.addObject(fullVideo!.identifier)
                 user?.setObject(userArray.copy(), forKey: "pinnedVideos")
                 user?.saveInBackgroundWithBlock({ (success, error) -> Void in
-                    self.pin.enabled = false;
+                    self.pin.enabled = false
+                    self.pin.alpha = 0.4
+
                 })
                 
             }
@@ -101,14 +106,17 @@ override func viewDidLoad() {
     
     func userGTL(){
         if (user == nil) {
-            self.pin.enabled = false;
+            self.pin.enabled = false
+            self.pin.alpha = 0.4
 
         } else {
         
         if (user!["pinnedVideos"].containsObject(fullVideo!.identifier)){
-            self.pin.enabled = false;
+            self.pin.enabled = false
+            self.pin.alpha = 0.4
+
         }
-            self.pin.enabled = true;
+            self.pin.enabled = true
 
     }
     }
@@ -116,14 +124,18 @@ override func viewDidLoad() {
     
     func userParse() {
         if (user == nil) {
-            self.pin.enabled = false;
+            self.pin.enabled = false
+            self.pin.alpha = 0.4
+
             
         } else {
             
         if (user!["pinnedVideos"].containsObject(parseVideoObject!["videoID"])){
-            self.pin.enabled = false;
+            self.pin.enabled = false
+            self.pin.alpha = 0.4
+
         }
-            self.pin.enabled = true;
+            self.pin.enabled = true
         }
     }
     

@@ -68,17 +68,25 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBAction func facebook(sender: UIButton) {
         
         let url = NSURL.init(string: "fb://profile/153712604776798")
-        UIApplication.sharedApplication().openURL(url!)
+       UIApplication.sharedApplication().openURL(url!)
+
     }
     
     @IBAction func instagram(sender: UIButton) {
         let url = NSURL.init(string: "instagram://user?username=tv_academy")
-        UIApplication.sharedApplication().openURL(url!)
+        
+            UIApplication.sharedApplication().openURL(url!)
+
     }
     
     @IBAction func twitter(sender: UIButton) {
         let url = NSURL.init(string: "twitter:///user?screen_name=tv_academy_nl")
-        UIApplication.sharedApplication().openURL(url!)
+        if (UIApplication.sharedApplication().canOpenURL(url!)){
+            UIApplication.sharedApplication().openURL(url!)
+        } else {
+            UIApplication.sharedApplication().openURL(NSURL.init(string: "www.twitter.com/tv_academy_nl")!)
+        }
+
     }
     
     
@@ -95,6 +103,8 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     
+    @IBAction func forgotPassword(sender: UIButton) {
+    }
     
     
 

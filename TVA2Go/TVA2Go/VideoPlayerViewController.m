@@ -10,6 +10,7 @@
 #import "TAAYouTubeWrapper.h"
 #import "PinnedViewController.h"
 #import "TVA2Go-Swift.h"
+#import "CommentTableViewCell.h"
 
 
 @interface VideoPlayerViewController () <YTPlayerViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
@@ -51,11 +52,8 @@
     [self setButtons];
     [self settingDelegate];
     self.act.hidden = YES;
-
-
-
-
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    UINib *nib = [UINib nibWithNibName:@"CommentTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"cell"];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -346,27 +344,45 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.arrayOfCommentObjects.count == 0) {
+        return 1;
+    } else {
     return self.arrayOfCommentObjects.count;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 114;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    CommentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+
+    
+    if (self.arrayOfCommentObjects.count == 0) {
+        
+        cell.userLabel.text = @"No comments yet";
+        cell.commentLabel.text = @"";
+        cell.dateLabel.text = @"";
+
+        
+        return cell;
+    } else {
     
     PFObject *commentObject = self.arrayOfCommentObjects[indexPath.row];
-    
-    cell.textLabel.text = commentObject[@"stringComment"];
-    cell.detailTextLabel.text = commentObject[@"username"];
-    PFFile *file = commentObject[@"imageComment"];
-    [file getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        UIImage *image = [UIImage imageWithData:data];
-        cell.imageView.image = image;
-        cell.textLabel.text = commentObject[@"stringComment"];
-        cell.detailTextLabel.text = commentObject[@"username"];
-
-    }];
+    cell.commentLabel.text = commentObject[@"stringComment"];
+    cell.userLabel.text = commentObject[@"username"];
+    NSDate *date = commentObject.createdAt;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    NSString *stringDate = [formatter stringFromDate:date];
+    cell.dateLabel.text = stringDate;
     
     return cell;
+    }
 }
 
 - (IBAction)seeAllComments:(id)sender {
@@ -375,11 +391,9 @@
     [self.act startAnimating];
     
     [self toolbarButtonsEnabled];
-    self.tableView.hidden = NO;
-    self.toolbar.hidden = NO;
-    self.tableView.alpha = 0.95;
-    
-    
+  
+
+
     PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
     
     [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
@@ -387,9 +401,12 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         self.arrayOfCommentObjects = objects;
         [self.tableView reloadData];
+        self.tableView.hidden = NO;
+        self.toolbar.hidden = NO;
         self.act.hidden = YES;
+        self.tableView.alpha = 0.95;
+        self.tableView.separatorColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
         [self.act stopAnimating];
-        
     }];
     
     
@@ -507,18 +524,21 @@
 
 - (IBAction)postComment:(id)sender {
     
-    if ([PFUser currentUser]) {
+    if (self.user) {
         
+        self.postCommentButton.enabled = NO;
         PFObject *comment = [PFObject objectWithClassName:@"Comments"];
-        if (self.textFieldComment.text != nil) {
-            [comment setObject:self.textFieldComment.text forKey:@"stringComment"];
-        } else {
-            nil;
-        }
         
-        [comment setObject:self.user.username forKey:@"username"];
+        comment[@"username"] = self.user.username;
+        comment[@"stringComment"] = self.textFieldComment.text;
+        comment[@"videoID"] = self.currentVideo.identifier;
         
-        [comment saveInBackground];
+        [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        
+            [self.textFieldComment resignFirstResponder];
+            [self seeAllComments:nil];
+            self.postCommentButton.enabled = YES;
+        }];
         
     } else {
         nil;

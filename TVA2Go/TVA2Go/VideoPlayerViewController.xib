@@ -135,8 +135,8 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6J1-a3-3x8">
-                    <rect key="frame" x="60" y="488" width="200" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6J1-a3-3x8">
+                    <rect key="frame" x="70" y="496" width="180" height="36"/>
                     <color key="backgroundColor" red="0.049556880460667294" green="0.63254037714990496" blue="0.89449179292929293" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="E1L-YH-IYd"/>
@@ -148,8 +148,8 @@
                         <constraint firstAttribute="width" constant="45" id="zVD-CF-ViK"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
-                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="Find Out More   ">
+                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="40" maxY="0.0"/>
+                    <state key="normal" title="Find Out More">
                         <color key="titleColor" red="0.95709604305648999" green="0.99398279671717171" blue="0.95150575236124613" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <variation key="default">
@@ -167,8 +167,8 @@
                         <action selector="watchFullVideo:" destination="-1" eventType="touchUpInside" id="Nml-A3-teT"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hni-pM-wgH">
-                    <rect key="frame" x="60" y="548" width="200" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hni-pM-wgH">
+                    <rect key="frame" x="70" y="552" width="180" height="36"/>
                     <color key="backgroundColor" red="0.0" green="0.70330489309210531" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Hni-pM-wgH" secondAttribute="height" multiplier="5:1" id="H7g-kI-0I3"/>
@@ -216,8 +216,8 @@
                         <outletCollection property="gestureRecognizers" destination="hxJ-wG-QKX" appends="YES" id="zXp-Xh-XJ9"/>
                     </connections>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Link" translatesAutoresizingMaskIntoConstraints="NO" id="rWM-wQ-wVk">
-                    <rect key="frame" x="230" y="505" width="20" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Link" translatesAutoresizingMaskIntoConstraints="NO" id="rWM-wQ-wVk">
+                    <rect key="frame" x="220" y="505" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="RlO-U1-Uj9"/>
                         <constraint firstAttribute="height" constant="20" id="la0-cv-VFs"/>
@@ -226,8 +226,8 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swipeStuff" translatesAutoresizingMaskIntoConstraints="NO" id="Bbp-h3-j4t">
                     <rect key="frame" x="0.0" y="64" width="320" height="188"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Comment icon" translatesAutoresizingMaskIntoConstraints="NO" id="wUf-kd-YWw">
-                    <rect key="frame" x="230" y="561" width="20" height="20"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Comment icon" translatesAutoresizingMaskIntoConstraints="NO" id="wUf-kd-YWw">
+                    <rect key="frame" x="220" y="561" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="91s-3e-Zq2"/>
                         <constraint firstAttribute="width" constant="20" id="KCj-lY-SHp"/>
