@@ -20,10 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HHi-rp-jfU">
+                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HHi-rp-jfU">
                     <rect key="frame" x="55" y="96" width="210" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNw-ZA-Z4o">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNw-ZA-Z4o">
                             <rect key="frame" x="0.0" y="0.0" width="21" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="RoV-5o-6x2"/>
@@ -33,21 +33,21 @@
                                 <action selector="facebook:" destination="-1" eventType="touchUpInside" id="khP-mI-P0o"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzB-9P-EL8">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzB-9P-EL8">
                             <rect key="frame" x="61" y="0.0" width="21" height="50"/>
                             <state key="normal" image="instagram"/>
                             <connections>
                                 <action selector="instagram:" destination="-1" eventType="touchUpInside" id="9pY-Bq-9br"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGl-lz-yNy">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGl-lz-yNy">
                             <rect key="frame" x="122" y="0.0" width="23" height="50"/>
                             <state key="normal" image="twitter"/>
                             <connections>
                                 <action selector="twitter:" destination="-1" eventType="touchUpInside" id="oEA-y4-zrM"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jJ-R4-eft">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jJ-R4-eft">
                             <rect key="frame" x="185" y="0.0" width="25" height="50"/>
                             <state key="normal" image="tvalogo"/>
                             <connections>

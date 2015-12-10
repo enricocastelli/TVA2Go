@@ -314,7 +314,7 @@ self.navigationController.navigationBar.alpha = 0;
     UIImage *search = [UIImage imageNamed:@"Search"];
     UIBarButtonItem *mostPinned = [[UIBarButtonItem alloc] initWithImage:search style:UIBarButtonItemStylePlain target:self action:@selector(allVideos)];
     [mostPinned setWidth:10];
-    UIImage *info = [UIImage imageNamed:@"Settings"];
+    UIImage *info = [UIImage imageNamed:@"info"];
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:info style:UIBarButtonItemStylePlain target:self action:@selector(infoPush)];
        
     

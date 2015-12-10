@@ -21,6 +21,8 @@
 		F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */; };
 		F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */; };
 		F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */; };
+		FD3E4E841C19C42B00F01C40 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED71C0461FE0000100B /* Info.plist */; };
+		FD3E4E851C19C97600F01C40 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD66BB071C19C01400D2F837 /* OpenSans-Light.ttf */; };
 		FD66BB041C1991DB00D2F837 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD66BB021C1991DB00D2F837 /* InfoViewController.swift */; };
 		FD66BB051C1991DB00D2F837 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD66BB031C1991DB00D2F837 /* InfoViewController.xib */; };
 		FD7E2AA91C15D3F3000A1A96 /* FullVideoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */; };
@@ -80,13 +82,13 @@
 		FD66BB021C1991DB00D2F837 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		FD66BB031C1991DB00D2F837 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		FD66BB061C199EF100D2F837 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		FD66BB071C19C01400D2F837 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullVideoSwift.swift; sourceTree = "<group>"; };
 		FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCollectionViewCell.h; sourceTree = "<group>"; };
 		FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCollectionViewCell.m; sourceTree = "<group>"; };
 		FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinCollectionViewCell.xib; sourceTree = "<group>"; };
-		FDAD93EE1C172CDB00B5FE7D /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		FDAD93EF1C172DFE00B5FE7D /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		FDB10EC91C0461FE0000100B /* TVA2Go.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVA2Go.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB10ECD1C0461FE0000100B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -219,7 +221,7 @@
 		FDB10ECC1C0461FE0000100B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FDAD93EE1C172CDB00B5FE7D /* OpenSans-Regular.ttf */,
+				FD66BB071C19C01400D2F837 /* OpenSans-Light.ttf */,
 				FDB10ECD1C0461FE0000100B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -357,8 +359,10 @@
 				F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */,
 				F2803BC71C04691F00D3251C /* HomeViewController.xib in Resources */,
 				F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */,
+				FD3E4E851C19C97600F01C40 /* OpenSans-Light.ttf in Resources */,
 				FDAD93F01C172DFE00B5FE7D /* HeaderView.xib in Resources */,
 				F246ABD21C0724F60022291E /* Assets.xcassets in Resources */,
+				FD3E4E841C19C42B00F01C40 /* Info.plist in Resources */,
 				FD66BB051C1991DB00D2F837 /* InfoViewController.xib in Resources */,
 				F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */,
 			);

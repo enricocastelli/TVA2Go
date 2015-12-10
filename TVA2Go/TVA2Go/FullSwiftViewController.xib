@@ -5,6 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullVideoSwift" customModule="TVA2Go" customModuleProvider="target">
             <connections>
@@ -22,13 +27,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAA-Zv-oQG">
-                    <rect key="frame" x="144" y="284" width="33" height="16"/>
+                    <rect key="frame" x="144" y="289" width="33" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6g-ch-BaQ">
-                    <rect key="frame" x="50" y="314" width="262" height="2"/>
+                    <rect key="frame" x="50" y="319" width="262" height="2"/>
                     <color key="backgroundColor" red="0.82565582120000003" green="0.80405275310000002" blue="0.86332070709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="GPq-oy-IGE"/>
@@ -44,13 +49,13 @@
                     </variation>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzU-Dz-ach">
-                    <rect key="frame" x="8" y="252" width="304" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <rect key="frame" x="8" y="252" width="304" height="29"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="21"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ATV-d8-Ams">
-                    <rect key="frame" x="8" y="324" width="304" height="156"/>
+                    <rect key="frame" x="8" y="329" width="304" height="151"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -64,7 +69,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQZ-Oe-879">
-                    <rect key="frame" x="8" y="288" width="40" height="40"/>
+                    <rect key="frame" x="8" y="293" width="40" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.70330489309999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="vD0-YK-teY"/>

@@ -14,7 +14,6 @@
 
 @interface VideoPlayerViewController () <YTPlayerViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *watchFullVideoButton;
 @property (weak, nonatomic) IBOutlet UIButton *seeAllCommentsButton;
@@ -22,6 +21,7 @@
 @property (strong, nonatomic) PFQuery *query;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *act;
 
 @property (strong, nonatomic) GTLYouTubeVideo *currentVideo;
 @property (weak, nonatomic) IBOutlet UILabel *postDateLabel;
@@ -50,16 +50,18 @@
 
     [self setButtons];
     [self settingDelegate];
+    self.act.hidden = YES;
+
+
 
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
-    [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     self.user = [PFUser currentUser];
     self.watchFullVideoButton.hidden = NO;
     self.instructions.hidden = NO;
@@ -68,9 +70,8 @@
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     
     [self.user fetchInBackground];
-    self.tableView.hidden = YES;
-    self.toolbar.hidden = YES;
-    [self.view becomeFirstResponder];
+
+    [self.textFieldComment resignFirstResponder];
     [self ifVideo];
     
 }
@@ -90,6 +91,8 @@
     [self.textFieldComment resignFirstResponder];
     self.tableView.frame = self.tableViewOriginal;
     [self.playerView stopVideo];
+    self.tableView.hidden = YES;
+    self.toolbar.hidden = YES;
 }
 
 
@@ -159,13 +162,11 @@
 
 - (void)setButtons
 {
-    self.dislikeButton.layer.cornerRadius = self.dislikeButton.frame.size.width/2;
     self.likeButton.layer.cornerRadius = self.likeButton.frame.size.width/2;
     self.FBPost.layer.cornerRadius = self.FBPost.frame.size.width/2;
     
-    self.seeAllCommentsButton.layer.cornerRadius = self.seeAllCommentsButton.frame.size.width/10;
-    self.watchFullVideoButton.layer.cornerRadius = self.watchFullVideoButton.frame.size.width/10;
-    [self.dislikeButton addTarget:self action:@selector(dislike) forControlEvents:UIControlEventTouchUpInside];
+    self.seeAllCommentsButton.layer.cornerRadius = self.seeAllCommentsButton.frame.size.width/13;
+    self.watchFullVideoButton.layer.cornerRadius = self.watchFullVideoButton.frame.size.width/13;
     [self.likeButton addTarget:self action:@selector(likeAlready) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -369,41 +370,29 @@
 }
 
 - (IBAction)seeAllComments:(id)sender {
-    if (self.tableView.hidden == YES) {
-        [self toolbarButtonsEnabled];
-        self.tableView.hidden = NO;
-        self.toolbar.hidden = NO;
-        self.tableView.alpha = 0.95;
-        [UIView animateWithDuration:0.6 animations:^{
-            self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
-            self.toolbar.frame = CGRectMake(0, -900, self.toolbar.frame.size.width, self.toolbar.frame.size.height);
-        }];
-        [self.seeAllCommentsButton setTitle:@"  Hide Comments" forState:UIControlStateNormal];
-        self.watchFullVideoButton.hidden = YES;
+    
+    self.act.hidden = NO;
+    [self.act startAnimating];
+    
+    [self toolbarButtonsEnabled];
+    self.tableView.hidden = NO;
+    self.toolbar.hidden = NO;
+    self.tableView.alpha = 0.95;
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
+    
+    [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        self.arrayOfCommentObjects = objects;
+        [self.tableView reloadData];
+        self.act.hidden = YES;
+        [self.act stopAnimating];
         
-        PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
-        
-        [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
-        
-        [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-            self.arrayOfCommentObjects = objects;
-            [self.tableView reloadData];
-        }];
-        
-        
-    } else {
-        [UIView animateWithDuration:1 animations:^{
-            self.tableView.frame = CGRectMake(0, -900, self.tableView.frame.size.width, self.tableView.frame.size.height);
-                self.toolbar.frame = CGRectMake(0, -900, self.toolbar.frame.size.width, self.toolbar.frame.size.height);
-        }];
-        
-        [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
-        self.watchFullVideoButton.hidden = NO;
-        
-        self.tableView.hidden = YES;
-        self.toolbar.hidden = YES;
-
-    }
+    }];
+    
+    
 }
 
 - (void)myPins
@@ -540,6 +529,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [self.textFieldComment resignFirstResponder];
 }
 
 - (void)alertControllerBackgroundTapped
@@ -552,6 +542,11 @@
 - (IBAction)cancel:(id)sender {
     [self.textFieldComment resignFirstResponder];
     self.textFieldComment.text = @"";
+
+    
+    [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
+    self.tableView.hidden = YES;
+    self.toolbar.hidden = YES;
 }
 
 @end

@@ -89,7 +89,9 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     
-    
+    func home() {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
     
     
