@@ -12,7 +12,7 @@
 #import "TVA2Go-Swift.h"
 
 
-@interface VideoPlayerViewController () <UINavigationControllerDelegate, YTPlayerViewDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface VideoPlayerViewController () <YTPlayerViewDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *dislikeButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
@@ -72,6 +72,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
+    [super viewWillAppear:animated];
     [self.seeAllCommentsButton setTitle:@"  Comments" forState:UIControlStateNormal];
     self.user = [PFUser currentUser];
     
@@ -86,6 +88,18 @@
     title.titleLabel.font = font;
     [title setTitle:@"TVA2Go" forState:UIControlStateNormal];
     self.navigationItem.titleView = title;
+   
+    
+    
+    
+    ////////////////////////
+    
+    
+
+//    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    
+    
+    //////////////////
     
     [self.user fetchInBackground];
     
@@ -99,6 +113,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     self.tableView.frame = self.tableViewOriginal;
     
     [self.playerView stopVideo];

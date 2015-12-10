@@ -12,9 +12,4 @@
 
 
 
-- (void)awakeFromNib
-{
-    
-}
-
 @end

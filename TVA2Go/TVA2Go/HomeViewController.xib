@@ -38,6 +38,9 @@
             <rect key="frame" x="0.0" y="0.0" width="321" height="784"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" alpha="0.050000000000000003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="cNu-FF-iLD">
+                    <rect key="frame" x="0.0" y="0.0" width="321" height="784"/>
+                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0zL-P0-pcq" userLabel="body Stack View">
                     <rect key="frame" x="0.0" y="45" width="321" height="679"/>
                     <subviews>
@@ -266,8 +269,12 @@
                 <constraint firstItem="0zL-P0-pcq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="99a-VG-OCO"/>
                 <constraint firstItem="zd9-5e-vly" firstAttribute="top" secondItem="ZyS-NU-c0A" secondAttribute="bottom" constant="24" id="FyN-E8-uiU"/>
                 <constraint firstItem="0zL-P0-pcq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="45" id="JQW-Sx-Fgo"/>
+                <constraint firstAttribute="bottom" secondItem="cNu-FF-iLD" secondAttribute="bottom" id="Jtb-nX-hL0"/>
                 <constraint firstItem="ZyS-NU-c0A" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="150" id="K2Y-b8-Adq"/>
+                <constraint firstItem="cNu-FF-iLD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Kz2-xw-CMe"/>
                 <constraint firstItem="zd9-5e-vly" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="LeN-ak-7a0"/>
+                <constraint firstAttribute="trailing" secondItem="cNu-FF-iLD" secondAttribute="trailing" id="Qdh-18-tD1"/>
+                <constraint firstItem="cNu-FF-iLD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SFX-3P-BoQ"/>
                 <constraint firstAttribute="trailing" secondItem="zd9-5e-vly" secondAttribute="trailing" constant="100" id="VpR-00-Hwu"/>
                 <constraint firstAttribute="trailing" secondItem="0zL-P0-pcq" secondAttribute="trailing" id="caX-ai-BRJ"/>
                 <constraint firstItem="ZyS-NU-c0A" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fpC-iV-ZCN"/>
@@ -292,6 +299,7 @@
     <resources>
         <image name="Login active" width="100" height="100"/>
         <image name="Login passive" width="100" height="100"/>
+        <image name="background" width="640" height="1136"/>
         <image name="logo" width="203" height="204"/>
     </resources>
 </document>

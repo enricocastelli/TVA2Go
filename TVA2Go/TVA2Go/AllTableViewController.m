@@ -39,6 +39,7 @@
     [super viewDidLoad];
     self.tableView.hidden = YES;
 
+
     self.stringSearch = @"";
     self.tableView.separatorColor = [UIColor clearColor];
     
@@ -79,14 +80,11 @@
 
 - (void)setNav
 {
-    UIButton *title = [UIButton buttonWithType:UIButtonTypeSystem];
-    title.tintColor = [UIColor whiteColor];
-    [title setTitle:@"All Videos" forState:UIControlStateNormal];
+   
+    self.navigationItem.title = @"All Videos";
     UIFont * font = [UIFont fontWithName:@"Helvetica Neue" size:20];
     
-    title.titleLabel.font = font;
-    
-    self.navigationItem.titleView = title;
+//    self.navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName*[UIColor whiteColor]];
     
     UIImage *home = [UIImage imageNamed:@"Home"];
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];
