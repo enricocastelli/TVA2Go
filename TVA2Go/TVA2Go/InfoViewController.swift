@@ -106,7 +106,7 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     @IBAction func forgotPassword(sender: UIButton) {
-        let forgot = UIAlertController.init(title: "Reset Password", message: "Type your email adress", preferredStyle: UIAlertControllerStyle.Alert)
+        let forgot = UIAlertController.init(title: "Reset password.", message: "Type your email address.", preferredStyle: UIAlertControllerStyle.Alert)
         forgot.addTextFieldWithConfigurationHandler(nil)
         forgot.textFields![0].placeholder = "example@mail.com"
         let ok = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
@@ -129,7 +129,7 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     func emailSent() {
-        let emailSent = UIAlertController.init(title: "Check your Email", message: "Follow the instructions to reset your password", preferredStyle: UIAlertControllerStyle.Alert)
+        let emailSent = UIAlertController.init(title: "Check your email.", message: "Follow the instructions to reset your password.", preferredStyle: UIAlertControllerStyle.Alert)
         self.presentViewController(emailSent, animated: true, completion: nil)
         emailSent.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Cancel, handler: {(alertAction: UIAlertAction!) in
             emailSent.dismissViewControllerAnimated(true, completion: nil)
@@ -138,7 +138,7 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
 
     func emailNotSent() {
-        let emailSent = UIAlertController.init(title: "Ops!", message: "Email not found", preferredStyle: UIAlertControllerStyle.Alert)
+        let emailSent = UIAlertController.init(title: "Oops!", message: "Email not found.", preferredStyle: UIAlertControllerStyle.Alert)
         self.presentViewController(emailSent, animated: true, completion: nil)
         emailSent.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Cancel, handler: {(alertAction: UIAlertAction!) in
             emailSent.dismissViewControllerAnimated(true, completion: nil)

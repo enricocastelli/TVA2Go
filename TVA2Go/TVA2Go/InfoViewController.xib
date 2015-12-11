@@ -20,11 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HHi-rp-jfU">
-                    <rect key="frame" x="55" y="96" width="390" height="50"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="HHi-rp-jfU">
+                    <rect key="frame" x="55" y="96" width="210" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNw-ZA-Z4o">
-                            <rect key="frame" x="0.0" y="0.0" width="201" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="21" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="RoV-5o-6x2"/>
                             </constraints>
@@ -34,21 +34,21 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EzB-9P-EL8">
-                            <rect key="frame" x="241" y="0.0" width="21" height="50"/>
+                            <rect key="frame" x="61" y="0.0" width="21" height="50"/>
                             <state key="normal" image="instagram"/>
                             <connections>
                                 <action selector="instagram:" destination="-1" eventType="touchUpInside" id="9pY-Bq-9br"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGl-lz-yNy">
-                            <rect key="frame" x="302" y="0.0" width="23" height="50"/>
+                            <rect key="frame" x="122" y="0.0" width="23" height="50"/>
                             <state key="normal" image="twitter"/>
                             <connections>
                                 <action selector="twitter:" destination="-1" eventType="touchUpInside" id="oEA-y4-zrM"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jJ-R4-eft">
-                            <rect key="frame" x="365" y="0.0" width="25" height="50"/>
+                            <rect key="frame" x="185" y="0.0" width="25" height="50"/>
                             <state key="normal" image="tvalogo"/>
                             <connections>
                                 <action selector="website:" destination="-1" eventType="touchUpInside" id="AiV-Nn-8AJ"/>
@@ -64,8 +64,8 @@
                         </mask>
                     </variation>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This App was made in collaboration with the AppAcademy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrB-3m-OCo">
-                    <rect key="frame" x="33" y="461" width="255" height="11"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This app was made in collaboration with The App Academy." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrB-3m-OCo">
+                    <rect key="frame" x="27" y="461" width="261" height="11"/>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -78,8 +78,8 @@
                     </connections>
                 </pickerView>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLs-at-EGh">
-                    <rect key="frame" x="137" y="410" width="46" height="30"/>
-                    <state key="normal" title="Forgot my Password"/>
+                    <rect key="frame" x="82" y="410" width="157" height="30"/>
+                    <state key="normal" title="Forgot your password?"/>
                     <connections>
                         <action selector="forgotPassword:" destination="-1" eventType="touchUpInside" id="5fc-69-a5B"/>
                     </connections>
