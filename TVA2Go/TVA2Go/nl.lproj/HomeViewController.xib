@@ -73,13 +73,13 @@
                             </variation>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HaN-ym-UxV">
-                            <rect key="frame" x="71" y="271" width="179" height="40"/>
+                            <rect key="frame" x="81" y="271" width="160" height="40"/>
                             <color key="backgroundColor" red="0.14901960784313725" green="0.5725490196078431" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Qcs-QJ-3OJ"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
-                            <state key="normal" title="Inspire me">
+                            <state key="normal" title="Verras me">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -87,10 +87,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfv-7R-U2r">
-                            <rect key="frame" x="71" y="361" width="179" height="40"/>
+                            <rect key="frame" x="81" y="361" width="160" height="40"/>
                             <color key="backgroundColor" red="0.17204204754527172" green="0.6744834107292248" blue="0.8935448232323232" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
-                            <state key="normal" title="Make me laugh">
+                            <state key="normal" title="Laat me lachen">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -98,10 +98,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-Hk-7I1">
-                            <rect key="frame" x="71" y="450" width="179" height="40"/>
+                            <rect key="frame" x="81" y="450" width="160" height="40"/>
                             <color key="backgroundColor" red="0.19253879947837882" green="0.75484004069246113" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
-                            <state key="normal" title="  Make me smarter  ">
+                            <state key="normal" title="Maak me slimmer">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -109,10 +109,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-J7-g0f">
-                            <rect key="frame" x="71" y="540" width="179" height="40"/>
+                            <rect key="frame" x="81" y="540" width="160" height="40"/>
                             <color key="backgroundColor" red="0.20238594621770789" green="0.7718502576090025" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
-                            <state key="normal" title="Random!">
+                            <state key="normal" title="Willekeurig!">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -164,24 +164,24 @@
                     </connections>
                 </stackView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-NU-c0A" userLabel="Text field Stack View">
-                    <rect key="frame" x="108" y="490" width="106" height="100"/>
+                    <rect key="frame" x="108" y="490" width="149" height="100"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZgO-lC-YNo">
-                            <rect key="frame" x="0.0" y="0.0" width="106" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gebruikersnaam" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZgO-lC-YNo">
+                            <rect key="frame" x="0.0" y="0.0" width="149" height="30"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PQy-37-Nr3">
-                            <rect key="frame" x="3" y="35" width="100" height="30"/>
+                            <rect key="frame" x="24" y="35" width="100" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="gsq-Mk-anQ"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AKY-gJ-88l">
-                            <rect key="frame" x="3" y="70" width="99" height="30"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Wachtwoord" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AKY-gJ-88l">
+                            <rect key="frame" x="13" y="70" width="123" height="30"/>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
