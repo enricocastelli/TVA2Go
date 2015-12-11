@@ -475,11 +475,11 @@
                          [self likeButtonEnabled];
                          [self callQuery];
                          [self.tableView reloadData];
-
+                         
                          
                          [UIView animateWithDuration:3.5 animations:^{
-                             
                              playerView.alpha = 1;
+                          
                          }];
                      }];
     
