@@ -86,7 +86,6 @@
 		FD3E4E881C19D84900F01C40 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		FD66BB021C1991DB00D2F837 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		FD66BB031C1991DB00D2F837 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
-		FD66BB061C199EF100D2F837 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FD66BB071C19C01400D2F837 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullVideoSwift.swift; sourceTree = "<group>"; };
 		FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -498,7 +497,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				FDB10ED51C0461FE0000100B /* Base */,
-				FD66BB061C199EF100D2F837 /* nl */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

@@ -38,6 +38,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *backImage = [UIImage imageNamed:@"background"];
+    UIImageView *background = [[UIImageView alloc] initWithImage:backImage];
+    background.alpha = 0.05;
+    self.pinned.backgroundView = background;
 
     self.deleting = @"NO";
     [self setCollectionView];
@@ -98,7 +102,7 @@
     self.navigationItem.rightBarButtonItem = edit;
     
     self.navigationItem.title = @"My Pins";
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Light" size:22.0f], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     UIImage *home = [UIImage imageNamed:@"Home"];
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];

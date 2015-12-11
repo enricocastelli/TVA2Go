@@ -68,7 +68,9 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBAction func facebook(sender: UIButton) {
         
         let url = NSURL.init(string: "fb://profile/153712604776798")
+        if (UIApplication.sharedApplication().canOpenURL(url!)){
        UIApplication.sharedApplication().openURL(url!)
+        } 
 
     }
     
@@ -104,10 +106,45 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     
     @IBAction func forgotPassword(sender: UIButton) {
+        let forgot = UIAlertController.init(title: "Reset Password", message: "Type your email adress", preferredStyle: UIAlertControllerStyle.Alert)
+        forgot.addTextFieldWithConfigurationHandler(nil)
+        forgot.textFields![0].placeholder = "example@mail.com"
+        let ok = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Default) { (UIAlertAction) -> Void in
+                PFUser.requestPasswordResetForEmailInBackground((forgot.textFields![0].text!), block: { (success, error) -> Void in
+                    if (success == true) {
+                        self.emailSent()
+                    } else {
+                        self.emailNotSent()
+                    }
+                })
+            
+        }
+        let cancel = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.Cancel) { (UIAlertAction) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        forgot.addAction(cancel)
+        forgot.addAction(ok)
+        self.presentViewController(forgot, animated: true, completion: nil)
     }
     
     
+    func emailSent() {
+        let emailSent = UIAlertController.init(title: "Check your Email", message: "Follow the instructions to reset your password", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(emailSent, animated: true, completion: nil)
+        emailSent.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Cancel, handler: {(alertAction: UIAlertAction!) in
+            emailSent.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+    }
 
+    func emailNotSent() {
+        let emailSent = UIAlertController.init(title: "Ops!", message: "Email not found", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(emailSent, animated: true, completion: nil)
+        emailSent.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Cancel, handler: {(alertAction: UIAlertAction!) in
+            emailSent.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+    }
 
 
 }

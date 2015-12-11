@@ -626,7 +626,7 @@ self.navigationController.navigationBar.alpha = 0;
         halfTurn = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
         halfTurn.fromValue = [NSNumber numberWithFloat:0];
         halfTurn.toValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
-        halfTurn.duration = 0.5;
+        halfTurn.duration = 0.7;
         halfTurn.repeatCount = 100;
         [layer addAnimation:halfTurn forKey:@"180"];
 }
@@ -644,7 +644,7 @@ self.navigationController.navigationBar.alpha = 0;
 
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
 
     return YES;
 }

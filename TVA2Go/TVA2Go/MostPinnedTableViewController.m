@@ -81,10 +81,11 @@
 {
     self.navigationItem.title = @"Most Pinned";
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+  [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Light" size:22.0f], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     UIImage *home = [UIImage imageNamed:@"Home"];
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithImage:home style:UIBarButtonItemStylePlain target:self action:@selector(home)];
+    
     self.navigationItem.leftBarButtonItem = homeButton;
 }
 

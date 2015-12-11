@@ -24,32 +24,38 @@ override func viewDidLoad() {
     self.pin.alpha = 1
 
     self.navigationItem.title = "TVA2Go"
-    self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+    self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont.init(name: "OpenSans-Light", size: 22.0)! ,NSForegroundColorAttributeName : UIColor.whiteColor()]
         pin.layer.cornerRadius = pin.frame.size.width/2
     let home = UIImage.init(named:"Home")
     let homeButton = UIBarButtonItem.init(image: home, style: UIBarButtonItemStyle.Plain, target: self, action:"home")
     self.navigationItem.rightBarButtonItem = homeButton
-    if (fullVideo != nil) {
-        playerView.loadWithVideoId(fullVideo!.identifier)
-        titleLabel.text = fullVideo!.snippet.title
-        let date = fullVideo!.snippet.publishedAt.date
-        let formatter = NSDateFormatter.init()
-        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateLabel.text = formatter.stringFromDate(date)
-        textView.text = fullVideo!.snippet.descriptionProperty
-        self.userGTL()
-    } else {
-        let videoID = parseVideoObject!["videoID"] as! String
-        playerView.loadWithVideoId(videoID)
-        titleLabel.text = parseVideoObject!["title"] as? String
-        let date = parseVideoObject!["youtubeDate"] as? NSDate
-        let formatter = NSDateFormatter.init()
-        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateLabel.text = formatter.stringFromDate(date!)
-        textView.text = parseVideoObject!["description"] as? String
-        self.userParse()
-    }
+    self.detectVideo()
 }
+    
+    
+    func detectVideo() {
+        if (fullVideo != nil) {
+            playerView.loadWithVideoId(fullVideo!.identifier)
+            titleLabel.text = fullVideo!.snippet.title
+            let date = fullVideo!.snippet.publishedAt.date
+            let formatter = NSDateFormatter.init()
+            formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+            dateLabel.text = formatter.stringFromDate(date)
+            textView.text = fullVideo!.snippet.descriptionProperty
+            self.userGTL()
+        } else {
+            let videoID = parseVideoObject!["videoID"] as! String
+            playerView.loadWithVideoId(videoID)
+            titleLabel.text = parseVideoObject!["title"] as? String
+            let date = parseVideoObject!["youtubeDate"] as? NSDate
+            let formatter = NSDateFormatter.init()
+            formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+            dateLabel.text = formatter.stringFromDate(date!)
+            textView.text = parseVideoObject!["description"] as? String
+            self.userParse()
+        }
+    }
+    
     
     func playerViewDidBecomeReady(playerView: YTPlayerView!) {
         playerView!.playVideo()

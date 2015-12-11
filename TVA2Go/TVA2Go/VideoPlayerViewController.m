@@ -58,8 +58,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
 
+    self.act.hidden = YES;
     self.user = [PFUser currentUser];
     self.watchFullVideoButton.hidden = NO;
     self.instructions.hidden = NO;
@@ -97,11 +98,13 @@
 - (void)setNav
 {
     UIBarButtonItem *myPins = [[UIBarButtonItem alloc] initWithTitle:@"My Pins" style:UIBarButtonItemStylePlain target:self action:@selector(myPins)];
+    [myPins setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Light" size:20.0f]} forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = myPins;
     
     self.navigationItem.title = @"TVA2Go";
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Light" size:22.0f], NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self.navigationItem.backBarButtonItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Light" size:20.0f]} forState:UIControlStateNormal];
 }
 
 
@@ -364,8 +367,8 @@
     
     if (self.arrayOfCommentObjects.count == 0) {
         
-        cell.userLabel.text = @"No comments yet";
-        cell.commentLabel.text = @"";
+        cell.commentLabel.text = @"No comments yet";
+        cell.userLabel.text = @"";
         cell.dateLabel.text = @"";
 
         
@@ -465,6 +468,8 @@
                          
                          [self likeButtonEnabled];
                          [self callQuery];
+                         [self.tableView reloadData];
+
                          
                          [UIView animateWithDuration:3.5 animations:^{
                              
@@ -511,6 +516,7 @@
 
                          [self callQuery];
 
+                         [self.tableView reloadData];
                          
                          
                          [UIView animateWithDuration:3 animations:^{
@@ -521,6 +527,13 @@
     
 }
 
+- (IBAction)HowToSwipe:(id)sender {
+    if (self.instructions.hidden == NO) {
+        self.instructions.hidden = YES;
+    } else {
+    self.instructions.hidden = NO;
+    }
+}
 
 - (IBAction)postComment:(id)sender {
     
