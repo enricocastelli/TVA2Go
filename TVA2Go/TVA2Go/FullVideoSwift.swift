@@ -35,7 +35,11 @@ override func viewDidLoad() {
     
     func detectVideo() {
         if (fullVideo != nil) {
-            playerView.loadWithVideoId(fullVideo!.identifier)
+            let playerVars:[NSObject:AnyObject] = [
+                "modestbranding":0,
+                "controls":2,
+                "showinfo":0]
+            playerView.loadWithVideoId(fullVideo!.identifier, playerVars: playerVars)
             titleLabel.text = fullVideo!.snippet.title
             let date = fullVideo!.snippet.publishedAt.date
             let formatter = NSDateFormatter.init()
