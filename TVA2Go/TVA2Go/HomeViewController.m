@@ -176,6 +176,7 @@
 {
     if ([PFUser currentUser]) {
         
+        [self.userButton setSelected:YES];
         [self.navigationController setToolbarHidden:NO];
         [self.successLabel.layer removeAllAnimations];
         self.successLabel.hidden = NO;
@@ -212,7 +213,6 @@
 - (void) login
 {
     [self allButtonsDisabled];
-    [self.userButton setSelected:YES];
     if ([PFUser currentUser]) {
         [self.loginButton setTitle:@" Logout " forState:UIControlStateNormal];
         [self logoutFade];
@@ -223,14 +223,13 @@
     
     [self.userButton removeTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
      [self.userButton addTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
-    self.userButton.selected = YES;
-
     }
 }
 
 - (void) logout
 {
     [PFUser logOutInBackground];
+    [self.userButton setSelected:NO];
     self.successLabel.alpha = 0;
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.logo.frame = CGRectMake(self.logo.frame.origin.x, self.logo.frame.origin.y + 900, self.logo.frame.size.width, self.logo.frame.size.height);
@@ -430,7 +429,6 @@ self.navigationController.navigationBar.alpha = 0;
     } completion:nil];
     [self.userButton removeTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
     [self.userButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    self.userButton.selected = NO;
     
 
     [self.passwordField resignFirstResponder];
@@ -513,6 +511,8 @@ self.navigationController.navigationBar.alpha = 0;
                         self.successLabel.textColor = [UIColor blackColor];
                         self.successLabel.text = [NSString stringWithFormat:@"%@" ,user.username];
                         [self.navigationController setToolbarHidden:NO];
+                        [self.userButton setSelected:YES];
+
                     } completion:nil];
                 }];
             }];
@@ -600,6 +600,8 @@ self.navigationController.navigationBar.alpha = 0;
 
                     self.successLabel.text = [NSString stringWithFormat:@"%@" ,user.username];
                     [self.navigationController setToolbarHidden:NO];
+                    [self.userButton setSelected:YES];
+
 
 
                 } completion:nil];

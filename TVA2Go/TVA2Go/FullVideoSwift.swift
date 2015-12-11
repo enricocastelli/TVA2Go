@@ -36,6 +36,7 @@ override func viewDidLoad() {
     func detectVideo() {
         if (fullVideo != nil) {
             let playerVars:[NSObject:AnyObject] = [
+                "modestbranding":0,
                 "controls":2,
                 "showinfo":0]
             playerView.loadWithVideoId(fullVideo!.identifier, playerVars: playerVars)

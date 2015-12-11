@@ -130,6 +130,7 @@
         self.currentVideo = self.videosInPlaylist [arc4random() % (self.videosInPlaylist.count)];
         NSDictionary *playerVars = @{
                                      @"playsinline" : @1,
+                                     @"modestbranding" : @1,
                                      @"showinfo" : @0
                                      };
         
