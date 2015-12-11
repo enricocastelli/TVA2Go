@@ -116,6 +116,7 @@
         self.cancelButton.enabled = YES;
 
     } else {
+        self.textFieldComment.placeholder = @"Please log in to comment :)";
         self.textFieldComment.enabled = NO;
         self.postCommentButton.enabled = NO;
         self.cancelButton.enabled = NO;
@@ -360,11 +361,12 @@
     return 114;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CommentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-
+    self.tableView.allowsSelection = NO;
     
     if (self.arrayOfCommentObjects.count == 0) {
         
