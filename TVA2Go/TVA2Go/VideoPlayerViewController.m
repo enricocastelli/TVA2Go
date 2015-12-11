@@ -477,8 +477,7 @@
                          
                          [self likeButtonEnabled];
                          [self callQuery];
-                         [self.tableView reloadData];
-
+                         [self seeAllComments:self];
                          
                          [UIView animateWithDuration:3.5 animations:^{
                              
@@ -526,7 +525,7 @@
 
                          [self callQuery];
 
-                         [self.tableView reloadData];
+                         [self seeAllComments:self];
                          
                          
                          [UIView animateWithDuration:3 animations:^{
