@@ -51,6 +51,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-nc-4fT">
                             <rect key="frame" x="101" y="0.0" width="120" height="120"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="0iL-nc-4fT" secondAttribute="height" multiplier="1:1" id="32k-Yd-arR"/>
                                 <constraint firstAttribute="height" constant="1" id="Sw7-zB-eZB"/>
@@ -138,6 +139,7 @@
                             </variation>
                         </button>
                     </subviews>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="dfv-7R-U2r" firstAttribute="height" secondItem="HaN-ym-UxV" secondAttribute="height" id="5U6-aa-LbV"/>
                         <constraint firstAttribute="trailing" secondItem="0iL-nc-4fT" secondAttribute="trailing" constant="80" id="EYR-qL-xfA"/>
@@ -157,6 +159,9 @@
                             <exclude reference="SLz-s8-Bw8"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="4Xz-nP-yao" appends="YES" id="qVK-Yd-ocI"/>
+                    </connections>
                 </stackView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-NU-c0A" userLabel="Text field Stack View">
                     <rect key="frame" x="108" y="490" width="106" height="100"/>
@@ -300,6 +305,11 @@
             </variation>
             <point key="canvasLocation" x="202.5" y="312"/>
         </view>
+        <tapGestureRecognizer numberOfTapsRequired="4" id="4Xz-nP-yao">
+            <connections>
+                <action selector="logoTapped:" destination="-1" id="4nL-Z8-bb2"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="background" width="640" height="1136"/>
