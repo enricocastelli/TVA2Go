@@ -114,12 +114,13 @@
         self.textFieldComment.enabled = YES;
         self.postCommentButton.enabled = YES;
         self.cancelButton.enabled = YES;
+        self.textFieldComment.placeholder = @"Write a comment :)";
 
     } else {
         self.textFieldComment.placeholder = @"Please log in to comment :)";
         self.textFieldComment.enabled = NO;
         self.postCommentButton.enabled = NO;
-        self.cancelButton.enabled = NO;
+        self.cancelButton.enabled = YES;
     }
 }
 
@@ -321,7 +322,7 @@
         [self presentViewController:fbPostSheet animated:YES completion:nil];
     } else
     {
-        UIAlertController *sorry = [UIAlertController alertControllerWithTitle:@"Sorry" message:@"You can't post right now, make sure your device has an internet connection and you have at least one facebook account setup" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *sorry = [UIAlertController alertControllerWithTitle:@"Sorry!" message:@"You can't post right now. Make sure your device has an internet connection and you have at least one Facebook account set up." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             [self dismissViewControllerAnimated:YES
                                      completion:nil];
@@ -557,6 +558,8 @@
             [self.textFieldComment resignFirstResponder];
             [self seeAllComments:nil];
             self.postCommentButton.enabled = YES;
+            
+            [self yourCommentHasPosted];
         }];
         
     } else {
@@ -564,6 +567,28 @@
     }
 
 }
+
+- (void) yourCommentHasPosted
+
+{
+    
+    UIAlertController *yourCommentHasPosted = [UIAlertController alertControllerWithTitle:nil message:@"Your comment has posted! :)" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:yourCommentHasPosted animated:YES completion:^{
+        
+        nil;
+        
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        nil;
+        
+    }];
+    
+}
+
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
