@@ -479,7 +479,14 @@
                          [self callQuery];
                          [self.tableView reloadData];
                          
-                         [self seeAllComments:self];
+                         PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
+                         
+                         [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
+                         
+                         [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                             self.arrayOfCommentObjects = objects;
+                             [self.tableView reloadData];
+                         }];
                          
                          [UIView animateWithDuration:3.5 animations:^{
                              playerView.alpha = 1;
@@ -527,7 +534,14 @@
 
                          [self callQuery];
 
-                         [self seeAllComments:self];
+                         PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
+                         
+                         [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
+                         
+                         [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                             self.arrayOfCommentObjects = objects;
+                             [self.tableView reloadData];
+                         }];
                          
                          
                          [UIView animateWithDuration:3 animations:^{
@@ -566,6 +580,7 @@
             self.textFieldComment.text = @"";
             
             [self yourCommentHasPosted];
+            
         }];
         
     } else {
