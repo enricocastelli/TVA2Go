@@ -693,6 +693,11 @@ self.navigationController.navigationBar.alpha = 0;
 
 #pragma mark - Animate Logo EasterEGG :)
 
+//Hello Coder! This is Enrico and Alyson, the creators of this app.
+//We hope u like it!
+//P.S. Alyson is single.
+
+
 - (IBAction)logoTapped:(UITapGestureRecognizer *)sender
 {
     [self animate:CGVectorMake(0, 1)];
@@ -731,7 +736,7 @@ self.navigationController.navigationBar.alpha = 0;
     
     [collisionBehavior addBoundaryWithIdentifier:@"base" fromPoint:left toPoint:right];
     
-    [collisionBehavior addBoundaryWithIdentifier:@"rect2" fromPoint:(CGPointMake(209, 230)) toPoint:(CGPointMake(209, 230))];
+
     
     [self.animator addBehavior:collisionBehavior];
     
