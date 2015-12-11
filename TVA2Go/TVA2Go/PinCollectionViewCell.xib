@@ -96,6 +96,6 @@
     </objects>
     <resources>
         <image name="deleteIcon" width="49" height="53"/>
-        <image name="playButton" width="10" height="12"/>
+        <image name="playButton" width="49" height="49"/>
     </resources>
 </document>

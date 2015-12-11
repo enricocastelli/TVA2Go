@@ -700,7 +700,6 @@ self.navigationController.navigationBar.alpha = 0;
 
 - (IBAction)logoTapped:(UITapGestureRecognizer *)sender
 {
-    
     [self animate:CGVectorMake(0, 1)];
 }
 
