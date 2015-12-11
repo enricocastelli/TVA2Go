@@ -47,9 +47,9 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         forComponent component: Int) -> String?
     {
         if (row == 1) {
-            return "Dutch"
-        } else {
             return "English"
+        } else {
+            return "Dutch"
         }
     }
     
@@ -57,10 +57,10 @@ class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (row == 1) {
             //change language to dutch
-            print("dutch")
+            print("English")
         } else {
             //change language to english
-            print("english")
+            print("Dutch")
         }
     }
     
