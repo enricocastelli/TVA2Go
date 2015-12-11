@@ -114,12 +114,13 @@
         self.textFieldComment.enabled = YES;
         self.postCommentButton.enabled = YES;
         self.cancelButton.enabled = YES;
+        self.textFieldComment.placeholder = @"Write a comment :)";
 
     } else {
         self.textFieldComment.placeholder = @"Please log in to comment :)";
         self.textFieldComment.enabled = NO;
         self.postCommentButton.enabled = NO;
-        self.cancelButton.enabled = NO;
+        self.cancelButton.enabled = YES;
     }
 }
 
@@ -553,6 +554,8 @@
             [self.textFieldComment resignFirstResponder];
             [self seeAllComments:nil];
             self.postCommentButton.enabled = YES;
+            
+            [self yourCommentHasPosted];
         }];
         
     } else {
@@ -560,6 +563,28 @@
     }
 
 }
+
+- (void) yourCommentHasPosted
+
+{
+    
+    UIAlertController *yourCommentHasPosted = [UIAlertController alertControllerWithTitle:nil message:@"Your comment has posted! :)" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [self presentViewController:yourCommentHasPosted animated:YES completion:^{
+        
+        nil;
+        
+    }];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        nil;
+        
+    }];
+    
+}
+
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
