@@ -44,6 +44,9 @@
 @property (nonatomic) CGRect originalLogo;
 @property (nonatomic) CGRect original;
 
+
+@property (strong, nonatomic) UIDynamicAnimator*animator;
+
 @end
 
 @implementation HomeViewController
@@ -86,6 +89,18 @@
     self.usernameField.delegate = self;
     
     [self.userButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.toolbarHidden = YES;
+    [self.logo.layer removeAllAnimations];
+    [self.animator removeAllBehaviors];
+    self.logo.frame =self.originalLogo;
 }
 
 - (UIButton*)roundedButtons:(UIButton*)button byNumber:(NSInteger)divider
@@ -272,13 +287,7 @@ self.navigationController.navigationBar.alpha = 0;
                  }];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.toolbarHidden = YES;
-}
+
 
 - (void)loadingText
 {
@@ -682,6 +691,84 @@ self.navigationController.navigationBar.alpha = 0;
 
 
 
+#pragma mark - Animate Logo EasterEGG :)
+
+- (IBAction)logoTapped:(UITapGestureRecognizer *)sender
+{
+    
+    [self animate:CGVectorMake(0, 1)];
+}
+
+
+
+
+- (void)animate:(CGVector)vec
+{
+    UIDevice* device = [UIDevice currentDevice];
+    [device beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(orientationChanged:)
+     name:UIDeviceOrientationDidChangeNotification
+     object:[UIDevice currentDevice]];
+    
+     self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    
+   
+    UIGravityBehavior* gravityBehavior =
+    [[UIGravityBehavior alloc] initWithItems:@[self.logo, self.randomButton, self.inspireButton, self.userButton, self.laughButton, self.smartButton, self.successLabel]];
+    gravityBehavior.gravityDirection = vec;
+    [self.animator addBehavior:gravityBehavior];
+    
+    UICollisionBehavior* collisionBehavior =
+    [[UICollisionBehavior alloc] initWithItems:@[self.logo, self.randomButton, self.inspireButton, self.userButton, self.laughButton, self.smartButton,]];
+    collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+    collisionBehavior.collisionMode = UICollisionBehaviorModeEverything;
+  
+    
+    CGPoint left = CGPointMake(0, self.navigationController.toolbar.frame.origin.y);
+    
+    CGPoint right = CGPointMake(self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.origin.y);
+    
+    [collisionBehavior addBoundaryWithIdentifier:@"base" fromPoint:left toPoint:right];
+    
+    [collisionBehavior addBoundaryWithIdentifier:@"rect2" fromPoint:(CGPointMake(209, 230)) toPoint:(CGPointMake(209, 230))];
+    
+    [self.animator addBehavior:collisionBehavior];
+    
+    
+    
+    UIDynamicItemBehavior *elasticityBehavior =
+    [[UIDynamicItemBehavior alloc] initWithItems:@[self.logo]];
+    elasticityBehavior.elasticity = 1.05;
+    elasticityBehavior.allowsRotation = YES;
+    [self.animator addBehavior:elasticityBehavior];
+}
+
+- (void) orientationChanged:(NSNotification *)note
+{
+    
+    UIDevice * device = note.object;
+    switch(device.orientation)
+    {
+        case UIDeviceOrientationPortrait:
+            [self animate:CGVectorMake(0, 1)];
+            break;
+        case UIDeviceOrientationPortraitUpsideDown:
+            [self animate:CGVectorMake(0, -1)];
+            break;
+        case UIDeviceOrientationLandscapeLeft:
+            [self animate:CGVectorMake(-1, 0)];
+            break;
+        case UIDeviceOrientationLandscapeRight:
+            [self animate:CGVectorMake(1, 0)];
+            break;
+        default:
+            [self animate:CGVectorMake(0, 0)];
+            
+            break;
+    }
+}
 
 
 
