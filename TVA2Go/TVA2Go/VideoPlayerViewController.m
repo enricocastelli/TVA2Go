@@ -381,8 +381,11 @@
     } else {
     
     PFObject *commentObject = self.arrayOfCommentObjects[indexPath.row];
-    cell.commentLabel.text = commentObject[@"stringComment"];
-    cell.userLabel.text = commentObject[@"username"];
+    NSString *stringCommentWithQuotes = [NSString stringWithFormat:@"\"%@\"", commentObject[@"stringComment"]];
+    cell.commentLabel.text = stringCommentWithQuotes;
+    NSString *userSaysString = [NSString stringWithFormat:@"%@ says:", commentObject[@"username"]];
+        cell.userLabel.text = userSaysString;
+//    cell.userLabel.text = commentObject[@"username"];
     NSDate *date = commentObject.createdAt;
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.dateStyle = NSDateFormatterShortStyle;
@@ -412,7 +415,7 @@
         self.tableView.hidden = NO;
         self.toolbar.hidden = NO;
         self.act.hidden = YES;
-        self.tableView.alpha = 0.95;
+        self.tableView.alpha = 0.97;
         self.tableView.separatorColor = [UIColor colorWithRed:0.18823 green:0.7215 blue:0.94117 alpha:1];
         [self.act stopAnimating];
     }];
@@ -559,6 +562,8 @@
             [self seeAllComments:nil];
             self.postCommentButton.enabled = YES;
             
+            self.textFieldComment.text = @"";
+            
             [self yourCommentHasPosted];
         }];
         
@@ -594,6 +599,16 @@
 {
     [textField resignFirstResponder];
     [self.textFieldComment resignFirstResponder];
+}
+
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(range.length + range.location > textField.text.length)
+    {
+        return NO;
+    }
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return newLength <= 60;
 }
 
 - (void)alertControllerBackgroundTapped
