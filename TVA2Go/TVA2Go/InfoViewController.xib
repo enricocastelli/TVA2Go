@@ -3,15 +3,16 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoViewController" customModule="TVA2Go" customModuleProvider="target">
             <connections>
                 <outlet property="facebookButton" destination="jNw-ZA-Z4o" id="cON-QZ-gLq"/>
                 <outlet property="instagramButton" destination="EzB-9P-EL8" id="93e-Th-seV"/>
-                <outlet property="languagePicker" destination="35t-dW-2Nx" id="rSM-VQ-6h8"/>
+                <outlet property="playerView" destination="ja0-go-62i" id="0x4-1h-vcr"/>
                 <outlet property="twitterButton" destination="aGl-lz-yNy" id="uqI-rd-qOe"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="UIo-T9-BNT"/>
                 <outlet property="websiteButton" destination="2jJ-R4-eft" id="5hb-7Y-cMM"/>
             </connections>
         </placeholder>
@@ -70,31 +71,32 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35t-dW-2Nx">
-                    <rect key="frame" x="0.0" y="186" width="320" height="216"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="NoS-ye-epl"/>
-                        <outlet property="delegate" destination="-1" id="yr2-8c-fdm"/>
-                    </connections>
-                </pickerView>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLs-at-EGh">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLs-at-EGh">
                     <rect key="frame" x="82" y="410" width="157" height="30"/>
                     <state key="normal" title="Forgot your password?"/>
                     <connections>
                         <action selector="forgotPassword:" destination="-1" eventType="touchUpInside" id="5fc-69-a5B"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ja0-go-62i" customClass="YTPlayerView">
+                    <rect key="frame" x="40" y="176" width="240" height="128"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ja0-go-62i" secondAttribute="height" multiplier="15:8" id="7x7-Ma-MDr"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HHi-rp-jfU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AGW-g3-hih"/>
                 <constraint firstItem="HHi-rp-jfU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="96" id="JxT-57-cAz"/>
+                <constraint firstItem="ja0-go-62i" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ndp-XS-Rgm"/>
                 <constraint firstAttribute="bottom" secondItem="KrB-3m-OCo" secondAttribute="bottom" constant="8" id="Ohn-NQ-UJt"/>
-                <constraint firstItem="ZLs-at-EGh" firstAttribute="top" secondItem="35t-dW-2Nx" secondAttribute="bottom" constant="24" id="eYr-KB-rbc"/>
-                <constraint firstItem="35t-dW-2Nx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nm7-df-Sj1"/>
+                <constraint firstItem="ja0-go-62i" firstAttribute="top" secondItem="HHi-rp-jfU" secondAttribute="bottom" constant="30" id="a8f-A7-dcB"/>
                 <constraint firstItem="ZLs-at-EGh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tS0-6L-5Hn"/>
-                <constraint firstItem="35t-dW-2Nx" firstAttribute="top" secondItem="HHi-rp-jfU" secondAttribute="bottom" constant="40" id="vd0-FH-OLC"/>
                 <constraint firstItem="KrB-3m-OCo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xuB-fu-4Yp"/>
+                <constraint firstItem="KrB-3m-OCo" firstAttribute="top" secondItem="ZLs-at-EGh" secondAttribute="bottom" constant="21" id="yS4-wp-iTh"/>
+                <constraint firstItem="ja0-go-62i" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="yzj-8v-Eqh"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="176" y="223"/>
