@@ -8,60 +8,28 @@
 
 import UIKit
 
+@objc class InfoViewController : UIViewController, YTPlayerViewDelegate {
 
-
-
-class InfoViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+//class InfoViewController: UIViewController {
+    
     @IBOutlet weak var facebookButton: UIButton!
 
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var instagramButton: UIButton!
-    
-    @IBOutlet weak var languagePicker: UIPickerView!
-    
-    weak var dataSource: UIPickerViewDataSource?
-    
+
+    @IBOutlet weak var playerView: YTPlayerView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        languagePicker.delegate = self
-        languagePicker.dataSource = self
+        playerView?.delegate = self
+        
+        playerView.loadWithVideoId("WCJHGgAtF6c")
         self.navigationController?.interactivePopGestureRecognizer?.enabled = false;
         let home = UIImage.init(named:"Home")
         let homeButton = UIBarButtonItem.init(image: home, style: UIBarButtonItemStyle.Plain, target: self, action:"home")
         self.navigationItem.leftBarButtonItem = homeButton
-    }
-
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
-    }
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView,
-        titleForRow row: Int,
-        forComponent component: Int) -> String?
-    {
-        if (row == 1) {
-            return "English"
-        } else {
-            return "Dutch"
-        }
-    }
-    
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if (row == 1) {
-            //change language to dutch
-            print("English")
-        } else {
-            //change language to english
-            print("Dutch")
-        }
     }
     
     
