@@ -34,14 +34,13 @@
 
 @property (weak, nonatomic) IBOutlet UIStackView *textFieldView;
 @property (weak, nonatomic) IBOutlet UIStackView *loginView;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UILabel *successLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 @property (nonatomic) VideoPlayerViewController *videoPlayerController;
-@property (nonatomic) CGRect originalLogo;
+
+@property (nonatomic) CGPoint originalLogo;
 @property (nonatomic) CGRect original;
 
 
@@ -59,7 +58,7 @@
     [super viewWillAppear:animated];
     [self allButtonsEnabled];
     
-    self.originalLogo = self.logo.frame;
+    self.originalLogo = self.logo.center;
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.toolbarHidden = YES;
 
@@ -100,7 +99,6 @@
     self.navigationController.toolbarHidden = YES;
     [self.logo.layer removeAllAnimations];
     [self.animator removeAllBehaviors];
-    self.logo.frame =self.originalLogo;
 }
 
 - (UIButton*)roundedButtons:(UIButton*)button byNumber:(NSInteger)divider
@@ -203,7 +201,8 @@
         [self.navigationController setToolbarHidden:YES];
 
         self.successLabel.hidden = NO;
-        self.successLabel.alpha = 0;
+        self.successLabel.textColor = [UIColor blackColor];
+        self.successLabel.text = @"Welcome!";
     }
 }
 
@@ -245,7 +244,8 @@
 {
     [PFUser logOutInBackground];
     [self.userButton setSelected:NO];
-    self.successLabel.alpha = 0;
+    self.successLabel.text = @"Welcome";
+    self.successLabel.textColor = [UIColor blackColor];
     [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.logo.frame = CGRectMake(self.logo.frame.origin.x, self.logo.frame.origin.y + 900, self.logo.frame.size.width, self.logo.frame.size.height);
         self.inspireButton.alpha = 0;
@@ -356,10 +356,11 @@ self.navigationController.navigationBar.alpha = 0;
     [UIView animateWithDuration:1.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.loginButton.alpha = 1;
         self.signupButton.alpha = 1;
-        self.logo.frame = CGRectMake(self.logo.frame.origin.x, self.logo.frame.origin.y + 900, self.logo.frame.size.width, self.logo.frame.size.height);
+        self.logo.center = CGPointMake(self.view.frame.size.width/2, self.logo.center.y + 900);
     } completion:nil];
     self.inspireButton.alpha = 0;
     self.laughButton.alpha = 0;
+    self.successLabel.alpha = 0;
     self.smartButton.alpha = 0;
     self.randomButton.alpha = 0;
     self.navigationController.toolbarHidden = YES;
@@ -422,6 +423,8 @@ self.navigationController.navigationBar.alpha = 0;
     [self allButtonsEnabled];
     self.logo.hidden = NO;
     self.logo.alpha = 1;
+    self.successLabel.alpha = 1;
+
 
     [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         
@@ -432,8 +435,7 @@ self.navigationController.navigationBar.alpha = 0;
         self.textFieldView.hidden = YES;
         self.loginView.hidden = YES;
         self.loginButton.hidden = NO;
-        self.logo.frame = self.originalLogo;
-        self.userButton.hidden = NO;
+        self.logo.center = CGPointMake(self.view.frame.size.width/2, self.originalLogo.y);
 
     } completion:nil];
     [self.userButton removeTarget:self action:@selector(undo) forControlEvents:UIControlEventTouchUpInside];
@@ -505,7 +507,7 @@ self.navigationController.navigationBar.alpha = 0;
 
 
                     
-                    self.logo.frame = self.originalLogo;
+                    self.logo.center = self.originalLogo;
 
 
                 } completion:^(BOOL finished) {
@@ -577,21 +579,20 @@ self.navigationController.navigationBar.alpha = 0;
         if (!error) {
           
             self.signupButton.hidden = YES;
-            self.userButton.hidden = YES;
+            self.userButton.alpha = 0;
             self.textFieldView.hidden = YES;
 
             [UIView animateWithDuration:1.5 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 
                 
                 self.view.backgroundColor = self.loginButton.backgroundColor;
-                self.successLabel.hidden = NO;
                 
                 self.successLabel.alpha = 1;
                 self.successLabel.textColor = [UIColor whiteColor];
                 
                 self.successLabel.text = [NSString stringWithFormat:@"Welcome, %@!" ,user.username];
                 self.logo.hidden = NO;
-                self.logo.frame = self.originalLogo;
+                self.logo.center = self.originalLogo;
                 
                 
             } completion:^(BOOL finished) {
@@ -609,6 +610,7 @@ self.navigationController.navigationBar.alpha = 0;
 
                     self.successLabel.text = [NSString stringWithFormat:@"%@" ,user.username];
                     [self.navigationController setToolbarHidden:NO];
+                    self.userButton.alpha = 1;
                     [self.userButton setSelected:YES];
 
 
@@ -670,16 +672,17 @@ self.navigationController.navigationBar.alpha = 0;
 
 - (void)keyboardDidShow:(NSNotification *)notification
 {
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        self.view.frame = CGRectMake(0,-110,320,460);
-    }];
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                self.view.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/5);
+    } completion:nil];
 
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
-    self.view.frame = self.original;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.view.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2);
+    }];
 }
 
 

@@ -120,10 +120,6 @@
                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="lsf-ZL-hqn" appends="YES" id="A4t-Vw-y5s"/>
-                        <outletCollection property="gestureRecognizers" destination="czg-ST-rvJ" appends="YES" id="6mq-kw-jlO"/>
-                    </connections>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOQ-Db-G1J">
                     <rect key="frame" x="8" y="312" width="304" height="1"/>
@@ -364,16 +360,6 @@
         <swipeGestureRecognizer direction="left" id="hxJ-wG-QKX">
             <connections>
                 <action selector="swipeLeft:" destination="-1" id="yfO-QO-34f"/>
-            </connections>
-        </swipeGestureRecognizer>
-        <swipeGestureRecognizer direction="right" id="lsf-ZL-hqn">
-            <connections>
-                <action selector="swipeRight:" destination="-1" id="Deo-a6-v08"/>
-            </connections>
-        </swipeGestureRecognizer>
-        <swipeGestureRecognizer direction="right" id="czg-ST-rvJ">
-            <connections>
-                <action selector="swipeLeft:" destination="-1" id="38d-vo-QGf"/>
             </connections>
         </swipeGestureRecognizer>
     </objects>

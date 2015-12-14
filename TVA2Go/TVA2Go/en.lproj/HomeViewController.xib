@@ -46,11 +46,12 @@
                 <imageView userInteractionEnabled="NO" alpha="0.050000000000000003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="cNu-FF-iLD">
                     <rect key="frame" x="0.0" y="0.0" width="321" height="784"/>
                 </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0zL-P0-pcq" userLabel="body Stack View">
+                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0zL-P0-pcq" userLabel="body Stack View">
                     <rect key="frame" x="0.0" y="45" width="321" height="679"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-nc-4fT">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="0iL-nc-4fT">
                             <rect key="frame" x="101" y="0.0" width="120" height="120"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="0iL-nc-4fT" secondAttribute="height" multiplier="1:1" id="32k-Yd-arR"/>
                                 <constraint firstAttribute="height" constant="1" id="Sw7-zB-eZB"/>
@@ -138,6 +139,7 @@
                             </variation>
                         </button>
                     </subviews>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="dfv-7R-U2r" firstAttribute="height" secondItem="HaN-ym-UxV" secondAttribute="height" id="5U6-aa-LbV"/>
                         <constraint firstAttribute="trailing" secondItem="0iL-nc-4fT" secondAttribute="trailing" constant="80" id="EYR-qL-xfA"/>
@@ -147,16 +149,23 @@
                         <constraint firstItem="4hp-J7-g0f" firstAttribute="height" secondItem="HaN-ym-UxV" secondAttribute="height" id="QXG-GZ-ptH"/>
                         <constraint firstItem="hXU-jL-TJy" firstAttribute="top" secondItem="4hp-J7-g0f" secondAttribute="bottom" constant="54" id="SLz-s8-Bw8"/>
                         <constraint firstItem="4hp-J7-g0f" firstAttribute="width" secondItem="HaN-ym-UxV" secondAttribute="width" id="W3Y-Lj-0dX"/>
+                        <constraint firstItem="0iL-nc-4fT" firstAttribute="centerX" secondItem="0zL-P0-pcq" secondAttribute="centerX" id="Wor-BO-hVo"/>
                         <constraint firstItem="0iL-nc-4fT" firstAttribute="top" secondItem="0zL-P0-pcq" secondAttribute="top" id="YjC-pm-KnZ"/>
+                        <constraint firstItem="0iL-nc-4fT" firstAttribute="centerX" secondItem="0zL-P0-pcq" secondAttribute="centerX" id="i9J-Nh-j2d"/>
                         <constraint firstItem="0iL-nc-4fT" firstAttribute="leading" secondItem="0zL-P0-pcq" secondAttribute="leading" constant="80" id="pXr-Mb-yal"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="EYR-qL-xfA"/>
+                            <exclude reference="Wor-BO-hVo"/>
+                            <exclude reference="i9J-Nh-j2d"/>
                             <exclude reference="pXr-Mb-yal"/>
                             <exclude reference="SLz-s8-Bw8"/>
                         </mask>
                     </variation>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="4Xz-nP-yao" appends="YES" id="qVK-Yd-ocI"/>
+                    </connections>
                 </stackView>
                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZyS-NU-c0A" userLabel="Text field Stack View">
                     <rect key="frame" x="108" y="490" width="106" height="100"/>
@@ -300,6 +309,11 @@
             </variation>
             <point key="canvasLocation" x="202.5" y="312"/>
         </view>
+        <tapGestureRecognizer numberOfTapsRequired="4" id="4Xz-nP-yao">
+            <connections>
+                <action selector="logoTapped:" destination="-1" id="4nL-Z8-bb2"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="background" width="640" height="1136"/>

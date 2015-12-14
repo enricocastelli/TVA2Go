@@ -72,6 +72,10 @@
 
     [self.textFieldComment resignFirstResponder];
     [self ifVideo];
+    self.playerView.gestureRecognizers[0].enabled = YES;
+    self.playerView.gestureRecognizers[1].enabled = YES;
+    self.likeButton.enabled = YES;
+
     
 }
 
@@ -229,15 +233,15 @@
 
 - (void)like
 {
-
- 
+    
+    
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
-       
+        
         if (number) {
             
             [self.query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
-              
+                
                 int pinCount = [[object objectForKey:@"pinCount"] intValue];
                 pinCount = pinCount + 1;
                 object[@"pinCount"] = [NSNumber numberWithInt:pinCount];
@@ -254,7 +258,7 @@
             PFFile *ima = [PFFile fileWithData:data];
             
             current[@"thumbnail"] = ima;
-
+            
             
             current[@"description"] = self.currentVideo.snippet.descriptionProperty;
             current[@"title"] = self.currentVideo.snippet.title;
@@ -477,9 +481,25 @@
                          
                          [self likeButtonEnabled];
                          [self callQuery];
-                         [self.tableView reloadData];
                          
-                         [self seeAllComments:self];
+                         self.playerView.gestureRecognizers[0].enabled = NO;
+                         self.playerView.gestureRecognizers[1].enabled = NO;
+                         self.likeButton.enabled = NO;
+
+
+                         
+                         PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
+                         
+                         [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
+                         
+                         [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                             self.arrayOfCommentObjects = objects;
+                             [self.tableView reloadData];
+                             self.playerView.gestureRecognizers[0].enabled = YES;
+                             self.playerView.gestureRecognizers[1].enabled = YES;
+                             self.likeButton.enabled = YES;
+
+                         }];
                          
                          [UIView animateWithDuration:3.5 animations:^{
                              playerView.alpha = 1;
@@ -526,9 +546,23 @@
                          [self likeButtonEnabled];
 
                          [self callQuery];
+                         self.playerView.gestureRecognizers[0].enabled = NO;
+                         self.playerView.gestureRecognizers[1].enabled = NO;
+                         self.likeButton.enabled = NO;
 
-                         [self seeAllComments:self];
+                         PFQuery *query = [PFQuery queryWithClassName:@"Comments"];
                          
+                         [query whereKey:@"videoID" equalTo:self.currentVideo.identifier];
+                         
+                         [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                             self.arrayOfCommentObjects = objects;
+                             [self.tableView reloadData];
+                         self.playerView.gestureRecognizers[0].enabled = YES;
+                         self.playerView.gestureRecognizers[1].enabled = YES;
+                             self.likeButton.enabled = YES;
+
+                         }];
+    
                          
                          [UIView animateWithDuration:3 animations:^{
                              
@@ -538,13 +572,13 @@
     
 }
 
-- (IBAction)HowToSwipe:(id)sender {
-    if (self.instructions.hidden == NO) {
-        self.instructions.hidden = YES;
-    } else {
-    self.instructions.hidden = NO;
-    }
-}
+//- (IBAction)HowToSwipe:(id)sender {
+//    if (self.instructions.hidden == NO) {
+//        self.instructions.hidden = YES;
+//    } else {
+//    self.instructions.hidden = NO;
+//    }
+//}
 
 - (IBAction)postComment:(id)sender {
     
@@ -566,6 +600,7 @@
             self.textFieldComment.text = @"";
             
             [self yourCommentHasPosted];
+            
         }];
         
     } else {
