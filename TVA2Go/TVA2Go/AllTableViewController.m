@@ -237,6 +237,8 @@ heightForHeaderInSection:(NSInteger)section
         }
     }
     self.videos = arra;
+
+    self.navigationItem.titleView = nil;
     [self.tableView reloadData];
     
     self.tableView.hidden = NO;

@@ -54,7 +54,6 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAY-zZ-TeW">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.70330489309999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="R6O-J9-z7R"/>
                                 <constraint firstAttribute="width" secondItem="hAY-zZ-TeW" secondAttribute="height" multiplier="1:1" id="S27-uk-Mzp"/>
@@ -62,7 +61,7 @@
                                 <constraint firstAttribute="width" constant="45" id="vl1-aw-zXU"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <state key="normal" image="Share">
+                            <state key="normal" image="FB button">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">
@@ -365,9 +364,9 @@
     </objects>
     <resources>
         <image name="Comment icon" width="15" height="13"/>
+        <image name="FB button" width="76" height="76"/>
         <image name="Link" width="16" height="13"/>
         <image name="Pin" width="21" height="26"/>
-        <image name="Share" width="20" height="22"/>
         <image name="logo" width="203" height="204"/>
         <image name="swipeStuff" width="361" height="188"/>
     </resources>

@@ -664,7 +664,7 @@ self.navigationController.navigationBar.alpha = 0;
 
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardWillHideNotification object:nil];
     [self.view endEditing:YES];
     return YES;
 }
@@ -704,6 +704,7 @@ self.navigationController.navigationBar.alpha = 0;
 - (IBAction)logoTapped:(UITapGestureRecognizer *)sender
 {
     [self animate:CGVectorMake(0, 1)];
+    
 }
 
 

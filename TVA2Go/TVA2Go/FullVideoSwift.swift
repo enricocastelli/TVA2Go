@@ -61,9 +61,6 @@ override func viewDidLoad() {
     }
     
     
-    func playerViewDidBecomeReady(playerView: YTPlayerView!) {
-        playerView!.playVideo()
-    }
     
     override func viewWillDisappear(animated: Bool) {
         playerView!.stopVideo()

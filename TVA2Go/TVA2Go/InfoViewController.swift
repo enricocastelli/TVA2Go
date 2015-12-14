@@ -37,24 +37,32 @@ import UIKit
         
         let url = NSURL.init(string: "fb://profile/153712604776798")
         if (UIApplication.sharedApplication().canOpenURL(url!)){
-       UIApplication.sharedApplication().openURL(url!)
-        } 
+            
+            UIApplication.sharedApplication().openURL(url!)
+        } else {
+            UIApplication.sharedApplication().openURL(NSURL.init(string: "https://www.facebook.com/tvacademy")!)
+        }
 
     }
     
     @IBAction func instagram(sender: UIButton) {
         let url = NSURL.init(string: "instagram://user?username=tv_academy")
         
+        if (UIApplication.sharedApplication().canOpenURL(url!)){
+            
             UIApplication.sharedApplication().openURL(url!)
-
+        } else {
+            UIApplication.sharedApplication().openURL(NSURL.init(string: "https://www.instagram.com/tv_academy")!)
+        }
     }
     
     @IBAction func twitter(sender: UIButton) {
         let url = NSURL.init(string: "twitter:///user?screen_name=tv_academy_nl")
         if (UIApplication.sharedApplication().canOpenURL(url!)){
+          
             UIApplication.sharedApplication().openURL(url!)
         } else {
-            UIApplication.sharedApplication().openURL(NSURL.init(string: "www.twitter.com/tv_academy_nl")!)
+            UIApplication.sharedApplication().openURL(NSURL.init(string: "http://www.twitter.com/tv_academy_nl")!)
         }
 
     }
