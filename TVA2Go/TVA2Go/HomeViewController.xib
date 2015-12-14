@@ -175,7 +175,7 @@
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AKY-gJ-88l">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AKY-gJ-88l">
                             <rect key="frame" x="4" y="70" width="99" height="30"/>
                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="18"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
