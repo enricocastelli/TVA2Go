@@ -16,6 +16,7 @@
 #import "GTLYouTube.h"
 #import "AllTableViewController.h"
 #import "TVA2Go-Swift.h"
+#import "Reachability.h"
 
 
 
@@ -43,8 +44,10 @@
 @property (nonatomic) CGPoint originalLogo;
 @property (nonatomic) CGRect original;
 
+@property (nonatomic, strong) Reachability *reachable;
 
 @property (strong, nonatomic) UIDynamicAnimator*animator;
+
 
 @end
 
@@ -56,14 +59,34 @@
     self.original = self.view.frame;
     
     [super viewWillAppear:animated];
-    [self allButtonsEnabled];
     
     self.originalLogo = self.logo.center;
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.toolbarHidden = YES;
+    self.reachable = [Reachability reachabilityForInternetConnection];
+    [self.reachable startNotifier];
+    NetworkStatus status = [self.reachable currentReachabilityStatus];
 
-    [self settingLabel];
-    [self settingToolbar];
+    if (status == NotReachable) {
+        
+        [self allButtonsDisabled];
+        self.userButton.enabled = NO;
+        UIAlertController *noInternet =[UIAlertController alertControllerWithTitle:@"Oops!" message:@"You seem to be offline. Please connect to internet to use TVA2Go." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"sorry" style:UIAlertActionStyleDefault handler:nil];
+        UIImage *noConn = [UIImage imageNamed:@"noConnection"];
+        [action setValue:noConn forKey:@"image"];
+        action.enabled = NO;
+        [noInternet addAction:action];
+        [self presentViewController:noInternet animated:YES completion:nil];
+        
+    } else {
+        [self settingLabel];
+        [self settingToolbar];
+        [self allButtonsEnabled];
+ 
+    }
+
+
     [self loadingAnimation:self.inspireButton.layer withDelay:1];
     [self loadingAnimation:self.laughButton.layer withDelay:1.4];
     [self loadingAnimation:self.smartButton.layer withDelay:1.8];
@@ -334,7 +357,7 @@ self.navigationController.navigationBar.alpha = 0;
 
 - (void)notLogin
 {
-    UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in" message:@"Log in to pin videos" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *notLogin = [UIAlertController alertControllerWithTitle:@"You are not logged in!" message:@"Log in to pin videos." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *login = [UIAlertAction actionWithTitle:@"Log in" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self login];
     }];
@@ -529,7 +552,7 @@ self.navigationController.navigationBar.alpha = 0;
             }];
             
         } else {
-            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Ops" message:@"something went wrong! Try Again!" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Something went wrong! Try again!" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self dismissViewControllerAnimated:YES completion:^{
                     [self loginFade];
@@ -620,7 +643,7 @@ self.navigationController.navigationBar.alpha = 0;
              
         } else {
             
-            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Ops" message:@"something went wrong! Try Again!" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Oops" message:@"Something went wrong! Try again!" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self dismissViewControllerAnimated:YES completion:^{
                     [self signup];

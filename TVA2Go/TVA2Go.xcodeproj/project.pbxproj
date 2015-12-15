@@ -38,6 +38,7 @@
 		FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */; };
 		FDB10EE11C0461FE0000100B /* TVA2GoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EE01C0461FE0000100B /* TVA2GoTests.m */; };
 		FDB10EEC1C0461FE0000100B /* TVA2GoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */; };
+		FDCFE6B51C2001B400458BA6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCFE6B41C2001B400458BA6 /* Reachability.m */; };
 		FDDB18EC1C0846E4005E11E0 /* TAAYouTubeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,8 @@
 		FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVA2GoUITests.m; sourceTree = "<group>"; };
 		FDB10EED1C0461FE0000100B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDB5FDF01C0F303D00B6EC6D /* TVA2Go-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TVA2Go-Bridging-Header.h"; sourceTree = "<group>"; };
+		FDCFE6B31C2001B400458BA6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		FDCFE6B41C2001B400458BA6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FDDB18EA1C0846E4005E11E0 /* TAAYouTubeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAYouTubeWrapper.h; sourceTree = "<group>"; };
 		FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAYouTubeWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +196,8 @@
 				F2803BC41C04691F00D3251C /* HomeViewController.m */,
 				F227F2831C1ED1A700AEBFD3 /* HomeViewController.xib */,
 				FDAD93EF1C172DFE00B5FE7D /* HeaderView.xib */,
+				FDCFE6B31C2001B400458BA6 /* Reachability.h */,
+				FDCFE6B41C2001B400458BA6 /* Reachability.m */,
 				FD66BB021C1991DB00D2F837 /* InfoViewController.swift */,
 				FD66BB031C1991DB00D2F837 /* InfoViewController.xib */,
 				FD3E4E861C19D84900F01C40 /* CommentTableViewCell.h */,
@@ -455,6 +460,7 @@
 				F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */,
 				F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */,
 				F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */,
+				FDCFE6B51C2001B400458BA6 /* Reachability.m in Sources */,
 				F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */,
 				FD66BB041C1991DB00D2F837 /* InfoViewController.swift in Sources */,
 				F2803BD81C046BC400D3251C /* AllTableViewController.m in Sources */,
