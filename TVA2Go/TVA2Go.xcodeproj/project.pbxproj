@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E0AEEE29BB293318A1C3B6E4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EC0172E151BE3A796B68D6 /* libPods.a */; };
 		F227F2841C1ED1A700AEBFD3 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F227F2831C1ED1A700AEBFD3 /* HomeViewController.xib */; };
+		F227F2861C21A2CE00AEBFD3 /* MostPinnedSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F227F2851C21A2CE00AEBFD3 /* MostPinnedSwift.swift */; };
 		F246ABD01C0700590022291E /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F246ABCF1C0700590022291E /* Social.framework */; };
 		F246ABD21C0724F60022291E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F246ABD11C0724F60022291E /* Assets.xcassets */; };
 		F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BC41C04691F00D3251C /* HomeViewController.m */; };
@@ -64,6 +65,7 @@
 		56EC0172E151BE3A796B68D6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF69410DF27B694A2EBB859D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F227F2831C1ED1A700AEBFD3 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		F227F2851C21A2CE00AEBFD3 /* MostPinnedSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MostPinnedSwift.swift; sourceTree = "<group>"; };
 		F246ABCF1C0700590022291E /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		F246ABD11C0724F60022291E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2803BC31C04691F00D3251C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */,
 				F2803BD21C046B0900D3251C /* MostPinnedTableViewController.h */,
 				F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */,
+				F227F2851C21A2CE00AEBFD3 /* MostPinnedSwift.swift */,
 				F2E77C361C05C4F6001EBD00 /* RankingTableViewCell.h */,
 				F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */,
 				F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */,
@@ -481,6 +484,7 @@
 				FDCFE6B51C2001B400458BA6 /* Reachability.m in Sources */,
 				F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */,
 				FD66BB041C1991DB00D2F837 /* InfoViewController.swift in Sources */,
+				F227F2861C21A2CE00AEBFD3 /* MostPinnedSwift.swift in Sources */,
 				F2803BD81C046BC400D3251C /* AllTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
