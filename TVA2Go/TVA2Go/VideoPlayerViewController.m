@@ -233,13 +233,6 @@
 
 - (void)like
 {
-    
-    PFQuery *pushQuery = [PFInstallation query];
-    
-    PFPush *push = [[PFPush alloc] init];
-    [push setQuery:pushQuery];
-    [push setMessage:@"TEST"];
-    [push sendPushInBackground];
 
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
@@ -273,6 +266,14 @@
             current[@"pinCount"] = [NSNumber numberWithInt:1];
             
             [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (!error){
+                    PFQuery *pushQuery = [PFInstallation query];
+                    PFPush *push = [[PFPush alloc] init];
+                    [push setQuery:pushQuery];
+                    [push setMessage:@"There's a new video!"];
+                    
+                    [push sendPushInBackground];
+                }
             }];
             
         }
