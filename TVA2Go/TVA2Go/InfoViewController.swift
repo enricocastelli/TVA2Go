@@ -32,6 +32,12 @@ import UIKit
         self.navigationItem.leftBarButtonItem = homeButton
     }
     
+
+    @IBAction func appAcademyIconPressed(sender: UIButton) {
+        let url = NSURL.init(string: "http://www.theappacademy.nl/")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    
     
     @IBAction func facebook(sender: UIButton) {
         
