@@ -234,7 +234,13 @@
 - (void)like
 {
     
+    PFQuery *pushQuery = [PFInstallation query];
     
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:pushQuery];
+    [push setMessage:@"TEST"];
+    [push sendPushInBackground];
+
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
         

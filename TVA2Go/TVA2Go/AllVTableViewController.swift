@@ -78,7 +78,7 @@ import UIKit
         
         let search = UIImage.init(named: "Search")
         let searchButton = UIBarButtonItem.init(image: search, style: UIBarButtonItemStyle.Plain, target: self, action: "search")
-        self.navigationItem.leftBarButtonItem = searchButton
+        self.navigationItem.rightBarButtonItem = searchButton
     }
     
     
