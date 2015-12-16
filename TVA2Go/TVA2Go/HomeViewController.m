@@ -14,9 +14,8 @@
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
 #import "GTLYouTube.h"
-#import "AllTableViewController.h"
-#import "TVA2Go-Swift.h"
 #import "Reachability.h"
+#import "TVA2Go-Swift.h"
 
 
 
@@ -47,7 +46,6 @@
 @property (nonatomic, strong) Reachability *reachable;
 
 @property (strong, nonatomic) UIDynamicAnimator*animator;
-
 
 @end
 
@@ -298,7 +296,7 @@
 
 - (void)allVideos
 {
-AllTableViewController *all = [[AllTableViewController alloc] init];
+ AllVTableViewController *all = [[AllVTableViewController alloc] init];
 all.view.alpha = 0;
 self.navigationController.navigationBar.alpha = 0;
 [UIView animateWithDuration:0.5

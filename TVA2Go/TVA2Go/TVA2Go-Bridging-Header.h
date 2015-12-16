@@ -8,3 +8,7 @@
 #import "YTPlayerView.h"
 #import "VideoPlayerViewController.h"
 #import "GTLYouTube.h"
+#import "RankingTableViewCell.h"
+#import "PinnedViewController.h"
+#import "MostPinnedTableViewController.h"
+#import "HomeViewController.h"
