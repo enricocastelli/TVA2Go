@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "HomeViewController.h"
 #import <Parse/Parse.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 
@@ -21,6 +24,8 @@
     
     [Parse setApplicationId:@"257QSfnDrmGSk5BCgBIMJO3tzlwNlABkjZBaRT9K"
                   clientKey:@"RjnuOLeRozXsx2fzVXYo5Xu2YTslu6GrF8VRpFyw"];
+    [Fabric with:@[[Crashlytics class]]];
+
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

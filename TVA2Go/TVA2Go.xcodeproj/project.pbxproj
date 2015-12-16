@@ -40,6 +40,7 @@
 		FDB10EEC1C0461FE0000100B /* TVA2GoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDB10EEB1C0461FE0000100B /* TVA2GoUITests.m */; };
 		FDCFE6B51C2001B400458BA6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCFE6B41C2001B400458BA6 /* Reachability.m */; };
 		FDDB18EC1C0846E4005E11E0 /* TAAYouTubeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */; };
+		FDF2E93C1C21620B00FE8FCA /* AllVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF2E93B1C21620B00FE8FCA /* AllVTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		FDCFE6B41C2001B400458BA6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FDDB18EA1C0846E4005E11E0 /* TAAYouTubeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAYouTubeWrapper.h; sourceTree = "<group>"; };
 		FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAYouTubeWrapper.m; sourceTree = "<group>"; };
+		FDF2E93B1C21620B00FE8FCA /* AllVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllVTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */,
 				F2803BD51C046BC400D3251C /* AllTableViewController.h */,
 				F2803BD61C046BC400D3251C /* AllTableViewController.m */,
+				FDF2E93B1C21620B00FE8FCA /* AllVTableViewController.swift */,
 				FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */,
 				F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */,
 				FDB10ED41C0461FE0000100B /* LaunchScreen.storyboard */,
@@ -270,6 +273,7 @@
 				FDB10EC71C0461FE0000100B /* Resources */,
 				0810877804B4560680A23844 /* Embed Pods Frameworks */,
 				300935585FED6005EB2FFCF8 /* Copy Pods Resources */,
+				FD85C49E1C21558300DE12E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -443,6 +447,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		FD85C49E1C21558300DE12E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 65ad4e5520de109fb28952d18dd6f6519896996f 6ef4557d0ccd80e19ea5f32e38d4a8c90a1e5409217d8eaa67892158783d6f71";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -450,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDF2E93C1C21620B00FE8FCA /* AllVTableViewController.swift in Sources */,
 				FD7E2AA91C15D3F3000A1A96 /* FullVideoSwift.swift in Sources */,
 				FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */,
 				F2803BCB1C046A5D00D3251C /* VideoPlayerViewController.m in Sources */,

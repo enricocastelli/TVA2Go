@@ -9,7 +9,6 @@
 #import "MostPinnedTableViewController.h"
 
 #import "RankingTableViewCell.h"
-#import "AllTableViewController.h"
 #import "TVA2Go-Swift.h"
 #import "PinnedViewController.h"
 #import "HomeViewController.h"
@@ -152,7 +151,7 @@ heightForHeaderInSection:(NSInteger)section
 
 - (void)allVideos
 {
-    AllTableViewController *full = [[AllTableViewController alloc] init];
+    AllVTableViewController *full = [[AllVTableViewController alloc] init];
     HomeViewController *h = [[HomeViewController alloc] init];
     [self.navigationController setViewControllers: @[h,full]];
     [self.navigationController popToViewController:full animated:YES];

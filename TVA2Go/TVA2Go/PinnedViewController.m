@@ -12,7 +12,6 @@
 #import "GTLYouTube.h"
 #import "PinCollectionViewCell.h"
 #import "TVA2Go-Swift.h"
-#import "AllTableViewController.h"
 #import "MostPinnedTableViewController.h"
 #import "HomeViewController.h"
 
@@ -296,7 +295,7 @@
 
 - (void)pushAll
 {
-    AllTableViewController *all = [[AllTableViewController alloc] init];
+    AllVTableViewController *all = [[AllVTableViewController alloc] init];
     HomeViewController *h = [[HomeViewController alloc] init];
     [self.navigationController setViewControllers: @[h,all]];
     [self.navigationController popToViewController:all animated:YES];
