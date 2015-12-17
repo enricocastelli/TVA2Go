@@ -32,6 +32,10 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
+    PFInstallation *current = [PFInstallation currentInstallation];
+    
+    current.badge = 0;
 
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

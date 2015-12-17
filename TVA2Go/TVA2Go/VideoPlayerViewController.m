@@ -233,13 +233,7 @@
 
 - (void)like
 {
-    
-    PFQuery *pushQuery = [PFInstallation query];
-    
-    PFPush *push = [[PFPush alloc] init];
-    [push setQuery:pushQuery];
-    [push setMessage:@"TEST"];
-    [push sendPushInBackground];
+  
 
     [self.query whereKey:@"videoID" containsString:self.currentVideo.identifier];
     [self.query countObjectsInBackgroundWithBlock:^(int number, NSError * _Nullable error) {
@@ -273,12 +267,18 @@
             current[@"pinCount"] = [NSNumber numberWithInt:1];
             
             [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (!error){
+                    PFQuery *pushQuery = [PFInstallation query];
+                    PFPush *push = [[PFPush alloc] init];
+                    [push setQuery:pushQuery];
+                    NSDictionary *data = @{@"aps" : @{@"alert" : @"There's a new video!", @"badge" : @1, @"sound" : @"default"}};
+                    [push setData:data];
+                    
+                    [push sendPushInBackground];
+                }
             }];
-            
         }
     }];
-    
-    
 }
 
 - (void)likeAlready {
