@@ -277,11 +277,8 @@
                     [push sendPushInBackground];
                 }
             }];
-            
         }
     }];
-    
-    
 }
 
 - (void)likeAlready {
