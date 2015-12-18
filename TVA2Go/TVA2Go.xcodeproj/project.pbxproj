@@ -20,7 +20,6 @@
 		F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */; };
 		F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E77C371C05C4F6001EBD00 /* RankingTableViewCell.m */; };
 		F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E77C381C05C4F6001EBD00 /* RankingTableViewCell.xib */; };
-		FD3E4E841C19C42B00F01C40 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDB10ED71C0461FE0000100B /* Info.plist */; };
 		FD3E4E851C19C97600F01C40 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD66BB071C19C01400D2F837 /* OpenSans-Light.ttf */; };
 		FD3E4E891C19D84900F01C40 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD3E4E871C19D84900F01C40 /* CommentTableViewCell.m */; };
 		FD3E4E8A1C19D84900F01C40 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD3E4E881C19D84900F01C40 /* CommentTableViewCell.xib */; };
@@ -383,7 +382,6 @@
 				FD3E4E851C19C97600F01C40 /* OpenSans-Light.ttf in Resources */,
 				FDAD93F01C172DFE00B5FE7D /* HeaderView.xib in Resources */,
 				F246ABD21C0724F60022291E /* Assets.xcassets in Resources */,
-				FD3E4E841C19C42B00F01C40 /* Info.plist in Resources */,
 				FD66BB051C1991DB00D2F837 /* InfoViewController.xib in Resources */,
 				F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */,
 			);

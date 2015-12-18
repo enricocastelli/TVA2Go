@@ -44,7 +44,7 @@ import UIKit
     func createHeader (){
         let headerArr = NSBundle.mainBundle().loadNibNamed("HeaderView", owner: self, options: nil) as NSArray
         let header = headerArr.firstObject as! UIView
-        header.frame = CGRectMake(0, 0, self.view.frame.size.width, 25)
+        header.frame = CGRectMake(0, 0, self.view.frame.size.width, 20)
         self.tableView.tableHeaderView = header
         self.tableView.tableHeaderView?.userInteractionEnabled = true
         
