@@ -123,7 +123,7 @@ import UIKit
     }
     
     func pushMine() {
-        let pin = PinnedViewController()
+        let pin = PinnedSwiftViewController()
         let home = HomeViewController()
         self.navigationController?.setViewControllers([home, pin], animated: false)
         self.navigationController?.popToViewController(pin, animated: true)

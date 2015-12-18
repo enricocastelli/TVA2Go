@@ -10,6 +10,5 @@
 #import "GTLYouTube.h"
 #import "RankingTableViewCell.h"
 #import "PinnedViewController.h"
-#import "MostPinnedTableViewController.h"
 #import "HomeViewController.h"
 #import "PinCollectionViewCell.h"

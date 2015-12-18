@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "PinnedViewController.h"
-//#import "MostPinnedTableViewController.h"
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
 #import "GTLYouTube.h"

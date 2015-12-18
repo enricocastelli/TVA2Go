@@ -231,7 +231,7 @@ import Foundation
     }
     
     func pushMost() {
-        let most = MostPinnedTableViewController.init()
+        let most = MostPinnedSwift.init()
         let home = HomeViewController.init()
         self.navigationController?.setViewControllers([home, most], animated: false)
         self.navigationController?.popToViewController(most, animated: true)
