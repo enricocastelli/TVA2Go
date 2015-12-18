@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "PinnedViewController.h"
-#import "MostPinnedTableViewController.h"
+//#import "MostPinnedTableViewController.h"
 #import "VideoPlayerViewController.h"
 #import "TAAYouTubeWrapper.h"
 #import "GTLYouTube.h"
@@ -282,7 +282,7 @@
 
 - (void) mostPinned
 {
-    MostPinnedTableViewController *m = [[MostPinnedTableViewController alloc] init];
+    MostPinnedSwift *m = [[MostPinnedSwift alloc] init];
     m.view.alpha = 0;
     self.navigationController.navigationBar.alpha = 0;
     [UIView animateWithDuration:0.5

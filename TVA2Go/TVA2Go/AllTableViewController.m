@@ -11,7 +11,7 @@
 #import "TAAYouTubeWrapper.h"
 #import "RankingTableViewCell.h"
 #import "TVA2Go-Swift.h"
-#import "MostPinnedTableViewController.h"
+//#import "MostPinnedTableViewController.h"
 #import "HomeViewController.h"
 
 @interface AllTableViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
@@ -190,7 +190,7 @@ heightForHeaderInSection:(NSInteger)section
 
 - (void)pushMost
 {
-    MostPinnedTableViewController *most = [[MostPinnedTableViewController alloc] init];
+    MostPinnedSwift *most = [[MostPinnedSwift alloc] init];
     HomeViewController *h = [[HomeViewController alloc] init];
     [self.navigationController setViewControllers: @[h,most]];
     [self.navigationController popToViewController:most animated:YES];

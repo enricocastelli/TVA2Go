@@ -32,7 +32,7 @@ import UIKit
         tableView.separatorColor = UIColor.clearColor()
         let nib = UINib.init(nibName: "RankingTableViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: "cell")
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "empty")
+        tableView.registerClass(RankingTableViewCell.self, forCellReuseIdentifier: "empty")
         stringSearch = " "
         
         TAAYouTubeWrapper.videosForUser("TVAcademyNL") { (success, videos, error) -> Void in
@@ -94,7 +94,7 @@ import UIKit
     }
     
     func pushMost() {
-        let most = MostPinnedTableViewController()
+        let most = MostPinnedSwift()
         let home = HomeViewController()
         self.navigationController?.setViewControllers([home, most], animated: false)
         self.navigationController?.popToViewController(most, animated: true)
@@ -163,10 +163,10 @@ import UIKit
         return 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> RankingTableViewCell {
         
         if (videos.count == 0) {
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("empty", forIndexPath: indexPath)
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("empty", forIndexPath: indexPath) as! RankingTableViewCell
             
             cell.textLabel?.text = "NO VIDEOS FOUND"
             self.tableView.allowsSelection = false

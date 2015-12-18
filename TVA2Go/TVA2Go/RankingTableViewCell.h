@@ -10,8 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-@interface RankingTableViewCell : UITableViewCell
-
+@interface RankingTableViewCell : PFTableViewCell
 
 @property (weak, nonatomic) IBOutlet PFImageView *imageThumbnail;
 
