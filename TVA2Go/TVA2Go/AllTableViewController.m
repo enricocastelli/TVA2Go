@@ -182,7 +182,7 @@ heightForHeaderInSection:(NSInteger)section
 
 - (void)pushMine
 {
-    PinnedViewController *pin = [[PinnedViewController alloc] init];
+    PinnedSwiftViewController *pin = [[PinnedSwiftViewController alloc] initWithNibName:@"PinnedSwiftViewController" bundle:nil];
     HomeViewController *h = [[HomeViewController alloc] init];
     [self.navigationController setViewControllers: @[h,pin]];
     [self.navigationController popToViewController:pin animated:YES];

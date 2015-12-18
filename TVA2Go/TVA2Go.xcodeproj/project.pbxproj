@@ -14,8 +14,7 @@
 		F2803BC61C04691F00D3251C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BC41C04691F00D3251C /* HomeViewController.m */; };
 		F2803BCB1C046A5D00D3251C /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BC91C046A5D00D3251C /* VideoPlayerViewController.m */; };
 		F2803BCC1C046A5D00D3251C /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BCA1C046A5D00D3251C /* VideoPlayerViewController.xib */; };
-		F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BCE1C046AE500D3251C /* PinnedViewController.m */; };
-		F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BCF1C046AE500D3251C /* PinnedViewController.xib */; };
+		F2803BD11C046AE500D3251C /* PinnedSwiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BCF1C046AE500D3251C /* PinnedSwiftViewController.xib */; };
 		F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */; };
 		F2803BD81C046BC400D3251C /* AllTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2803BD61C046BC400D3251C /* AllTableViewController.m */; };
 		F2803BD91C046BC400D3251C /* FullSwiftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2803BD71C046BC400D3251C /* FullSwiftViewController.xib */; };
@@ -41,6 +40,7 @@
 		FDCFE6B51C2001B400458BA6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCFE6B41C2001B400458BA6 /* Reachability.m */; };
 		FDDB18EC1C0846E4005E11E0 /* TAAYouTubeWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */; };
 		FDF2E93C1C21620B00FE8FCA /* AllVTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF2E93B1C21620B00FE8FCA /* AllVTableViewController.swift */; };
+		FDF2E9411C2301E100FE8FCA /* PinnedSwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF2E9401C2301E100FE8FCA /* PinnedSwiftViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +73,7 @@
 		F2803BCA1C046A5D00D3251C /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		F2803BCD1C046AE500D3251C /* PinnedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinnedViewController.h; sourceTree = "<group>"; };
 		F2803BCE1C046AE500D3251C /* PinnedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinnedViewController.m; sourceTree = "<group>"; };
-		F2803BCF1C046AE500D3251C /* PinnedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinnedViewController.xib; sourceTree = "<group>"; };
+		F2803BCF1C046AE500D3251C /* PinnedSwiftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinnedSwiftViewController.xib; sourceTree = "<group>"; };
 		F2803BD21C046B0900D3251C /* MostPinnedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MostPinnedTableViewController.h; sourceTree = "<group>"; };
 		F2803BD31C046B0900D3251C /* MostPinnedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MostPinnedTableViewController.m; sourceTree = "<group>"; };
 		F2803BD51C046BC400D3251C /* AllTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTableViewController.h; sourceTree = "<group>"; };
@@ -114,6 +114,7 @@
 		FDDB18EA1C0846E4005E11E0 /* TAAYouTubeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAYouTubeWrapper.h; sourceTree = "<group>"; };
 		FDDB18EB1C0846E4005E11E0 /* TAAYouTubeWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAYouTubeWrapper.m; sourceTree = "<group>"; };
 		FDF2E93B1C21620B00FE8FCA /* AllVTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllVTableViewController.swift; sourceTree = "<group>"; };
+		FDF2E9401C2301E100FE8FCA /* PinnedSwiftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinnedSwiftViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +211,8 @@
 				F2803BCA1C046A5D00D3251C /* VideoPlayerViewController.xib */,
 				F2803BCD1C046AE500D3251C /* PinnedViewController.h */,
 				F2803BCE1C046AE500D3251C /* PinnedViewController.m */,
-				F2803BCF1C046AE500D3251C /* PinnedViewController.xib */,
+				FDF2E9401C2301E100FE8FCA /* PinnedSwiftViewController.swift */,
+				F2803BCF1C046AE500D3251C /* PinnedSwiftViewController.xib */,
 				FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */,
 				FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */,
 				FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */,
@@ -372,7 +374,7 @@
 				FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */,
 				F2803BCC1C046A5D00D3251C /* VideoPlayerViewController.xib in Resources */,
 				FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */,
-				F2803BD11C046AE500D3251C /* PinnedViewController.xib in Resources */,
+				F2803BD11C046AE500D3251C /* PinnedSwiftViewController.xib in Resources */,
 				F227F2841C1ED1A700AEBFD3 /* HomeViewController.xib in Resources */,
 				FD3E4E8A1C19D84900F01C40 /* CommentTableViewCell.xib in Resources */,
 				F2E77C3A1C05C4F6001EBD00 /* RankingTableViewCell.xib in Resources */,
@@ -471,6 +473,7 @@
 				FD7E2AA91C15D3F3000A1A96 /* FullVideoSwift.swift in Sources */,
 				FDB10ED11C0461FE0000100B /* AppDelegate.m in Sources */,
 				F2803BCB1C046A5D00D3251C /* VideoPlayerViewController.m in Sources */,
+				FDF2E9411C2301E100FE8FCA /* PinnedSwiftViewController.swift in Sources */,
 				FD3E4E891C19D84900F01C40 /* CommentTableViewCell.m in Sources */,
 				FD922E9F1C04AD1D00D690AA /* PinCollectionViewCell.m in Sources */,
 				FDB10ECE1C0461FE0000100B /* main.m in Sources */,
@@ -479,7 +482,6 @@
 				F2803BD41C046B0900D3251C /* MostPinnedTableViewController.m in Sources */,
 				F2E77C391C05C4F6001EBD00 /* RankingTableViewCell.m in Sources */,
 				FDCFE6B51C2001B400458BA6 /* Reachability.m in Sources */,
-				F2803BD01C046AE500D3251C /* PinnedViewController.m in Sources */,
 				FD66BB041C1991DB00D2F837 /* InfoViewController.swift in Sources */,
 				F2803BD81C046BC400D3251C /* AllTableViewController.m in Sources */,
 			);

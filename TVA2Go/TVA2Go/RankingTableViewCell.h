@@ -12,9 +12,7 @@
 
 @interface RankingTableViewCell : UITableViewCell
 
-
 @property (weak, nonatomic) IBOutlet PFImageView *imageThumbnail;
-
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 

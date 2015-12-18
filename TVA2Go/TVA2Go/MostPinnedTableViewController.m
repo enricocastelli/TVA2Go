@@ -103,7 +103,7 @@
 - (CGFloat)tableView:(UITableView * _Nonnull)tableView
 heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForFooterInSection:(NSInteger)section
@@ -159,7 +159,7 @@ heightForHeaderInSection:(NSInteger)section
 
 - (void)pushMine
 {
-    PinnedViewController *pin = [[PinnedViewController alloc] init];
+    PinnedSwiftViewController *pin = [[PinnedSwiftViewController alloc] initWithNibName:@"PinnedSwiftViewController" bundle:nil];
     HomeViewController *h = [[HomeViewController alloc] init];
     [self.navigationController setViewControllers: @[h,pin]];
     [self.navigationController popToViewController:pin animated:YES];
