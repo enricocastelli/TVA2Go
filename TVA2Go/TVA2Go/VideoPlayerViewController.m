@@ -151,10 +151,10 @@
         [self likeButtonEnabled];
         [self callQuery];
 
-        
     } else {
         
-        nil;
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
     }
 }
 
@@ -437,7 +437,7 @@
 {
     
     if ([PFUser currentUser]){
-    PinnedViewController *p = [[PinnedViewController alloc]init];
+    PinnedSwiftViewController *p = [[PinnedSwiftViewController alloc]initWithNibName:@"PinnedSwiftViewController" bundle:nil];
    [self.navigationController pushViewController:p animated:YES];
         
         

@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinnedViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PinnedSwiftViewController" customModule="TVA2Go" customModuleProvider="target">
             <connections>
-                <outlet property="headerView" destination="Yfm-cb-3Lf" id="hwN-0S-wsb"/>
-                <outlet property="pinned" destination="zW2-Oq-Sho" id="wZz-se-lrR"/>
-                <outlet property="view" destination="B8y-Ij-McD" id="aUd-2h-tyw"/>
+                <outlet property="headerView" destination="Yfm-cb-3Lf" id="6aC-PN-eM8"/>
+                <outlet property="pinned" destination="zW2-Oq-Sho" id="Iiz-u3-4Bm"/>
+                <outlet property="view" destination="B8y-Ij-McD" id="DvD-rk-2hb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

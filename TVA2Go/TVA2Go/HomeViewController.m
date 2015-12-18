@@ -191,7 +191,7 @@
 {
     PFUser *user = [PFUser currentUser];
     if (user){
-    PinnedViewController *p = [[PinnedViewController alloc] init];
+    PinnedSwiftViewController *p = [[PinnedSwiftViewController alloc] initWithNibName:@"PinnedSwiftViewController" bundle:nil];
         p.view.alpha = 0;
         self.navigationController.navigationBar.alpha = 0;
         [UIView animateWithDuration:0.5
@@ -213,7 +213,6 @@
         [self.userButton setSelected:YES];
         [self.navigationController setToolbarHidden:NO];
         [self.successLabel.layer removeAllAnimations];
-        self.successLabel.hidden = NO;
         self.successLabel.alpha = 1;
         self.successLabel.textColor = [UIColor blackColor];
         self.successLabel.text = [NSString stringWithFormat:@"%@", [PFUser currentUser].username];
@@ -221,7 +220,7 @@
         
         [self.navigationController setToolbarHidden:YES];
 
-        self.successLabel.hidden = NO;
+
         self.successLabel.textColor = [UIColor blackColor];
         self.successLabel.text = @"Welcome!";
     }
@@ -522,8 +521,8 @@ self.navigationController.navigationBar.alpha = 0;
                 [UIView animateWithDuration:1.2 delay:0 usingSpringWithDamping:1 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 
                     self.view.backgroundColor = self.loginButton.backgroundColor;
-                    self.successLabel.hidden = NO;
 
+                    
                     self.successLabel.alpha = 1;
 
 
@@ -633,7 +632,6 @@ self.navigationController.navigationBar.alpha = 0;
                     [self.navigationController setToolbarHidden:NO];
                     self.userButton.alpha = 1;
                     [self.userButton setSelected:YES];
-
 
 
                 } completion:nil];
@@ -794,7 +792,6 @@ self.navigationController.navigationBar.alpha = 0;
             break;
         default:
             [self animate:CGVectorMake(0, 0)];
-            
             break;
     }
 }
