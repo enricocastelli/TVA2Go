@@ -22,8 +22,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [Parse setApplicationId:@"257QSfnDrmGSk5BCgBIMJO3tzlwNlABkjZBaRT9K"
-                  clientKey:@"RjnuOLeRozXsx2fzVXYo5Xu2YTslu6GrF8VRpFyw"];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"]];
+    NSString *appID = [dictionary objectForKey:@"AppID"];
+    NSString *clientKey = [dictionary objectForKey:@"ParseClient"];
+    
+    [Parse setApplicationId:appID
+                  clientKey:clientKey];
+
     [Fabric with:@[[Crashlytics class]]];
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |

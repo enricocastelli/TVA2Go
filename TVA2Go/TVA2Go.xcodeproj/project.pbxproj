@@ -28,6 +28,7 @@
 		FD7E2AA91C15D3F3000A1A96 /* FullVideoSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */; };
 		FD7E2AAC1C16CD4A000A1A96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */; };
 		FD7E2AAD1C16CD4A000A1A96 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */; };
+		FD86FA101C3C07CC0002BCF0 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD86FA0F1C3C07CC0002BCF0 /* Keys.plist */; };
 		FD922E9F1C04AD1D00D690AA /* PinCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */; };
 		FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */; };
 		FDAD93F01C172DFE00B5FE7D /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDAD93EF1C172DFE00B5FE7D /* HeaderView.xib */; };
@@ -92,6 +93,7 @@
 		FD7E2AA81C15D3F3000A1A96 /* FullVideoSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullVideoSwift.swift; sourceTree = "<group>"; };
 		FD7E2AAA1C16CD4A000A1A96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FD7E2AAB1C16CD4A000A1A96 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		FD86FA0F1C3C07CC0002BCF0 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		FD922E9C1C04AD1D00D690AA /* PinCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinCollectionViewCell.h; sourceTree = "<group>"; };
 		FD922E9D1C04AD1D00D690AA /* PinCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinCollectionViewCell.m; sourceTree = "<group>"; };
 		FD922E9E1C04AD1D00D690AA /* PinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		FDB10ECB1C0461FE0000100B /* TVA2Go */ = {
 			isa = PBXGroup;
 			children = (
+				FD86FA0F1C3C07CC0002BCF0 /* Keys.plist */,
 				FDB10ECF1C0461FE0000100B /* AppDelegate.h */,
 				FDB10ED01C0461FE0000100B /* AppDelegate.m */,
 				FDDB18EA1C0846E4005E11E0 /* TAAYouTubeWrapper.h */,
@@ -372,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD86FA101C3C07CC0002BCF0 /* Keys.plist in Resources */,
 				FD922EA01C04AD1D00D690AA /* PinCollectionViewCell.xib in Resources */,
 				F2803BCC1C046A5D00D3251C /* VideoPlayerViewController.xib in Resources */,
 				FDB10ED61C0461FE0000100B /* LaunchScreen.storyboard in Resources */,
