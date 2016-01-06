@@ -12,3 +12,5 @@
 #import "PinnedViewController.h"
 #import "HomeViewController.h"
 #import "PinCollectionViewCell.h"
+#import "UIImageView+WebCache.h"
+#import <SDWebImage/UIImageView+WebCache.h>

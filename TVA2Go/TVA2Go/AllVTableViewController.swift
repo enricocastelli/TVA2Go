@@ -180,9 +180,10 @@ import UIKit
             
             cell.titleLabel?.text = video.snippet.title
             let url = NSURL.init(string: video.snippet.thumbnails.standard.url)
-            let data = NSData.init(contentsOfURL: url!)
-            let thumbnail = UIImage.init(data: data!)
-            cell.imageThumbnail?.image = thumbnail
+//            let data = NSData.init(contentsOfURL: url!)
+//            let thumbnail = UIImage.init(data: data!)
+            
+            cell.imageThumbnail?.sd_setImageWithURL(url)
             cell.imageThumbnail?.loadInBackground()
             cell.pinImage?.alpha = 0
             cell.rankingLabel?.alpha = 0
