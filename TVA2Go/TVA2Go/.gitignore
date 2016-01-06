@@ -1,0 +1,7 @@
+*~
+# Mac OS X
+*.DS_Store
+.DS_Store
+
+# Xcode
+Keys.plist
